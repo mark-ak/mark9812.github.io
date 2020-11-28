@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="目录   通过密钥链接仓库 安装node.js 构建myBlog文件 创建文件夹 打开PowerShell 可能遇见问题   测试 常用的Hexo 命令     修改配置文件部署服务 打开blog文件夹中的_config.yum文件，在最后修改以下内容 安装git部署插件 启动码云的pakage服务，加载页面   注意事项     通过密钥链接仓库123git config --global us">
+<meta name="description" content="目录   通过密钥链接仓库 安装node.js 构建myBlog文件 创建文件夹 打开PowerShell 可能遇见问题   测试 常用的Hexo 命令     修改配置文件部署服务 打开blog文件夹中的_config.yum文件，在最后修改以下内容 安装git部署插件 启动码云的pakage服务，加载页面   注意事项">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何搭建hexo个人博客">
 <meta property="og:url" content="https://gitee.com/akram98/myblog/2020/11/26/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="Mark&#39;s Blog">
-<meta property="og:description" content="目录   通过密钥链接仓库 安装node.js 构建myBlog文件 创建文件夹 打开PowerShell 可能遇见问题   测试 常用的Hexo 命令     修改配置文件部署服务 打开blog文件夹中的_config.yum文件，在最后修改以下内容 安装git部署插件 启动码云的pakage服务，加载页面   注意事项     通过密钥链接仓库123git config --global us">
+<meta property="og:description" content="目录   通过密钥链接仓库 安装node.js 构建myBlog文件 创建文件夹 打开PowerShell 可能遇见问题   测试 常用的Hexo 命令     修改配置文件部署服务 打开blog文件夹中的_config.yum文件，在最后修改以下内容 安装git部署插件 启动码云的pakage服务，加载页面   注意事项">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-11-26T15:00:59.000Z">
-<meta property="article:modified_time" content="2020-11-27T16:40:38.000Z">
+<meta property="article:modified_time" content="2020-11-28T05:56:50.829Z">
 <meta property="article:author" content="Akram Amat">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
@@ -384,6 +384,7 @@
 <!-- tocstop -->
 
 <hr>
+<a id="more"></a>
 <h2><span id="通过密钥链接仓库">通过密钥链接仓库</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的GitHub注册邮箱&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
 <p>生成的公钥在user/.ssh/id_rsa.pub文件中</p>
 <h2><span id="安装nodejs">安装node.js</span></h2><p><a href="https://link.zhihu.com/?target=https://nodejs.org/en/download/">Download | Node.js</a><br> 安装完添加环境变量</p>
@@ -393,6 +394,7 @@
 <h3><span id="测试">测试</span></h3><p>init之后会产生blog文件夹，进入blog文件夹中</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo new test_my_site</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 <p>完成后，打开浏览器输入地址：localhost:4000</p>
+<!-- more -->
 <h4><span id="常用的hexo-命令"><strong>常用的Hexo 命令</strong></span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo -g #安装Hexo</span><br><span class="line">npm update hexo -g #升级</span><br><span class="line">hexo init #初始化博客</span><br><span class="line">命令简写</span><br><span class="line">hexo n &quot;我的博客&quot; &#x3D;&#x3D; hexo new &quot;我的博客&quot; #新建文章</span><br><span class="line">hexo g &#x3D;&#x3D; hexo generate #生成</span><br><span class="line">hexo s &#x3D;&#x3D; hexo server #启动服务预览</span><br><span class="line">hexo d &#x3D;&#x3D; hexo deploy #部署</span><br><span class="line">hexo server #Hexo会监视文件变动并自动更新，无须重启服务器</span><br><span class="line">hexo server -s #静态模式</span><br><span class="line">hexo server -p 5000 #更改端口</span><br><span class="line">hexo server -i 192.168.1.1 #自定义 IP</span><br><span class="line">hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令</span><br></pre></td></tr></table></figure>
 
 <p>刚刚的三个命令依次是新建一篇博客文章、生成网页、在本地预览的操作。</p>
@@ -609,7 +611,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.1k字</span>
+  <span class="post-count">博客全站共3.2k字</span>
 </div>
 
         

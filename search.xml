@@ -27,6 +27,7 @@
 <!-- tocstop -->
 
 <hr>
+<a id="more"></a>
 <h2><span id="更换主题">更换主题</span></h2><ul>
 <li><p>克隆主题仓库</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure></li>
@@ -39,30 +40,40 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">“ &#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro&#x2F;post.swig‘ as post_template %&#125;“</span><br></pre></td></tr></table></figure>
 <p>原因是hexo在5.0之后把swig给删除了需要自己手动安装</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
+<!-- more -->
 <h2><span id="配置站点基本信息">配置站点基本信息</span></h2><p>在站点配置文件_config.yml修改基本的站点信息，依次是网站标题、副标题、网站描述、作者、网站头像外部链接、网站语言、时区等。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"># Site</span><br><span class="line">title: Mark&#39;s Blog</span><br><span class="line">subtitle: I love to travel, but hate to arrive.</span><br><span class="line">description: </span><br><span class="line">keywords:</span><br><span class="line">author: Akram Amat</span><br><span class="line">language: zh-Hans</span><br><span class="line">timezone: </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2><span id="动态背景设置">动态背景设置</span></h2><p>Next主题自带有动态的背景效果，修改主题配置文件中的canvas_nest: false为canvas_nest: true即可。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Canvas-nest</span><br><span class="line">canvas_nest: true</span><br><span class="line"></span><br><span class="line"># three_waves</span><br><span class="line">three_waves: false</span><br></pre></td></tr></table></figure>
-<h2><span id="增删侧栏条目">增删侧栏条目</span></h2><ul>
-<li>创建菜单文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page &quot;你所要增加的菜单项名称（要和你在menu中的填写要匹配）&quot;</span><br></pre></td></tr></table></figure></li>
-<li>编辑菜单文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: 标签</span><br><span class="line">date: 2020-11-27 10:23:31</span><br><span class="line">type: &quot;tags&quot;</span><br></pre></td></tr></table></figure></li>
-<li>修改主题配置文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">#home: &#x2F; || home</span><br><span class="line">#about: &#x2F;about&#x2F; || user</span><br><span class="line">tags: &#x2F;tags</span><br></pre></td></tr></table></figure>
+<h2><span id="增删侧栏条目">增删侧栏条目</span></h2></li>
+<li><p>创建菜单文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page &quot;你所要增加的菜单项名称（要和你在menu中的填写要匹配）&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑菜单文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: 标签</span><br><span class="line">date: 2020-11-27 10:23:31</span><br><span class="line">type: &quot;tags&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>修改主题配置文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">#home: &#x2F; || home</span><br><span class="line">#about: &#x2F;about&#x2F; || user</span><br><span class="line">tags: &#x2F;tags</span><br></pre></td></tr></table></figure>
 <h2><span id="设置toc目录">设置toc目录</span></h2></li>
-<li>安装toc插件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-toc --save</span><br></pre></td></tr></table></figure></li>
-<li>配置站点配置文件,在文件末尾添加。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">toc:</span><br><span class="line">  maxDepth: 4         &#x2F;&#x2F;深度</span><br><span class="line">  slugify: false     &#x2F;&#x2F;防止中文链接被转义无法跳转</span><br></pre></td></tr></table></figure></li>
-<li>在markdown中使用<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
+<li><p>安装toc插件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-toc --save</span><br></pre></td></tr></table></figure></li>
+<li><p>配置站点配置文件,在文件末尾添加。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">toc:</span><br><span class="line">  maxDepth: 4         &#x2F;&#x2F;深度</span><br><span class="line">  slugify: false     &#x2F;&#x2F;防止中文链接被转义无法跳转</span><br></pre></td></tr></table></figure></li>
+<li><p>在markdown中使用</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
 <h2><span id="设置搜索功能">设置搜索功能</span></h2></li>
-<li>安装 hexo-generator-search<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>安装 hexo-generator-searchdb<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>在项目根目录下的 _config.yml 配置文件的文末添加下面这段代码。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>编辑主题文件夹的 _config.yml 配置文件，设置 Local searchenable 为 ture。重启服务即可！<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+<li><p>安装 hexo-generator-search</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>安装 hexo-generator-searchdb</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>在项目根目录下的 _config.yml 配置文件的文末添加下面这段代码。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>编辑主题文件夹的 _config.yml 配置文件，设置 Local searchenable 为 ture。重启服务即可！</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
 <h2><span id="底部隐藏由hexo强力驱动-主题nextmist">底部隐藏由Hexo强力驱动、主题–NexT.Mist</span></h2></li>
-<li>在主题文件夹下，打开 layout/_partials/footer.swig 文件，注释掉相关代码如下所示，位置是文末。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">&#123;% if theme.footer.powered %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;powered-by&quot;&gt;&#123;#</span><br><span class="line">  #&#125;&#123;&#123; __(&#39;footer.powered&#39;, &#39;&lt;a class&#x3D;&quot;theme-link&quot; target&#x3D;&quot;_blank&quot; href&#x3D;&quot;https:&#x2F;&#x2F;hexo.io&quot;&gt;Hexo&lt;&#x2F;a&gt;&#39;) &#125;&#125;&#123;#</span><br><span class="line">#&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if theme.footer.powered and theme.footer.theme.enable %&#125;</span><br><span class="line">  &lt;span class&#x3D;&quot;post-meta-divider&quot;&gt;|&lt;&#x2F;span&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if theme.footer.theme.enable %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;theme-info&quot;&gt;&#123;#</span><br><span class="line">  #&#125;&#123;&#123; __(&#39;footer.theme&#39;) &#125;&#125; &amp;mdash; &#123;#</span><br><span class="line">  #&#125;&lt;a class&#x3D;&quot;theme-link&quot; target&#x3D;&quot;_blank&quot; href&#x3D;&quot;https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next&quot;&gt;&#123;#</span><br><span class="line">    #&#125;NexT.&#123;&#123; theme.scheme &#125;&#125;&#123;#</span><br><span class="line">  #&#125;&lt;&#x2F;a&gt;&#123;% if theme.footer.theme.version %&#125; v&#123;&#123; theme.version &#125;&#125;&#123;% endif %&#125;&#123;#</span><br><span class="line">#&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if theme.footer.custom_text %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;footer-custom&quot;&gt;&#123;#</span><br><span class="line">  #&#125;&#123;&#123; theme.footer.custom_text &#125;&#125;&#123;#</span><br><span class="line">#&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+<li><p>在主题文件夹下，打开 layout/_partials/footer.swig 文件，注释掉相关代码如下所示，位置是文末。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">&#123;% if theme.footer.powered %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;powered-by&quot;&gt;&#123;#</span><br><span class="line">  #&#125;&#123;&#123; __(&#39;footer.powered&#39;, &#39;&lt;a class&#x3D;&quot;theme-link&quot; target&#x3D;&quot;_blank&quot; href&#x3D;&quot;https:&#x2F;&#x2F;hexo.io&quot;&gt;Hexo&lt;&#x2F;a&gt;&#39;) &#125;&#125;&#123;#</span><br><span class="line">#&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if theme.footer.powered and theme.footer.theme.enable %&#125;</span><br><span class="line">  &lt;span class&#x3D;&quot;post-meta-divider&quot;&gt;|&lt;&#x2F;span&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if theme.footer.theme.enable %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;theme-info&quot;&gt;&#123;#</span><br><span class="line">  #&#125;&#123;&#123; __(&#39;footer.theme&#39;) &#125;&#125; &amp;mdash; &#123;#</span><br><span class="line">  #&#125;&lt;a class&#x3D;&quot;theme-link&quot; target&#x3D;&quot;_blank&quot; href&#x3D;&quot;https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next&quot;&gt;&#123;#</span><br><span class="line">    #&#125;NexT.&#123;&#123; theme.scheme &#125;&#125;&#123;#</span><br><span class="line">  #&#125;&lt;&#x2F;a&gt;&#123;% if theme.footer.theme.version %&#125; v&#123;&#123; theme.version &#125;&#125;&#123;% endif %&#125;&#123;#</span><br><span class="line">#&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if theme.footer.custom_text %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;footer-custom&quot;&gt;&#123;#</span><br><span class="line">  #&#125;&#123;&#123; theme.footer.custom_text &#125;&#125;&#123;#</span><br><span class="line">#&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
 <h2><span id="设置网站图片-favicon">设置网站图片 Favicon</span></h2></li>
-<li>在 阿里巴巴矢量图标库 中找到自己的喜欢的图标，下载下来，覆盖掉主题文件夹下的 source/images 目录里面的三张图片即可。</li>
+<li><p>在 阿里巴巴矢量图标库 中找到自己的喜欢的图标，下载下来，覆盖掉主题文件夹下的 source/images 目录里面的三张图片即可。</p>
+</li>
 </ul>
 <h2><span id="博客置顶设置">博客置顶设置</span></h2><ul>
 <li>安装插件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-generator-index --save</span><br><span class="line">npm install hexo-generator-index-pin-top --save</span><br></pre></td></tr></table></figure></li>
@@ -98,7 +109,7 @@
 <li>下载插件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -save hexo-helper-live2d</span><br></pre></td></tr></table></figure></li>
 <li>选择萌宠或看板娘<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">live2d-widget-model-chitose</span><br><span class="line">live2d-widget-model-epsilon2_1</span><br><span class="line">live2d-widget-model-gf</span><br><span class="line">live2d-widget-model-haru&#x2F;01 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haru&#x2F;02 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haruto</span><br><span class="line">live2d-widget-model-hibiki</span><br><span class="line">live2d-widget-model-hijiki</span><br><span class="line">live2d-widget-model-izumi</span><br><span class="line">live2d-widget-model-koharu</span><br><span class="line">live2d-widget-model-miku</span><br><span class="line">live2d-widget-model-ni-j</span><br><span class="line">live2d-widget-model-nico</span><br><span class="line">live2d-widget-model-nietzsche</span><br><span class="line">live2d-widget-model-nipsilon</span><br><span class="line">live2d-widget-model-nito</span><br><span class="line">live2d-widget-model-shizuku</span><br><span class="line">live2d-widget-model-tororo</span><br><span class="line">live2d-widget-model-tsumiki</span><br><span class="line">live2d-widget-model-unitychan</span><br><span class="line">live2d-widget-model-wanko</span><br><span class="line">live2d-widget-model-z16</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 <li>然后在站点配置文件中加入<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  enable: true</span><br><span class="line">  scriptFrom: local</span><br><span class="line">  pluginRootPath: live2dw&#x2F;</span><br><span class="line">  pluginJsPath: lib&#x2F;</span><br><span class="line">  pluginModelPath: assets&#x2F;</span><br><span class="line">  tagMode: false</span><br><span class="line">  model:</span><br><span class="line">    use: live2d-widget-model-wanko  #选择哪种模型</span><br><span class="line">  display: #放置位置和大小</span><br><span class="line">    position: right</span><br><span class="line">    width: 150</span><br><span class="line">    height: 300</span><br><span class="line">  mobile:</span><br><span class="line">    show: false #是否在手机端显示</span><br></pre></td></tr></table></figure></li>
-<li>下载对应模型<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install live2d-widget-model-wanko</span><br></pre></td></tr></table></figure>
+<li>下载对应模型<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install live2d-widget-model-wanko</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 ]]></content>
@@ -107,31 +118,6 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在hoxe中使用markdown</title>
-    <url>/myblog/2020/11/27/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/</url>
-    <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
-
-<ul>
-<li><a href="#toc%E7%9A%84%E4%BD%BF%E7%94%A8">toc的使用</a></li>
-<li><a href="#%E4%BD%BF%E6%96%87%E5%AD%97%E7%B2%97%E4%BD%93%E6%88%96%E6%96%9C%E4%BD%93">使文字粗体或斜体</a></li>
-<li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90">文本对齐</a></li>
-</ul>
-<!-- tocstop -->
-
-<hr>
-<h2><span id="toc的使用">toc的使用</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
-<h2><span id="使文字粗体或斜体">使文字粗体或斜体</span></h2><p>使用粗体或斜体时，要保证两端的” _ “或者” * “离两边的文字之间有一个空格 </p>
-<h2><span id="文本对齐">文本对齐</span></h2><p>在一个模块儿中间 <strong>空行</strong> 可能会导致上下文不对齐</p>
-]]></content>
-      <categories>
-        <category>markdown</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -165,6 +151,7 @@
 <!-- tocstop -->
 
 <hr>
+<a id="more"></a>
 <h2><span id="通过密钥链接仓库">通过密钥链接仓库</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;你的GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的GitHub注册邮箱&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
 <p>生成的公钥在user/.ssh/id_rsa.pub文件中</p>
 <h2><span id="安装nodejs">安装node.js</span></h2><p><a href="https://link.zhihu.com/?target=https://nodejs.org/en/download/">Download | Node.js</a><br> 安装完添加环境变量</p>
@@ -174,6 +161,7 @@
 <h3><span id="测试">测试</span></h3><p>init之后会产生blog文件夹，进入blog文件夹中</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new test_my_site</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 <p>完成后，打开浏览器输入地址：localhost:4000</p>
+<!-- more -->
 <h4><span id="常用的hexo-命令"><strong>常用的Hexo 命令</strong></span></h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo -g #安装Hexo</span><br><span class="line">npm update hexo -g #升级</span><br><span class="line">hexo init #初始化博客</span><br><span class="line">命令简写</span><br><span class="line">hexo n &quot;我的博客&quot; &#x3D;&#x3D; hexo new &quot;我的博客&quot; #新建文章</span><br><span class="line">hexo g &#x3D;&#x3D; hexo generate #生成</span><br><span class="line">hexo s &#x3D;&#x3D; hexo server #启动服务预览</span><br><span class="line">hexo d &#x3D;&#x3D; hexo deploy #部署</span><br><span class="line">hexo server #Hexo会监视文件变动并自动更新，无须重启服务器</span><br><span class="line">hexo server -s #静态模式</span><br><span class="line">hexo server -p 5000 #更改端口</span><br><span class="line">hexo server -i 192.168.1.1 #自定义 IP</span><br><span class="line">hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令</span><br></pre></td></tr></table></figure>
 
 <p>刚刚的三个命令依次是新建一篇博客文章、生成网页、在本地预览的操作。</p>
@@ -201,6 +189,36 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在hoxe中使用markdown</title>
+    <url>/myblog/2020/11/27/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/</url>
+    <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
+
+<ul>
+<li><a href="#toc%E7%9A%84%E4%BD%BF%E7%94%A8">toc的使用</a></li>
+<li><a href="#%E4%BD%BF%E6%96%87%E5%AD%97%E7%B2%97%E4%BD%93%E6%88%96%E6%96%9C%E4%BD%93">使文字粗体或斜体</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90">文本对齐</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E6%8A%98%E5%8F%A0">文本折叠</a></li>
+</ul>
+<!-- tocstop -->
+
+<hr>
+<a id="more"></a>
+
+<h2><span id="toc的使用">toc的使用</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
+<h2><span id="使文字粗体或斜体">使文字粗体或斜体</span></h2><p>使用粗体或斜体时，要保证两端的” _ “或者” * “离两边的文字之间有一个空格 </p>
+<h2><span id="文本对齐">文本对齐</span></h2><p>在一个模块儿中间 <strong>空行</strong> 可能会导致上下文不对齐</p>
+<h2><span id="文本折叠">文本折叠</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>markdown</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>markdown</tag>
       </tags>
   </entry>
 </search>

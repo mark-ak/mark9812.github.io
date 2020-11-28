@@ -355,8 +355,7 @@
 
       
         
-          
-            <h1><span id="目录">目录</span></h1><!-- toc -->
+          <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><!-- toc -->
 
 <ul>
 <li><a href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98">更换主题</a></li>
@@ -380,82 +379,13 @@
 <!-- tocstop -->
 
 <hr>
-<h2><span id="更换主题">更换主题</span></h2><ul>
-<li><p>克隆主题仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure></li>
-<li><p>配置站点_config.yum文件,修改theme为我们想要的主题。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置主题_config.yum文件。选择样式取掉前面的#号</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure></li>
-<li><p>hexo使用theme如果出现出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“ &#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro&#x2F;post.swig‘ as post_template %&#125;“</span><br></pre></td></tr></table></figure>
-<p>原因是hexo在5.0之后把swig给删除了需要自己手动安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2><span id="配置站点基本信息">配置站点基本信息</span></h2><p>在站点配置文件_config.yml修改基本的站点信息，依次是网站标题、副标题、网站描述、作者、网站头像外部链接、网站语言、时区等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Site</span><br><span class="line">title: Mark&#39;s Blog</span><br><span class="line">subtitle: I love to travel, but hate to arrive.</span><br><span class="line">description: </span><br><span class="line">keywords:</span><br><span class="line">author: Akram Amat</span><br><span class="line">language: zh-Hans</span><br><span class="line">timezone: </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2><span id="动态背景设置">动态背景设置</span></h2><p>Next主题自带有动态的背景效果，修改主题配置文件中的canvas_nest: false为canvas_nest: true即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Canvas-nest</span><br><span class="line">canvas_nest: true</span><br><span class="line"></span><br><span class="line"># three_waves</span><br><span class="line">three_waves: false</span><br></pre></td></tr></table></figure>
-<h2><span id="增删侧栏条目">增删侧栏条目</span></h2><ul>
-<li>创建菜单文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &quot;你所要增加的菜单项名称（要和你在menu中的填写要匹配）&quot;</span><br></pre></td></tr></table></figure></li>
-<li>编辑菜单文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 标签</span><br><span class="line">date: 2020-11-27 10:23:31</span><br><span class="line">type: &quot;tags&quot;</span><br></pre></td></tr></table></figure></li>
-<li>修改主题配置文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">#home: &#x2F; || home</span><br><span class="line">#about: &#x2F;about&#x2F; || user</span><br><span class="line">tags: &#x2F;tags</span><br></pre></td></tr></table></figure>
-<h2><span id="设置toc目录">设置toc目录</span></h2></li>
-<li>安装toc插件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-toc --save</span><br></pre></td></tr></table></figure></li>
-<li>配置站点配置文件,在文件末尾添加。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">toc:</span><br><span class="line">  maxDepth: 4         &#x2F;&#x2F;深度</span><br><span class="line">  slugify: false     &#x2F;&#x2F;防止中文链接被转义无法跳转</span><br></pre></td></tr></table></figure></li>
-<li>在markdown中使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
-<h2><span id="设置搜索功能">设置搜索功能</span></h2></li>
-<li>安装 hexo-generator-search<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>安装 hexo-generator-searchdb<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>在项目根目录下的 _config.yml 配置文件的文末添加下面这段代码。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>编辑主题文件夹的 _config.yml 配置文件，设置 Local searchenable 为 ture。重启服务即可！<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
-<h2><span id="底部隐藏由hexo强力驱动-主题nextmist">底部隐藏由Hexo强力驱动、主题–NexT.Mist</span></h2></li>
-<li>在主题文件夹下，打开 layout/_partials/footer.swig 文件，注释掉相关代码如下所示，位置是文末。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">&#123;% if theme.footer.powered %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;powered-by&quot;&gt;&#123;#</span><br><span class="line">  #&#125;&#123;&#123; __(&#39;footer.powered&#39;, &#39;&lt;a class&#x3D;&quot;theme-link&quot; target&#x3D;&quot;_blank&quot; href&#x3D;&quot;https:&#x2F;&#x2F;hexo.io&quot;&gt;Hexo&lt;&#x2F;a&gt;&#39;) &#125;&#125;&#123;#</span><br><span class="line">#&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if theme.footer.powered and theme.footer.theme.enable %&#125;</span><br><span class="line">  &lt;span class&#x3D;&quot;post-meta-divider&quot;&gt;|&lt;&#x2F;span&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if theme.footer.theme.enable %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;theme-info&quot;&gt;&#123;#</span><br><span class="line">  #&#125;&#123;&#123; __(&#39;footer.theme&#39;) &#125;&#125; &amp;mdash; &#123;#</span><br><span class="line">  #&#125;&lt;a class&#x3D;&quot;theme-link&quot; target&#x3D;&quot;_blank&quot; href&#x3D;&quot;https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next&quot;&gt;&#123;#</span><br><span class="line">    #&#125;NexT.&#123;&#123; theme.scheme &#125;&#125;&#123;#</span><br><span class="line">  #&#125;&lt;&#x2F;a&gt;&#123;% if theme.footer.theme.version %&#125; v&#123;&#123; theme.version &#125;&#125;&#123;% endif %&#125;&#123;#</span><br><span class="line">#&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if theme.footer.custom_text %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;footer-custom&quot;&gt;&#123;#</span><br><span class="line">  #&#125;&#123;&#123; theme.footer.custom_text &#125;&#125;&#123;#</span><br><span class="line">#&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
-<h2><span id="设置网站图片-favicon">设置网站图片 Favicon</span></h2></li>
-<li>在 阿里巴巴矢量图标库 中找到自己的喜欢的图标，下载下来，覆盖掉主题文件夹下的 source/images 目录里面的三张图片即可。</li>
-</ul>
-<h2><span id="博客置顶设置">博客置顶设置</span></h2><ul>
-<li>安装插件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-generator-index --save</span><br><span class="line">npm install hexo-generator-index-pin-top --save</span><br></pre></td></tr></table></figure></li>
-<li>然后在需要置顶的文章的 Front-matter 中加上 top 即可，数值越大表示等级越高，越靠前显示。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: this is my first blog</span><br><span class="line">date: 2019-04-14</span><br><span class="line">top: 100</span><br></pre></td></tr></table></figure></li>
-<li>在主题文件夹中打开 layout/_macro/post.swig 文件，定位到 post-header 标签下，把下面的代码添加进去即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if post.top %&#125;</span><br><span class="line">  &lt;i class&#x3D;&quot;fa fa-thumb-tack&quot;&gt;&lt;&#x2F;i&gt;</span><br><span class="line">  &lt;font color&#x3D;7D26CD&gt;置顶&lt;&#x2F;font&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="文章代码主题设置">文章代码主题设置</span></h2></li>
-<li>NexT 使用 Tomorrow Theme 作为代码高亮，共有5款主题供你选择。 NexT 默认使用的是 白色的 normal 主题，可选的值有 normal，night， night blue， night bright， night eighties。</li>
-<li>在主题文件夹的 _config.yml 配置文件中，定位到 highlight_theme，根据需求修改相应的值即可。</li>
-</ul>
-<h2><span id="网站底部字数统计设置">网站底部字数统计设置</span></h2><ul>
-<li>在项目根目录下安装 hexo 插件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-wordcount --save</span><br></pre></td></tr></table></figure></li>
-<li>打开主题文件夹下的 layout/_partials/footer.swig 文件，在文末添加上下面这段代码。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;theme-info&quot;&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;powered-by&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;span class&#x3D;&quot;post-count&quot;&gt;博客全站共&#123;&#123; totalcount(site) &#125;&#125;字&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2><span id="设置头像">设置头像</span></h2></li>
-<li>配置主题_config.yum文件,替换相应文件下的avatar.gif文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">avatar: &#x2F;images&#x2F;avatar.gif</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2><span id="设置头像圆角并旋转打开">设置头像圆角并旋转打开</span></h2><ul>
-<li>打开主题文件夹的 source\css_common\components\sidebar 目录下的 sidebar-author.styl 文件，然后把下面的代码添加进去即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">.site-author-image &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  padding: $site-author-image-padding;</span><br><span class="line">  max-width: $site-author-image-width;</span><br><span class="line">  height: $site-author-image-height;</span><br><span class="line">  border: $site-author-image-border-width solid $site-author-image-border-color;</span><br><span class="line">  &#x2F;* 头像圆形 *&#x2F;</span><br><span class="line">  border-radius: 80px;</span><br><span class="line">  -webkit-border-radius: 80px;</span><br><span class="line">  -moz-border-radius: 80px;</span><br><span class="line">  box-shadow: inset 0 -1px 0 #333sf;</span><br><span class="line">  &#x2F;* 设置循环动画 [animation: (play)动画名称 (2s)动画播放时长单位秒或微秒 (ase-out)动画播放的速度曲线为以低速结束 </span><br><span class="line">    (1s)等待1秒然后开始动画 (1)动画播放次数(infinite为循环播放) ]*&#x2F;</span><br><span class="line"> </span><br><span class="line">  &#x2F;* 鼠标经过头像旋转360度 *&#x2F;</span><br><span class="line">  -webkit-transition: -webkit-transform 1.0s ease-out;</span><br><span class="line">  -moz-transition: -moz-transform 1.0s ease-out;</span><br><span class="line">  transition: transform 1.0s ease-out;</span><br><span class="line">&#125;</span><br><span class="line">img:hover &#123;</span><br><span class="line">  &#x2F;* 鼠标经过停止头像旋转 </span><br><span class="line">  -webkit-animation-play-state:paused;</span><br><span class="line">  animation-play-state:paused;*&#x2F;</span><br><span class="line">  &#x2F;* 鼠标经过头像旋转360度 *&#x2F;</span><br><span class="line">  -webkit-transform: rotateZ(360deg);</span><br><span class="line">  -moz-transform: rotateZ(360deg);</span><br><span class="line">  transform: rotateZ(360deg);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;* Z 轴旋转动画 *&#x2F;</span><br><span class="line">@-webkit-keyframes play &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    -webkit-transform: rotateZ(0deg);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    -webkit-transform: rotateZ(-360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@-moz-keyframes play &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    -moz-transform: rotateZ(0deg);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    -moz-transform: rotateZ(-360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes play &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    transform: rotateZ(0deg);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    transform: rotateZ(-360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2><span id="添加分类列表">添加分类列表</span></h2></li>
-<li>在根目录新建categories page<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure></li>
-<li>打开 categories 文件夹中的 index.md 文件，添加 type 字段，设置为 “categories”。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: categories</span><br><span class="line">date: 2020-11-27 23:44:12</span><br><span class="line">type: categories</span><br></pre></td></tr></table></figure></li>
-<li>接着到主题文件夹下的 _config.yml 配置文件下，找到 menu 模块，把 categories 的注释给去掉。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  #home: &#x2F; || home</span><br><span class="line">  #about: &#x2F;about&#x2F; || user</span><br><span class="line">  tags: &#x2F;tags</span><br><span class="line">  categories: &#x2F;categories</span><br></pre></td></tr></table></figure></li>
-<li>可能会遇见的问题<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cannot get myblog&#x2F;categories&#x2F;20%</span><br></pre></td></tr></table></figure>
-原因：在配置主题_config.yum文件时，categories后面的部分格式有问题，只能有一个空格，格式是非常严谨的。</li>
-</ul>
-<h2><span id="同一个文章添加多个tags">同一个文章添加多个tags</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tags: [hexo,markdown]</span><br></pre></td></tr></table></figure>
-<h2><span id="外链网易云音乐设置">外链网易云音乐设置</span></h2><ul>
-<li>打开网易云，登录自己的账号，选择自己喜欢的一首歌，然后点击“生成外链播放器”</li>
-<li>根据自己的需求设置音乐的样式，然后把代码复制下来。</li>
-<li>打开主题文件夹下的 layout/_macro/sidebar.swig 文件，自己找个合适的位置，把刚刚复制的代码放进去。我放的位置如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if site.tags.length &gt; 0 %&#125;</span><br><span class="line">            &#123;% set tagsPageQuery &#x3D; site.pages.find(&#123;type: &#39;tags&#39;&#125;, &#123;lean: true&#125;) %&#125;</span><br><span class="line">            &#123;% set hasTagsPage &#x3D; tagsPageQuery.length &gt; 0 %&#125;</span><br><span class="line">            &lt;div class&#x3D;&quot;site-state-item site-state-tags&quot;&gt;</span><br><span class="line">              &#123;% if hasTagsPage %&#125;&lt;a href&#x3D;&quot;&#123;&#123; url_for(tagsPageQuery[0].path) &#125;&#125;&quot;&gt;&#123;% endif %&#125;</span><br><span class="line">                &lt;span class&#x3D;&quot;site-state-item-count&quot;&gt;&#123;&#123; site.tags.length &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">                &lt;span class&#x3D;&quot;site-state-item-name&quot;&gt;&#123;&#123; __(&#39;state.tags&#39;) &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">              &#123;% if hasTagsPage %&#125;&lt;&#x2F;a&gt;&#123;% endif %&#125;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">          &#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">        &lt;&#x2F;nav&gt;</span><br><span class="line">        &lt;iframe frameborder&#x3D;&quot;no&quot; border&#x3D;&quot;0&quot; marginwidth&#x3D;&quot;0&quot; marginheight&#x3D;&quot;0&quot; width&#x3D;330 height&#x3D;86 src&#x3D;&quot;&#x2F;&#x2F;music.163.com&#x2F;outchain&#x2F;player?type&#x3D;2&amp;id&#x3D;26418207&amp;auto&#x3D;1&amp;height&#x3D;66&quot;&gt;&lt;&#x2F;iframe&gt;</span><br></pre></td></tr></table></figure>
-<h2><span id="看板娘设置">看板娘设置</span></h2></li>
-<li>下载插件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -save hexo-helper-live2d</span><br></pre></td></tr></table></figure></li>
-<li>选择萌宠或看板娘<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">live2d-widget-model-chitose</span><br><span class="line">live2d-widget-model-epsilon2_1</span><br><span class="line">live2d-widget-model-gf</span><br><span class="line">live2d-widget-model-haru&#x2F;01 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haru&#x2F;02 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haruto</span><br><span class="line">live2d-widget-model-hibiki</span><br><span class="line">live2d-widget-model-hijiki</span><br><span class="line">live2d-widget-model-izumi</span><br><span class="line">live2d-widget-model-koharu</span><br><span class="line">live2d-widget-model-miku</span><br><span class="line">live2d-widget-model-ni-j</span><br><span class="line">live2d-widget-model-nico</span><br><span class="line">live2d-widget-model-nietzsche</span><br><span class="line">live2d-widget-model-nipsilon</span><br><span class="line">live2d-widget-model-nito</span><br><span class="line">live2d-widget-model-shizuku</span><br><span class="line">live2d-widget-model-tororo</span><br><span class="line">live2d-widget-model-tsumiki</span><br><span class="line">live2d-widget-model-unitychan</span><br><span class="line">live2d-widget-model-wanko</span><br><span class="line">live2d-widget-model-z16</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>然后在站点配置文件中加入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  enable: true</span><br><span class="line">  scriptFrom: local</span><br><span class="line">  pluginRootPath: live2dw&#x2F;</span><br><span class="line">  pluginJsPath: lib&#x2F;</span><br><span class="line">  pluginModelPath: assets&#x2F;</span><br><span class="line">  tagMode: false</span><br><span class="line">  model:</span><br><span class="line">    use: live2d-widget-model-wanko  #选择哪种模型</span><br><span class="line">  display: #放置位置和大小</span><br><span class="line">    position: right</span><br><span class="line">    width: 150</span><br><span class="line">    height: 300</span><br><span class="line">  mobile:</span><br><span class="line">    show: false #是否在手机端显示</span><br></pre></td></tr></table></figure></li>
-<li>下载对应模型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install live2d-widget-model-wanko</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog/2020/11/27/hexo%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -594,22 +524,24 @@
 
       
         
-          
-            <h1><span id="目录">目录</span></h1><!-- toc -->
+          <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><!-- toc -->
 
 <ul>
 <li><a href="#toc%E7%9A%84%E4%BD%BF%E7%94%A8">toc的使用</a></li>
 <li><a href="#%E4%BD%BF%E6%96%87%E5%AD%97%E7%B2%97%E4%BD%93%E6%88%96%E6%96%9C%E4%BD%93">使文字粗体或斜体</a></li>
 <li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90">文本对齐</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E6%8A%98%E5%8F%A0">文本折叠</a></li>
 </ul>
 <!-- tocstop -->
 
 <hr>
-<h2><span id="toc的使用">toc的使用</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
-<h2><span id="使文字粗体或斜体">使文字粗体或斜体</span></h2><p>使用粗体或斜体时，要保证两端的” _ “或者” * “离两边的文字之间有一个空格 </p>
-<h2><span id="文本对齐">文本对齐</span></h2><p>在一个模块儿中间 <strong>空行</strong> 可能会导致上下文不对齐</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog/2020/11/27/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -748,8 +680,7 @@
 
       
         
-          
-            <h1><span id="目录">目录</span></h1><!-- toc -->
+          <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><!-- toc -->
 
 <ul>
 <li><a href="#%E9%80%9A%E8%BF%87%E5%AF%86%E9%92%A5%E9%93%BE%E6%8E%A5%E4%BB%93%E5%BA%93">通过密钥链接仓库</a></li>
@@ -777,38 +708,13 @@
 <!-- tocstop -->
 
 <hr>
-<h2><span id="通过密钥链接仓库">通过密钥链接仓库</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的GitHub注册邮箱&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
-<p>生成的公钥在user/.ssh/id_rsa.pub文件中</p>
-<h2><span id="安装nodejs">安装node.js</span></h2><p><a href="https://link.zhihu.com/?target=https://nodejs.org/en/download/">Download | Node.js</a><br> 安装完添加环境变量</p>
-<h2><span id="构建myblog文件">构建myBlog文件</span></h2><h3><span id="创建文件夹">创建文件夹</span></h3><h3><span id="打开powershell">打开PowerShell</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
-<h4><span id="可能遇见问题"><strong>可能遇见问题</strong></span></h4><p>powershell中不能执行脚本，提示‘because running scripts is disabled on this system’<br><strong>原因</strong><br>powershell中默认的execution policy 是restricted，使用Get-ExecutionPolicy查看<br><strong>解决方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy RemoteSigned</span><br></pre></td></tr></table></figure>
-<h3><span id="测试">测试</span></h3><p>init之后会产生blog文件夹，进入blog文件夹中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo new test_my_site</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>完成后，打开浏览器输入地址：localhost:4000</p>
-<h4><span id="常用的hexo-命令"><strong>常用的Hexo 命令</strong></span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo -g #安装Hexo</span><br><span class="line">npm update hexo -g #升级</span><br><span class="line">hexo init #初始化博客</span><br><span class="line">命令简写</span><br><span class="line">hexo n &quot;我的博客&quot; &#x3D;&#x3D; hexo new &quot;我的博客&quot; #新建文章</span><br><span class="line">hexo g &#x3D;&#x3D; hexo generate #生成</span><br><span class="line">hexo s &#x3D;&#x3D; hexo server #启动服务预览</span><br><span class="line">hexo d &#x3D;&#x3D; hexo deploy #部署</span><br><span class="line">hexo server #Hexo会监视文件变动并自动更新，无须重启服务器</span><br><span class="line">hexo server -s #静态模式</span><br><span class="line">hexo server -p 5000 #更改端口</span><br><span class="line">hexo server -i 192.168.1.1 #自定义 IP</span><br><span class="line">hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令</span><br></pre></td></tr></table></figure>
-
-<p>刚刚的三个命令依次是新建一篇博客文章、生成网页、在本地预览的操作。</p>
-<h2><span id="修改配置文件部署服务">修改配置文件部署服务</span></h2><h3><span id="打开blog文件夹中的_configyum文件在最后修改以下内容">打开blog文件夹中的_config.yum文件，在最后修改以下内容</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: &#39;git&#39;</span><br><span class="line">  repo: https:&#x2F;&#x2F;gitee.com&#x2F;username&#x2F;myblog.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>再修改#URL标注下的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url: http:&#x2F;&#x2F;username.gitee.io&#x2F;myblog</span><br><span class="line">root: &#x2F;myblog</span><br></pre></td></tr></table></figure>
-<p>如果不修改url和root内容，可能会导致部署到服务器后无法加载样式<br>(上述usrename代表gitee账号的名称)</p>
-<h3><span id="安装git部署插件">安装git部署插件</span></h3>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>安装完成后，接连输入以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<h3><span id="启动码云的pakage服务加载页面">启动码云的pakage服务，加载页面</span></h3><ul>
-<li>打开对应的仓库&gt;服务&gt;gitee Pakages&gt;启动</li>
-<li>浏览器输入<a target="_blank" rel="noopener" href="http://xxxx.gitee.io(xxx为gitee用户名)/">http://xxxx.gitee.io(xxx为gitee用户名)</a></li>
-</ul>
-<p>如果一切顺利将会看到你的博客上线！</p>
-<h2><span id="注意事项">注意事项</span></h2><ul>
-<li>配置文件的每个冒号都是英文形式，且每个冒号后面都要有一个空格。</li>
-<li>每次删除某个发表的文章，或者对网页进行配置都要先运行hexo -clean，命令来清除缓存</li>
-<li>每次hexo -d 部署文件后，都要手动在gitee pakege服务里手动更新一次。手动更新后直接访问博客可能会是上次的内容，别急，过段时间刷新即可。</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog/2020/11/26/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -977,7 +883,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.1k字</span>
+  <span class="post-count">博客全站共3.2k字</span>
 </div>
 
         
