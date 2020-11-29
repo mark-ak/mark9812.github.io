@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hexo同时关联gitee和github</title>
+    <url>/myblog/2020/11/29/hexo%E5%90%8C%E6%97%B6%E5%85%B3%E8%81%94gitee%E5%92%8Cgithub/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  type: &#39;git&#39;</span><br><span class="line">  repo: </span><br><span class="line">       gitee: https:&#x2F;&#x2F;gitee.com&#x2F;akram98&#x2F;myblog.git</span><br><span class="line">       github: git@github.com:mark9812&#x2F;mark.github.io.git</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ssh自定义产生密钥</title>
+    <url>/myblog/2020/11/29/ssh%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%AF%86%E9%92%A5/</url>
+    <content><![CDATA[<p>产生gitbub和gitbub.pub密钥文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR_EMAIL@YOUREMAIL.COM&quot; -f &#x2F;c&#x2F;user&#x2F;justdoit&#x2F;.ssh&#x2F;github</span><br></pre></td></tr></table></figure>
+<p>“-c”必须大写，不然无法识别</p>
+]]></content>
+      <categories>
+        <category>ssh</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在hoxe中使用markdown</title>
+    <url>/myblog/2020/11/27/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/</url>
+    <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
+
+<ul>
+<li><a href="#toc%E7%9A%84%E4%BD%BF%E7%94%A8">toc的使用</a></li>
+<li><a href="#%E4%BD%BF%E6%96%87%E5%AD%97%E7%B2%97%E4%BD%93%E6%88%96%E6%96%9C%E4%BD%93">使文字粗体或斜体</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90">文本对齐</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E6%8A%98%E5%8F%A0">文本折叠</a></li>
+</ul>
+<!-- tocstop -->
+
+<hr>
+<a id="more"></a>
+
+<h2><span id="toc的使用">toc的使用</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
+<h2><span id="使文字粗体或斜体">使文字粗体或斜体</span></h2><p>使用粗体或斜体时，要保证两端的” _ “或者” * “离两边的文字之间有一个空格 </p>
+<h2><span id="文本对齐">文本对齐</span></h2><p>在一个模块儿中间 <strong>空行</strong> 可能会导致上下文不对齐</p>
+<h2><span id="文本折叠">文本折叠</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>markdown</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo个性化设置</title>
     <url>/myblog/2020/11/27/hexo%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE/</url>
     <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
@@ -189,36 +245,6 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在hoxe中使用markdown</title>
-    <url>/myblog/2020/11/27/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/</url>
-    <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
-
-<ul>
-<li><a href="#toc%E7%9A%84%E4%BD%BF%E7%94%A8">toc的使用</a></li>
-<li><a href="#%E4%BD%BF%E6%96%87%E5%AD%97%E7%B2%97%E4%BD%93%E6%88%96%E6%96%9C%E4%BD%93">使文字粗体或斜体</a></li>
-<li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90">文本对齐</a></li>
-<li><a href="#%E6%96%87%E6%9C%AC%E6%8A%98%E5%8F%A0">文本折叠</a></li>
-</ul>
-<!-- tocstop -->
-
-<hr>
-<a id="more"></a>
-
-<h2><span id="toc的使用">toc的使用</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
-<h2><span id="使文字粗体或斜体">使文字粗体或斜体</span></h2><p>使用粗体或斜体时，要保证两端的” _ “或者” * “离两边的文字之间有一个空格 </p>
-<h2><span id="文本对齐">文本对齐</span></h2><p>在一个模块儿中间 <strong>空行</strong> 可能会导致上下文不对齐</p>
-<h2><span id="文本折叠">文本折叠</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>markdown</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>markdown</tag>
       </tags>
   </entry>
 </search>
