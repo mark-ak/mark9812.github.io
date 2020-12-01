@@ -84,6 +84,7 @@
 
 <hr>
 <a id="more"></a>
+
 <h2><span id="更换主题">更换主题</span></h2><ul>
 <li><p>克隆主题仓库</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure></li>
@@ -208,6 +209,7 @@
 
 <hr>
 <a id="more"></a>
+
 <h2><span id="通过密钥链接仓库">通过密钥链接仓库</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;你的GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的GitHub注册邮箱&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
 <p>生成的公钥在user/.ssh/id_rsa.pub文件中</p>
 <h2><span id="安装nodejs">安装node.js</span></h2><p><a href="https://link.zhihu.com/?target=https://nodejs.org/en/download/">Download | Node.js</a><br> 安装完添加环境变量</p>
