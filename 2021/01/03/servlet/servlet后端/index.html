@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="servlet," />
 
 
 
@@ -79,12 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mark&#39;s Blog">
-<meta property="og:url" content="https://gitee.com/akram98/myblog/categories/servlet/index.html">
+<meta name="description" content="httpServlet初始编码配置12request.setCharacterEncoding(&quot;utf-8&quot;);response.setContentType(&quot;text&#x2F;html;charset&#x3D;utf-8&quot;);     service、doGet、doPost一般练习直接用service即可。别忘了doGet、doPost前面的“d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="servlet后端">
+<meta property="og:url" content="https://gitee.com/akram98/myblog/2021/01/03/servlet/servlet%E5%90%8E%E7%AB%AF/index.html">
 <meta property="og:site_name" content="Mark&#39;s Blog">
+<meta property="og:description" content="httpServlet初始编码配置12request.setCharacterEncoding(&quot;utf-8&quot;);response.setContentType(&quot;text&#x2F;html;charset&#x3D;utf-8&quot;);     service、doGet、doPost一般练习直接用service即可。别忘了doGet、doPost前面的“d">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-01-03T00:00:18.000Z">
+<meta property="article:modified_time" content="2021-01-13T13:05:22.256Z">
 <meta property="article:author" content="Akram Amat">
+<meta property="article:tag" content="servlet">
 <meta name="twitter:card" content="summary">
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://gitee.com/akram98/myblog/categories/servlet/"/>
+  <link rel="canonical" href="https://gitee.com/akram98/myblog/2021/01/03/servlet/servlet后端/"/>
 
 
 
 
 
-  <title>分类: servlet | Mark's Blog</title>
+  <title>servlet后端 | Mark's Blog</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -238,83 +243,161 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>servlet<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/01/03/servlet/servlet%E5%90%8E%E7%AB%AF/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/myblog/2021/01/03/servlet/servlet%E5%89%8D%E7%AB%AF/" itemprop="url">
-              
-                <span itemprop="name">servlet前端</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">servlet后端</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2021-01-03T07:47:33+08:00"
-              content="2021-01-03" >
-          01-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-03T08:00:18+08:00">
+                2021-01-03
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h1><span id="httpservlet初始编码配置">httpServlet初始编码配置</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">response.setContentType(&quot;text&#x2F;html;charset&#x3D;utf-8&quot;);</span><br></pre></td></tr></table></figure>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/myblog/2021/01/03/servlet/servlet%E4%B8%AD%E7%9A%84web-xml%E9%85%8D%E7%BD%AE/" itemprop="url">
-              
-                <span itemprop="name">SERVLET中的web.xml配置</span>
-              
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2021-01-03T07:43:13+08:00"
-              content="2021-01-03" >
-          01-03
-        </time>
-      </div>
 
-    </header>
-  </article>
+
+<h1><span id="service-doget-dopost">service、doGet、doPost</span></h1><p>一般练习直接用service即可。别忘了doGet、doPost前面的“do”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protected	void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException &#123;</span><br></pre></td></tr></table></figure>
+
+
+
 
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/myblog/tags/servlet/" rel="tag"># servlet</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/myblog/2021/01/03/sql/mysql%E5%9C%A8web%E4%B8%AD%E7%9A%84%E5%BC%95%E5%85%A5/" rel="next" title="mysql在web中的引入">
+                <i class="fa fa-chevron-left"></i> mysql在web中的引入
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/myblog/2021/01/03/sql/jdbc%E7%9A%84%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" rel="prev" title="jdbc的使用技巧">
+                jdbc的使用技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -322,6 +405,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -560,6 +647,10 @@
 
 
   
+  <script type="text/javascript" src="/myblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/myblog/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
