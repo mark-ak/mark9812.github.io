@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>mysql使用技巧</title>
+    <url>/myblog/2021/01/13/mysql%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<h2><span id="删除元素后id自动减少">删除元素后id自动减少</span></h2><p>先删除再建立自增长的主键ID</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alter table student drop id;</span><br><span class="line">alter table student add id int primary key auto_increment;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>servlet后端输出</title>
     <url>/myblog/2021/01/13/servlet/servlet%E5%90%8E%E7%AB%AF%E8%BE%93%E5%87%BA/</url>
-    <content><![CDATA[<h2><span id="弹窗">弹窗</span></h2><p>&quot;&quot;之间按照正常的字符串格式写即可。</p>
+    <content><![CDATA[<h2><span id="弹窗">弹窗</span></h2><p>\“\“之间按照正常的字符串格式写即可,这是转义字符，里面还包含多个””时，就得用这种方法</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\&quot;return confirm(&#39;是否确定删除&quot;+rs.getString(&quot;name&quot;)+&quot;&#39;);\&quot;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>servlet</tag>
@@ -22,7 +31,7 @@
     <url>/myblog/2021/01/03/sql/jdbc%E7%9A%84%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<h2><span id="数据库工具类">数据库工具类</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class DBUtil &#123;</span><br><span class="line">	static final String JDBC_DRIVER &#x3D;&quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">	static final String DB_URL &#x3D;&quot;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;student?useUnicode&#x3D;true&amp;useSSL&#x3D;false&amp;characterEncoding&#x3D;utf-8&quot;;</span><br><span class="line">	static final String USER &#x3D; &quot;root&quot;;</span><br><span class="line">	static final String PASS &#x3D; &quot;1210&quot;;</span><br><span class="line">	private static Connection conn &#x3D;null;</span><br><span class="line">    static &#123;</span><br><span class="line">    	try &#123;</span><br><span class="line">			Class.forName(JDBC_DRIVER);</span><br><span class="line">			conn&#x3D;DriverManager.getConnection(DB_URL, USER, PASS);</span><br><span class="line">			</span><br><span class="line">		&#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">			&#x2F;&#x2F; TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			&#x2F;&#x2F; TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">    	</span><br><span class="line">    &#125;</span><br><span class="line">    public static Connection getConnection() &#123;</span><br><span class="line">    	return conn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2><span id="excute-excutequery">excute()、excuteQuery()</span></h2><p>jdbc中pmpt.excute()是直接执行,pmpt的sql语句用conn.preparedStatement(sql)设置，如果要返回查询结果，则用pmpt.excuteQuery(sql)来查询</p>
+<h2><span id="excute-excutequery">excute()、excuteQuery()</span></h2><p>excute方法是直接执行，excuteQuery方法会返回结果。第一次需要用connection嵌入sql代码，其余的直接写在excute和excuteQuery里面，不写直接调用代码就是执行前一个sql语句</p>
 ]]></content>
       <categories>
         <category>jdbc</category>
