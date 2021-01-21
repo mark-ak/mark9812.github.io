@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="url-pattern 在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。 1234 &lt;servlet-mapping&gt;  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;">
+<meta name="description" content="url-pattern理解在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。 1234 &lt;servlet-mapping&gt;  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SERVLET中的web.xml配置">
 <meta property="og:url" content="https://gitee.com/akram98/myblog/2021/01/03/servlet/servlet%E4%B8%AD%E7%9A%84web-xml%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Mark&#39;s Blog">
-<meta property="og:description" content="url-pattern 在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。 1234 &lt;servlet-mapping&gt;  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;">
+<meta property="og:description" content="url-pattern理解在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。 1234 &lt;servlet-mapping&gt;  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-02T23:43:13.000Z">
-<meta property="article:modified_time" content="2021-01-02T23:48:19.356Z">
+<meta property="article:modified_time" content="2021-01-14T06:20:00.806Z">
 <meta property="article:author" content="Akram Amat">
 <meta property="article:tag" content="servlet">
 <meta name="twitter:card" content="summary">
@@ -346,7 +346,12 @@
       
 
       
-        <h1><span id="url-pattern">url-pattern</span></h1><p> 在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。<br> 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;input&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+        <h1><span id="url-pattern">url-pattern</span></h1><h2><span id="理解">理解</span></h2><p>在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;input&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="匹配">匹配</span></h2><p>  写url-pattern时不能用/*，因为这样会把我们的html静态页面也全部包含其中，导致无法加载html页面，而是把任何页面都当作响应页面处理，所以最好的办法是用一个后缀来区分<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;url-pattern&gt;*.do&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;register.do&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line"> String action&#x3D;uri.substring(uri.lastIndexOf(&quot;&#x2F;&quot;)+1,uri.lastIndexOf(&quot;.&quot;));</span><br><span class="line">if(action.equals(&quot;register&quot;)) &#123;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>如果写成”/*.do”会报错。</li>
+<li>别忘了lastIndexOf(“/“)后面还有+1</li>
+</ul>
 <h1><span id="welcome-file">welcome-file</span></h1><p>对于初始页面，我们只需要配置<welcome-file>即可，也就是刚启动servlet就能看到的页面</welcome-file></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  &lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;input.html&lt;&#x2F;welcome-file&gt;</span><br><span class="line">  &lt;&#x2F;welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
 <br>
@@ -548,7 +553,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.9k字</span>
+  <span class="post-count">博客全站共4.5k字</span>
 </div>
 
         

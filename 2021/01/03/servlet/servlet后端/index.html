@@ -87,7 +87,7 @@
 <meta property="og:description" content="httpServlet初始编码配置12request.setCharacterEncoding(&quot;utf-8&quot;);response.setContentType(&quot;text&#x2F;html;charset&#x3D;utf-8&quot;);     service、doGet、doPost一般练习直接用service即可。别忘了doGet、doPost前面的“d">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-03T00:00:18.000Z">
-<meta property="article:modified_time" content="2021-01-13T13:05:22.256Z">
+<meta property="article:modified_time" content="2021-01-21T00:57:07.115Z">
 <meta property="article:author" content="Akram Amat">
 <meta property="article:tag" content="servlet">
 <meta name="twitter:card" content="summary">
@@ -334,7 +334,16 @@
 
 
 
-
+<h1><span id="uri和url">uri和url</span></h1><h2><span id="uri是什么有什么用">URI是什么？有什么用？</span></h2><p>URI（统一资源标识符）是标识逻辑或物理资源的字符序列，与URL类似，也是一串字符。通过使用位置，名称或两者来标识Internet上的资源；它允许统一识别资源。</p>
+<p>有两种类型的URI，统一资源标识符（URL）和统一资源名称（URN）</p>
+<h2><span id="url是什么有什么用">URL是什么？有什么用？</span></h2><p>URL（统一资源定位符）是Internet上资源的地址，可以定义为引用地址的字符串，用于指示资源的位置以及用于访问它的协议</p>
+<h1><span id="细谈getrequestdispatcher与sendredirect的区别">细谈getRequestDispatcher()与sendRedirect()的区别</span></h1><p>首先我们要知道：</p>
+<p>(1)request.getRequestDispatcher()是请求转发，前后页面共享一个request ; 这个是在服务端运行的，对浏览器来说是透明的。<br>(2)response.sendRedirect()是重新定向，前后页面不是一个request。而这个是在浏览器端运行的。</p>
+<h2><span id="redirect方式">redirect方式</span></h2><p>　 response.sendRedirect(“/a.jsp”);<br>　　  页面的路径是相对路径。sendRedirect可以将页面跳转到任何页面，不一定局限于本web应用中，如：<br>　　  response.sendRedirect(“URL”);<br>　　  跳转后浏览器地址栏变化。<br>　　  这种方式要传值出去的话，只能在url中带parameter或者放在session中，无法使用request.setAttribute来 传递。所以该方式只适用于无传值跳转</p>
+<h2><span id="forward方式">forward方式</span></h2><p> request.getRequestDispatcher(“/路径（可以是jsp路径也可以是servlet）”) .forward(request, response);</p>
+<p>如：</p>
+<p>request.getRequestDispatcher(“/2.jsp）”) .forward(request, response);</p>
+<p>request.getRequestDispatcher(“/servlet/HomeServlet）”) .forward(request, response);<br>　　Servlet页面跳转的路径是相对路径。forward方式只能跳转到本web应用中的页面上。<br>　　跳转后浏览器地址栏不会变化。<br>　　使用这种方式跳转，传值可以使用三种方法：url中带parameter，session，request.setAttribute</p>
 
       
     </div>
@@ -534,7 +543,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.9k字</span>
+  <span class="post-count">博客全站共4.5k字</span>
 </div>
 
         

@@ -708,7 +708,10 @@
             <h2><span id="数据库工具类">数据库工具类</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class DBUtil &#123;</span><br><span class="line">	static final String JDBC_DRIVER &#x3D;&quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">	static final String DB_URL &#x3D;&quot;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;student?useUnicode&#x3D;true&amp;useSSL&#x3D;false&amp;characterEncoding&#x3D;utf-8&quot;;</span><br><span class="line">	static final String USER &#x3D; &quot;root&quot;;</span><br><span class="line">	static final String PASS &#x3D; &quot;1210&quot;;</span><br><span class="line">	private static Connection conn &#x3D;null;</span><br><span class="line">    static &#123;</span><br><span class="line">    	try &#123;</span><br><span class="line">			Class.forName(JDBC_DRIVER);</span><br><span class="line">			conn&#x3D;DriverManager.getConnection(DB_URL, USER, PASS);</span><br><span class="line">			</span><br><span class="line">		&#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">			&#x2F;&#x2F; TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			&#x2F;&#x2F; TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">    	</span><br><span class="line">    &#125;</span><br><span class="line">    public static Connection getConnection() &#123;</span><br><span class="line">    	return conn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2><span id="excute-excutequery">excute()、excuteQuery()</span></h2><p>excute方法是直接执行，excuteQuery方法会返回结果。第一次需要用connection嵌入sql代码，其余的直接写在excute和excuteQuery里面，不写直接调用代码就是执行前一个sql语句</p>
+<h2><span id="unknown-column-name-in-where-clause">Unknown column ‘name’ in ‘where clause’</span></h2><p>有可能是url中的仓库名称写错了。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unknown column &#39;name&#39; in &#39;where clause&#39;</span><br></pre></td></tr></table></figure>
 
+<h2><span id="resultset结果集为空判断">ResultSet结果集为空判断</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(rs.next()) &#123;</span><br><span class="line">				erroString&#x3D;&quot;该用户名已被注册&quot;;</span><br><span class="line">			&#125;else &#123;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -837,7 +840,16 @@
 
 
 
-
+<h1><span id="uri和url">uri和url</span></h1><h2><span id="uri是什么有什么用">URI是什么？有什么用？</span></h2><p>URI（统一资源标识符）是标识逻辑或物理资源的字符序列，与URL类似，也是一串字符。通过使用位置，名称或两者来标识Internet上的资源；它允许统一识别资源。</p>
+<p>有两种类型的URI，统一资源标识符（URL）和统一资源名称（URN）</p>
+<h2><span id="url是什么有什么用">URL是什么？有什么用？</span></h2><p>URL（统一资源定位符）是Internet上资源的地址，可以定义为引用地址的字符串，用于指示资源的位置以及用于访问它的协议</p>
+<h1><span id="细谈getrequestdispatcher与sendredirect的区别">细谈getRequestDispatcher()与sendRedirect()的区别</span></h1><p>首先我们要知道：</p>
+<p>(1)request.getRequestDispatcher()是请求转发，前后页面共享一个request ; 这个是在服务端运行的，对浏览器来说是透明的。<br>(2)response.sendRedirect()是重新定向，前后页面不是一个request。而这个是在浏览器端运行的。</p>
+<h2><span id="redirect方式">redirect方式</span></h2><p>　 response.sendRedirect(“/a.jsp”);<br>　　  页面的路径是相对路径。sendRedirect可以将页面跳转到任何页面，不一定局限于本web应用中，如：<br>　　  response.sendRedirect(“URL”);<br>　　  跳转后浏览器地址栏变化。<br>　　  这种方式要传值出去的话，只能在url中带parameter或者放在session中，无法使用request.setAttribute来 传递。所以该方式只适用于无传值跳转</p>
+<h2><span id="forward方式">forward方式</span></h2><p> request.getRequestDispatcher(“/路径（可以是jsp路径也可以是servlet）”) .forward(request, response);</p>
+<p>如：</p>
+<p>request.getRequestDispatcher(“/2.jsp）”) .forward(request, response);</p>
+<p>request.getRequestDispatcher(“/servlet/HomeServlet）”) .forward(request, response);<br>　　Servlet页面跳转的路径是相对路径。forward方式只能跳转到本web应用中的页面上。<br>　　跳转后浏览器地址栏不会变化。<br>　　使用这种方式跳转，传值可以使用三种方法：url中带parameter，session，request.setAttribute</p>
 
           
         
@@ -1264,7 +1276,12 @@
       
         
           
-            <h1><span id="url-pattern">url-pattern</span></h1><p> 在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。<br> 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;input&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+            <h1><span id="url-pattern">url-pattern</span></h1><h2><span id="理解">理解</span></h2><p>在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;input&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="匹配">匹配</span></h2><p>  写url-pattern时不能用/*，因为这样会把我们的html静态页面也全部包含其中，导致无法加载html页面，而是把任何页面都当作响应页面处理，所以最好的办法是用一个后缀来区分<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;url-pattern&gt;*.do&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;register.do&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line"> String action&#x3D;uri.substring(uri.lastIndexOf(&quot;&#x2F;&quot;)+1,uri.lastIndexOf(&quot;.&quot;));</span><br><span class="line">if(action.equals(&quot;register&quot;)) &#123;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>如果写成”/*.do”会报错。</li>
+<li>别忘了lastIndexOf(“/“)后面还有+1</li>
+</ul>
 <h1><span id="welcome-file">welcome-file</span></h1><p>对于初始页面，我们只需要配置<welcome-file>即可，也就是刚启动servlet就能看到的页面</welcome-file></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  &lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;input.html&lt;&#x2F;welcome-file&gt;</span><br><span class="line">  &lt;&#x2F;welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
 <br>
@@ -1727,7 +1744,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.9k字</span>
+  <span class="post-count">博客全站共4.5k字</span>
 </div>
 
         
