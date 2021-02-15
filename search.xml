@@ -464,7 +464,7 @@
   <entry>
     <title>ajax详解</title>
     <url>/myblog/2021/02/15/ajax/ajax%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<!-- toc -->
+    <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
 
 <ul>
 <li><a href="#1url">1.url</a></li>
