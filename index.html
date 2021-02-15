@@ -253,6 +253,305 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/15/ajax/ajax%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/myblog/2021/02/15/ajax/ajax%E8%AF%A6%E8%A7%A3/" itemprop="url">ajax详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-15T10:44:04+08:00">
+                2021-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- toc -->
+
+<ul>
+<li><a href="#1url">1.url</a></li>
+<li><a href="#2type">2.type</a></li>
+<li><a href="#3timeout">3.timeout</a></li>
+<li><a href="#4async">4.async</a></li>
+<li><a href="#5cache">5.cache</a></li>
+<li><a href="#6date">6.date</a></li>
+<li><a href="#7datetype">7.datetype</a></li>
+<li><a href="#8beforesend">8.beforeSend</a></li>
+<li><a href="#9compelete">9.compelete</a></li>
+<li><a href="#10success">10.success</a></li>
+<li><a href="#11error">11.error</a></li>
+<li><a href="#12contenttype">12.contentType</a></li>
+<li><a href="#13datefilter">13.dateFilter</a></li>
+<li><a href="#14datafilter">14.dataFilter</a></li>
+<li><a href="#15global">15.global</a></li>
+<li><a href="#16ifmodified">16.ifModified</a></li>
+<li><a href="#17jsonp">17.jsonp</a></li>
+<li><a href="#18username">18.username</a></li>
+<li><a href="#19password">19.password</a></li>
+<li><a href="#20processdata">20.processData</a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="1url">1.url</span></h1><p>要求为String类型的参数，（默认为当前页地址）发送请求的地址。</p>
+<h1><span id="2type">2.type</span></h1><p>要求为String类型的参数，请求方式（post或get）默认为get。注意其他http请求方法，例如put和delete也可以使用，但仅部分浏览器支持。</p>
+<h1><span id="3timeout">3.timeout</span></h1><p>要求为Number类型的参数，设置请求超时时间（毫秒）。此设置将覆盖$.ajaxSetup()方法的全局设置。</p>
+<h1><span id="4async">4.async</span></h1><p>要求为Boolean类型的参数，默认设置为true，所有请求均为异步请求。如果需要发送同步请求，请将此选项设置为false。注意，同步请求将锁住浏览器，用户其他操作必须等待请求完成才可以执行。</p>
+<h1><span id="5cache">5.cache</span></h1><p>要求为Boolean类型的参数，默认为true（当dataType为script时，默认为false），设置为false将不会从浏览器缓存中加载请求信息。</p>
+<h1><span id="6date">6.date</span></h1><p>要求为Object或String类型的参数，发送到服务器的数据。如果已经不是字符串，将自动转换为字符串格式。get请求中将附加在url后。防止这种自动转换，可以查看　　processData选项。对象必须为key/value格式，例如{foo1:”bar1”,foo2:”bar2”}转换为&amp;foo1=bar1&amp;foo2=bar2。如果是数组，JQuery将自动为不同值对应同一个名称。例如{foo:[“bar1”,”bar2”]}转换为&amp;foo=bar1&amp;foo=bar2。</p>
+<h1><span id="7datetype">7.datetype</span></h1><p>要求为String类型的参数，预期服务器返回的数据类型。如果不指定，JQuery将自动根据http包mime信息返回responseXML或responseText，并作为回调函数参数传递。可用的类型如下：<br>xml：返回XML文档，可用JQuery处理。<br>html：返回纯文本HTML信息；包含的script标签会在插入DOM时执行。<br>script：返回纯文本JavaScript代码。不会自动缓存结果。除非设置了cache参数。注意在远程请求时（不在同一个域下），所有post请求都将转为get请求。<br>json：返回JSON数据。<br>jsonp：JSONP格式。使用SONP形式调用函数时，例如myurl?callback=?，JQuery将自动替换后一个“?”为正确的函数名，以执行回调函数。<br>text：返回纯文本字符串。</p>
+<h1><span id="8beforesend">8.beforeSend</span></h1><p>要求为Function类型的参数，发送请求前可以修改XMLHttpRequest对象的函数，例如添加自定义HTTP头。在beforeSend中如果返回false可以取消本次ajax请求。XMLHttpRequest对象是惟一的参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function(XMLHttpRequest)&#123;</span><br><span class="line">           this;   &#x2F;&#x2F;调用本次ajax请求时传递的options参数</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="9compelete">9.compelete</span></h1><p>要求为Function类型的参数，请求完成后调用的回调函数（请求成功或失败时均调用）。参数：XMLHttpRequest对象和一个描述成功请求类型的字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function(XMLHttpRequest, textStatus)&#123;</span><br><span class="line">         this;    &#x2F;&#x2F;调用本次ajax请求时传递的options参数</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="10success">10.success</span></h1><p>要求为Function类型的参数，请求成功后调用的回调函数，有两个参数。<br>         (1)由服务器返回，并根据dataType参数进行处理后的数据。<br>         (2)描述状态的字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function(data, textStatus)&#123;</span><br><span class="line">       &#x2F;&#x2F;data可能是xmlDoc、jsonObj、html、text等等</span><br><span class="line">       this;  &#x2F;&#x2F;调用本次ajax请求时传递的options参数</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="11error">11.error</span></h1><p>要求为Function类型的参数，请求失败时被调用的函数。该函数有3个参数，即XMLHttpRequest对象、错误信息、捕获的错误对象(可选)。ajax事件函数如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function(XMLHttpRequest, textStatus, errorThrown)&#123;</span><br><span class="line">   &#x2F;&#x2F;通常情况下textStatus和errorThrown只有其中一个包含信息</span><br><span class="line">   this;   &#x2F;&#x2F;调用本次ajax请求时传递的options参数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="12contenttype">12.contentType</span></h1><p>要求为String类型的参数，当发送信息至服务器时，内容编码类型默认为”application/x-www-form-urlencoded”。该默认值适合大多数应用场合。</p>
+<h1><span id="13datefilter">13.dateFilter</span></h1><p>要求为Function类型的参数，给Ajax返回的原始数据进行预处理的函数。提供data和type两个参数。data是Ajax返回的原始数据，type是调用jQuery.ajax时提供的dataType参数。函数返回的值将由jQuery进一步处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function(data, type)&#123;</span><br><span class="line">           &#x2F;&#x2F;返回处理后的数据</span><br><span class="line">           return data;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="14datafilter">14.dataFilter</span></h1><p>要求为Function类型的参数，给Ajax返回的原始数据进行预处理的函数。提供data和type两个参数。data是Ajax返回的原始数据，type是调用jQuery.ajax时提供的dataType参数。函数返回的值将由jQuery进一步处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function(data, type)&#123;</span><br><span class="line">    &#x2F;&#x2F;返回处理后的数据</span><br><span class="line">    return data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="15global">15.global</span></h1><p>要求为Boolean类型的参数，默认为true。表示是否触发全局ajax事件。设置为false将不会触发全局ajax事件，ajaxStart或ajaxStop可用于控制各种ajax事件。</p>
+<h1><span id="16ifmodified">16.ifModified</span></h1><p>要求为Boolean类型的参数，默认为false。仅在服务器数据改变时获取新数据。服务器数据改变判断的依据是Last-Modified头信息。默认值是false，即忽略头信息。</p>
+<h1><span id="17jsonp">17.jsonp</span></h1><p>要求为String类型的参数，在一个jsonp请求中重写回调函数的名字。该值用来替代在”callback=?”这种GET或POST请求中URL参数里的”callback”部分，例如{jsonp:’onJsonPLoad’}会导致将”onJsonPLoad=?”传给服务器。</p>
+<h1><span id="18username">18.username</span></h1><p>要求为String类型的参数，用于响应HTTP访问认证请求的用户名。</p>
+<h1><span id="19password">19.password</span></h1><p>要求为String类型的参数，用于响应HTTP访问认证请求的密码。</p>
+<h1><span id="20processdata">20.processData</span></h1><p>要求为Boolean类型的参数，默认为true。默认情况下，发送的数据将被转换为对象（从技术角度来讲并非字符串）以配合默认内容类型”application/x-www-form-urlencoded”。如果要发送DOM树信息或者其他不希望转换的信息，请设置为false。<br>21.scriptCharset</p>
+<p>要求为String类型的参数，只有当请求时dataType为”jsonp”或者”script”，并且type是GET时才会用于强制修改字符集(charset)。通常在本地和远程的内容编码不同时使用。</p>
+<p>案例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">    $(&#39;#send&#39;).click(function()&#123;</span><br><span class="line">         $.ajax(&#123;</span><br><span class="line">             type: &quot;GET&quot;,</span><br><span class="line">             url: &quot;test.json&quot;,</span><br><span class="line">             data: &#123;username:$(&quot;#username&quot;).val(), content:$(&quot;#content&quot;).val()&#125;,</span><br><span class="line">             dataType: &quot;json&quot;,</span><br><span class="line">             success: function(data)&#123;</span><br><span class="line">                         $(&#39;#resText&#39;).empty();   &#x2F;&#x2F;清空resText里面的所有内容</span><br><span class="line">                         var html &#x3D; &#39;&#39;; </span><br><span class="line">                         $.each(data, function(commentIndex, comment)&#123;</span><br><span class="line">                               html +&#x3D; &#39;&lt;div class&#x3D;&quot;comment&quot;&gt;&lt;h6&gt;&#39; + comment[&#39;username&#39;]</span><br><span class="line">                                         + &#39;:&lt;&#x2F;h6&gt;&lt;p class&#x3D;&quot;para&quot;&#39; + comment[&#39;content&#39;]</span><br><span class="line">                                         + &#39;&lt;&#x2F;p&gt;&lt;&#x2F;div&gt;&#39;;</span><br><span class="line">                         &#125;);</span><br><span class="line">                         $(&#39;#resText&#39;).html(html);</span><br><span class="line">                      &#125;</span><br><span class="line">         &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/14/jquery/%E5%89%8D%E7%AB%AF%E4%BD%BF%E7%94%A8cookie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/myblog/2021/02/14/jquery/%E5%89%8D%E7%AB%AF%E4%BD%BF%E7%94%A8cookie/" itemprop="url">前端使用cookie</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-14T15:30:38+08:00">
+                2021-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>需要下载并引入jquery.cookie.js。<br>cookie有四个不同的属性: 名称，内容，域，路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$.cookie(&#39;the_cookie&#39;); &#x2F;&#x2F; 读取 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;); &#x2F;&#x2F; 存储 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;, &#123; expires: 7 &#125;); &#x2F;&#x2F; 存储一个带7天期限的 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;&#39;, &#123; expires: -1 &#125;); &#x2F;&#x2F; 删除 cookie</span><br></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.cookie(&quot;currentMenuID&quot;);</span><br></pre></td></tr></table></figure>
+<p>取值时会产生问题。<br>故：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.cookie(&quot;currentMenuID&quot;, &quot;menuID&quot;, &#123; path: &quot;&#x2F;&quot;&#125;); </span><br></pre></td></tr></table></figure>
+<p>进行覆盖。同域下同一个cookieID对应一个值。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/13/jquery/js%E8%8E%B7%E5%8F%96session%E4%B8%AD%E4%BF%9D%E5%AD%98%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%80%BC%EF%BC%88jquery%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1225,253 +1524,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/11/servlet/servlet%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/myblog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/myblog/2021/02/11/servlet/servlet%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/" itemprop="url">servlet编程模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-11T20:56:10+08:00">
-                2021-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.初始化页面之前，如果需要对某些数据进行判断再初始化，则需要通过一个单独.do服务器模块进行一些数据的配置判断再 <strong>过渡</strong> 到新的页面</p>
-<p>2.在同一个页面，仅对页面的部分内容进行改变时（仅做前后端数据交流）</p>
-<ul>
-<li>jsp<br>通过request或者session配置数据等方式传输数据到后端的.do模块进行数据处理，再重定向到之前的jsp页面接受处理数据进行显示</li>
-<li>jq<br>如果紧紧是一串提示文字的修改，则使用$.load()方法即可。如果是要从后端接受比较结构化且大量的数据，则用$.ajax方式传输</li>
-<li>数据库的改动（不需要从后端接收数据时）<br>仅需要通过一个链接后面接上相应的参数直接连接到.do模块对数据库进行改动，再重新加载会原来的页面即可。</li>
-</ul>
-<p>3.如果一个.do模块既可能仅仅对页面的部分内容进行改变，也有可能通过这个.do模块直接转载到另一个页面。则需要通过提交数据submit的方式或者是链接的方式加载到后端相应的模块。如果需要返回数据给原来的页面，通过设置session的方式返回即可。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/01/13/sql/%E4%B8%BB%E9%94%AEID%E7%9A%84%E9%87%8D%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/myblog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/myblog/2021/01/13/sql/%E4%B8%BB%E9%94%AEID%E7%9A%84%E9%87%8D%E6%8E%92%E5%BA%8F/" itemprop="url">主键ID的重排序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-13T22:27:34+08:00">
-                2021-01-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2><span id="删除元素后id自动减少">删除元素后id自动减少</span></h2><p>先删除再建立自增长的主键ID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table student drop id;</span><br><span class="line">alter table student add id int primary key auto_increment;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1526,7 +1578,7 @@
               
                 <a href="/myblog/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1548,7 +1600,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/myblog/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1611,7 +1663,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.5k字</span>
+  <span class="post-count">博客全站共7.3k字</span>
 </div>
 
         
