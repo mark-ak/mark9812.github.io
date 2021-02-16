@@ -31,300 +31,9 @@
 <h1><span id="20processdata">20.processData</span></h1><p>要求为Boolean类型的参数，默认为true。默认情况下，发送的数据将被转换为对象（从技术角度来讲并非字符串）以配合默认内容类型”application/x-www-form-urlencoded”。如果要发送DOM树信息或者其他不希望转换的信息，请设置为false。<br>21.scriptCharset</p>
 <p>要求为String类型的参数，只有当请求时dataType为”jsonp”或者”script”，并且type是GET时才会用于强制修改字符集(charset)。通常在本地和远程的内容编码不同时使用。</p>
 <p>案例代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">    $(&#39;#send&#39;).click(function()&#123;</span><br><span class="line">         $.ajax(&#123;</span><br><span class="line">             type: &quot;GET&quot;,</span><br><span class="line">             url: &quot;test.json&quot;,</span><br><span class="line">             data: &#123;username:$(&quot;#username&quot;).val(), content:$(&quot;#content&quot;).val()&#125;,</span><br><span class="line">             dataType: &quot;json&quot;,</span><br><span class="line">             success: function(data)&#123;</span><br><span class="line">                         $(&#39;#resText&#39;).empty();   &#x2F;&#x2F;清空resText里面的所有内容</span><br><span class="line">                         var html &#x3D; &#39;&#39;; </span><br><span class="line">                         $.each(data, function(commentIndex, comment)&#123;</span><br><span class="line">                               html +&#x3D; &#39;&lt;div class&#x3D;&quot;comment&quot;&gt;&lt;h6&gt;&#39; + comment[&#39;username&#39;]</span><br><span class="line">                                         + &#39;:&lt;&#x2F;h6&gt;&lt;p class&#x3D;&quot;para&quot;&#39; + comment[&#39;content&#39;]</span><br><span class="line">                                         + &#39;&lt;&#x2F;p&gt;&lt;&#x2F;div&gt;&#39;;</span><br><span class="line">                         &#125;);</span><br><span class="line">                         $(&#39;#resText&#39;).html(html);</span><br><span class="line">                      &#125;</span><br><span class="line">         &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function user() &#123;</span><br><span class="line">	$.ajax(&#123;</span><br><span class="line">		url:&quot;change.do&quot;,</span><br><span class="line">		type:&quot;post&quot;,</span><br><span class="line">		dateType:&quot;json&quot;,</span><br><span class="line">	    success:function(data)&#123;</span><br><span class="line">	    	var dataObj&#x3D;eval(&quot;(&quot;+data+&quot;)&quot;);</span><br><span class="line">	        $(&quot;#tb1&quot;).empty();</span><br><span class="line">	    	for(i&#x3D;0;i&lt;dataObj.length;i++)&#123;</span><br><span class="line">	           var s&#x3D;dataObj[i];</span><br><span class="line">	           $(&quot;#tb1&quot;).append(</span><br><span class="line">	        		   &quot;&lt;tr&gt;&lt;td&gt;&quot;+s.name</span><br><span class="line">	        		   +&quot;&lt;&#x2F;td&gt;&lt;td&gt;&quot;+s.pass</span><br><span class="line">	        		   +&quot;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;&quot;</span><br><span class="line">	        		   );</span><br><span class="line">	    	&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>ajax</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端使用cookie</title>
-    <url>/myblog/2021/02/14/jquery/%E5%89%8D%E7%AB%AF%E4%BD%BF%E7%94%A8cookie/</url>
-    <content><![CDATA[<p>需要下载并引入jquery.cookie.js。<br>cookie有四个不同的属性: 名称，内容，域，路径</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">$.cookie(&#39;the_cookie&#39;); &#x2F;&#x2F; 读取 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;); &#x2F;&#x2F; 存储 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;, &#123; expires: 7 &#125;); &#x2F;&#x2F; 存储一个带7天期限的 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;&#39;, &#123; expires: -1 &#125;); &#x2F;&#x2F; 删除 cookie</span><br></pre></td></tr></table></figure>
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.cookie(&quot;currentMenuID&quot;);</span><br></pre></td></tr></table></figure>
-<p>取值时会产生问题。<br>故：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.cookie(&quot;currentMenuID&quot;, &quot;menuID&quot;, &#123; path: &quot;&#x2F;&quot;&#125;); </span><br></pre></td></tr></table></figure>
-<p>进行覆盖。同域下同一个cookieID对应一个值。</p>
-]]></content>
-      <tags>
-        <tag>jquery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>js获取session中保存的对象值（jquery）</title>
-    <url>/myblog/2021/02/13/jquery/js%E8%8E%B7%E5%8F%96session%E4%B8%AD%E4%BF%9D%E5%AD%98%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%80%BC%EF%BC%88jquery%EF%BC%89/</url>
-    <content><![CDATA[<p>1.需要在js中获取到存储在session中的值，session中存储的可能是一个字符串也可能是一个对象。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">$(function()&#123;</span><br><span class="line">        &#x2F;&#x2F;session中存储的是一个对象user,内有属性name和password。</span><br><span class="line">		var username &#x3D; &#39;$&#123;user.name&#125;&#39;;</span><br><span class="line">		alert(username);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>2.如果session中存储的是一个字符串，那么如下代码就可以获取到正确的值。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">$(function()&#123;</span><br><span class="line">        &#x2F;&#x2F;session中存储的是一个字符串username。</span><br><span class="line">		var username &#x3D; &#39;$&#123;username&#125;&#39;;</span><br><span class="line">		alert(username);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>jquery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JQuery中的$.load详解</title>
-    <url>/myblog/2021/02/13/jquery/JQuery%E4%B8%AD%E7%9A%84$.load%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1><span id="load">load()</span></h1><h2><span id="1载入html文档">1.载入HTML文档</span></h2><p>load()方法是jQuery中最为简单和常用的Ajax方法，能载入远程HTML代码并插入DOM中。<br>它的结构为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">load(url,data(可选),callback(可选))</span><br></pre></td></tr></table></figure>
-<p>2.筛选载入的HTML文档<br>需要加载test.html页面中class为”para”的内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html  .para&quot;);</span><br></pre></td></tr></table></figure>
-<h2><span id="2传递方法">2.传递方法</span></h2><p>load()方法的传递方式根据参数data来自动指定。如果没有参数传递，则采用GET方式传递；反之，则会自动转换为POST方法。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;无参数传递，则是GET方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;有参数传递，则是POST方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;，function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2><span id="4回调函数">4.回调函数</span></h2><p>对于必须在加载完成后才能继续的操作，load()方法提供了回调函数(callback)，该函数有3个参数，分别代表请求返回的内容、请求状态和XMLHttpRequest对象，jQuery代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html&quot;,function (responseText, textStatus, XMLHttpRequest)&#123;         </span><br><span class="line">        alert(responseText);         &#x2F;&#x2F;请求返回的内容</span><br><span class="line">        alert(textStatus);          &#x2F;&#x2F;请求状态：success，error</span><br><span class="line">        alert(XMLHttpRequest);     &#x2F;&#x2F;XMLHttpRequest对象</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>在load()方法中，无论Ajax请求是否成功，只要当请求完成(complete)后，回调函数(callback)就被触发。</p>
-<h2><span id="5传递多个参数">5.传递多个参数</span></h2><p>直接通过request分别获取即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="load方法通常用来从web服务器上获取静态的数据文件然后这并不能体现ajax的全部价值-在项目中如果需要传递一些参数给服务器中的页面那么可以使用get或者post或者ajax方法">load()方法通常用来从Web服务器上获取静态的数据文件，然后这并不能体现Ajax的全部价值。在项目中，如果需要传递一些参数给服务器中的页面，那么可以使用$.get()或者$.post()或者$.ajax()方法。</span></h3>]]></content>
-      <tags>
-        <tag>jquery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>session超时设置</title>
-    <url>/myblog/2021/02/11/servlet/session%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">session.setMaxInactiveInterval(10);</span><br></pre></td></tr></table></figure>
-<p>如果不停刷新，也会使计数器不断地刷新，10秒后session还是会存在。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>细谈getRequestDispatcher与sendRedirect的区别</title>
-    <url>/myblog/2021/02/11/servlet/%E7%BB%86%E8%B0%88getRequestDispatcher%E4%B8%8EsendRedirect%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>首先我们要知道：</p>
-<p>(1)request.getRequestDispatcher()是请求转发，前后页面共享一个request ; 这个是在服务端运行的，对浏览器来说是透明的。<br>(2)response.sendRedirect()是重新定向，前后页面不是一个request。而这个是在浏览器端运行的。</p>
-<h2><span id="redirect方式">redirect方式</span></h2><p>　 response.sendRedirect(“/a.jsp”);<br>　　  页面的路径是相对路径。sendRedirect可以将页面跳转到任何页面，不一定局限于本web应用中，如：<br>　　  response.sendRedirect(“URL”);<br>　　  跳转后浏览器地址栏变化。<br>　　  这种方式要传值出去的话，只能在url中带parameter或者放在session中，无法使用request.setAttribute来 传递。所以该方式只适用于无传值跳转</p>
-<h2><span id="forward方式">forward方式</span></h2><p> request.getRequestDispatcher(“/路径（可以是jsp路径也可以是servlet）”) .forward(request, response);</p>
-<p>如：</p>
-<p>request.getRequestDispatcher(“/2.jsp）”) .forward(request, response);</p>
-<p>request.getRequestDispatcher(“/servlet/HomeServlet）”) .forward(request, response);<br>　　Servlet页面跳转的路径是相对路径。forward方式只能跳转到本web应用中的页面上。<br>　　跳转后浏览器地址栏不会变化。<br>　　使用这种方式跳转，传值可以使用三种方法：url中带parameter，session，request.setAttribute</p>
-]]></content>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>uri和url</title>
-    <url>/myblog/2021/02/11/servlet/uri%E5%92%8Curl/</url>
-    <content><![CDATA[<ul>
-<li>URI是什么？有什么用？<br>URI（统一资源标识符）是标识逻辑或物理资源的字符序列，与URL类似，也是一串字符。通过使用位置，名称或两者来标识Internet上的资源；它允许统一识别资源。</li>
-</ul>
-<p>有两种类型的URI，统一资源标识符（URL）和统一资源名称（URN）</p>
-<ul>
-<li>URL是什么？有什么用？<br>URL（统一资源定位符）是Internet上资源的地址，可以定义为引用地址的字符串，用于指示资源的位置以及用于访问它的协议</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql_bug</title>
-    <url>/myblog/2021/02/11/sql/where-clause/</url>
-    <content><![CDATA[<h3><span id="unknown-column-name-in-where-clause">Unknown column ‘name’ in ‘where clause’</span></h3><p>有可能是url中的仓库名称写错了。</p>
-]]></content>
-      <tags>
-        <tag>bug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ResultSet结果集为空判断</title>
-    <url>/myblog/2021/02/11/sql/ResultSet%E7%BB%93%E6%9E%9C%E9%9B%86%E4%B8%BA%E7%A9%BA%E5%88%A4%E6%96%AD/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(rs.next()) &#123;</span><br><span class="line">				erroString&#x3D;&quot;该用户名已被注册&quot;;</span><br><span class="line">			&#125;else &#123;</span><br></pre></td></tr></table></figure>]]></content>
-  </entry>
-  <entry>
-    <title>excute和excuteQuery的区别</title>
-    <url>/myblog/2021/02/11/sql/excute%E5%92%8CexcuteQuery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>excute方法是直接执行，excuteQuery方法会返回结果。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第一次需要用connection嵌入sql代码，其余的直接写在excute和excuteQuery里面，不写直接调用代码就是执行前一个sql语句</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>jdbc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>servlet编程模型</title>
-    <url>/myblog/2021/02/11/servlet/servlet%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<p>1.初始化页面之前，如果需要对某些数据进行判断再初始化，则需要通过一个单独.do服务器模块进行一些数据的配置判断再 <strong>过渡</strong> 到新的页面</p>
-<p>2.在同一个页面，仅对页面的部分内容进行改变时（仅做前后端数据交流）</p>
-<ul>
-<li>jsp<br>通过request或者session配置数据等方式传输数据到后端的.do模块进行数据处理，再重定向到之前的jsp页面接受处理数据进行显示</li>
-<li>jq<br>如果紧紧是一串提示文字的修改，则使用$.load()方法即可。如果是要从后端接受比较结构化且大量的数据，则用$.ajax方式传输</li>
-<li>数据库的改动（不需要从后端接收数据时）<br>仅需要通过一个链接后面接上相应的参数直接连接到.do模块对数据库进行改动，再重新加载会原来的页面即可。</li>
-</ul>
-<p>3.如果一个.do模块既可能仅仅对页面的部分内容进行改变，也有可能通过这个.do模块直接转载到另一个页面。则需要通过提交数据submit的方式或者是链接的方式加载到后端相应的模块。如果需要返回数据给原来的页面，通过设置session的方式返回即可。</p>
-]]></content>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jstl_bug</title>
-    <url>/myblog/2021/01/23/jstl/jstl-bug/</url>
-    <content><![CDATA[<h1><span id="orgapachejasperjasperexception-indexjsp-行-18-列-0-根据标记文件中的tld或attribute指令attributeitems不接受任何表达式">org.apache.jasper.JasperException: /index.jsp (行.: [18], 列: [0]) 根据标记文件中的TLD或attribute指令，attribute[items]不接受任何表达式</span></h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">尝试使用前缀&lt;%@ taglib prefix&#x3D;&quot;c&quot; uri&#x3D;&quot;http:&#x2F;&#x2F;java.sun.com&#x2F;jstl&#x2F;core_rt&quot; %&gt;代替</span><br><span class="line">&lt;%@ taglib prefix&#x3D;&quot;c&quot; uri&#x3D;&quot;http:&#x2F;&#x2F;java.sun.com&#x2F;jstl&#x2F;core&quot; %&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>jstl_bug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>主键ID的重排序</title>
-    <url>/myblog/2021/01/13/sql/%E4%B8%BB%E9%94%AEID%E7%9A%84%E9%87%8D%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h2><span id="删除元素后id自动减少">删除元素后id自动减少</span></h2><p>先删除再建立自增长的主键ID</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alter table student drop id;</span><br><span class="line">alter table student add id int primary key auto_increment;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>servle后端中的弹窗</title>
-    <url>/myblog/2021/01/13/servlet/servle%E5%90%8E%E7%AB%AF%E4%B8%AD%E7%9A%84%E5%BC%B9%E7%AA%97/</url>
-    <content><![CDATA[<p>\“\“之间按照正常的字符串格式写即可,这是转义字符，里面还包含多个””时，就得用这种方法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\&quot;return confirm(&#39;是否确定删除&quot;+rs.getString(&quot;name&quot;)+&quot;&#39;);\&quot;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java模拟浏览器发送请求</title>
-    <url>/myblog/2021/01/03/java%E7%88%AC%E8%99%AB/java%E6%A8%A1%E6%8B%9F%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">URL url&#x3D;new URL(&quot;https:&#x2F;&#x2F;www.bilibili.com&#x2F;&quot;);</span><br><span class="line"></span><br><span class="line">HttpsURLConnection conn&#x3D;(HttpsURLConnection)url.openConnection();</span><br><span class="line">      conn.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">      conn.setRequestProperty(&quot;User-Agent&quot;, &quot;Mozilla&#x2F;5.0(Windows NT 10.0;Win64;x64)AppleWebKit&#x2F;537.3&quot;);</span><br><span class="line">      BufferedReader br&#x3D;new BufferedReader(new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));</span><br><span class="line">      String msg&#x3D;null;</span><br><span class="line">      while(null!&#x3D;(msg&#x3D;br.readLine())) &#123;</span><br><span class="line">      	System.out.println(msg);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>java爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库工具类</title>
-    <url>/myblog/2021/01/03/sql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
-    <content><![CDATA[<pre><code>public class DBUtil &#123;
-    static final String JDBC_DRIVER =&quot;com.mysql.jdbc.Driver&quot;;
-    static final String DB_URL =&quot;jdbc:mysql://localhost:3306/student?useUnicode=true&amp;useSSL=false&amp;characterEncoding=utf-8&quot;;
-    static final String USER = &quot;root&quot;;
-    static final String PASS = &quot;1210&quot;;
-    private static Connection conn =null;
-    static &#123;
-        try &#123;
-            Class.forName(JDBC_DRIVER);
-            conn=DriverManager.getConnection(DB_URL, USER, PASS);
-
-        &#125; catch (ClassNotFoundException e) &#123;
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        &#125; catch (SQLException e) &#123;
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        &#125;
-
-    &#125;
-    public static Connection getConnection() &#123;
-        return conn;
-    &#125;
-
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>sql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>httpServlet初始编码配置</title>
-    <url>/myblog/2021/01/03/servlet/httpServlet%E5%88%9D%E5%A7%8B%E7%BC%96%E7%A0%81%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">request.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">response.setContentType(&quot;text&#x2F;html;charset&#x3D;utf-8&quot;);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql在web中的引入</title>
-    <url>/myblog/2021/01/03/sql/mysql%E5%9C%A8web%E4%B8%AD%E7%9A%84%E5%BC%95%E5%85%A5/</url>
-    <content><![CDATA[<h1><span id="mysql-connector-java在web中的引入">mysql-connector-java在WEB中的引入</span></h1><p>在java项目中，只需要引入mysql-connector-java-5.1.7-bin.jar就可以运行java项目。</p>
-<p>在web项目中，当Class.forName(“om.mysql.jdbc.Driver”);时myeclipse是不会去查找字符串，不会去查找驱动的。所以只需要把mysql-connector-java-5.1.7-bin.jar拷贝到tomcat下lib目录就可以了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>sql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SERVLET中的web.xml配置</title>
-    <url>/myblog/2021/01/03/servlet/servlet%E4%B8%AD%E7%9A%84web-xml%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1><span id="url-pattern">url-pattern</span></h1><h2><span id="理解">理解</span></h2><p>在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;input&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
-<h2><span id="匹配">匹配</span></h2><p>  写url-pattern时不能用/*，因为这样会把我们的html静态页面也全部包含其中，导致无法加载html页面，而是把任何页面都当作响应页面处理，所以最好的办法是用一个后缀来区分<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;url-pattern&gt;*.do&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;register.do&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line"> String action&#x3D;uri.substring(uri.lastIndexOf(&quot;&#x2F;&quot;)+1,uri.lastIndexOf(&quot;.&quot;));</span><br><span class="line">if(action.equals(&quot;register&quot;)) &#123;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>如果写成”/*.do”会报错。</li>
-<li>别忘了lastIndexOf(“/“)后面还有+1</li>
-</ul>
-<h1><span id="welcome-file">welcome-file</span></h1><p>对于初始页面，我们只需要配置<welcome-file>即可，也就是刚启动servlet就能看到的页面</welcome-file></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;input.html&lt;&#x2F;welcome-file&gt;</span><br><span class="line">  &lt;&#x2F;welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
-<br>]]></content>
-      <categories>
-        <category>servlet</category>
-      </categories>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo同时关联gitee和github</title>
-    <url>/myblog/2020/11/29/hexo/hexo%E5%90%8C%E6%97%B6%E5%85%B3%E8%81%94gitee%E5%92%8Cgithub/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  type: &#39;git&#39;</span><br><span class="line">  repo: </span><br><span class="line">       gitee: https:&#x2F;&#x2F;gitee.com&#x2F;akram98&#x2F;myblog.git</span><br><span class="line">       github: git@github.com:mark9812&#x2F;mark.github.io.git</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ssh自定义产生密钥</title>
-    <url>/myblog/2020/11/29/ssh/ssh%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%AF%86%E9%92%A5/</url>
-    <content><![CDATA[<p>产生gitbub和gitbub.pub密钥文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR_EMAIL@YOUREMAIL.COM&quot; -f &#x2F;c&#x2F;user&#x2F;justdoit&#x2F;.ssh&#x2F;github</span><br></pre></td></tr></table></figure>
-<p>“-c”必须大写，不然无法识别</p>
-]]></content>
-      <categories>
-        <category>ssh</category>
-      </categories>
-      <tags>
-        <tag>ssh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在hoxe中使用markdown</title>
-    <url>/myblog/2020/11/27/hexo/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/</url>
-    <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
-
-<ul>
-<li><a href="#toc%E7%9A%84%E4%BD%BF%E7%94%A8">toc的使用</a></li>
-<li><a href="#%E4%BD%BF%E6%96%87%E5%AD%97%E7%B2%97%E4%BD%93%E6%88%96%E6%96%9C%E4%BD%93">使文字粗体或斜体</a></li>
-<li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90">文本对齐</a></li>
-<li><a href="#%E6%96%87%E6%9C%AC%E6%8A%98%E5%8F%A0">文本折叠</a></li>
-</ul>
-<!-- tocstop -->
-
-<hr>
-<a id="more"></a>
-
-<h2><span id="toc的使用">toc的使用</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
-<h2><span id="使文字粗体或斜体">使文字粗体或斜体</span></h2><p>使用粗体或斜体时，要保证两端的” _ “或者” * “离两边的文字之间有一个空格 </p>
-<h2><span id="文本对齐">文本对齐</span></h2><p>在一个模块儿中间 <strong>空行</strong> 可能会导致上下文不对齐</p>
-<h2><span id="文本折叠">文本折叠</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>markdown</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -449,6 +158,48 @@
       </tags>
   </entry>
   <entry>
+    <title>在hoxe中使用markdown</title>
+    <url>/myblog/2020/11/27/hexo/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/</url>
+    <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
+
+<ul>
+<li><a href="#toc%E7%9A%84%E4%BD%BF%E7%94%A8">toc的使用</a></li>
+<li><a href="#%E4%BD%BF%E6%96%87%E5%AD%97%E7%B2%97%E4%BD%93%E6%88%96%E6%96%9C%E4%BD%93">使文字粗体或斜体</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90">文本对齐</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E6%8A%98%E5%8F%A0">文本折叠</a></li>
+</ul>
+<!-- tocstop -->
+
+<hr>
+<a id="more"></a>
+
+<h2><span id="toc的使用">toc的使用</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
+<h2><span id="使文字粗体或斜体">使文字粗体或斜体</span></h2><p>使用粗体或斜体时，要保证两端的” _ “或者” * “离两边的文字之间有一个空格 </p>
+<h2><span id="文本对齐">文本对齐</span></h2><p>在一个模块儿中间 <strong>空行</strong> 可能会导致上下文不对齐</p>
+<h2><span id="文本折叠">文本折叠</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>markdown</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo同时关联gitee和github</title>
+    <url>/myblog/2020/11/29/hexo/hexo%E5%90%8C%E6%97%B6%E5%85%B3%E8%81%94gitee%E5%92%8Cgithub/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  type: &#39;git&#39;</span><br><span class="line">  repo: </span><br><span class="line">       gitee: https:&#x2F;&#x2F;gitee.com&#x2F;akram98&#x2F;myblog.git</span><br><span class="line">       github: git@github.com:mark9812&#x2F;mark.github.io.git</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何搭建hexo个人博客</title>
     <url>/myblog/2020/11/26/hexo/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
@@ -518,6 +269,279 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java模拟浏览器发送请求</title>
+    <url>/myblog/2021/01/03/java%E7%88%AC%E8%99%AB/java%E6%A8%A1%E6%8B%9F%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">URL url&#x3D;new URL(&quot;https:&#x2F;&#x2F;www.bilibili.com&#x2F;&quot;);</span><br><span class="line"></span><br><span class="line">HttpsURLConnection conn&#x3D;(HttpsURLConnection)url.openConnection();</span><br><span class="line">      conn.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">      conn.setRequestProperty(&quot;User-Agent&quot;, &quot;Mozilla&#x2F;5.0(Windows NT 10.0;Win64;x64)AppleWebKit&#x2F;537.3&quot;);</span><br><span class="line">      BufferedReader br&#x3D;new BufferedReader(new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));</span><br><span class="line">      String msg&#x3D;null;</span><br><span class="line">      while(null!&#x3D;(msg&#x3D;br.readLine())) &#123;</span><br><span class="line">      	System.out.println(msg);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>java爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>js获取session中保存的对象值（jquery）</title>
+    <url>/myblog/2021/02/13/jquery/js%E8%8E%B7%E5%8F%96session%E4%B8%AD%E4%BF%9D%E5%AD%98%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%80%BC%EF%BC%88jquery%EF%BC%89/</url>
+    <content><![CDATA[<p>1.需要在js中获取到存储在session中的值，session中存储的可能是一个字符串也可能是一个对象。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">$(function()&#123;</span><br><span class="line">        &#x2F;&#x2F;session中存储的是一个对象user,内有属性name和password。</span><br><span class="line">		var username &#x3D; &#39;$&#123;user.name&#125;&#39;;</span><br><span class="line">		alert(username);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>2.如果session中存储的是一个字符串，那么如下代码就可以获取到正确的值。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">$(function()&#123;</span><br><span class="line">        &#x2F;&#x2F;session中存储的是一个字符串username。</span><br><span class="line">		var username &#x3D; &#39;$&#123;username&#125;&#39;;</span><br><span class="line">		alert(username);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>jquery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jstl_bug</title>
+    <url>/myblog/2021/01/23/jstl/jstl-bug/</url>
+    <content><![CDATA[<h1><span id="orgapachejasperjasperexception-indexjsp-行-18-列-0-根据标记文件中的tld或attribute指令attributeitems不接受任何表达式">org.apache.jasper.JasperException: /index.jsp (行.: [18], 列: [0]) 根据标记文件中的TLD或attribute指令，attribute[items]不接受任何表达式</span></h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">尝试使用前缀&lt;%@ taglib prefix&#x3D;&quot;c&quot; uri&#x3D;&quot;http:&#x2F;&#x2F;java.sun.com&#x2F;jstl&#x2F;core_rt&quot; %&gt;代替</span><br><span class="line">&lt;%@ taglib prefix&#x3D;&quot;c&quot; uri&#x3D;&quot;http:&#x2F;&#x2F;java.sun.com&#x2F;jstl&#x2F;core&quot; %&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>jstl_bug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端使用cookie</title>
+    <url>/myblog/2021/02/14/jquery/%E5%89%8D%E7%AB%AF%E4%BD%BF%E7%94%A8cookie/</url>
+    <content><![CDATA[<p>需要下载并引入jquery.cookie.js。<br>cookie有四个不同的属性: 名称，内容，域，路径</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">$.cookie(&#39;the_cookie&#39;); &#x2F;&#x2F; 读取 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;); &#x2F;&#x2F; 存储 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;, &#123; expires: 7 &#125;); &#x2F;&#x2F; 存储一个带7天期限的 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;&#39;, &#123; expires: -1 &#125;); &#x2F;&#x2F; 删除 cookie</span><br></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.cookie(&quot;currentMenuID&quot;);</span><br></pre></td></tr></table></figure>
+<p>取值时会产生问题。<br>故：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.cookie(&quot;currentMenuID&quot;, &quot;menuID&quot;, &#123; path: &quot;&#x2F;&quot;&#125;); </span><br></pre></td></tr></table></figure>
+<p>进行覆盖。同域下同一个cookieID对应一个值。</p>
+]]></content>
+      <tags>
+        <tag>jquery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>httpServlet初始编码配置</title>
+    <url>/myblog/2021/01/03/servlet/httpServlet%E5%88%9D%E5%A7%8B%E7%BC%96%E7%A0%81%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">request.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">response.setContentType(&quot;text&#x2F;html;charset&#x3D;utf-8&quot;);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SERVLET中的web.xml配置</title>
+    <url>/myblog/2021/01/03/servlet/servlet%E4%B8%AD%E7%9A%84web-xml%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1><span id="url-pattern">url-pattern</span></h1><h2><span id="理解">理解</span></h2><p>在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;input&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="匹配">匹配</span></h2><p>  写url-pattern时不能用/*，因为这样会把我们的html静态页面也全部包含其中，导致无法加载html页面，而是把任何页面都当作响应页面处理，所以最好的办法是用一个后缀来区分<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;url-pattern&gt;*.do&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;register.do&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line"> String action&#x3D;uri.substring(uri.lastIndexOf(&quot;&#x2F;&quot;)+1,uri.lastIndexOf(&quot;.&quot;));</span><br><span class="line">if(action.equals(&quot;register&quot;)) &#123;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>如果写成”/*.do”会报错。</li>
+<li>别忘了lastIndexOf(“/“)后面还有+1</li>
+</ul>
+<h1><span id="welcome-file">welcome-file</span></h1><p>对于初始页面，我们只需要配置<welcome-file>即可，也就是刚启动servlet就能看到的页面</welcome-file></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;input.html&lt;&#x2F;welcome-file&gt;</span><br><span class="line">  &lt;&#x2F;welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
+<br>]]></content>
+      <categories>
+        <category>servlet</category>
+      </categories>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>servlet编程模型</title>
+    <url>/myblog/2021/02/11/servlet/servlet%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h1><span id="基本形式">基本形式</span></h1><p>1.初始化页面之前，如果需要对某些数据进行判断再初始化，则需要通过一个单独.do服务器模块进行一些数据的配置判断再 <strong>过渡</strong> 到新的页面</p>
+<p>2.在同一个页面，仅对页面的部分内容进行改变时（仅做前后端数据交流）</p>
+<ul>
+<li><p>如果需要再整个页面不变化，只需要变化其中某一些元素且不涉及到页面跳转的内容，则通过ajax直接对元素内的元素进行切换。</p>
+</li>
+<li><p>数据库的改动（不需要从后端接收数据时）<br>仅需要通过一个链接后面接上相应的参数直接连接到.do模块对数据库进行改动，再重新加载会原来的页面即可。</p>
+</li>
+</ul>
+<p>3.如果一个.do模块既可能仅仅对页面的部分内容进行改变，也有可能通过这个.do模块直接转载到另一个页面。则需要通过提交数据submit的方式或者是链接的方式加载到后端相应的模块。如果需要返回数据给原来的页面，通过设置request的方式返回jsp页面即可。</p>
+<h1><span id="数据传输">数据传输</span></h1><ul>
+<li>session<br>session数据会在规定的时间内适用于所有的页面，适合存放身份验证等信息。</li>
+<li>request<br>一次请求的数据传输，仅需要后端到前端初始化时，通过request.setAttribute存放数据进行传输（请求完其实就释放了）</li>
+<li>ajax_json/out.println<br>如果页面中的某个元素内部的数据发生结构和数据变化时，用ajax方法直接加载该模块儿的数据</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>servle后端中的弹窗</title>
+    <url>/myblog/2021/01/13/servlet/servle%E5%90%8E%E7%AB%AF%E4%B8%AD%E7%9A%84%E5%BC%B9%E7%AA%97/</url>
+    <content><![CDATA[<p>\“\“之间按照正常的字符串格式写即可,这是转义字符，里面还包含多个””时，就得用这种方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\&quot;return confirm(&#39;是否确定删除&quot;+rs.getString(&quot;name&quot;)+&quot;&#39;);\&quot;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>session超时设置</title>
+    <url>/myblog/2021/02/11/servlet/session%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">session.setMaxInactiveInterval(10);</span><br></pre></td></tr></table></figure>
+<p>如果不停刷新，也会使计数器不断地刷新，10秒后session还是会存在。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>uri和url</title>
+    <url>/myblog/2021/02/11/servlet/uri%E5%92%8Curl/</url>
+    <content><![CDATA[<ul>
+<li>URI是什么？有什么用？<br>URI（统一资源标识符）是标识逻辑或物理资源的字符序列，与URL类似，也是一串字符。通过使用位置，名称或两者来标识Internet上的资源；它允许统一识别资源。</li>
+</ul>
+<p>有两种类型的URI，统一资源标识符（URL）和统一资源名称（URN）</p>
+<ul>
+<li>URL是什么？有什么用？<br>URL（统一资源定位符）是Internet上资源的地址，可以定义为引用地址的字符串，用于指示资源的位置以及用于访问它的协议</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ResultSet结果集为空判断</title>
+    <url>/myblog/2021/02/11/sql/ResultSet%E7%BB%93%E6%9E%9C%E9%9B%86%E4%B8%BA%E7%A9%BA%E5%88%A4%E6%96%AD/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(rs.next()) &#123;</span><br><span class="line">				erroString&#x3D;&quot;该用户名已被注册&quot;;</span><br><span class="line">			&#125;else &#123;</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>细谈getRequestDispatcher与sendRedirect的区别</title>
+    <url>/myblog/2021/02/11/servlet/%E7%BB%86%E8%B0%88getRequestDispatcher%E4%B8%8EsendRedirect%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>首先我们要知道：</p>
+<p>(1)request.getRequestDispatcher()是请求转发，前后页面共享一个request ; 这个是在服务端运行的，对浏览器来说是透明的。<br>(2)response.sendRedirect()是重新定向，前后页面不是一个request。而这个是在浏览器端运行的。</p>
+<h2><span id="redirect方式">redirect方式</span></h2><p>　 response.sendRedirect(“/a.jsp”);<br>　　  页面的路径是相对路径。sendRedirect可以将页面跳转到任何页面，不一定局限于本web应用中，如：<br>　　  response.sendRedirect(“URL”);<br>　　  跳转后浏览器地址栏变化。<br>　　  这种方式要传值出去的话，只能在url中带parameter或者放在session中，无法使用request.setAttribute来 传递。所以该方式只适用于无传值跳转</p>
+<h2><span id="forward方式">forward方式</span></h2><p> request.getRequestDispatcher(“/路径（可以是jsp路径也可以是servlet）”) .forward(request, response);</p>
+<p>如：</p>
+<p>request.getRequestDispatcher(“/2.jsp）”) .forward(request, response);</p>
+<p>request.getRequestDispatcher(“/servlet/HomeServlet）”) .forward(request, response);<br>　　Servlet页面跳转的路径是相对路径。forward方式只能跳转到本web应用中的页面上。<br>　　跳转后浏览器地址栏不会变化。<br>　　使用这种方式跳转，传值可以使用三种方法：url中带parameter，session，request.setAttribute</p>
+]]></content>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>excute和excuteQuery的区别</title>
+    <url>/myblog/2021/02/11/sql/excute%E5%92%8CexcuteQuery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>excute方法是直接执行，excuteQuery方法会返回结果。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第一次需要用connection嵌入sql代码，其余的直接写在excute和excuteQuery里面，不写直接调用代码就是执行前一个sql语句</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql在web中的引入</title>
+    <url>/myblog/2021/01/03/sql/mysql%E5%9C%A8web%E4%B8%AD%E7%9A%84%E5%BC%95%E5%85%A5/</url>
+    <content><![CDATA[<h1><span id="mysql-connector-java在web中的引入">mysql-connector-java在WEB中的引入</span></h1><p>在java项目中，只需要引入mysql-connector-java-5.1.7-bin.jar就可以运行java项目。</p>
+<p>在web项目中，当Class.forName(“om.mysql.jdbc.Driver”);时myeclipse是不会去查找字符串，不会去查找驱动的。所以只需要把mysql-connector-java-5.1.7-bin.jar拷贝到tomcat下lib目录就可以了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>sql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主键ID的重排序</title>
+    <url>/myblog/2021/01/13/sql/%E4%B8%BB%E9%94%AEID%E7%9A%84%E9%87%8D%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h2><span id="删除元素后id自动减少">删除元素后id自动减少</span></h2><p>先删除再建立自增长的主键ID</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alter table student drop id;</span><br><span class="line">alter table student add id int primary key auto_increment;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql_bug</title>
+    <url>/myblog/2021/02/11/sql/where-clause/</url>
+    <content><![CDATA[<h3><span id="unknown-column-name-in-where-clause">Unknown column ‘name’ in ‘where clause’</span></h3><p>有可能是url中的仓库名称写错了。</p>
+]]></content>
+      <tags>
+        <tag>bug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据库工具类</title>
+    <url>/myblog/2021/01/03/sql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
+    <content><![CDATA[<pre><code>public class DBUtil &#123;
+    static final String JDBC_DRIVER =&quot;com.mysql.jdbc.Driver&quot;;
+    static final String DB_URL =&quot;jdbc:mysql://localhost:3306/student?useUnicode=true&amp;useSSL=false&amp;characterEncoding=utf-8&quot;;
+    static final String USER = &quot;root&quot;;
+    static final String PASS = &quot;1210&quot;;
+    private static Connection conn =null;
+    static &#123;
+        try &#123;
+            Class.forName(JDBC_DRIVER);
+            conn=DriverManager.getConnection(DB_URL, USER, PASS);
+
+        &#125; catch (ClassNotFoundException e) &#123;
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        &#125; catch (SQLException e) &#123;
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        &#125;
+
+    &#125;
+    public static Connection getConnection() &#123;
+        return conn;
+    &#125;
+
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>sql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ssh自定义产生密钥</title>
+    <url>/myblog/2020/11/29/ssh/ssh%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%AF%86%E9%92%A5/</url>
+    <content><![CDATA[<p>产生gitbub和gitbub.pub密钥文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR_EMAIL@YOUREMAIL.COM&quot; -f &#x2F;c&#x2F;user&#x2F;justdoit&#x2F;.ssh&#x2F;github</span><br></pre></td></tr></table></figure>
+<p>“-c”必须大写，不然无法识别</p>
+]]></content>
+      <categories>
+        <category>ssh</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JQuery中的$.load详解</title>
+    <url>/myblog/2021/02/13/ajax/JQuery%E4%B8%AD%E7%9A%84$.load%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1><span id="load">load()</span></h1><h2><span id="1载入html文档">1.载入HTML文档</span></h2><p>load()方法是jQuery中最为简单和常用的Ajax方法，能载入远程HTML代码并插入DOM中。<br>它的结构为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">load(url,data(可选),callback(可选))</span><br></pre></td></tr></table></figure>
+<p>2.筛选载入的HTML文档<br>需要加载test.html页面中class为”para”的内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html  .para&quot;);</span><br></pre></td></tr></table></figure>
+<h2><span id="2传递方法">2.传递方法</span></h2><p>load()方法的传递方式根据参数data来自动指定。如果没有参数传递，则采用GET方式传递；反之，则会自动转换为POST方法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;无参数传递，则是GET方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;有参数传递，则是POST方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;，function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2><span id="4回调函数">4.回调函数</span></h2><p>对于必须在加载完成后才能继续的操作，load()方法提供了回调函数(callback)，该函数有3个参数，分别代表请求返回的内容、请求状态和XMLHttpRequest对象，jQuery代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html&quot;,function (responseText, textStatus, XMLHttpRequest)&#123;         </span><br><span class="line">        alert(responseText);         &#x2F;&#x2F;请求返回的内容</span><br><span class="line">        alert(textStatus);          &#x2F;&#x2F;请求状态：success，error</span><br><span class="line">        alert(XMLHttpRequest);     &#x2F;&#x2F;XMLHttpRequest对象</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在load()方法中，无论Ajax请求是否成功，只要当请求完成(complete)后，回调函数(callback)就被触发。</p>
+<h2><span id="5传递多个参数">5.传递多个参数</span></h2><p>直接通过request分别获取即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="load方法通常用来从web服务器上获取静态的数据文件然后这并不能体现ajax的全部价值-在项目中如果需要传递一些参数给服务器中的页面那么可以使用get或者post或者ajax方法">load()方法通常用来从Web服务器上获取静态的数据文件，然后这并不能体现Ajax的全部价值。在项目中，如果需要传递一些参数给服务器中的页面，那么可以使用$.get()或者$.post()或者$.ajax()方法。</span></h3>]]></content>
+      <tags>
+        <tag>ajax</tag>
+        <tag>jquery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>eval解析JSON中的注意点</title>
+    <url>/myblog/2021/02/16/ajax/eval%E8%A7%A3%E6%9E%90JSON%E4%B8%AD%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/</url>
+    <content><![CDATA[<p>在JS中将JSON的字符串解析成JSON数据格式，一般有两种方式：</p>
+<ol>
+<li><p>一种为使用eval()函数。</p>
+</li>
+<li><p>使用Function对象来进行返回解析。</p>
+</li>
+</ol>
+<p>使用eval函数来解析，并且使用jquery的each方法来遍历</p>
+<p>用jquery解析JSON数据的方法,作为jquery异步请求的传输对象，jquery请求后返回的结果是json对象,这里考虑的都是服务器返回JSON形式的字符串的形式，对于利用JSONObject等插件封装的JSON对象，与此亦是大同小异，这里不再做说明。</p>
+]]></content>
+      <tags>
+        <tag>ajax</tag>
       </tags>
   </entry>
 </search>

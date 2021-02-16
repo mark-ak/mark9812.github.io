@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="jquery," />
+  <meta name="keywords" content="ajax," />
 
 
 
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="load()1.载入HTML文档load()方法是jQuery中最为简单和常用的Ajax方法，能载入远程HTML代码并插入DOM中。它的结构为： 1load(url,data(可选),callback(可选)) 2.筛选载入的HTML文档需要加载test.html页面中class为”para”的内容 1$(&quot;#resText&quot;).load(&quot;test.html  .p">
+<meta name="description" content="在JS中将JSON的字符串解析成JSON数据格式，一般有两种方式：  一种为使用eval()函数。  使用Function对象来进行返回解析。   使用eval函数来解析，并且使用jquery的each方法来遍历 用jquery解析JSON数据的方法,作为jquery异步请求的传输对象，jquery请求后返回的结果是json对象,这里考虑的都是服务器返回JSON形式的字符串的形式，对于利用JSON">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JQuery中的$.load详解">
-<meta property="og:url" content="https://gitee.com/akram98/myblog/2021/02/13/jquery/JQuery%E4%B8%AD%E7%9A%84$.load%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:title" content="eval解析JSON中的注意点">
+<meta property="og:url" content="https://gitee.com/akram98/myblog/2021/02/16/ajax/eval%E8%A7%A3%E6%9E%90JSON%E4%B8%AD%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/index.html">
 <meta property="og:site_name" content="Mark&#39;s Blog">
-<meta property="og:description" content="load()1.载入HTML文档load()方法是jQuery中最为简单和常用的Ajax方法，能载入远程HTML代码并插入DOM中。它的结构为： 1load(url,data(可选),callback(可选)) 2.筛选载入的HTML文档需要加载test.html页面中class为”para”的内容 1$(&quot;#resText&quot;).load(&quot;test.html  .p">
+<meta property="og:description" content="在JS中将JSON的字符串解析成JSON数据格式，一般有两种方式：  一种为使用eval()函数。  使用Function对象来进行返回解析。   使用eval函数来解析，并且使用jquery的each方法来遍历 用jquery解析JSON数据的方法,作为jquery异步请求的传输对象，jquery请求后返回的结果是json对象,这里考虑的都是服务器返回JSON形式的字符串的形式，对于利用JSON">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-02-13T01:57:46.000Z">
-<meta property="article:modified_time" content="2021-02-13T03:35:35.278Z">
+<meta property="article:published_time" content="2021-02-16T15:02:28.000Z">
+<meta property="article:modified_time" content="2021-02-16T15:03:16.819Z">
 <meta property="article:author" content="Akram Amat">
-<meta property="article:tag" content="jquery">
+<meta property="article:tag" content="ajax">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://gitee.com/akram98/myblog/2021/02/13/jquery/JQuery中的$.load详解/"/>
+  <link rel="canonical" href="https://gitee.com/akram98/myblog/2021/02/16/ajax/eval解析JSON中的注意点/"/>
 
 
 
 
 
-  <title>JQuery中的$.load详解 | Mark's Blog</title>
+  <title>eval解析JSON中的注意点 | Mark's Blog</title>
   
 
 
@@ -257,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/13/jquery/JQuery%E4%B8%AD%E7%9A%84$.load%E8%AF%A6%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/16/ajax/eval%E8%A7%A3%E6%9E%90JSON%E4%B8%AD%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JQuery中的$.load详解</h1>
+          <h1 class="post-title" itemprop="name headline">eval解析JSON中的注意点</h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-13T09:57:46+08:00">
-                2021-02-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-16T23:02:28+08:00">
+                2021-02-16
               </time>
             
 
@@ -324,19 +324,16 @@
       
 
       
-        <h1><span id="load">load()</span></h1><h2><span id="1载入html文档">1.载入HTML文档</span></h2><p>load()方法是jQuery中最为简单和常用的Ajax方法，能载入远程HTML代码并插入DOM中。<br>它的结构为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load(url,data(可选),callback(可选))</span><br></pre></td></tr></table></figure>
-<p>2.筛选载入的HTML文档<br>需要加载test.html页面中class为”para”的内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html  .para&quot;);</span><br></pre></td></tr></table></figure>
-<h2><span id="2传递方法">2.传递方法</span></h2><p>load()方法的传递方式根据参数data来自动指定。如果没有参数传递，则采用GET方式传递；反之，则会自动转换为POST方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;无参数传递，则是GET方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;有参数传递，则是POST方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;，function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2><span id="4回调函数">4.回调函数</span></h2><p>对于必须在加载完成后才能继续的操作，load()方法提供了回调函数(callback)，该函数有3个参数，分别代表请求返回的内容、请求状态和XMLHttpRequest对象，jQuery代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html&quot;,function (responseText, textStatus, XMLHttpRequest)&#123;         </span><br><span class="line">        alert(responseText);         &#x2F;&#x2F;请求返回的内容</span><br><span class="line">        alert(textStatus);          &#x2F;&#x2F;请求状态：success，error</span><br><span class="line">        alert(XMLHttpRequest);     &#x2F;&#x2F;XMLHttpRequest对象</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>在load()方法中，无论Ajax请求是否成功，只要当请求完成(complete)后，回调函数(callback)就被触发。</p>
-<h2><span id="5传递多个参数">5.传递多个参数</span></h2><p>直接通过request分别获取即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="load方法通常用来从web服务器上获取静态的数据文件然后这并不能体现ajax的全部价值-在项目中如果需要传递一些参数给服务器中的页面那么可以使用get或者post或者ajax方法">load()方法通常用来从Web服务器上获取静态的数据文件，然后这并不能体现Ajax的全部价值。在项目中，如果需要传递一些参数给服务器中的页面，那么可以使用$.get()或者$.post()或者$.ajax()方法。</span></h3>
+        <p>在JS中将JSON的字符串解析成JSON数据格式，一般有两种方式：</p>
+<ol>
+<li><p>一种为使用eval()函数。</p>
+</li>
+<li><p>使用Function对象来进行返回解析。</p>
+</li>
+</ol>
+<p>使用eval函数来解析，并且使用jquery的each方法来遍历</p>
+<p>用jquery解析JSON数据的方法,作为jquery异步请求的传输对象，jquery请求后返回的结果是json对象,这里考虑的都是服务器返回JSON形式的字符串的形式，对于利用JSONObject等插件封装的JSON对象，与此亦是大同小异，这里不再做说明。</p>
+
       
     </div>
     
@@ -353,7 +350,7 @@
       
         <div class="post-tags">
           
-            <a href="/myblog/tags/jquery/" rel="tag"># jquery</a>
+            <a href="/myblog/tags/ajax/" rel="tag"># ajax</a>
           
         </div>
       
@@ -366,8 +363,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/myblog/2021/02/11/servlet/session%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE/" rel="next" title="session超时设置">
-                <i class="fa fa-chevron-left"></i> session超时设置
+              <a href="/myblog/2021/02/15/ajax/ajax%E8%AF%A6%E8%A7%A3/" rel="next" title="ajax详解">
+                <i class="fa fa-chevron-left"></i> ajax详解
               </a>
             
           </div>
@@ -375,10 +372,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/myblog/2021/02/13/jquery/js%E8%8E%B7%E5%8F%96session%E4%B8%AD%E4%BF%9D%E5%AD%98%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%80%BC%EF%BC%88jquery%EF%BC%89/" rel="prev" title="js获取session中保存的对象值（jquery）">
-                js获取session中保存的对象值（jquery） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -450,7 +443,7 @@
               
                 <a href="/myblog/archives">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -535,7 +528,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共7.3k字</span>
+  <span class="post-count">博客全站共7.4k字</span>
 </div>
 
         
