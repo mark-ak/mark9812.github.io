@@ -1,17 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/myblog/2021/05/27/vim/vim%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E5%91%BD%E4%BB%A4%E5%AE%9E%E8%B7%B5/</url>
-    <content><![CDATA[<h2><span id="vim批量替换命令实践">vim批量替换命令实践</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: vim批量替换命令实践</span><br><span class="line">date: 2021-6-1 22:23:00</span><br><span class="line">tags: vim</span><br></pre></td></tr></table></figure>
+    <title>后端配置跨域</title>
+    <url>/myblog/2021/06/03/%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E8%B7%A8%E5%9F%9F/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String originHeads &#x3D; request.getHeader(&quot;Origin&quot;);</span><br><span class="line">	     response.setHeader(&quot;Access-Control-Allow-Origin&quot;,&quot;*&quot;);</span><br><span class="line">	     response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originHeads);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST,GET,OPTIONS,DELETE,HEAD,PUT,PATCH&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;36000&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;Origin, X-Requested-With, Content-Type, Accept,Authorization,authorization&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Credentials&quot;,&quot;true&quot;);</span><br></pre></td></tr></table></figure>
 
-<p>语法为 </p>
+]]></content>
+      <tags>
+        <tag>后端数据输出</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>接口</title>
+    <url>/myblog/2021/06/03/api/%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<p>天气预报</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;t.weather.itboy.net&#x2F;api&#x2F;weather&#x2F;city&#x2F;101280101</span><br></pre></td></tr></table></figure>
+
+<p>有道翻译</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;fanyi.youdao.com&#x2F;translate?&amp;doctype&#x3D;json&amp;type&#x3D;AUTO&amp;i&#x3D;计算</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>api</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>获取网络json数据</title>
+    <url>/myblog/2021/06/03/%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E6%8E%A5%E6%94%B6/%E8%8E%B7%E5%8F%96%E7%BD%91%E7%BB%9Cjson%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private final String TAG &#x3D; &quot;MSG&quot;;</span><br><span class="line">Handler handler&#x3D;new Handler();</span><br><span class="line">public void setMessageUrl(String myurl,int flag) &#123;</span><br><span class="line">    Thread thread &#x3D; new Thread(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            String result;</span><br><span class="line">            try &#123;</span><br><span class="line">                URL url &#x3D; new URL(myurl);</span><br><span class="line">                HttpURLConnection connection &#x3D; (HttpURLConnection) url.openConnection();</span><br><span class="line">                connection.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">                int code &#x3D; connection.getResponseCode();</span><br><span class="line">                if (code &#x3D;&#x3D; 200) &#123;</span><br><span class="line">                    InputStream inputStream &#x3D; connection.getInputStream();</span><br><span class="line">                    ByteArrayOutputStream bos &#x3D; new ByteArrayOutputStream();</span><br><span class="line">                    int len &#x3D; -1;</span><br><span class="line">                    byte[] bytes &#x3D; new byte[1024];</span><br><span class="line">                    while ((len &#x3D; inputStream.read(bytes)) !&#x3D; -1) &#123;</span><br><span class="line">                        bos.write(bytes, 0, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                    result &#x3D; new String(bos.toByteArray(), &quot;utf-8&quot;);</span><br><span class="line">                    Message msg&#x3D;new Message();</span><br><span class="line">                    Bundle bd&#x3D;new Bundle();</span><br><span class="line">                    bd.putString(&quot;result&quot;,result);</span><br><span class="line">                    msg.setData(bd);</span><br><span class="line">                    msg.what&#x3D;flag;</span><br><span class="line">                    handler.sendMessage(msg);</span><br><span class="line">                    Log.i(TAG, &quot;run: &quot;+result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public RootName getRoot(Message handlermsg)&#123;</span><br><span class="line">     String massage&#x3D;handlermsg.getData().getString(&quot;result&quot;);</span><br><span class="line">     Gson gson&#x3D;new Gson();</span><br><span class="line">     RootName rootName&#x3D;gson.fromJson(massage,RootName.class);</span><br><span class="line">     return rootName;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">implementation &#39;com.google.code.gson:gson:2.8.5&#39;</span><br></pre></td></tr></table></figure>
+
+<p>HttpConnection连接api，获取输入流。先用inputStream输入流读入数据，再用ByteArrayOutputStream将数据读出。将读出的字节数组编程字符串使用</p>
+]]></content>
+      <tags>
+        <tag>后端数据接收</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>indexDB</title>
+    <url>/myblog/2021/06/03/%E5%89%8D%E7%AB%AF%E6%95%B0%E6%8D%AE%E5%82%A8%E5%AD%98/indexDB/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         openDB(myDB.name, myDB.version);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> myDB = &#123;</span><br><span class="line">         name: <span class="string">&#x27;myList&#x27;</span>,</span><br><span class="line">         version: <span class="number">1</span>,</span><br><span class="line">         db: <span class="literal">null</span></span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> school = [&#123;</span><br><span class="line">         id: <span class="number">1001</span>,</span><br><span class="line">         name: <span class="string">&quot;北京大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;北京&quot;</span></span><br><span class="line">     &#125;, &#123;</span><br><span class="line">         id: <span class="number">1002</span>,</span><br><span class="line">         name: <span class="string">&quot;清华大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;北京&quot;</span></span><br><span class="line">     &#125;, &#123;</span><br><span class="line">         id: <span class="number">1003</span>,</span><br><span class="line">         name: <span class="string">&quot;上海交通大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;上海&quot;</span></span><br><span class="line">     &#125;];</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">openDB</span>(<span class="params">name, version</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> version = version || <span class="number">1</span>;</span><br><span class="line">         <span class="keyword">var</span> request = <span class="built_in">window</span>.indexedDB.open(name, version);</span><br><span class="line">         request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(e.currentTarget.error.message);</span><br><span class="line">         &#125;;</span><br><span class="line">         request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             myDB.db = e.target.result;</span><br><span class="line">             addData(myDB.db, <span class="string">&quot;school&quot;</span>);</span><br><span class="line">             fetchStoreByCursor(myDB.db, <span class="string">&quot;school&quot;</span>);</span><br><span class="line">         &#125;;</span><br><span class="line">         request.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> db = e.target.result;</span><br><span class="line">             <span class="keyword">if</span> (!db.objectStoreNames.contains(<span class="string">&#x27;school&#x27;</span>)) &#123;</span><br><span class="line">                 <span class="keyword">var</span> store = db.createObjectStore(<span class="string">&#x27;school&#x27;</span>, &#123;</span><br><span class="line">                     keyPath: <span class="string">&#x27;id&#x27;</span></span><br><span class="line">                 &#125;);</span><br><span class="line">                 store.createIndex(<span class="string">&#x27;nameIndex&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, &#123;</span><br><span class="line">                     unique: <span class="literal">true</span></span><br><span class="line">                 &#125;);</span><br><span class="line">                 store.createIndex(<span class="string">&#x27;addrIndex&#x27;</span>, <span class="string">&#x27;addr&#x27;</span>, &#123;</span><br><span class="line">                     unique: <span class="literal">false</span></span><br><span class="line">                 &#125;);</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="string">&#x27;DB version changed to &#x27;</span> + version);</span><br><span class="line">         &#125;;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">addData</span>(<span class="params">db, storeName</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> trans = db.transaction([storeName], <span class="string">&#x27;readwrite&#x27;</span>);</span><br><span class="line">         <span class="keyword">var</span> store = trans.objectStore(storeName);</span><br><span class="line"></span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; school.length; i++) &#123;</span><br><span class="line">             store.add(school[i]);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">fetchStoreByCursor</span>(<span class="params">db, storeName</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> transaction = db.transaction(storeName);</span><br><span class="line">         <span class="keyword">var</span> store = transaction.objectStore(storeName);</span><br><span class="line">         <span class="keyword">var</span> request = store.openCursor();</span><br><span class="line">         request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> cursor = e.target.result;</span><br><span class="line">             <span class="keyword">if</span> (cursor) &#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(cursor.key);</span><br><span class="line">                 <span class="keyword">var</span> currentStudent = cursor.value;</span><br><span class="line">                 <span class="built_in">console</span>.log(currentStudent.name);</span><br><span class="line">                 <span class="keyword">var</span> table = <span class="built_in">document</span>.getElementById(<span class="string">&quot;mytable&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> tr = <span class="built_in">document</span>.createElement(<span class="string">&quot;tr&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> imgtd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> txttd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">                 <span class="comment">//图片</span></span><br><span class="line">                 <span class="keyword">var</span> schimg = <span class="built_in">document</span>.createElement(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">                 <span class="keyword">switch</span> (currentStudent.name) &#123;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;北京大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;bj-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;清华大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;qh-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;上海交通大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;shj-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                 &#125;</span><br><span class="line">                 schimg.setAttribute(<span class="string">&quot;style&quot;</span>, <span class="string">&quot;height: 100px;&quot;</span>);</span><br><span class="line">                 imgtd.appendChild(schimg);</span><br><span class="line"></span><br><span class="line">                 <span class="comment">//文字</span></span><br><span class="line">                 txttd.innerHTML = <span class="string">&quot; &lt;p style=&#x27;font-size: 45px;&#x27;&gt;&quot;</span> + currentStudent.name + <span class="string">&quot;&lt;/p&gt;&quot;</span> + <span class="string">&quot;&lt;p&gt;&quot;</span> + currentStudent.addr + <span class="string">&quot;&lt;p&gt;&quot;</span>;</span><br><span class="line">                 <span class="comment">//添加</span></span><br><span class="line">                 tr.appendChild(imgtd);</span><br><span class="line">                 tr.appendChild(txttd);</span><br><span class="line">                 table.appendChild(tr);</span><br><span class="line">                 cursor.continue();</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;;</span><br><span class="line">     &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>前端数据储存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bootstrap引入</title>
+    <url>/myblog/2021/06/03/boogstrap/bootstrap%E5%BC%95%E5%85%A5/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1&quot;&gt;</span><br><span class="line">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;twitter-bootstrap&#x2F;4.3.1&#x2F;css&#x2F;bootstrap.min.css&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;jquery&#x2F;3.2.1&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;popper.js&#x2F;1.15.0&#x2F;umd&#x2F;popper.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;twitter-bootstrap&#x2F;4.3.1&#x2F;js&#x2F;bootstrap.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>bootstrap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim批量替换命令实践</title>
+    <url>/myblog/2021/06/03/vim/vim%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E5%91%BD%E4%BB%A4%E5%AE%9E%E8%B7%B5/</url>
+    <content><![CDATA[<h2><span id="vim批量替换命令实践">vim批量替换命令实践</span></h2><p>语法为 </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">:[addr]s&#x2F;源字符串&#x2F;目的字符串&#x2F;[option]</span><br></pre></td></tr></table></figure>
 
 <p>全局替换命令为：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">:%s&#x2F;源字符串&#x2F;目的字符串&#x2F;g</span><br></pre></td></tr></table></figure>
-
-
 
 <p><strong>[addr] 表示检索范围，省略时表示当前行。</strong></p>
 <p>“1,20” ：表示从第1行到20行；</p>
@@ -25,6 +79,138 @@
 <p>省略option时仅对每行第一个匹配串进行替换;</p>
 <p>如果在源字符串和目的字符串中出现特殊字符，需要用”\”转义 如 \t</p>
 ]]></content>
+      <tags>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux下安装vim编辑器</title>
+    <url>/myblog/2021/06/03/linux/Linux%E4%B8%8B%E5%AE%89%E8%A3%85vim%E7%BC%96%E8%BE%91%E5%99%A8/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ubuntu 系统输入命令：sudo apt-get install vim-gtk</span><br><span class="line">centos 系统输入命令：yum -y install vim*</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>让某个元素排序第一</title>
+    <url>/myblog/2021/06/03/sql/%E8%AE%A9%E6%9F%90%E4%B8%AA%E5%85%83%E7%B4%A0%E6%8E%92%E5%BA%8F%E7%AC%AC%E4%B8%80/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select pid, name</span><br><span class="line">from t_province</span><br><span class="line">where 1 &#x3D; 1</span><br><span class="line">order by case when name &#x3D; &quot;广东&quot; then 0 else name end</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>sql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqlite数据库创建使用</title>
+    <url>/myblog/2021/06/03/jdbc/sqlite%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%9B%E5%BB%BA%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> SQLiteDatabase db;</span><br><span class="line">db&#x3D;SQLiteDatabase.openOrCreateDatabase(getContext().getFilesDir().toString()+&quot;test.db&quot;,null);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主题报错</title>
+    <url>/myblog/2021/06/03/androidbug/%E4%B8%BB%E9%A2%98%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Caused by: java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.</span><br></pre></td></tr></table></figure>
+
+<p>在创建的activity时，如果不用继承AppCompatActivity的话，就直接继承Activity。</p>
+]]></content>
+      <tags>
+        <tag>androidbug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模拟器乱码</title>
+    <url>/myblog/2021/06/03/androidbug/%E6%A8%A1%E6%8B%9F%E5%99%A8%E4%B9%B1%E7%A0%81/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">即添加一句：compileOptions.encoding &#x3D; &quot;GBK&quot;;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>androidbug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>获取网络数据时报错</title>
+    <url>/myblog/2021/06/03/androidbug/%E8%8E%B7%E5%8F%96%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E6%97%B6%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.io.IOException: Cleartext HTTP traf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">android:usesCleartextTraffic&#x3D;&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>androidbug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多模块开发</title>
+    <url>/myblog/2021/06/03/android/%E5%A4%9A%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/</url>
+    <content><![CDATA[<p>1.在主模块添加该依赖</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">compile project(&#39;:testlibrary&#39;)      &#x2F;&#x2F;testlibraray是模块儿名称</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.在依赖模块修改</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apply plugin: &#39;com.android.library&#39;     &#x2F;&#x2F;改成libraray</span><br></pre></td></tr></table></figure>
+
+<p>3.注释掉依赖模块</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;   applicationId &quot;cn.itcast.frameanimation&quot;</span><br></pre></td></tr></table></figure>
+
+<p>4.注册调用的activity</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;activity   android:name&#x3D;&quot;cn.itcast.tweenanimation.BJActivity&quot;</span><br><span class="line">    android:label&#x3D;&quot;@string&#x2F;app_name&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>5.布局名称不能相同</p>
+<p>6.3.AndroidManifest.xml文件</p>
+<ul>
+<li><p>主module 在application上加上tools:replace=”android:name,allowBackup,icon,theme,label”</p>
+</li>
+<li><p>同时在顶端加上xmlns:tools=”<a href="http://schemas.android.com/tools&quot;%EF%BC%9B%E4%B8%BB%E8%A6%81%E6%98%AF%E9%81%BF%E5%85%8D%E5%A4%9Amodule%E7%9A%84name,icon,theme%E7%AD%89%E5%86%B2%E7%AA%81">http://schemas.android.com/tools&quot;；主要是避免多module的name,icon,theme等冲突</a></p>
+</li>
+<li><p>次module把application下的android:name，android:icon，android:label删除，否则安装后，在桌面上会有多个图标；</p>
+</li>
+<li><p>次module去掉activity的主过滤器</p>
+</li>
+</ul>
+<pre><code>　&lt;intent-filter&gt;
+   　　　　 &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+  　　&lt;/intent-filter&gt;
+
+```</code></pre>
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读取Asset文件中的json数据</title>
+    <url>/myblog/2021/06/03/android/%E8%AF%BB%E5%8F%96Asset%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84json%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getJson</span><span class="params">(Context mContext, String fileName)</span> </span>&#123;  </span><br><span class="line">           <span class="comment">// TODO Auto-generated method stub  </span></span><br><span class="line">           StringBuilder sb = <span class="keyword">new</span> StringBuilder();  </span><br><span class="line">           AssetManager am = mContext.getAssets();  </span><br><span class="line">           <span class="keyword">try</span> &#123;  </span><br><span class="line">               BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(  </span><br><span class="line">                       am.open(fileName)));  </span><br><span class="line">               String next = <span class="string">&quot;&quot;</span>;  </span><br><span class="line">               <span class="keyword">while</span> (<span class="keyword">null</span> != (next = br.readLine())) &#123;  </span><br><span class="line">                   sb.append(next);  </span><br><span class="line">               &#125;  </span><br><span class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;  </span><br><span class="line">               <span class="comment">// TODO Auto-generated catch block  </span></span><br><span class="line">               e.printStackTrace();  </span><br><span class="line">               sb.delete(<span class="number">0</span>, sb.length());  </span><br><span class="line">           &#125;  </span><br><span class="line">           <span class="keyword">return</span> sb.toString().trim();  </span><br><span class="line">       &#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>fragment实现底栏思路</title>
+    <url>/myblog/2021/06/03/android/fragment%E5%AE%9E%E7%8E%B0%E5%BA%95%E6%A0%8F%E6%80%9D%E8%B7%AF/</url>
+    <content><![CDATA[<ul>
+<li><p>MVC设计模式</p>
+<p>Model负责处理数据，并将处理好的数据交给Frament。Frament负责连接每个Frament布局以及控件，将收到的数据显示在控件上</p>
+</li>
+<li><p>navigation</p>
+<p>navigation负责整合分开的fragment布局文件，并通过menu将每个frament布局与bottomNavigation结合在一起</p>
+</li>
+<li><p>NavigationUI</p>
+<p> navigationUi将分散的fragment布局、以及底部按钮绑定到主页的主fragment中。AppBarConfiguration和NavController将会协助navigationUI分别对底部按钮和fragment布局进行绑定。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
   </entry>
   <entry>
     <title>androidstudio导入项目</title>
@@ -158,8 +344,8 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;</span><br></pre></td></tr></table></figure>
 <h3><span id="load方法通常用来从web服务器上获取静态的数据文件然后这并不能体现ajax的全部价值-在项目中如果需要传递一些参数给服务器中的页面那么可以使用get或者post或者ajax方法">load()方法通常用来从Web服务器上获取静态的数据文件，然后这并不能体现Ajax的全部价值。在项目中，如果需要传递一些参数给服务器中的页面，那么可以使用$.get()或者$.post()或者$.ajax()方法。</span></h3>]]></content>
       <tags>
-        <tag>ajax</tag>
         <tag>jquery</tag>
+        <tag>ajax</tag>
       </tags>
   </entry>
   <entry>
@@ -211,13 +397,18 @@
       </tags>
   </entry>
   <entry>
-    <title>ResultSet结果集为空判断</title>
-    <url>/myblog/2021/02/11/sql/ResultSet%E7%BB%93%E6%9E%9C%E9%9B%86%E4%B8%BA%E7%A9%BA%E5%88%A4%E6%96%AD/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(rs.next()) &#123;</span><br><span class="line">				erroString&#x3D;&quot;该用户名已被注册&quot;;</span><br><span class="line">			&#125;else &#123;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>mysql的ResultSet结果集为空判断</title>
+    <url>/myblog/2021/02/11/jdbc/mysql%E7%9A%84ResultSet%E7%BB%93%E6%9E%9C%E9%9B%86%E4%B8%BA%E7%A9%BA%E5%88%A4%E6%96%AD/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(rs.next()) &#123;</span><br><span class="line">				erroString&#x3D;&quot;该用户名已被注册&quot;;</span><br><span class="line">			&#125;else &#123;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>jdbc</tag>
+      </tags>
   </entry>
   <entry>
     <title>excute和excuteQuery的区别</title>
-    <url>/myblog/2021/02/11/sql/excute%E5%92%8CexcuteQuery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <url>/myblog/2021/02/11/jdbc/mysql%E7%9A%84excute%E5%92%8CexcuteQuery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<p>excute方法是直接执行，excuteQuery方法会返回结果。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第一次需要用connection嵌入sql代码，其余的直接写在excute和excuteQuery里面，不写直接调用代码就是执行前一个sql语句</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
@@ -288,8 +479,8 @@
       </tags>
   </entry>
   <entry>
-    <title>数据库工具类</title>
-    <url>/myblog/2021/01/03/sql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
+    <title>mysql数据库工具类</title>
+    <url>/myblog/2021/01/03/jdbc/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
     <content><![CDATA[<pre><code>public class DBUtil &#123;
     static final String JDBC_DRIVER =&quot;com.mysql.jdbc.Driver&quot;;
     static final String DB_URL =&quot;jdbc:mysql://localhost:3306/student?useUnicode=true&amp;useSSL=false&amp;characterEncoding=utf-8&quot;;
@@ -317,11 +508,8 @@
 &#125;
 </code></pre>
 ]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
       <tags>
-        <tag>sql</tag>
+        <tag>jdbc</tag>
       </tags>
   </entry>
   <entry>
@@ -335,16 +523,15 @@
       </tags>
   </entry>
   <entry>
-    <title>mysql在web中的引入</title>
-    <url>/myblog/2021/01/03/sql/mysql%E5%9C%A8web%E4%B8%AD%E7%9A%84%E5%BC%95%E5%85%A5/</url>
+    <title>mysql在Eclipes中向web中的引入</title>
+    <url>/myblog/2021/01/03/jdbc/mysql%E5%9C%A8Eclipes%E4%B8%AD%E5%90%91web%E4%B8%AD%E7%9A%84%E5%BC%95%E5%85%A5/</url>
     <content><![CDATA[<h1><span id="mysql-connector-java在web中的引入">mysql-connector-java在WEB中的引入</span></h1><p>在java项目中，只需要引入mysql-connector-java-5.1.7-bin.jar就可以运行java项目。</p>
 <p>在web项目中，当Class.forName(“om.mysql.jdbc.Driver”);时myeclipse是不会去查找字符串，不会去查找驱动的。所以只需要把mysql-connector-java-5.1.7-bin.jar拷贝到tomcat下lib目录就可以了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+
+]]></content>
       <tags>
-        <tag>sql</tag>
+        <tag>jdbc</tag>
       </tags>
   </entry>
   <entry>

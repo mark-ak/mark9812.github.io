@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/01/03/servlet/httpServlet%E5%88%9D%E5%A7%8B%E7%BC%96%E7%A0%81%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/13/jquery/js%E8%8E%B7%E5%8F%96session%E4%B8%AD%E4%BF%9D%E5%AD%98%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%80%BC%EF%BC%88jquery%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -272,7 +272,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/myblog/2021/01/03/servlet/httpServlet%E5%88%9D%E5%A7%8B%E7%BC%96%E7%A0%81%E9%85%8D%E7%BD%AE/" itemprop="url">httpServlet初始编码配置</a></h1>
+                <a class="post-title-link" href="/myblog/2021/02/13/jquery/js%E8%8E%B7%E5%8F%96session%E4%B8%AD%E4%BF%9D%E5%AD%98%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%80%BC%EF%BC%88jquery%EF%BC%89/" itemprop="url">js获取session中保存的对象值（jquery）</a></h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-03T08:00:18+08:00">
-                2021-01-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-13T12:45:06+08:00">
+                2021-02-13
               </time>
             
 
@@ -324,8 +324,261 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">response.setContentType(&quot;text&#x2F;html;charset&#x3D;utf-8&quot;);</span><br></pre></td></tr></table></figure>
+            <p>1.需要在js中获取到存储在session中的值，session中存储的可能是一个字符串也可能是一个对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">$(function()&#123;</span><br><span class="line">        &#x2F;&#x2F;session中存储的是一个对象user,内有属性name和password。</span><br><span class="line">		var username &#x3D; &#39;$&#123;user.name&#125;&#39;;</span><br><span class="line">		alert(username);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>2.如果session中存储的是一个字符串，那么如下代码就可以获取到正确的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">$(function()&#123;</span><br><span class="line">        &#x2F;&#x2F;session中存储的是一个字符串username。</span><br><span class="line">		var username &#x3D; &#39;$&#123;username&#125;&#39;;</span><br><span class="line">		alert(username);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/13/ajax/JQuery%E4%B8%AD%E7%9A%84$.load%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/myblog/2021/02/13/ajax/JQuery%E4%B8%AD%E7%9A%84$.load%E8%AF%A6%E8%A7%A3/" itemprop="url">JQuery中的$.load详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-13T09:57:46+08:00">
+                2021-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><span id="load">load()</span></h1><h2><span id="1载入html文档">1.载入HTML文档</span></h2><p>load()方法是jQuery中最为简单和常用的Ajax方法，能载入远程HTML代码并插入DOM中。<br>它的结构为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load(url,data(可选),callback(可选))</span><br></pre></td></tr></table></figure>
+<p>2.筛选载入的HTML文档<br>需要加载test.html页面中class为”para”的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html  .para&quot;);</span><br></pre></td></tr></table></figure>
+<h2><span id="2传递方法">2.传递方法</span></h2><p>load()方法的传递方式根据参数data来自动指定。如果没有参数传递，则采用GET方式传递；反之，则会自动转换为POST方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;无参数传递，则是GET方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;有参数传递，则是POST方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;，function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2><span id="4回调函数">4.回调函数</span></h2><p>对于必须在加载完成后才能继续的操作，load()方法提供了回调函数(callback)，该函数有3个参数，分别代表请求返回的内容、请求状态和XMLHttpRequest对象，jQuery代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html&quot;,function (responseText, textStatus, XMLHttpRequest)&#123;         </span><br><span class="line">        alert(responseText);         &#x2F;&#x2F;请求返回的内容</span><br><span class="line">        alert(textStatus);          &#x2F;&#x2F;请求状态：success，error</span><br><span class="line">        alert(XMLHttpRequest);     &#x2F;&#x2F;XMLHttpRequest对象</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在load()方法中，无论Ajax请求是否成功，只要当请求完成(complete)后，回调函数(callback)就被触发。</p>
+<h2><span id="5传递多个参数">5.传递多个参数</span></h2><p>直接通过request分别获取即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="load方法通常用来从web服务器上获取静态的数据文件然后这并不能体现ajax的全部价值-在项目中如果需要传递一些参数给服务器中的页面那么可以使用get或者post或者ajax方法">load()方法通常用来从Web服务器上获取静态的数据文件，然后这并不能体现Ajax的全部价值。在项目中，如果需要传递一些参数给服务器中的页面，那么可以使用$.get()或者$.post()或者$.ajax()方法。</span></h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/11/servlet/session%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/myblog/2021/02/11/servlet/session%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE/" itemprop="url">session超时设置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-11T21:24:28+08:00">
+                2021-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.setMaxInactiveInterval(10);</span><br></pre></td></tr></table></figure>
+<p>如果不停刷新，也会使计数器不断地刷新，10秒后session还是会存在。</p>
 
           
         
@@ -374,7 +627,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/01/03/sql/mysql%E5%9C%A8web%E4%B8%AD%E7%9A%84%E5%BC%95%E5%85%A5/">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/11/servlet/%E7%BB%86%E8%B0%88getRequestDispatcher%E4%B8%8EsendRedirect%E7%9A%84%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -393,7 +646,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/myblog/2021/01/03/sql/mysql%E5%9C%A8web%E4%B8%AD%E7%9A%84%E5%BC%95%E5%85%A5/" itemprop="url">mysql在web中的引入</a></h1>
+                <a class="post-title-link" href="/myblog/2021/02/11/servlet/%E7%BB%86%E8%B0%88getRequestDispatcher%E4%B8%8EsendRedirect%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="url">细谈getRequestDispatcher与sendRedirect的区别</a></h1>
         
 
         <div class="post-meta">
@@ -405,8 +658,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-03T07:54:33+08:00">
-                2021-01-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-11T21:23:25+08:00">
+                2021-02-11
               </time>
             
 
@@ -415,28 +668,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/myblog/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -467,9 +698,14 @@
       
         
           
-            <h1><span id="mysql-connector-java在web中的引入">mysql-connector-java在WEB中的引入</span></h1><p>在java项目中，只需要引入mysql-connector-java-5.1.7-bin.jar就可以运行java项目。</p>
-<p>在web项目中，当Class.forName(“om.mysql.jdbc.Driver”);时myeclipse是不会去查找字符串，不会去查找驱动的。所以只需要把mysql-connector-java-5.1.7-bin.jar拷贝到tomcat下lib目录就可以了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+            <p>首先我们要知道：</p>
+<p>(1)request.getRequestDispatcher()是请求转发，前后页面共享一个request ; 这个是在服务端运行的，对浏览器来说是透明的。<br>(2)response.sendRedirect()是重新定向，前后页面不是一个request。而这个是在浏览器端运行的。</p>
+<h2><span id="redirect方式">redirect方式</span></h2><p>　 response.sendRedirect(“/a.jsp”);<br>　　  页面的路径是相对路径。sendRedirect可以将页面跳转到任何页面，不一定局限于本web应用中，如：<br>　　  response.sendRedirect(“URL”);<br>　　  跳转后浏览器地址栏变化。<br>　　  这种方式要传值出去的话，只能在url中带parameter或者放在session中，无法使用request.setAttribute来 传递。所以该方式只适用于无传值跳转</p>
+<h2><span id="forward方式">forward方式</span></h2><p> request.getRequestDispatcher(“/路径（可以是jsp路径也可以是servlet）”) .forward(request, response);</p>
+<p>如：</p>
+<p>request.getRequestDispatcher(“/2.jsp）”) .forward(request, response);</p>
+<p>request.getRequestDispatcher(“/servlet/HomeServlet）”) .forward(request, response);<br>　　Servlet页面跳转的路径是相对路径。forward方式只能跳转到本web应用中的页面上。<br>　　跳转后浏览器地址栏不会变化。<br>　　使用这种方式跳转，传值可以使用三种方法：url中带parameter，session，request.setAttribute</p>
+
           
         
       
@@ -517,7 +753,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/01/03/servlet/servlet%E4%B8%AD%E7%9A%84web-xml%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/11/servlet/uri%E5%92%8Curl/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -536,7 +772,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/myblog/2021/01/03/servlet/servlet%E4%B8%AD%E7%9A%84web-xml%E9%85%8D%E7%BD%AE/" itemprop="url">SERVLET中的web.xml配置</a></h1>
+                <a class="post-title-link" href="/myblog/2021/02/11/servlet/uri%E5%92%8Curl/" itemprop="url">uri和url</a></h1>
         
 
         <div class="post-meta">
@@ -548,8 +784,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-03T07:43:13+08:00">
-                2021-01-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-11T21:21:54+08:00">
+                2021-02-11
               </time>
             
 
@@ -558,28 +794,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/myblog/categories/servlet/" itemprop="url" rel="index">
-                    <span itemprop="name">servlet</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -610,458 +824,15 @@
       
         
           
-            <h1><span id="url-pattern">url-pattern</span></h1><h2><span id="理解">理解</span></h2><p>在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;input&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
-<h2><span id="匹配">匹配</span></h2><p>  写url-pattern时不能用/*，因为这样会把我们的html静态页面也全部包含其中，导致无法加载html页面，而是把任何页面都当作响应页面处理，所以最好的办法是用一个后缀来区分<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;url-pattern&gt;*.do&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;register.do&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line"> String action&#x3D;uri.substring(uri.lastIndexOf(&quot;&#x2F;&quot;)+1,uri.lastIndexOf(&quot;.&quot;));</span><br><span class="line">if(action.equals(&quot;register&quot;)) &#123;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>如果写成”/*.do”会报错。</li>
-<li>别忘了lastIndexOf(“/“)后面还有+1</li>
+            <ul>
+<li>URI是什么？有什么用？<br>URI（统一资源标识符）是标识逻辑或物理资源的字符序列，与URL类似，也是一串字符。通过使用位置，名称或两者来标识Internet上的资源；它允许统一识别资源。</li>
 </ul>
-<h1><span id="welcome-file">welcome-file</span></h1><p>对于初始页面，我们只需要配置<welcome-file>即可，也就是刚启动servlet就能看到的页面</welcome-file></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  &lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;input.html&lt;&#x2F;welcome-file&gt;</span><br><span class="line">  &lt;&#x2F;welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
-<br>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2020/11/29/hexo/hexo%E5%90%8C%E6%97%B6%E5%85%B3%E8%81%94gitee%E5%92%8Cgithub/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/myblog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/myblog/2020/11/29/hexo/hexo%E5%90%8C%E6%97%B6%E5%85%B3%E8%81%94gitee%E5%92%8Cgithub/" itemprop="url">hexo同时关联gitee和github</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-29T22:26:38+08:00">
-                2020-11-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/myblog/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  type: &#39;git&#39;</span><br><span class="line">  repo: </span><br><span class="line">       gitee: https:&#x2F;&#x2F;gitee.com&#x2F;akram98&#x2F;myblog.git</span><br><span class="line">       github: git@github.com:mark9812&#x2F;mark.github.io.git</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2020/11/29/ssh/ssh%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%AF%86%E9%92%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/myblog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/myblog/2020/11/29/ssh/ssh%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%AF%86%E9%92%A5/" itemprop="url">ssh自定义产生密钥</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-29T22:23:00+08:00">
-                2020-11-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/myblog/categories/ssh/" itemprop="url" rel="index">
-                    <span itemprop="name">ssh</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>产生gitbub和gitbub.pub密钥文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR_EMAIL@YOUREMAIL.COM&quot; -f &#x2F;c&#x2F;user&#x2F;justdoit&#x2F;.ssh&#x2F;github</span><br></pre></td></tr></table></figure>
-<p>“-c”必须大写，不然无法识别</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2020/11/27/hexo/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/myblog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/myblog/2020/11/27/hexo/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/" itemprop="url">在hoxe中使用markdown</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-27T22:03:21+08:00">
-                2020-11-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/myblog/categories/markdown/" itemprop="url" rel="index">
-                    <span itemprop="name">markdown</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><!-- toc -->
-
+<p>有两种类型的URI，统一资源标识符（URL）和统一资源名称（URN）</p>
 <ul>
-<li><a href="#toc%E7%9A%84%E4%BD%BF%E7%94%A8">toc的使用</a></li>
-<li><a href="#%E4%BD%BF%E6%96%87%E5%AD%97%E7%B2%97%E4%BD%93%E6%88%96%E6%96%9C%E4%BD%93">使文字粗体或斜体</a></li>
-<li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90">文本对齐</a></li>
-<li><a href="#%E6%96%87%E6%9C%AC%E6%8A%98%E5%8F%A0">文本折叠</a></li>
+<li>URL是什么？有什么用？<br>URL（统一资源定位符）是Internet上资源的地址，可以定义为引用地址的字符串，用于指示资源的位置以及用于访问它的协议</li>
 </ul>
-<!-- tocstop -->
 
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/myblog/2020/11/27/hexo/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1108,7 +879,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2020/11/27/hexo/hexo%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/11/sqlbug/where-clause/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1127,7 +898,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/myblog/2020/11/27/hexo/hexo%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE/" itemprop="url">hexo个性化设置</a></h1>
+                <a class="post-title-link" href="/myblog/2021/02/11/sqlbug/where-clause/" itemprop="url">mysql_bug</a></h1>
         
 
         <div class="post-meta">
@@ -1139,8 +910,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-27T11:56:15+08:00">
-                2020-11-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-11T21:16:42+08:00">
+                2021-02-11
               </time>
             
 
@@ -1149,28 +920,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/myblog/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1200,37 +949,12 @@
 
       
         
-          <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><!-- toc -->
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unknown column &#39;name&#39; in &#39;where clause&#39;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><a href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98">更换主题</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AE%E7%AB%99%E7%82%B9%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF">配置站点基本信息</a></li>
-<li><a href="#%E5%8A%A8%E6%80%81%E8%83%8C%E6%99%AF%E8%AE%BE%E7%BD%AE">动态背景设置</a></li>
-<li><a href="#%E5%A2%9E%E5%88%A0%E4%BE%A7%E6%A0%8F%E6%9D%A1%E7%9B%AE">增删侧栏条目</a></li>
-<li><a href="#%E8%AE%BE%E7%BD%AEtoc%E7%9B%AE%E5%BD%95">设置toc目录</a></li>
-<li><a href="#%E8%AE%BE%E7%BD%AE%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD">设置搜索功能</a></li>
-<li><a href="#%E5%BA%95%E9%83%A8%E9%9A%90%E8%97%8F%E7%94%B1hexo%E5%BC%BA%E5%8A%9B%E9%A9%B1%E5%8A%A8-%E4%B8%BB%E9%A2%98nextmist">底部隐藏由Hexo强力驱动、主题–NexT.Mist</a></li>
-<li><a href="#%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87-favicon">设置网站图片 Favicon</a></li>
-<li><a href="#%E5%8D%9A%E5%AE%A2%E7%BD%AE%E9%A1%B6%E8%AE%BE%E7%BD%AE">博客置顶设置</a></li>
-<li><a href="#%E6%96%87%E7%AB%A0%E4%BB%A3%E7%A0%81%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE">文章代码主题设置</a></li>
-<li><a href="#%E7%BD%91%E7%AB%99%E5%BA%95%E9%83%A8%E5%AD%97%E6%95%B0%E7%BB%9F%E8%AE%A1%E8%AE%BE%E7%BD%AE">网站底部字数统计设置</a></li>
-<li><a href="#%E8%AE%BE%E7%BD%AE%E5%A4%B4%E5%83%8F">设置头像</a></li>
-<li><a href="#%E8%AE%BE%E7%BD%AE%E5%A4%B4%E5%83%8F%E5%9C%86%E8%A7%92%E5%B9%B6%E6%97%8B%E8%BD%AC%E6%89%93%E5%BC%80">设置头像圆角并旋转打开</a></li>
-<li><a href="#%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8">添加分类列表</a></li>
-<li><a href="#%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AAtags">同一个文章添加多个tags</a></li>
-<li><a href="#%E5%A4%96%E9%93%BE%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E8%AE%BE%E7%BD%AE">外链网易云音乐设置</a></li>
-<li><a href="#%E7%9C%8B%E6%9D%BF%E5%A8%98%E8%AE%BE%E7%BD%AE">看板娘设置</a></li>
-</ul>
-<!-- tocstop -->
+<p>有可能是url中的仓库名称写错了。</p>
 
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/myblog/2020/11/27/hexo/hexo%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1277,7 +1001,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2020/11/26/hexo/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/11/jdbc/mysql%E7%9A%84ResultSet%E7%BB%93%E6%9E%9C%E9%9B%86%E4%B8%BA%E7%A9%BA%E5%88%A4%E6%96%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1296,7 +1020,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/myblog/2020/11/26/hexo/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" itemprop="url">如何搭建hexo个人博客</a></h1>
+                <a class="post-title-link" href="/myblog/2021/02/11/jdbc/mysql%E7%9A%84ResultSet%E7%BB%93%E6%9E%9C%E9%9B%86%E4%B8%BA%E7%A9%BA%E5%88%A4%E6%96%AD/" itemprop="url">mysql的ResultSet结果集为空判断</a></h1>
         
 
         <div class="post-meta">
@@ -1308,8 +1032,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-26T23:00:59+08:00">
-                2020-11-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-11T21:15:51+08:00">
+                2021-02-11
               </time>
             
 
@@ -1318,28 +1042,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/myblog/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1369,41 +1071,386 @@
 
       
         
-          <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><!-- toc -->
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(rs.next()) &#123;</span><br><span class="line">				erroString&#x3D;&quot;该用户名已被注册&quot;;</span><br><span class="line">			&#125;else &#123;</span><br></pre></td></tr></table></figure>
 
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/11/jdbc/mysql%E7%9A%84excute%E5%92%8CexcuteQuery%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/myblog/2021/02/11/jdbc/mysql%E7%9A%84excute%E5%92%8CexcuteQuery%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="url">excute和excuteQuery的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-11T21:14:20+08:00">
+                2021-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>excute方法是直接执行，excuteQuery方法会返回结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">第一次需要用connection嵌入sql代码，其余的直接写在excute和excuteQuery里面，不写直接调用代码就是执行前一个sql语句</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/02/11/servlet/servlet%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/myblog/2021/02/11/servlet/servlet%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/" itemprop="url">servlet编程模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-11T20:56:10+08:00">
+                2021-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><span id="基本形式">基本形式</span></h1><p>1.初始化页面之前，如果需要对某些数据进行判断再初始化，则需要通过一个单独.do服务器模块进行一些数据的配置判断再 <strong>过渡</strong> 到新的页面</p>
+<p>2.在同一个页面，仅对页面的部分内容进行改变时（仅做前后端数据交流）</p>
 <ul>
-<li><a href="#%E9%80%9A%E8%BF%87%E5%AF%86%E9%92%A5%E9%93%BE%E6%8E%A5%E4%BB%93%E5%BA%93">通过密钥链接仓库</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85nodejs">安装node.js</a></li>
-<li><a href="#%E6%9E%84%E5%BB%BAmyblog%E6%96%87%E4%BB%B6">构建myBlog文件</a><ul>
-<li><a href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9">创建文件夹</a></li>
-<li><a href="#%E6%89%93%E5%BC%80powershell">打开PowerShell</a><ul>
-<li><a href="#__%E5%8F%AF%E8%83%BD%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98__"><strong>可能遇见问题</strong></a></li>
-</ul>
+<li><p>如果需要再整个页面不变化，只需要变化其中某一些元素且不涉及到页面跳转的内容，则通过ajax直接对元素内的元素进行切换。</p>
 </li>
-<li><a href="#%E6%B5%8B%E8%AF%95">测试</a><ul>
-<li><a href="#__%E5%B8%B8%E7%94%A8%E7%9A%84hexo-%E5%91%BD%E4%BB%A4__"><strong>常用的Hexo 命令</strong></a></li>
-</ul>
+<li><p>数据库的改动（不需要从后端接收数据时）<br>仅需要通过一个链接后面接上相应的参数直接连接到.do模块对数据库进行改动，再重新加载会原来的页面即可。</p>
 </li>
 </ul>
-</li>
-<li><a href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1">修改配置文件部署服务</a><ul>
-<li><a href="#%E6%89%93%E5%BC%80blog%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E7%9A%84_configyum%E6%96%87%E4%BB%B6%E5%9C%A8%E6%9C%80%E5%90%8E%E4%BF%AE%E6%94%B9%E4%BB%A5%E4%B8%8B%E5%86%85%E5%AE%B9">打开blog文件夹中的_config.yum文件，在最后修改以下内容</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85git%E9%83%A8%E7%BD%B2%E6%8F%92%E4%BB%B6">安装git部署插件</a></li>
-<li><a href="#%E5%90%AF%E5%8A%A8%E7%A0%81%E4%BA%91%E7%9A%84pakage%E6%9C%8D%E5%8A%A1%E5%8A%A0%E8%BD%BD%E9%A1%B5%E9%9D%A2">启动码云的pakage服务，加载页面</a></li>
+<p>3.如果一个.do模块既可能仅仅对页面的部分内容进行改变，也有可能通过这个.do模块直接转载到另一个页面。则需要通过提交数据submit的方式或者是链接的方式加载到后端相应的模块。如果需要返回数据给原来的页面，通过设置request的方式返回jsp页面即可。</p>
+<h1><span id="数据传输">数据传输</span></h1><ul>
+<li>session<br>session数据会在规定的时间内适用于所有的页面，适合存放身份验证等信息。</li>
+<li>request<br>一次请求的数据传输，仅需要后端到前端初始化时，通过request.setAttribute存放数据进行传输（请求完其实就释放了）</li>
+<li>ajax_json/out.println<br>如果页面中的某个元素内部的数据发生结构和数据变化时，用ajax方法直接加载该模块儿的数据</li>
 </ul>
-</li>
-<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项</a></li>
-</ul>
-<!-- tocstop -->
 
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/myblog/2020/11/26/hexo/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/akram98/myblog/myblog/2021/01/23/jstl_bug/jstl-bug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/myblog/2021/01/23/jstl_bug/jstl-bug/" itemprop="url">jstl_bug</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-23T15:49:11+08:00">
+                2021-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.apache.jasper.JasperException: &#x2F;index.jsp (行.: [18], 列: [0]) 根据标记文件中的TLD或attribute指令，attribute[items]不接受任何表达式</span><br></pre></td></tr></table></figure>
+
+<p>尝试使用前缀&lt;%@ taglib prefix=”c” uri=”<a target="_blank" rel="noopener" href="http://java.sun.com/jstl/core_rt&quot;">http://java.sun.com/jstl/core_rt&quot;</a> %&gt;代替<br>&lt;%@ taglib prefix=”c” uri=”<a target="_blank" rel="noopener" href="http://java.sun.com/jstl/core&quot;">http://java.sun.com/jstl/core&quot;</a> %&gt;</p>
+
+          
         
       
     </div>
@@ -1441,7 +1488,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/myblog/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/myblog/">1</a><a class="page-number" href="/myblog/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/myblog/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/myblog/">1</a><a class="page-number" href="/myblog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/myblog/page/4/">4</a><a class="page-number" href="/myblog/page/5/">5</a><a class="extend next" rel="next" href="/myblog/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1491,7 +1538,7 @@
               
                 <a href="/myblog/archives">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1502,7 +1549,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/myblog/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1513,7 +1560,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/myblog/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1576,7 +1623,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共7.9k字</span>
+  <span class="post-count">博客全站共9.3k字</span>
 </div>
 
         
