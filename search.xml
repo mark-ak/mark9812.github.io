@@ -1,6 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>mybatis映射</title>
+    <url>/myblog/2021/06/08/mybatis%E6%98%A0%E5%B0%84/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;!--namespace&#x3D;绑定一个对应的Dao&#x2F;Mapper接口--&gt;</span><br><span class="line">&lt;mapper namespace&#x3D;&quot;nuc.ss.mapper.UserMapper&quot;&gt;</span><br><span class="line">&lt;&#x2F;mapper&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringSecurity</title>
+    <url>/myblog/2021/06/06/SpringSecurity/</url>
+    <content><![CDATA[<p>1.@EnableWebSecurity</p>
+<p>2.继承WebSercurityConfigurAdapter</p>
+<p>3.重写两个configuer(一个参数是http,两一个是auth)</p>
+<ul>
+<li>http.authorizeRequest.antMatchers(/index/**).hasRoles（vip)</li>
+<li>http.formLogin()</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springsecurity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爬虫包</title>
+    <url>/myblog/2021/06/05/%E7%88%AC%E8%99%AB%E5%8C%85/</url>
+    <content><![CDATA[<ul>
+<li>jsoup     //爬网页</li>
+<li>tika        //爬音乐，爬视频</li>
+<li>模拟 浏览器     //ajax请求</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pathvariable用法</title>
+    <url>/myblog/2021/06/05/Pathvariable%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(/delte/&#123;id&#125;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="meta">@PathVariable</span>)</span> <span class="keyword">int</span> id)</span>&#123;</span><br><span class="line"><span class="comment">//在这里直接用id即可</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何快速搭建web工程</title>
+    <url>/myblog/2021/06/05/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAweb%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<p>1.有一套自己的后台模板</p>
+<ul>
+<li>x-admin</li>
+</ul>
+<p>2.通过前端框架能组出一套页面,得熟悉栅栏系统</p>
+<ul>
+<li><p>layui</p>
+</li>
+<li><p>bootstrap</p>
+</li>
+<li><p>semantic-ui</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>web工程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于动态页面404错误处理</title>
+    <url>/myblog/2021/06/05/%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2404/</url>
+    <content><![CDATA[<ul>
+<li>页面需要在Controller中注册，或者在WebMvnConfiguration中映射才能找到。</li>
+<li><ul>
+<li>需要数据处理注册controller，不需要直接映射就好</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RequestMapping中return的两种方式</title>
+    <url>/myblog/2021/06/05/RequestMapping%E4%B8%ADreturn%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="string">&quot;redirect:/admin-index.html&quot;</span>;  <span class="comment">//跳转到该页面</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="string">&quot;login&quot;</span>;       <span class="comment">//返回该页面的内容（url取决于请求地址）</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RequestParam</title>
     <url>/myblog/2021/06/05/RequestParam/</url>
     <content><![CDATA[<p>1.如果在前端页面已经保证参数不为空</p>
