@@ -1,130 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>druid配置</title>
-    <url>/2021/06/09/druid%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="comment">#?serverTimezone=UTC解决时区的报错</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line">    <span class="attr">druid:</span></span><br><span class="line">    <span class="comment">#Spring Boot 默认是不注入这些属性值的，需要自己绑定</span></span><br><span class="line">    <span class="comment">#druid 数据源专有配置</span></span><br><span class="line">    <span class="attr">initialSize:</span> <span class="number">5</span></span><br><span class="line">    <span class="attr">minIdle:</span> <span class="number">5</span></span><br><span class="line">    <span class="attr">maxActive:</span> <span class="number">20</span></span><br><span class="line">    <span class="attr">maxWait:</span> <span class="number">60000</span></span><br><span class="line">    <span class="attr">timeBetweenEvictionRunsMillis:</span> <span class="number">60000</span></span><br><span class="line">    <span class="attr">minEvictableIdleTimeMillis:</span> <span class="number">300000</span></span><br><span class="line">    <span class="attr">validationQuery:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span></span><br><span class="line">    <span class="attr">testWhileIdle:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">testOnBorrow:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">testOnReturn:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">poolPreparedStatements:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入</span></span><br><span class="line">    <span class="comment">#如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority</span></span><br><span class="line">    <span class="comment">#则导入 log4j 依赖即可，Maven 地址：https://mvnrepository.com/artifact/log4j/log4j</span></span><br><span class="line">    <span class="attr">filters:</span> <span class="string">stat,wall,log4j</span></span><br><span class="line">    <span class="attr">maxPoolPreparedStatementPerConnectionSize:</span> <span class="number">20</span></span><br><span class="line">    <span class="attr">useGlobalDataSourceStat:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">connectionProperties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/log4j/log4j --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DruidConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">       将自定义的 Druid数据源添加到容器中，不再让 Spring Boot 自动创建</span></span><br><span class="line"><span class="comment">       绑定全局配置文件中的 druid 数据源属性到 com.alibaba.druid.pool.DruidDataSource从而让它们生效</span></span><br><span class="line"><span class="comment">       @ConfigurationProperties(prefix = &quot;spring.datasource&quot;)：作用就是将 全局配置文件中</span></span><br><span class="line"><span class="comment">       前缀为 spring.datasource的属性值注入到 com.alibaba.druid.pool.DruidDataSource 的同名参数中</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties(prefix = &quot;spring.datasource&quot;)</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DataSource <span class="title">druidDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DruidDataSource();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//配置 Druid 监控管理后台的Servlet；</span></span><br><span class="line"><span class="comment">//内置 Servlet 容器时没有web.xml文件，所以使用 Spring Boot 的注册 Servlet 方式</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ServletRegistrationBean <span class="title">statViewServlet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ServletRegistrationBean bean = <span class="keyword">new</span> ServletRegistrationBean(<span class="keyword">new</span> StatViewServlet(), <span class="string">&quot;/druid/*&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这些参数可以在 com.alibaba.druid.support.http.StatViewServlet </span></span><br><span class="line">    <span class="comment">// 的父类 com.alibaba.druid.support.http.ResourceServlet 中找到</span></span><br><span class="line">    Map&lt;String, String&gt; initParams = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    initParams.put(<span class="string">&quot;loginUsername&quot;</span>, <span class="string">&quot;root&quot;</span>); <span class="comment">//后台管理界面的登录账号</span></span><br><span class="line">    initParams.put(<span class="string">&quot;loginPassword&quot;</span>, <span class="string">&quot;admin&quot;</span>); <span class="comment">//后台管理界面的登录密码</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//后台允许谁可以访问</span></span><br><span class="line">    <span class="comment">//initParams.put(&quot;allow&quot;, &quot;localhost&quot;)：表示只有本机可以访问</span></span><br><span class="line">    <span class="comment">//initParams.put(&quot;allow&quot;, &quot;&quot;)：为空或者为null时，表示允许所有访问</span></span><br><span class="line">    initParams.put(<span class="string">&quot;allow&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="comment">//deny：Druid 后台拒绝谁访问</span></span><br><span class="line">    <span class="comment">//initParams.put(&quot;kuangshen&quot;, &quot;192.168.1.20&quot;);表示禁止此ip访问</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置初始化参数</span></span><br><span class="line">    bean.setInitParameters(initParams);</span><br><span class="line">    <span class="keyword">return</span> bean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//配置 Druid 监控 之  web 监控的 filter</span></span><br><span class="line"><span class="comment">//WebStatFilter：用于配置Web和Druid数据源之间的管理关联监控统计</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">webStatFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FilterRegistrationBean bean = <span class="keyword">new</span> FilterRegistrationBean();</span><br><span class="line">    bean.setFilter(<span class="keyword">new</span> WebStatFilter());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//exclusions：设置哪些请求进行过滤排除掉，从而不进行统计</span></span><br><span class="line">    Map&lt;String, String&gt; initParams = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    initParams.put(<span class="string">&quot;exclusions&quot;</span>, <span class="string">&quot;*.js,*.css,/druid/*,/jdbc/*&quot;</span>);</span><br><span class="line">    bean.setInitParameters(initParams);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//&quot;/*&quot; 表示过滤所有请求</span></span><br><span class="line">    bean.setUrlPatterns(Arrays.asList(<span class="string">&quot;/*&quot;</span>));</span><br><span class="line">    <span class="keyword">return</span> bean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>druid</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>部署springboot项目</title>
-    <url>/2021/06/09/%E9%83%A8%E7%BD%B2springboot%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nohup java -jar xxx.jar &gt; nohup.out 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ps aux|grep xxx.jar</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>springboot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>thymeleaf中链接的写法</title>
-    <url>/2021/06/08/thymeleaf%E4%B8%AD%E9%93%BE%E6%8E%A5%E7%9A%84%E5%86%99%E6%B3%95/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a th:href&#x3D;&quot;@&#123;&#x2F;delete(id&#x3D;$&#123;student.getId()&#125;)&#125;&quot;&gt;删除&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@RequestParam(&quot;id&quot;) int id</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>thymeleaf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mybatis映射</title>
-    <url>/2021/06/08/mybatis%E6%98%A0%E5%B0%84/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;!--namespace&#x3D;绑定一个对应的Dao&#x2F;Mapper接口--&gt;</span><br><span class="line">&lt;mapper namespace&#x3D;&quot;nuc.ss.mapper.UserMapper&quot;&gt;</span><br><span class="line">&lt;&#x2F;mapper&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mybatis:</span><br><span class="line">  mapper-locations: classpath:*&#x2F;mapper&#x2F;*.xml</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringSecurity</title>
-    <url>/2021/06/06/SpringSecurity/</url>
-    <content><![CDATA[<p>1.@EnableWebSecurity</p>
-<p>2.继承WebSercurityConfigurAdapter</p>
-<p>3.重写两个configuer(一个参数是http,两一个是auth)</p>
-<ul>
-<li>http.authorizeRequest.antMatchers(/index/**).hasRoles（vip)</li>
-<li>http.formLogin()</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>springsecurity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爬虫包</title>
-    <url>/2021/06/05/%E7%88%AC%E8%99%AB%E5%8C%85/</url>
-    <content><![CDATA[<ul>
-<li>jsoup     //爬网页</li>
-<li>tika        //爬音乐，爬视频</li>
-<li>模拟 浏览器     //ajax请求</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pathvariable用法</title>
     <url>/2021/06/05/Pathvariable%E7%94%A8%E6%B3%95/</url>
     <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(/delte/&#123;id&#125;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="meta">@PathVariable</span>)</span> <span class="keyword">int</span> id)</span>&#123;</span><br><span class="line"><span class="comment">//在这里直接用id即可</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <tags>
-        <tag>springboot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何快速搭建web工程</title>
-    <url>/2021/06/05/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAweb%E5%B7%A5%E7%A8%8B/</url>
-    <content><![CDATA[<p>1.有一套自己的后台模板</p>
-<ul>
-<li>x-admin</li>
-</ul>
-<p>2.通过前端框架能组出一套页面,得熟悉栅栏系统</p>
-<ul>
-<li><p>layui</p>
-</li>
-<li><p>bootstrap</p>
-</li>
-<li><p>semantic-ui</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>web工程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于动态页面404错误处理</title>
-    <url>/2021/06/05/%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2404/</url>
-    <content><![CDATA[<ul>
-<li>页面需要在Controller中注册，或者在WebMvnConfiguration中映射才能找到。</li>
-<li><ul>
-<li>需要数据处理注册controller，不需要直接映射就好</li>
-</ul>
-</li>
-</ul>
 ]]></content>
       <tags>
         <tag>springboot</tag>
@@ -150,6 +30,102 @@
 
 <p>2.如果前端页面没有保证参数不为空</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestParam(request=false)</span> Strign username  <span class="comment">//request=false代表允许参数不为空</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringSecurity</title>
+    <url>/2021/06/06/SpringSecurity/</url>
+    <content><![CDATA[<p>1.@EnableWebSecurity</p>
+<p>2.继承WebSercurityConfigurAdapter</p>
+<p>3.重写两个configuer(一个参数是http,两一个是auth)</p>
+<ul>
+<li>http.authorizeRequest.antMatchers(/index/**).hasRoles（vip)</li>
+<li>http.formLogin()</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springsecurity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>androidUI圆角背景</title>
+    <url>/2021/06/03/androidUI%E5%9C%86%E8%A7%92%E8%83%8C%E6%99%AF/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;layer-list</span><br><span class="line">    xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;&gt;</span><br><span class="line">    &lt;item&gt;</span><br><span class="line">        &lt;shape</span><br><span class="line">            xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">            android:shape&#x3D;&quot;rectangle&quot;&gt;</span><br><span class="line">            &lt;solid</span><br><span class="line">                android:color&#x3D;&quot;#ffffff&quot;&#x2F;&gt;</span><br><span class="line">            &lt;corners</span><br><span class="line">                android:radius&#x3D;&quot;20dip&quot;</span><br><span class="line">                &#x2F;&gt;</span><br><span class="line">            &lt;stroke</span><br><span class="line">                android:width&#x3D;&quot;2px&quot;</span><br><span class="line">                &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;shape&gt;</span><br><span class="line">    &lt;&#x2F;item&gt;</span><br><span class="line">&lt;&#x2F;layer-list&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>androidui</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Thymeleaf 没有返回html只返回字符串</title>
+    <url>/2021/06/04/Thymeleaf%20%E6%B2%A1%E6%9C%89%E8%BF%94%E5%9B%9Ehtml%E5%8F%AA%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<p>在使用Thymeleaf的时候，@RequestMapping对应的函数没有返回html文件而是返回了这个函数对应的字符串返回值</p>
+<p>解决办法：</p>
+<p>删除这个函数前面的@Responsebody注解，这个注解会返回Mapping函数指定的返回类型、例如String。而不是将其解析为html文件</p>
+<p>===================================================================</p>
+<p>错误：不能返回页面，只返回字符串。</p>
+<p>原因：在controller中使用了注解@RestController</p>
+<p>修改：修改注解为@Controller</p>
+<p>分析：</p>
+<p>RestController = Controller + ResponseBody.加上RestController,返回的内容是你return中的内容，如果是return “Hello World”，页面显示的就是Hello World。加上Controller，返回的是return中对应的页面,比如return “hello”,页面的名称是hello。</p>
+]]></content>
+      <tags>
+        <tag>thymeleaf</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mybatis映射</title>
+    <url>/2021/06/08/mybatis%E6%98%A0%E5%B0%84/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;!--namespace&#x3D;绑定一个对应的Dao&#x2F;Mapper接口--&gt;</span><br><span class="line">&lt;mapper namespace&#x3D;&quot;nuc.ss.mapper.UserMapper&quot;&gt;</span><br><span class="line">&lt;&#x2F;mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mybatis:</span><br><span class="line">  mapper-locations: classpath:*&#x2F;mapper&#x2F;*.xml</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>druid配置</title>
+    <url>/2021/06/09/druid%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="comment">#?serverTimezone=UTC解决时区的报错</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line">    <span class="attr">druid:</span></span><br><span class="line">    <span class="comment">#Spring Boot 默认是不注入这些属性值的，需要自己绑定</span></span><br><span class="line">    <span class="comment">#druid 数据源专有配置</span></span><br><span class="line">    <span class="attr">initialSize:</span> <span class="number">5</span></span><br><span class="line">    <span class="attr">minIdle:</span> <span class="number">5</span></span><br><span class="line">    <span class="attr">maxActive:</span> <span class="number">20</span></span><br><span class="line">    <span class="attr">maxWait:</span> <span class="number">60000</span></span><br><span class="line">    <span class="attr">timeBetweenEvictionRunsMillis:</span> <span class="number">60000</span></span><br><span class="line">    <span class="attr">minEvictableIdleTimeMillis:</span> <span class="number">300000</span></span><br><span class="line">    <span class="attr">validationQuery:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span></span><br><span class="line">    <span class="attr">testWhileIdle:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">testOnBorrow:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">testOnReturn:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">poolPreparedStatements:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入</span></span><br><span class="line">    <span class="comment">#如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority</span></span><br><span class="line">    <span class="comment">#则导入 log4j 依赖即可，Maven 地址：https://mvnrepository.com/artifact/log4j/log4j</span></span><br><span class="line">    <span class="attr">filters:</span> <span class="string">stat,wall,log4j</span></span><br><span class="line">    <span class="attr">maxPoolPreparedStatementPerConnectionSize:</span> <span class="number">20</span></span><br><span class="line">    <span class="attr">useGlobalDataSourceStat:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">connectionProperties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/log4j/log4j --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DruidConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">       将自定义的 Druid数据源添加到容器中，不再让 Spring Boot 自动创建</span></span><br><span class="line"><span class="comment">       绑定全局配置文件中的 druid 数据源属性到 com.alibaba.druid.pool.DruidDataSource从而让它们生效</span></span><br><span class="line"><span class="comment">       @ConfigurationProperties(prefix = &quot;spring.datasource&quot;)：作用就是将 全局配置文件中</span></span><br><span class="line"><span class="comment">       前缀为 spring.datasource的属性值注入到 com.alibaba.druid.pool.DruidDataSource 的同名参数中</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties(prefix = &quot;spring.datasource&quot;)</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DataSource <span class="title">druidDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DruidDataSource();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//配置 Druid 监控管理后台的Servlet；</span></span><br><span class="line"><span class="comment">//内置 Servlet 容器时没有web.xml文件，所以使用 Spring Boot 的注册 Servlet 方式</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ServletRegistrationBean <span class="title">statViewServlet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ServletRegistrationBean bean = <span class="keyword">new</span> ServletRegistrationBean(<span class="keyword">new</span> StatViewServlet(), <span class="string">&quot;/druid/*&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这些参数可以在 com.alibaba.druid.support.http.StatViewServlet </span></span><br><span class="line">    <span class="comment">// 的父类 com.alibaba.druid.support.http.ResourceServlet 中找到</span></span><br><span class="line">    Map&lt;String, String&gt; initParams = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    initParams.put(<span class="string">&quot;loginUsername&quot;</span>, <span class="string">&quot;root&quot;</span>); <span class="comment">//后台管理界面的登录账号</span></span><br><span class="line">    initParams.put(<span class="string">&quot;loginPassword&quot;</span>, <span class="string">&quot;admin&quot;</span>); <span class="comment">//后台管理界面的登录密码</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//后台允许谁可以访问</span></span><br><span class="line">    <span class="comment">//initParams.put(&quot;allow&quot;, &quot;localhost&quot;)：表示只有本机可以访问</span></span><br><span class="line">    <span class="comment">//initParams.put(&quot;allow&quot;, &quot;&quot;)：为空或者为null时，表示允许所有访问</span></span><br><span class="line">    initParams.put(<span class="string">&quot;allow&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="comment">//deny：Druid 后台拒绝谁访问</span></span><br><span class="line">    <span class="comment">//initParams.put(&quot;kuangshen&quot;, &quot;192.168.1.20&quot;);表示禁止此ip访问</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置初始化参数</span></span><br><span class="line">    bean.setInitParameters(initParams);</span><br><span class="line">    <span class="keyword">return</span> bean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//配置 Druid 监控 之  web 监控的 filter</span></span><br><span class="line"><span class="comment">//WebStatFilter：用于配置Web和Druid数据源之间的管理关联监控统计</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">webStatFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FilterRegistrationBean bean = <span class="keyword">new</span> FilterRegistrationBean();</span><br><span class="line">    bean.setFilter(<span class="keyword">new</span> WebStatFilter());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//exclusions：设置哪些请求进行过滤排除掉，从而不进行统计</span></span><br><span class="line">    Map&lt;String, String&gt; initParams = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    initParams.put(<span class="string">&quot;exclusions&quot;</span>, <span class="string">&quot;*.js,*.css,/druid/*,/jdbc/*&quot;</span>);</span><br><span class="line">    bean.setInitParameters(initParams);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//&quot;/*&quot; 表示过滤所有请求</span></span><br><span class="line">    bean.setUrlPatterns(Arrays.asList(<span class="string">&quot;/*&quot;</span>));</span><br><span class="line">    <span class="keyword">return</span> bean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>druid</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>maven的标准setting.xml</title>
+    <url>/2021/06/04/maven%E7%9A%84%E6%A0%87%E5%87%86setting-xml/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;settings xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;SETTINGS&#x2F;1.0.0&quot; </span><br><span class="line">    xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot; xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;SETTINGS&#x2F;1.0.0 http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;settings-1.0.0.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 本地仓库的位置 --&gt;</span><br><span class="line">    &lt;localRepository&gt;$&#123;user.home&#125;&#x2F;.m2&#x2F;repository&lt;&#x2F;localRepository&gt;</span><br><span class="line">  </span><br><span class="line">    &lt;!-- Apache Maven 配置 --&gt;</span><br><span class="line">    &lt;pluginGroups&#x2F;&gt;</span><br><span class="line">    &lt;proxies&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 私服发布的用户名密码 --&gt;</span><br><span class="line">    &lt;servers&gt;</span><br><span class="line">        &lt;server&gt;</span><br><span class="line">            &lt;id&gt;releases&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;username&gt;deployment&lt;&#x2F;username&gt;</span><br><span class="line">            &lt;password&gt;He2019&lt;&#x2F;password&gt;</span><br><span class="line">        &lt;&#x2F;server&gt;</span><br><span class="line">        &lt;server&gt;</span><br><span class="line">            &lt;id&gt;snapshots&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;username&gt;deployment&lt;&#x2F;username&gt;</span><br><span class="line">            &lt;password&gt;He2019&lt;&#x2F;password&gt;</span><br><span class="line">        &lt;&#x2F;server&gt;</span><br><span class="line">    &lt;&#x2F;servers&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 阿里云镜像 --&gt;</span><br><span class="line">    &lt;mirrors&gt;</span><br><span class="line">        &lt;mirror&gt;</span><br><span class="line">            &lt;id&gt;alimaven&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;name&gt;aliyun maven&lt;&#x2F;name&gt;</span><br><span class="line">            &lt;!-- https:&#x2F;&#x2F;maven.aliyun.com&#x2F;repository&#x2F;public&#x2F; --&gt;</span><br><span class="line">            &lt;url&gt;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">            &lt;mirrorOf&gt;central&lt;&#x2F;mirrorOf&gt;</span><br><span class="line">        &lt;&#x2F;mirror&gt;</span><br><span class="line">    &lt;&#x2F;mirrors&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置: java8, 先从阿里云下载, 没有再去私服下载  --&gt;</span><br><span class="line">    &lt;!-- 20190929 hepengju 测试结果: 影响下载顺序的是profiles标签的配置顺序(后面配置的ali仓库先下载), 而不是activeProfiles的顺序 --&gt;</span><br><span class="line">    &lt;profiles&gt;</span><br><span class="line">        &lt;!-- 全局JDK1.8配置 --&gt;</span><br><span class="line">        &lt;profile&gt;</span><br><span class="line">            &lt;id&gt;jdk1.8&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;activation&gt;</span><br><span class="line">                &lt;activeByDefault&gt;true&lt;&#x2F;activeByDefault&gt;</span><br><span class="line">                &lt;jdk&gt;1.8&lt;&#x2F;jdk&gt;</span><br><span class="line">            &lt;&#x2F;activation&gt;</span><br><span class="line">            &lt;properties&gt;</span><br><span class="line">                &lt;project.build.sourceEncoding&gt;UTF-8&lt;&#x2F;project.build.sourceEncoding&gt;</span><br><span class="line">                &lt;maven.compiler.source&gt;1.8&lt;&#x2F;maven.compiler.source&gt;</span><br><span class="line">                &lt;maven.compiler.target&gt;1.8&lt;&#x2F;maven.compiler.target&gt;</span><br><span class="line">                &lt;maven.compiler.compilerVersion&gt;1.8&lt;&#x2F;maven.compiler.compilerVersion&gt;</span><br><span class="line">            &lt;&#x2F;properties&gt;</span><br><span class="line">        &lt;&#x2F;profile&gt;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        &lt;!-- Nexus私服配置: 第三方jar包下载, 比如oracle的jdbc驱动等 --&gt;</span><br><span class="line">        &lt;profile&gt;</span><br><span class="line">            &lt;id&gt;dev&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;repositories&gt;</span><br><span class="line">                &lt;repository&gt;</span><br><span class="line">                    &lt;id&gt;nexus&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;url&gt;http:&#x2F;&#x2F;nexus.hepengju.cn:8081&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">                    &lt;releases&gt;</span><br><span class="line">                        &lt;enabled&gt;true&lt;&#x2F;enabled&gt;</span><br><span class="line">                    &lt;&#x2F;releases&gt;</span><br><span class="line">                    &lt;snapshots&gt;</span><br><span class="line">                        &lt;enabled&gt;true&lt;&#x2F;enabled&gt;</span><br><span class="line">                    &lt;&#x2F;snapshots&gt;</span><br><span class="line">                &lt;&#x2F;repository&gt;</span><br><span class="line">            &lt;&#x2F;repositories&gt;</span><br><span class="line">            &lt;pluginRepositories&gt;</span><br><span class="line">                &lt;pluginRepository&gt;</span><br><span class="line">                    &lt;id&gt;public&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;name&gt;Public Repositories&lt;&#x2F;name&gt;</span><br><span class="line">                    &lt;url&gt;http:&#x2F;&#x2F;nexus.hepengju.cn:8081&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">                &lt;&#x2F;pluginRepository&gt;</span><br><span class="line">            &lt;&#x2F;pluginRepositories&gt;</span><br><span class="line">        &lt;&#x2F;profile&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;!-- 阿里云配置: 提高国内的jar包下载速度 --&gt;</span><br><span class="line">        &lt;profile&gt;</span><br><span class="line">            &lt;id&gt;ali&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;repositories&gt;</span><br><span class="line">                &lt;repository&gt;</span><br><span class="line">                    &lt;id&gt;alimaven&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;name&gt;aliyun maven&lt;&#x2F;name&gt;</span><br><span class="line">                    &lt;url&gt;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">                    &lt;releases&gt;</span><br><span class="line">                        &lt;enabled&gt;true&lt;&#x2F;enabled&gt;</span><br><span class="line">                    &lt;&#x2F;releases&gt;</span><br><span class="line">                    &lt;snapshots&gt;</span><br><span class="line">                        &lt;enabled&gt;true&lt;&#x2F;enabled&gt;</span><br><span class="line">                    &lt;&#x2F;snapshots&gt;</span><br><span class="line">                &lt;&#x2F;repository&gt;</span><br><span class="line">            &lt;&#x2F;repositories&gt;</span><br><span class="line">            &lt;pluginRepositories&gt;</span><br><span class="line">                &lt;pluginRepository&gt;</span><br><span class="line">                    &lt;id&gt;alimaven&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;name&gt;aliyun maven&lt;&#x2F;name&gt;</span><br><span class="line">                    &lt;url&gt;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">                &lt;&#x2F;pluginRepository&gt;</span><br><span class="line">            &lt;&#x2F;pluginRepositories&gt;</span><br><span class="line">        &lt;&#x2F;profile&gt;</span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;profiles&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 激活配置 --&gt; </span><br><span class="line">    &lt;activeProfiles&gt;</span><br><span class="line">        &lt;activeProfile&gt;jdk1.8&lt;&#x2F;activeProfile&gt;</span><br><span class="line">        &lt;activeProfile&gt;dev&lt;&#x2F;activeProfile&gt;</span><br><span class="line">        &lt;activeProfile&gt;ali&lt;&#x2F;activeProfile&gt;</span><br><span class="line">    &lt;&#x2F;activeProfiles&gt;</span><br><span class="line">&lt;&#x2F;settings&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <tags>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pom配置打包时跳过测试</title>
+    <url>/2021/06/04/pom%E9%85%8D%E7%BD%AE%E6%89%93%E5%8C%85%E6%97%B6%E8%B7%B3%E8%BF%87%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">    在工作中,很多情况下我们打包是不想执行测试用例的</span><br><span class="line">    可能是测试用例不完事,或是测试用例会影响数据库数据</span><br><span class="line">    跳过测试用例执</span><br><span class="line">--&gt;</span><br><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;maven-surefire-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;!--跳过项目运行测试用例--&gt;</span><br><span class="line">        &lt;skipTests&gt;true&lt;&#x2F;skipTests&gt;</span><br><span class="line">    &lt;&#x2F;configuration&gt;</span><br><span class="line">&lt;&#x2F;plugin&gt;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -199,26 +175,72 @@
       </tags>
   </entry>
   <entry>
-    <title>Thymeleaf 没有返回html只返回字符串</title>
-    <url>/2021/06/04/Thymeleaf%20%E6%B2%A1%E6%9C%89%E8%BF%94%E5%9B%9Ehtml%E5%8F%AA%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<p>在使用Thymeleaf的时候，@RequestMapping对应的函数没有返回html文件而是返回了这个函数对应的字符串返回值</p>
-<p>解决办法：</p>
-<p>删除这个函数前面的@Responsebody注解，这个注解会返回Mapping函数指定的返回类型、例如String。而不是将其解析为html文件</p>
-<p>===================================================================</p>
-<p>错误：不能返回页面，只返回字符串。</p>
-<p>原因：在controller中使用了注解@RestController</p>
-<p>修改：修改注解为@Controller</p>
-<p>分析：</p>
-<p>RestController = Controller + ResponseBody.加上RestController,返回的内容是你return中的内容，如果是return “Hello World”，页面显示的就是Hello World。加上Controller，返回的是return中对应的页面,比如return “hello”,页面的名称是hello。</p>
+    <title>thymeleaf中链接的写法</title>
+    <url>/2021/06/08/thymeleaf%E4%B8%AD%E9%93%BE%E6%8E%A5%E7%9A%84%E5%86%99%E6%B3%95/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a th:href&#x3D;&quot;@&#123;&#x2F;delete(id&#x3D;$&#123;student.getId()&#125;)&#125;&quot;&gt;删除&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@RequestParam(&quot;id&quot;) int id</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>thymeleaf</tag>
       </tags>
   </entry>
   <entry>
-    <title>pom配置打包时跳过测试</title>
-    <url>/2021/06/04/pom%E9%85%8D%E7%BD%AE%E6%89%93%E5%8C%85%E6%97%B6%E8%B7%B3%E8%BF%87%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">    在工作中,很多情况下我们打包是不想执行测试用例的</span><br><span class="line">    可能是测试用例不完事,或是测试用例会影响数据库数据</span><br><span class="line">    跳过测试用例执</span><br><span class="line">--&gt;</span><br><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;maven-surefire-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;!--跳过项目运行测试用例--&gt;</span><br><span class="line">        &lt;skipTests&gt;true&lt;&#x2F;skipTests&gt;</span><br><span class="line">    &lt;&#x2F;configuration&gt;</span><br><span class="line">&lt;&#x2F;plugin&gt;</span><br></pre></td></tr></table></figure>
+    <title>关于动态页面404错误处理</title>
+    <url>/2021/06/05/%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2404/</url>
+    <content><![CDATA[<ul>
+<li>页面需要在Controller中注册，或者在WebMvnConfiguration中映射才能找到。</li>
+<li><ul>
+<li>需要数据处理注册controller，不需要直接映射就好</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何快速搭建web工程</title>
+    <url>/2021/06/05/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAweb%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<p>1.有一套自己的后台模板</p>
+<ul>
+<li>x-admin</li>
+</ul>
+<p>2.通过前端框架能组出一套页面,得熟悉栅栏系统</p>
+<ul>
+<li><p>layui</p>
+</li>
+<li><p>bootstrap</p>
+</li>
+<li><p>semantic-ui</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>web工程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爬虫包</title>
+    <url>/2021/06/05/%E7%88%AC%E8%99%AB%E5%8C%85/</url>
+    <content><![CDATA[<ul>
+<li>jsoup     //爬网页</li>
+<li>tika        //爬音乐，爬视频</li>
+<li>模拟 浏览器     //ajax请求</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>部署springboot项目</title>
+    <url>/2021/06/09/%E9%83%A8%E7%BD%B2springboot%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nohup java -jar xxx.jar &gt; nohup.out 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ps aux|grep xxx.jar</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -226,273 +248,24 @@
       </tags>
   </entry>
   <entry>
-    <title>maven的标准setting.xml</title>
-    <url>/2021/06/04/maven%E7%9A%84%E6%A0%87%E5%87%86setting-xml/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;settings xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;SETTINGS&#x2F;1.0.0&quot; </span><br><span class="line">    xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot; xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;SETTINGS&#x2F;1.0.0 http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;settings-1.0.0.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 本地仓库的位置 --&gt;</span><br><span class="line">    &lt;localRepository&gt;$&#123;user.home&#125;&#x2F;.m2&#x2F;repository&lt;&#x2F;localRepository&gt;</span><br><span class="line">  </span><br><span class="line">    &lt;!-- Apache Maven 配置 --&gt;</span><br><span class="line">    &lt;pluginGroups&#x2F;&gt;</span><br><span class="line">    &lt;proxies&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 私服发布的用户名密码 --&gt;</span><br><span class="line">    &lt;servers&gt;</span><br><span class="line">        &lt;server&gt;</span><br><span class="line">            &lt;id&gt;releases&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;username&gt;deployment&lt;&#x2F;username&gt;</span><br><span class="line">            &lt;password&gt;He2019&lt;&#x2F;password&gt;</span><br><span class="line">        &lt;&#x2F;server&gt;</span><br><span class="line">        &lt;server&gt;</span><br><span class="line">            &lt;id&gt;snapshots&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;username&gt;deployment&lt;&#x2F;username&gt;</span><br><span class="line">            &lt;password&gt;He2019&lt;&#x2F;password&gt;</span><br><span class="line">        &lt;&#x2F;server&gt;</span><br><span class="line">    &lt;&#x2F;servers&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 阿里云镜像 --&gt;</span><br><span class="line">    &lt;mirrors&gt;</span><br><span class="line">        &lt;mirror&gt;</span><br><span class="line">            &lt;id&gt;alimaven&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;name&gt;aliyun maven&lt;&#x2F;name&gt;</span><br><span class="line">            &lt;!-- https:&#x2F;&#x2F;maven.aliyun.com&#x2F;repository&#x2F;public&#x2F; --&gt;</span><br><span class="line">            &lt;url&gt;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">            &lt;mirrorOf&gt;central&lt;&#x2F;mirrorOf&gt;</span><br><span class="line">        &lt;&#x2F;mirror&gt;</span><br><span class="line">    &lt;&#x2F;mirrors&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置: java8, 先从阿里云下载, 没有再去私服下载  --&gt;</span><br><span class="line">    &lt;!-- 20190929 hepengju 测试结果: 影响下载顺序的是profiles标签的配置顺序(后面配置的ali仓库先下载), 而不是activeProfiles的顺序 --&gt;</span><br><span class="line">    &lt;profiles&gt;</span><br><span class="line">        &lt;!-- 全局JDK1.8配置 --&gt;</span><br><span class="line">        &lt;profile&gt;</span><br><span class="line">            &lt;id&gt;jdk1.8&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;activation&gt;</span><br><span class="line">                &lt;activeByDefault&gt;true&lt;&#x2F;activeByDefault&gt;</span><br><span class="line">                &lt;jdk&gt;1.8&lt;&#x2F;jdk&gt;</span><br><span class="line">            &lt;&#x2F;activation&gt;</span><br><span class="line">            &lt;properties&gt;</span><br><span class="line">                &lt;project.build.sourceEncoding&gt;UTF-8&lt;&#x2F;project.build.sourceEncoding&gt;</span><br><span class="line">                &lt;maven.compiler.source&gt;1.8&lt;&#x2F;maven.compiler.source&gt;</span><br><span class="line">                &lt;maven.compiler.target&gt;1.8&lt;&#x2F;maven.compiler.target&gt;</span><br><span class="line">                &lt;maven.compiler.compilerVersion&gt;1.8&lt;&#x2F;maven.compiler.compilerVersion&gt;</span><br><span class="line">            &lt;&#x2F;properties&gt;</span><br><span class="line">        &lt;&#x2F;profile&gt;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        &lt;!-- Nexus私服配置: 第三方jar包下载, 比如oracle的jdbc驱动等 --&gt;</span><br><span class="line">        &lt;profile&gt;</span><br><span class="line">            &lt;id&gt;dev&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;repositories&gt;</span><br><span class="line">                &lt;repository&gt;</span><br><span class="line">                    &lt;id&gt;nexus&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;url&gt;http:&#x2F;&#x2F;nexus.hepengju.cn:8081&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">                    &lt;releases&gt;</span><br><span class="line">                        &lt;enabled&gt;true&lt;&#x2F;enabled&gt;</span><br><span class="line">                    &lt;&#x2F;releases&gt;</span><br><span class="line">                    &lt;snapshots&gt;</span><br><span class="line">                        &lt;enabled&gt;true&lt;&#x2F;enabled&gt;</span><br><span class="line">                    &lt;&#x2F;snapshots&gt;</span><br><span class="line">                &lt;&#x2F;repository&gt;</span><br><span class="line">            &lt;&#x2F;repositories&gt;</span><br><span class="line">            &lt;pluginRepositories&gt;</span><br><span class="line">                &lt;pluginRepository&gt;</span><br><span class="line">                    &lt;id&gt;public&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;name&gt;Public Repositories&lt;&#x2F;name&gt;</span><br><span class="line">                    &lt;url&gt;http:&#x2F;&#x2F;nexus.hepengju.cn:8081&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">                &lt;&#x2F;pluginRepository&gt;</span><br><span class="line">            &lt;&#x2F;pluginRepositories&gt;</span><br><span class="line">        &lt;&#x2F;profile&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;!-- 阿里云配置: 提高国内的jar包下载速度 --&gt;</span><br><span class="line">        &lt;profile&gt;</span><br><span class="line">            &lt;id&gt;ali&lt;&#x2F;id&gt;</span><br><span class="line">            &lt;repositories&gt;</span><br><span class="line">                &lt;repository&gt;</span><br><span class="line">                    &lt;id&gt;alimaven&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;name&gt;aliyun maven&lt;&#x2F;name&gt;</span><br><span class="line">                    &lt;url&gt;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">                    &lt;releases&gt;</span><br><span class="line">                        &lt;enabled&gt;true&lt;&#x2F;enabled&gt;</span><br><span class="line">                    &lt;&#x2F;releases&gt;</span><br><span class="line">                    &lt;snapshots&gt;</span><br><span class="line">                        &lt;enabled&gt;true&lt;&#x2F;enabled&gt;</span><br><span class="line">                    &lt;&#x2F;snapshots&gt;</span><br><span class="line">                &lt;&#x2F;repository&gt;</span><br><span class="line">            &lt;&#x2F;repositories&gt;</span><br><span class="line">            &lt;pluginRepositories&gt;</span><br><span class="line">                &lt;pluginRepository&gt;</span><br><span class="line">                    &lt;id&gt;alimaven&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;name&gt;aliyun maven&lt;&#x2F;name&gt;</span><br><span class="line">                    &lt;url&gt;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;</span><br><span class="line">                &lt;&#x2F;pluginRepository&gt;</span><br><span class="line">            &lt;&#x2F;pluginRepositories&gt;</span><br><span class="line">        &lt;&#x2F;profile&gt;</span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;profiles&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 激活配置 --&gt; </span><br><span class="line">    &lt;activeProfiles&gt;</span><br><span class="line">        &lt;activeProfile&gt;jdk1.8&lt;&#x2F;activeProfile&gt;</span><br><span class="line">        &lt;activeProfile&gt;dev&lt;&#x2F;activeProfile&gt;</span><br><span class="line">        &lt;activeProfile&gt;ali&lt;&#x2F;activeProfile&gt;</span><br><span class="line">    &lt;&#x2F;activeProfiles&gt;</span><br><span class="line">&lt;&#x2F;settings&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
+    <title>JQuery中的$.load详解</title>
+    <url>/2021/02/13/ajax/JQuery%E4%B8%AD%E7%9A%84$.load%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1><span id="load">load()</span></h1><h2><span id="1载入html文档">1.载入HTML文档</span></h2><p>load()方法是jQuery中最为简单和常用的Ajax方法，能载入远程HTML代码并插入DOM中。<br>它的结构为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">load(url,data(可选),callback(可选))</span><br></pre></td></tr></table></figure>
+<p>2.筛选载入的HTML文档<br>需要加载test.html页面中class为”para”的内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html  .para&quot;);</span><br></pre></td></tr></table></figure>
+<h2><span id="2传递方法">2.传递方法</span></h2><p>load()方法的传递方式根据参数data来自动指定。如果没有参数传递，则采用GET方式传递；反之，则会自动转换为POST方法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;无参数传递，则是GET方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;有参数传递，则是POST方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;，function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2><span id="4回调函数">4.回调函数</span></h2><p>对于必须在加载完成后才能继续的操作，load()方法提供了回调函数(callback)，该函数有3个参数，分别代表请求返回的内容、请求状态和XMLHttpRequest对象，jQuery代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html&quot;,function (responseText, textStatus, XMLHttpRequest)&#123;         </span><br><span class="line">        alert(responseText);         &#x2F;&#x2F;请求返回的内容</span><br><span class="line">        alert(textStatus);          &#x2F;&#x2F;请求状态：success，error</span><br><span class="line">        alert(XMLHttpRequest);     &#x2F;&#x2F;XMLHttpRequest对象</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在load()方法中，无论Ajax请求是否成功，只要当请求完成(complete)后，回调函数(callback)就被触发。</p>
+<h2><span id="5传递多个参数">5.传递多个参数</span></h2><p>直接通过request分别获取即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="load方法通常用来从web服务器上获取静态的数据文件然后这并不能体现ajax的全部价值-在项目中如果需要传递一些参数给服务器中的页面那么可以使用get或者post或者ajax方法">load()方法通常用来从Web服务器上获取静态的数据文件，然后这并不能体现Ajax的全部价值。在项目中，如果需要传递一些参数给服务器中的页面，那么可以使用$.get()或者$.post()或者$.ajax()方法。</span></h3>]]></content>
       <tags>
-        <tag>maven</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>androidUI圆角背景</title>
-    <url>/2021/06/03/androidUI%E5%9C%86%E8%A7%92%E8%83%8C%E6%99%AF/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;layer-list</span><br><span class="line">    xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;&gt;</span><br><span class="line">    &lt;item&gt;</span><br><span class="line">        &lt;shape</span><br><span class="line">            xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">            android:shape&#x3D;&quot;rectangle&quot;&gt;</span><br><span class="line">            &lt;solid</span><br><span class="line">                android:color&#x3D;&quot;#ffffff&quot;&#x2F;&gt;</span><br><span class="line">            &lt;corners</span><br><span class="line">                android:radius&#x3D;&quot;20dip&quot;</span><br><span class="line">                &#x2F;&gt;</span><br><span class="line">            &lt;stroke</span><br><span class="line">                android:width&#x3D;&quot;2px&quot;</span><br><span class="line">                &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;shape&gt;</span><br><span class="line">    &lt;&#x2F;item&gt;</span><br><span class="line">&lt;&#x2F;layer-list&gt;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>androidui</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>后端配置跨域</title>
-    <url>/2021/06/03/%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E8%B7%A8%E5%9F%9F/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String originHeads &#x3D; request.getHeader(&quot;Origin&quot;);</span><br><span class="line">	     response.setHeader(&quot;Access-Control-Allow-Origin&quot;,&quot;*&quot;);</span><br><span class="line">	     response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originHeads);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST,GET,OPTIONS,DELETE,HEAD,PUT,PATCH&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;36000&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;Origin, X-Requested-With, Content-Type, Accept,Authorization,authorization&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Credentials&quot;,&quot;true&quot;);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>后端数据输出</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>接口</title>
-    <url>/2021/06/03/api/%E6%8E%A5%E5%8F%A3/</url>
-    <content><![CDATA[<p>天气预报</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;t.weather.itboy.net&#x2F;api&#x2F;weather&#x2F;city&#x2F;101280101</span><br></pre></td></tr></table></figure>
-
-<p>有道翻译</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;fanyi.youdao.com&#x2F;translate?&amp;doctype&#x3D;json&amp;type&#x3D;AUTO&amp;i&#x3D;计算</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>api</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>获取网络json数据</title>
-    <url>/2021/06/03/%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E6%8E%A5%E6%94%B6/%E8%8E%B7%E5%8F%96%E7%BD%91%E7%BB%9Cjson%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private final String TAG &#x3D; &quot;MSG&quot;;</span><br><span class="line">Handler handler&#x3D;new Handler();</span><br><span class="line">public void setMessageUrl(String myurl,int flag) &#123;</span><br><span class="line">    Thread thread &#x3D; new Thread(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            String result;</span><br><span class="line">            try &#123;</span><br><span class="line">                URL url &#x3D; new URL(myurl);</span><br><span class="line">                HttpURLConnection connection &#x3D; (HttpURLConnection) url.openConnection();</span><br><span class="line">                connection.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">                int code &#x3D; connection.getResponseCode();</span><br><span class="line">                if (code &#x3D;&#x3D; 200) &#123;</span><br><span class="line">                    InputStream inputStream &#x3D; connection.getInputStream();</span><br><span class="line">                    ByteArrayOutputStream bos &#x3D; new ByteArrayOutputStream();</span><br><span class="line">                    int len &#x3D; -1;</span><br><span class="line">                    byte[] bytes &#x3D; new byte[1024];</span><br><span class="line">                    while ((len &#x3D; inputStream.read(bytes)) !&#x3D; -1) &#123;</span><br><span class="line">                        bos.write(bytes, 0, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                    result &#x3D; new String(bos.toByteArray(), &quot;utf-8&quot;);</span><br><span class="line">                    Message msg&#x3D;new Message();</span><br><span class="line">                    Bundle bd&#x3D;new Bundle();</span><br><span class="line">                    bd.putString(&quot;result&quot;,result);</span><br><span class="line">                    msg.setData(bd);</span><br><span class="line">                    msg.what&#x3D;flag;</span><br><span class="line">                    handler.sendMessage(msg);</span><br><span class="line">                    Log.i(TAG, &quot;run: &quot;+result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public RootName getRoot(Message handlermsg)&#123;</span><br><span class="line">     String massage&#x3D;handlermsg.getData().getString(&quot;result&quot;);</span><br><span class="line">     Gson gson&#x3D;new Gson();</span><br><span class="line">     RootName rootName&#x3D;gson.fromJson(massage,RootName.class);</span><br><span class="line">     return rootName;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">implementation &#39;com.google.code.gson:gson:2.8.5&#39;</span><br></pre></td></tr></table></figure>
-
-<p>HttpConnection连接api，获取输入流。先用inputStream输入流读入数据，再用ByteArrayOutputStream将数据读出。将读出的字节数组编程字符串使用</p>
-]]></content>
-      <tags>
-        <tag>后端数据接收</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>indexDB</title>
-    <url>/2021/06/03/%E5%89%8D%E7%AB%AF%E6%95%B0%E6%8D%AE%E5%82%A8%E5%AD%98/indexDB/</url>
-    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         openDB(myDB.name, myDB.version);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> myDB = &#123;</span><br><span class="line">         name: <span class="string">&#x27;myList&#x27;</span>,</span><br><span class="line">         version: <span class="number">1</span>,</span><br><span class="line">         db: <span class="literal">null</span></span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> school = [&#123;</span><br><span class="line">         id: <span class="number">1001</span>,</span><br><span class="line">         name: <span class="string">&quot;北京大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;北京&quot;</span></span><br><span class="line">     &#125;, &#123;</span><br><span class="line">         id: <span class="number">1002</span>,</span><br><span class="line">         name: <span class="string">&quot;清华大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;北京&quot;</span></span><br><span class="line">     &#125;, &#123;</span><br><span class="line">         id: <span class="number">1003</span>,</span><br><span class="line">         name: <span class="string">&quot;上海交通大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;上海&quot;</span></span><br><span class="line">     &#125;];</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">openDB</span>(<span class="params">name, version</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> version = version || <span class="number">1</span>;</span><br><span class="line">         <span class="keyword">var</span> request = <span class="built_in">window</span>.indexedDB.open(name, version);</span><br><span class="line">         request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(e.currentTarget.error.message);</span><br><span class="line">         &#125;;</span><br><span class="line">         request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             myDB.db = e.target.result;</span><br><span class="line">             addData(myDB.db, <span class="string">&quot;school&quot;</span>);</span><br><span class="line">             fetchStoreByCursor(myDB.db, <span class="string">&quot;school&quot;</span>);</span><br><span class="line">         &#125;;</span><br><span class="line">         request.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> db = e.target.result;</span><br><span class="line">             <span class="keyword">if</span> (!db.objectStoreNames.contains(<span class="string">&#x27;school&#x27;</span>)) &#123;</span><br><span class="line">                 <span class="keyword">var</span> store = db.createObjectStore(<span class="string">&#x27;school&#x27;</span>, &#123;</span><br><span class="line">                     keyPath: <span class="string">&#x27;id&#x27;</span></span><br><span class="line">                 &#125;);</span><br><span class="line">                 store.createIndex(<span class="string">&#x27;nameIndex&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, &#123;</span><br><span class="line">                     unique: <span class="literal">true</span></span><br><span class="line">                 &#125;);</span><br><span class="line">                 store.createIndex(<span class="string">&#x27;addrIndex&#x27;</span>, <span class="string">&#x27;addr&#x27;</span>, &#123;</span><br><span class="line">                     unique: <span class="literal">false</span></span><br><span class="line">                 &#125;);</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="string">&#x27;DB version changed to &#x27;</span> + version);</span><br><span class="line">         &#125;;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">addData</span>(<span class="params">db, storeName</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> trans = db.transaction([storeName], <span class="string">&#x27;readwrite&#x27;</span>);</span><br><span class="line">         <span class="keyword">var</span> store = trans.objectStore(storeName);</span><br><span class="line"></span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; school.length; i++) &#123;</span><br><span class="line">             store.add(school[i]);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">fetchStoreByCursor</span>(<span class="params">db, storeName</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> transaction = db.transaction(storeName);</span><br><span class="line">         <span class="keyword">var</span> store = transaction.objectStore(storeName);</span><br><span class="line">         <span class="keyword">var</span> request = store.openCursor();</span><br><span class="line">         request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> cursor = e.target.result;</span><br><span class="line">             <span class="keyword">if</span> (cursor) &#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(cursor.key);</span><br><span class="line">                 <span class="keyword">var</span> currentStudent = cursor.value;</span><br><span class="line">                 <span class="built_in">console</span>.log(currentStudent.name);</span><br><span class="line">                 <span class="keyword">var</span> table = <span class="built_in">document</span>.getElementById(<span class="string">&quot;mytable&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> tr = <span class="built_in">document</span>.createElement(<span class="string">&quot;tr&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> imgtd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> txttd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">                 <span class="comment">//图片</span></span><br><span class="line">                 <span class="keyword">var</span> schimg = <span class="built_in">document</span>.createElement(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">                 <span class="keyword">switch</span> (currentStudent.name) &#123;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;北京大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;bj-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;清华大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;qh-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;上海交通大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;shj-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                 &#125;</span><br><span class="line">                 schimg.setAttribute(<span class="string">&quot;style&quot;</span>, <span class="string">&quot;height: 100px;&quot;</span>);</span><br><span class="line">                 imgtd.appendChild(schimg);</span><br><span class="line"></span><br><span class="line">                 <span class="comment">//文字</span></span><br><span class="line">                 txttd.innerHTML = <span class="string">&quot; &lt;p style=&#x27;font-size: 45px;&#x27;&gt;&quot;</span> + currentStudent.name + <span class="string">&quot;&lt;/p&gt;&quot;</span> + <span class="string">&quot;&lt;p&gt;&quot;</span> + currentStudent.addr + <span class="string">&quot;&lt;p&gt;&quot;</span>;</span><br><span class="line">                 <span class="comment">//添加</span></span><br><span class="line">                 tr.appendChild(imgtd);</span><br><span class="line">                 tr.appendChild(txttd);</span><br><span class="line">                 table.appendChild(tr);</span><br><span class="line">                 cursor.continue();</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;;</span><br><span class="line">     &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>前端数据储存</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bootstrap引入</title>
-    <url>/2021/06/03/boogstrap/bootstrap%E5%BC%95%E5%85%A5/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1&quot;&gt;</span><br><span class="line">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;twitter-bootstrap&#x2F;4.3.1&#x2F;css&#x2F;bootstrap.min.css&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;jquery&#x2F;3.2.1&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;popper.js&#x2F;1.15.0&#x2F;umd&#x2F;popper.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;twitter-bootstrap&#x2F;4.3.1&#x2F;js&#x2F;bootstrap.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>bootstrap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vim批量替换命令实践</title>
-    <url>/2021/06/03/vim/vim%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E5%91%BD%E4%BB%A4%E5%AE%9E%E8%B7%B5/</url>
-    <content><![CDATA[<h2><span id="vim批量替换命令实践">vim批量替换命令实践</span></h2><p>语法为 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">:[addr]s&#x2F;源字符串&#x2F;目的字符串&#x2F;[option]</span><br></pre></td></tr></table></figure>
-
-<p>全局替换命令为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">:%s&#x2F;源字符串&#x2F;目的字符串&#x2F;g</span><br></pre></td></tr></table></figure>
-
-<p><strong>[addr] 表示检索范围，省略时表示当前行。</strong></p>
-<p>“1,20” ：表示从第1行到20行；</p>
-<p>“%” ：表示整个文件，同“1,$”；</p>
-<p>“. ,$” ：从当前行到文件尾；</p>
-<p><strong>s : 表示替换操作</strong></p>
-<p><strong>[option] : 表示操作类型</strong></p>
-<p>g 表示全局替换; </p>
-<p>c 表示进行确认</p>
-<p>p 表示替代结果逐行显示（Ctrl + L恢复屏幕）;</p>
-<p>省略option时仅对每行第一个匹配串进行替换;</p>
-<p>如果在源字符串和目的字符串中出现特殊字符，需要用”\”转义 如 \t</p>
-]]></content>
-      <tags>
-        <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux下安装vim编辑器</title>
-    <url>/2021/06/03/linux/Linux%E4%B8%8B%E5%AE%89%E8%A3%85vim%E7%BC%96%E8%BE%91%E5%99%A8/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ubuntu 系统输入命令：sudo apt-get install vim-gtk</span><br><span class="line">centos 系统输入命令：yum -y install vim*</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>让某个元素排序第一</title>
-    <url>/2021/06/03/sql/%E8%AE%A9%E6%9F%90%E4%B8%AA%E5%85%83%E7%B4%A0%E6%8E%92%E5%BA%8F%E7%AC%AC%E4%B8%80/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select pid, name</span><br><span class="line">from t_province</span><br><span class="line">where 1 &#x3D; 1</span><br><span class="line">order by case when name &#x3D; &quot;广东&quot; then 0 else name end</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>sql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqlite数据库创建使用</title>
-    <url>/2021/06/03/jdbc/sqlite%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%9B%E5%BB%BA%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> SQLiteDatabase db;</span><br><span class="line">db&#x3D;SQLiteDatabase.openOrCreateDatabase(getContext().getFilesDir().toString()+&quot;test.db&quot;,null);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>jdbc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>主题报错</title>
-    <url>/2021/06/03/androidbug/%E4%B8%BB%E9%A2%98%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Caused by: java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.</span><br></pre></td></tr></table></figure>
-
-<p>在创建的activity时，如果不用继承AppCompatActivity的话，就直接继承Activity。</p>
-]]></content>
-      <tags>
-        <tag>androidbug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模拟器乱码</title>
-    <url>/2021/06/03/androidbug/%E6%A8%A1%E6%8B%9F%E5%99%A8%E4%B9%B1%E7%A0%81/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">即添加一句：compileOptions.encoding &#x3D; &quot;GBK&quot;;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>androidbug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>获取网络数据时报错</title>
-    <url>/2021/06/03/androidbug/%E8%8E%B7%E5%8F%96%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E6%97%B6%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.io.IOException: Cleartext HTTP traf</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">android:usesCleartextTraffic&#x3D;&quot;true&quot;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>androidbug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多模块开发</title>
-    <url>/2021/06/03/android/%E5%A4%9A%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/</url>
-    <content><![CDATA[<p>1.在主模块添加该依赖</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">compile project(&#39;:testlibrary&#39;)      &#x2F;&#x2F;testlibraray是模块儿名称</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.在依赖模块修改</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apply plugin: &#39;com.android.library&#39;     &#x2F;&#x2F;改成libraray</span><br></pre></td></tr></table></figure>
-
-<p>3.注释掉依赖模块</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;   applicationId &quot;cn.itcast.frameanimation&quot;</span><br></pre></td></tr></table></figure>
-
-<p>4.注册调用的activity</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;activity   android:name&#x3D;&quot;cn.itcast.tweenanimation.BJActivity&quot;</span><br><span class="line">    android:label&#x3D;&quot;@string&#x2F;app_name&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>5.布局名称不能相同</p>
-<p>6.3.AndroidManifest.xml文件</p>
-<ul>
-<li><p>主module 在application上加上tools:replace=”android:name,allowBackup,icon,theme,label”</p>
-</li>
-<li><p>同时在顶端加上xmlns:tools=”<a href="http://schemas.android.com/tools&quot;%EF%BC%9B%E4%B8%BB%E8%A6%81%E6%98%AF%E9%81%BF%E5%85%8D%E5%A4%9Amodule%E7%9A%84name,icon,theme%E7%AD%89%E5%86%B2%E7%AA%81">http://schemas.android.com/tools&quot;；主要是避免多module的name,icon,theme等冲突</a></p>
-</li>
-<li><p>次module把application下的android:name，android:icon，android:label删除，否则安装后，在桌面上会有多个图标；</p>
-</li>
-<li><p>次module去掉activity的主过滤器</p>
-</li>
-</ul>
-<pre><code>　&lt;intent-filter&gt;
-   　　　　 &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
-  　　&lt;/intent-filter&gt;
-
-```</code></pre>
-]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>读取Asset文件中的json数据</title>
-    <url>/2021/06/03/android/%E8%AF%BB%E5%8F%96Asset%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84json%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getJson</span><span class="params">(Context mContext, String fileName)</span> </span>&#123;  </span><br><span class="line">           <span class="comment">// TODO Auto-generated method stub  </span></span><br><span class="line">           StringBuilder sb = <span class="keyword">new</span> StringBuilder();  </span><br><span class="line">           AssetManager am = mContext.getAssets();  </span><br><span class="line">           <span class="keyword">try</span> &#123;  </span><br><span class="line">               BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(  </span><br><span class="line">                       am.open(fileName)));  </span><br><span class="line">               String next = <span class="string">&quot;&quot;</span>;  </span><br><span class="line">               <span class="keyword">while</span> (<span class="keyword">null</span> != (next = br.readLine())) &#123;  </span><br><span class="line">                   sb.append(next);  </span><br><span class="line">               &#125;  </span><br><span class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;  </span><br><span class="line">               <span class="comment">// TODO Auto-generated catch block  </span></span><br><span class="line">               e.printStackTrace();  </span><br><span class="line">               sb.delete(<span class="number">0</span>, sb.length());  </span><br><span class="line">           &#125;  </span><br><span class="line">           <span class="keyword">return</span> sb.toString().trim();  </span><br><span class="line">       &#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>fragment实现底栏思路</title>
-    <url>/2021/06/03/android/fragment%E5%AE%9E%E7%8E%B0%E5%BA%95%E6%A0%8F%E6%80%9D%E8%B7%AF/</url>
-    <content><![CDATA[<ul>
-<li><p>MVC设计模式</p>
-<p>Model负责处理数据，并将处理好的数据交给Frament。Frament负责连接每个Frament布局以及控件，将收到的数据显示在控件上</p>
-</li>
-<li><p>navigation</p>
-<p>navigation负责整合分开的fragment布局文件，并通过menu将每个frament布局与bottomNavigation结合在一起</p>
-</li>
-<li><p>NavigationUI</p>
-<p> navigationUi将分散的fragment布局、以及底部按钮绑定到主页的主fragment中。AppBarConfiguration和NavController将会协助navigationUI分别对底部按钮和fragment布局进行绑定。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>androidstudio导入项目</title>
-    <url>/2021/05/01/androidstudio/androidstudio%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<h3><span id="导入androidstudio项目">导入androidstudio项目</span></h3><ul>
-<li><p>复制app文件</p>
-</li>
-<li><p>在builder.gladle中修改sdk版本，target版本和compile版本得保持一致。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">targetSdkVersion 28</span><br><span class="line">compileSdkVersion 28</span><br><span class="line">compile &#39;com.android.support:appcompat-v7:28.0.0&#39;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="导入eclipse项目">导入eclipse项目</span></h3><ul>
-<li>将eclipse项目以model形式导入</li>
-<li>调整builder.gradle，将创建好的gradle中的复制过去即可。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>androidstudio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gradle下载速度慢解决方法</title>
-    <url>/2021/03/16/androidstudio/Gradle%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>1.在软件里点开工程文件下的 build.gradle</p>
-<p>2..在 buildscript 和 allprojects 的 repositories 中分别注释掉 jcenter()</p>
-<p>3.在 buildscript 和 allprojects 的 repositories 分别添加：<code>maven&#123;url &#39;http://maven.aliyun.com/nexus/content/groups/public/&#39;&#125;</code></p>
-<p>4.再在 buildscript 的 repositories 添加：<code>maven&#123;url &quot;https://jitpack.io&quot;&#125;</code></p>
-<p>最终图片：</p>
-<p><img src="https://img2018.cnblogs.com/blog/1577027/201901/1577027-20190111193149745-1197845339.png" alt="img"></p>
-<p>实际效果证明：下载速度能对得起自己的网速了！</p>
-<p>如果还是下载慢，建议换个上网的方式，比如手机开热点，还是不行，就用不同运营商的手机开热点，至于为什么，等真的还是慢时自己试试就知道了。</p>
-]]></content>
-      <tags>
-        <tag>gradle</tag>
+        <tag>jquery</tag>
+        <tag>ajax</tag>
       </tags>
   </entry>
   <entry>
@@ -549,311 +322,162 @@
       </tags>
   </entry>
   <entry>
-    <title>前端使用cookie</title>
-    <url>/2021/02/14/jquery/%E5%89%8D%E7%AB%AF%E4%BD%BF%E7%94%A8cookie/</url>
-    <content><![CDATA[<p>需要下载并引入jquery.cookie.js。<br>cookie有四个不同的属性: 名称，内容，域，路径</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">$.cookie(&#39;the_cookie&#39;); &#x2F;&#x2F; 读取 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;); &#x2F;&#x2F; 存储 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;, &#123; expires: 7 &#125;); &#x2F;&#x2F; 存储一个带7天期限的 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;&#39;, &#123; expires: -1 &#125;); &#x2F;&#x2F; 删除 cookie</span><br></pre></td></tr></table></figure>
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.cookie(&quot;currentMenuID&quot;);</span><br></pre></td></tr></table></figure>
-<p>取值时会产生问题。<br>故：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.cookie(&quot;currentMenuID&quot;, &quot;menuID&quot;, &#123; path: &quot;&#x2F;&quot;&#125;); </span><br></pre></td></tr></table></figure>
-<p>进行覆盖。同域下同一个cookieID对应一个值。</p>
-]]></content>
-      <tags>
-        <tag>jquery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>js获取session中保存的对象值（jquery）</title>
-    <url>/2021/02/13/jquery/js%E8%8E%B7%E5%8F%96session%E4%B8%AD%E4%BF%9D%E5%AD%98%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%80%BC%EF%BC%88jquery%EF%BC%89/</url>
-    <content><![CDATA[<p>1.需要在js中获取到存储在session中的值，session中存储的可能是一个字符串也可能是一个对象。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">$(function()&#123;</span><br><span class="line">        &#x2F;&#x2F;session中存储的是一个对象user,内有属性name和password。</span><br><span class="line">		var username &#x3D; &#39;$&#123;user.name&#125;&#39;;</span><br><span class="line">		alert(username);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>2.如果session中存储的是一个字符串，那么如下代码就可以获取到正确的值。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">$(function()&#123;</span><br><span class="line">        &#x2F;&#x2F;session中存储的是一个字符串username。</span><br><span class="line">		var username &#x3D; &#39;$&#123;username&#125;&#39;;</span><br><span class="line">		alert(username);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>jquery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JQuery中的$.load详解</title>
-    <url>/2021/02/13/ajax/JQuery%E4%B8%AD%E7%9A%84$.load%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1><span id="load">load()</span></h1><h2><span id="1载入html文档">1.载入HTML文档</span></h2><p>load()方法是jQuery中最为简单和常用的Ajax方法，能载入远程HTML代码并插入DOM中。<br>它的结构为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">load(url,data(可选),callback(可选))</span><br></pre></td></tr></table></figure>
-<p>2.筛选载入的HTML文档<br>需要加载test.html页面中class为”para”的内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html  .para&quot;);</span><br></pre></td></tr></table></figure>
-<h2><span id="2传递方法">2.传递方法</span></h2><p>load()方法的传递方式根据参数data来自动指定。如果没有参数传递，则采用GET方式传递；反之，则会自动转换为POST方法。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;无参数传递，则是GET方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;有参数传递，则是POST方式</span><br><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;，function()&#123;</span><br><span class="line">    &#x2F;&#x2F;...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2><span id="4回调函数">4.回调函数</span></h2><p>对于必须在加载完成后才能继续的操作，load()方法提供了回调函数(callback)，该函数有3个参数，分别代表请求返回的内容、请求状态和XMLHttpRequest对象，jQuery代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;#resText&quot;).load(&quot;test.html&quot;,function (responseText, textStatus, XMLHttpRequest)&#123;         </span><br><span class="line">        alert(responseText);         &#x2F;&#x2F;请求返回的内容</span><br><span class="line">        alert(textStatus);          &#x2F;&#x2F;请求状态：success，error</span><br><span class="line">        alert(XMLHttpRequest);     &#x2F;&#x2F;XMLHttpRequest对象</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>在load()方法中，无论Ajax请求是否成功，只要当请求完成(complete)后，回调函数(callback)就被触发。</p>
-<h2><span id="5传递多个参数">5.传递多个参数</span></h2><p>直接通过request分别获取即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="load方法通常用来从web服务器上获取静态的数据文件然后这并不能体现ajax的全部价值-在项目中如果需要传递一些参数给服务器中的页面那么可以使用get或者post或者ajax方法">load()方法通常用来从Web服务器上获取静态的数据文件，然后这并不能体现Ajax的全部价值。在项目中，如果需要传递一些参数给服务器中的页面，那么可以使用$.get()或者$.post()或者$.ajax()方法。</span></h3>]]></content>
-      <tags>
-        <tag>jquery</tag>
-        <tag>ajax</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>session超时设置</title>
-    <url>/2021/02/11/servlet/session%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">session.setMaxInactiveInterval(10);</span><br></pre></td></tr></table></figure>
-<p>如果不停刷新，也会使计数器不断地刷新，10秒后session还是会存在。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>细谈getRequestDispatcher与sendRedirect的区别</title>
-    <url>/2021/02/11/servlet/%E7%BB%86%E8%B0%88getRequestDispatcher%E4%B8%8EsendRedirect%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>首先我们要知道：</p>
-<p>(1)request.getRequestDispatcher()是请求转发，前后页面共享一个request ; 这个是在服务端运行的，对浏览器来说是透明的。<br>(2)response.sendRedirect()是重新定向，前后页面不是一个request。而这个是在浏览器端运行的。</p>
-<h2><span id="redirect方式">redirect方式</span></h2><p>　 response.sendRedirect(“/a.jsp”);<br>　　  页面的路径是相对路径。sendRedirect可以将页面跳转到任何页面，不一定局限于本web应用中，如：<br>　　  response.sendRedirect(“URL”);<br>　　  跳转后浏览器地址栏变化。<br>　　  这种方式要传值出去的话，只能在url中带parameter或者放在session中，无法使用request.setAttribute来 传递。所以该方式只适用于无传值跳转</p>
-<h2><span id="forward方式">forward方式</span></h2><p> request.getRequestDispatcher(“/路径（可以是jsp路径也可以是servlet）”) .forward(request, response);</p>
-<p>如：</p>
-<p>request.getRequestDispatcher(“/2.jsp）”) .forward(request, response);</p>
-<p>request.getRequestDispatcher(“/servlet/HomeServlet）”) .forward(request, response);<br>　　Servlet页面跳转的路径是相对路径。forward方式只能跳转到本web应用中的页面上。<br>　　跳转后浏览器地址栏不会变化。<br>　　使用这种方式跳转，传值可以使用三种方法：url中带parameter，session，request.setAttribute</p>
-]]></content>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>uri和url</title>
-    <url>/2021/02/11/servlet/uri%E5%92%8Curl/</url>
+    <title>fragment实现底栏思路</title>
+    <url>/2021/06/03/android/fragment%E5%AE%9E%E7%8E%B0%E5%BA%95%E6%A0%8F%E6%80%9D%E8%B7%AF/</url>
     <content><![CDATA[<ul>
-<li>URI是什么？有什么用？<br>URI（统一资源标识符）是标识逻辑或物理资源的字符序列，与URL类似，也是一串字符。通过使用位置，名称或两者来标识Internet上的资源；它允许统一识别资源。</li>
-</ul>
-<p>有两种类型的URI，统一资源标识符（URL）和统一资源名称（URN）</p>
-<ul>
-<li>URL是什么？有什么用？<br>URL（统一资源定位符）是Internet上资源的地址，可以定义为引用地址的字符串，用于指示资源的位置以及用于访问它的协议</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql_bug</title>
-    <url>/2021/02/11/sqlbug/where-clause/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Unknown column &#39;name&#39; in &#39;where clause&#39;</span><br></pre></td></tr></table></figure>
-
-<p>有可能是url中的仓库名称写错了。</p>
-]]></content>
-      <tags>
-        <tag>sqlbug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql的ResultSet结果集为空判断</title>
-    <url>/2021/02/11/jdbc/mysql%E7%9A%84ResultSet%E7%BB%93%E6%9E%9C%E9%9B%86%E4%B8%BA%E7%A9%BA%E5%88%A4%E6%96%AD/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(rs.next()) &#123;</span><br><span class="line">				erroString&#x3D;&quot;该用户名已被注册&quot;;</span><br><span class="line">			&#125;else &#123;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>jdbc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>excute和excuteQuery的区别</title>
-    <url>/2021/02/11/jdbc/mysql%E7%9A%84excute%E5%92%8CexcuteQuery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>excute方法是直接执行，excuteQuery方法会返回结果。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第一次需要用connection嵌入sql代码，其余的直接写在excute和excuteQuery里面，不写直接调用代码就是执行前一个sql语句</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>jdbc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>servlet编程模型</title>
-    <url>/2021/02/11/servlet/servlet%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h1><span id="基本形式">基本形式</span></h1><p>1.初始化页面之前，如果需要对某些数据进行判断再初始化，则需要通过一个单独.do服务器模块进行一些数据的配置判断再 <strong>过渡</strong> 到新的页面</p>
-<p>2.在同一个页面，仅对页面的部分内容进行改变时（仅做前后端数据交流）</p>
-<ul>
-<li><p>如果需要再整个页面不变化，只需要变化其中某一些元素且不涉及到页面跳转的内容，则通过ajax直接对元素内的元素进行切换。</p>
+<li><p>MVC设计模式</p>
+<p>Model负责处理数据，并将处理好的数据交给Frament。Frament负责连接每个Frament布局以及控件，将收到的数据显示在控件上</p>
 </li>
-<li><p>数据库的改动（不需要从后端接收数据时）<br>仅需要通过一个链接后面接上相应的参数直接连接到.do模块对数据库进行改动，再重新加载会原来的页面即可。</p>
+<li><p>navigation</p>
+<p>navigation负责整合分开的fragment布局文件，并通过menu将每个frament布局与bottomNavigation结合在一起</p>
+</li>
+<li><p>NavigationUI</p>
+<p> navigationUi将分散的fragment布局、以及底部按钮绑定到主页的主fragment中。AppBarConfiguration和NavController将会协助navigationUI分别对底部按钮和fragment布局进行绑定。</p>
 </li>
 </ul>
-<p>3.如果一个.do模块既可能仅仅对页面的部分内容进行改变，也有可能通过这个.do模块直接转载到另一个页面。则需要通过提交数据submit的方式或者是链接的方式加载到后端相应的模块。如果需要返回数据给原来的页面，通过设置request的方式返回jsp页面即可。</p>
-<h1><span id="数据传输">数据传输</span></h1><ul>
-<li>session<br>session数据会在规定的时间内适用于所有的页面，适合存放身份验证等信息。</li>
-<li>request<br>一次请求的数据传输，仅需要后端到前端初始化时，通过request.setAttribute存放数据进行传输（请求完其实就释放了）</li>
-<li>ajax_json/out.println<br>如果页面中的某个元素内部的数据发生结构和数据变化时，用ajax方法直接加载该模块儿的数据</li>
-</ul>
 ]]></content>
       <tags>
-        <tag>servlet</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
-    <title>jstl_bug</title>
-    <url>/2021/01/23/jstl_bug/jstl-bug/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">org.apache.jasper.JasperException: &#x2F;index.jsp (行.: [18], 列: [0]) 根据标记文件中的TLD或attribute指令，attribute[items]不接受任何表达式</span><br></pre></td></tr></table></figure>
+    <title>多模块开发</title>
+    <url>/2021/06/03/android/%E5%A4%9A%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/</url>
+    <content><![CDATA[<p>1.在主模块添加该依赖</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">compile project(&#39;:testlibrary&#39;)      &#x2F;&#x2F;testlibraray是模块儿名称</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>尝试使用前缀&lt;%@ taglib prefix=”c” uri=”<a href="http://java.sun.com/jstl/core_rt&quot;">http://java.sun.com/jstl/core_rt&quot;</a> %&gt;代替<br>&lt;%@ taglib prefix=”c” uri=”<a href="http://java.sun.com/jstl/core&quot;">http://java.sun.com/jstl/core&quot;</a> %&gt;</p>
-]]></content>
-      <tags>
-        <tag>jstl_bug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>主键ID的重排序</title>
-    <url>/2021/01/13/sql/%E4%B8%BB%E9%94%AEID%E7%9A%84%E9%87%8D%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h2><span id="删除元素后id自动减少">删除元素后id自动减少</span></h2><p>先删除再建立自增长的主键ID</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alter table student drop id;</span><br><span class="line">alter table student add id int primary key auto_increment;</span><br></pre></td></tr></table></figure>
+<p>2.在依赖模块修改</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apply plugin: &#39;com.android.library&#39;     &#x2F;&#x2F;改成libraray</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>servle后端中的弹窗</title>
-    <url>/2021/01/13/servlet/servle%E5%90%8E%E7%AB%AF%E4%B8%AD%E7%9A%84%E5%BC%B9%E7%AA%97/</url>
-    <content><![CDATA[<p>\“\“之间按照正常的字符串格式写即可,这是转义字符，里面还包含多个””时，就得用这种方法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\&quot;return confirm(&#39;是否确定删除&quot;+rs.getString(&quot;name&quot;)+&quot;&#39;);\&quot;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java模拟浏览器发送请求</title>
-    <url>/2021/01/03/%E7%88%AC%E8%99%AB/java%E6%A8%A1%E6%8B%9F%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">URL url&#x3D;new URL(&quot;https:&#x2F;&#x2F;www.bilibili.com&#x2F;&quot;);</span><br><span class="line"></span><br><span class="line">HttpsURLConnection conn&#x3D;(HttpsURLConnection)url.openConnection();</span><br><span class="line">      conn.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">      conn.setRequestProperty(&quot;User-Agent&quot;, &quot;Mozilla&#x2F;5.0(Windows NT 10.0;Win64;x64)AppleWebKit&#x2F;537.3&quot;);</span><br><span class="line">      BufferedReader br&#x3D;new BufferedReader(new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));</span><br><span class="line">      String msg&#x3D;null;</span><br><span class="line">      while(null!&#x3D;(msg&#x3D;br.readLine())) &#123;</span><br><span class="line">      	System.out.println(msg);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>3.注释掉依赖模块</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;   applicationId &quot;cn.itcast.frameanimation&quot;</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <tags>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql数据库工具类</title>
-    <url>/2021/01/03/jdbc/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
-    <content><![CDATA[<pre><code>public class DBUtil &#123;
-    static final String JDBC_DRIVER =&quot;com.mysql.jdbc.Driver&quot;;
-    static final String DB_URL =&quot;jdbc:mysql://localhost:3306/student?useUnicode=true&amp;useSSL=false&amp;characterEncoding=utf-8&quot;;
-    static final String USER = &quot;root&quot;;
-    static final String PASS = &quot;1210&quot;;
-    private static Connection conn =null;
-    static &#123;
-        try &#123;
-            Class.forName(JDBC_DRIVER);
-            conn=DriverManager.getConnection(DB_URL, USER, PASS);
+<p>4.注册调用的activity</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;activity   android:name&#x3D;&quot;cn.itcast.tweenanimation.BJActivity&quot;</span><br><span class="line">    android:label&#x3D;&quot;@string&#x2F;app_name&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
 
-        &#125; catch (ClassNotFoundException e) &#123;
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        &#125; catch (SQLException e) &#123;
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        &#125;
-
-    &#125;
-    public static Connection getConnection() &#123;
-        return conn;
-    &#125;
-
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>jdbc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>httpServlet初始编码配置</title>
-    <url>/2021/01/03/servlet/httpServlet%E5%88%9D%E5%A7%8B%E7%BC%96%E7%A0%81%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">request.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">response.setContentType(&quot;text&#x2F;html;charset&#x3D;utf-8&quot;);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql在Eclipes中向web中的引入</title>
-    <url>/2021/01/03/jdbc/mysql%E5%9C%A8Eclipes%E4%B8%AD%E5%90%91web%E4%B8%AD%E7%9A%84%E5%BC%95%E5%85%A5/</url>
-    <content><![CDATA[<h1><span id="mysql-connector-java在web中的引入">mysql-connector-java在WEB中的引入</span></h1><p>在java项目中，只需要引入mysql-connector-java-5.1.7-bin.jar就可以运行java项目。</p>
-<p>在web项目中，当Class.forName(“om.mysql.jdbc.Driver”);时myeclipse是不会去查找字符串，不会去查找驱动的。所以只需要把mysql-connector-java-5.1.7-bin.jar拷贝到tomcat下lib目录就可以了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>jdbc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SERVLET中的web.xml配置</title>
-    <url>/2021/01/03/servlet/servlet%E4%B8%AD%E7%9A%84web-xml%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1><span id="url-pattern">url-pattern</span></h1><h2><span id="理解">理解</span></h2><p>在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;input&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
-<h2><span id="匹配">匹配</span></h2><p>  写url-pattern时不能用/*，因为这样会把我们的html静态页面也全部包含其中，导致无法加载html页面，而是把任何页面都当作响应页面处理，所以最好的办法是用一个后缀来区分<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;url-pattern&gt;*.do&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;register.do&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line"> String action&#x3D;uri.substring(uri.lastIndexOf(&quot;&#x2F;&quot;)+1,uri.lastIndexOf(&quot;.&quot;));</span><br><span class="line">if(action.equals(&quot;register&quot;)) &#123;</span><br></pre></td></tr></table></figure></p>
+<p>5.布局名称不能相同</p>
+<p>6.3.AndroidManifest.xml文件</p>
 <ul>
-<li>如果写成”/*.do”会报错。</li>
-<li>别忘了lastIndexOf(“/“)后面还有+1</li>
+<li><p>主module 在application上加上tools:replace=”android:name,allowBackup,icon,theme,label”</p>
+</li>
+<li><p>同时在顶端加上xmlns:tools=”<a href="http://schemas.android.com/tools&quot;%EF%BC%9B%E4%B8%BB%E8%A6%81%E6%98%AF%E9%81%BF%E5%85%8D%E5%A4%9Amodule%E7%9A%84name,icon,theme%E7%AD%89%E5%86%B2%E7%AA%81">http://schemas.android.com/tools&quot;；主要是避免多module的name,icon,theme等冲突</a></p>
+</li>
+<li><p>次module把application下的android:name，android:icon，android:label删除，否则安装后，在桌面上会有多个图标；</p>
+</li>
+<li><p>次module去掉activity的主过滤器</p>
+</li>
 </ul>
-<h1><span id="welcome-file">welcome-file</span></h1><p>对于初始页面，我们只需要配置<welcome-file>即可，也就是刚启动servlet就能看到的页面</welcome-file></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;input.html&lt;&#x2F;welcome-file&gt;</span><br><span class="line">  &lt;&#x2F;welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
-<br>]]></content>
-      <categories>
-        <category>servlet</category>
-      </categories>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo同时关联gitee和github</title>
-    <url>/2020/11/29/hexo/hexo%E5%90%8C%E6%97%B6%E5%85%B3%E8%81%94gitee%E5%92%8Cgithub/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  type: &#39;git&#39;</span><br><span class="line">  repo: </span><br><span class="line">       gitee: https:&#x2F;&#x2F;gitee.com&#x2F;akram98&#x2F;myblog.git</span><br><span class="line">       github: git@github.com:mark9812&#x2F;mark.github.io.git</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ssh自定义产生密钥</title>
-    <url>/2020/11/29/ssh/ssh%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%AF%86%E9%92%A5/</url>
-    <content><![CDATA[<p>产生gitbub和gitbub.pub密钥文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR_EMAIL@YOUREMAIL.COM&quot; -f &#x2F;c&#x2F;user&#x2F;justdoit&#x2F;.ssh&#x2F;github</span><br></pre></td></tr></table></figure>
-<p>“-c”必须大写，不然无法识别</p>
-]]></content>
-      <categories>
-        <category>ssh</category>
-      </categories>
-      <tags>
-        <tag>ssh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在hoxe中使用markdown</title>
-    <url>/2020/11/27/hexo/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/</url>
-    <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
+<pre><code>　&lt;intent-filter&gt;
+   　　　　 &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+  　　&lt;/intent-filter&gt;
 
-<ul>
-<li><a href="#toc%E7%9A%84%E4%BD%BF%E7%94%A8">toc的使用</a></li>
-<li><a href="#%E4%BD%BF%E6%96%87%E5%AD%97%E7%B2%97%E4%BD%93%E6%88%96%E6%96%9C%E4%BD%93">使文字粗体或斜体</a></li>
-<li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90">文本对齐</a></li>
-<li><a href="#%E6%96%87%E6%9C%AC%E6%8A%98%E5%8F%A0">文本折叠</a></li>
+```</code></pre>
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主题报错</title>
+    <url>/2021/06/03/androidbug/%E4%B8%BB%E9%A2%98%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Caused by: java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.</span><br></pre></td></tr></table></figure>
+
+<p>在创建的activity时，如果不用继承AppCompatActivity的话，就直接继承Activity。</p>
+]]></content>
+      <tags>
+        <tag>androidbug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读取Asset文件中的json数据</title>
+    <url>/2021/06/03/android/%E8%AF%BB%E5%8F%96Asset%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84json%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getJson</span><span class="params">(Context mContext, String fileName)</span> </span>&#123;  </span><br><span class="line">           <span class="comment">// TODO Auto-generated method stub  </span></span><br><span class="line">           StringBuilder sb = <span class="keyword">new</span> StringBuilder();  </span><br><span class="line">           AssetManager am = mContext.getAssets();  </span><br><span class="line">           <span class="keyword">try</span> &#123;  </span><br><span class="line">               BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(  </span><br><span class="line">                       am.open(fileName)));  </span><br><span class="line">               String next = <span class="string">&quot;&quot;</span>;  </span><br><span class="line">               <span class="keyword">while</span> (<span class="keyword">null</span> != (next = br.readLine())) &#123;  </span><br><span class="line">                   sb.append(next);  </span><br><span class="line">               &#125;  </span><br><span class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;  </span><br><span class="line">               <span class="comment">// TODO Auto-generated catch block  </span></span><br><span class="line">               e.printStackTrace();  </span><br><span class="line">               sb.delete(<span class="number">0</span>, sb.length());  </span><br><span class="line">           &#125;  </span><br><span class="line">           <span class="keyword">return</span> sb.toString().trim();  </span><br><span class="line">       &#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>获取网络数据时报错</title>
+    <url>/2021/06/03/androidbug/%E8%8E%B7%E5%8F%96%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E6%97%B6%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.io.IOException: Cleartext HTTP traf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">android:usesCleartextTraffic&#x3D;&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>androidbug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模拟器乱码</title>
+    <url>/2021/06/03/androidbug/%E6%A8%A1%E6%8B%9F%E5%99%A8%E4%B9%B1%E7%A0%81/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">即添加一句：compileOptions.encoding &#x3D; &quot;GBK&quot;;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>androidbug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gradle下载速度慢解决方法</title>
+    <url>/2021/03/16/androidstudio/Gradle%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>1.在软件里点开工程文件下的 build.gradle</p>
+<p>2..在 buildscript 和 allprojects 的 repositories 中分别注释掉 jcenter()</p>
+<p>3.在 buildscript 和 allprojects 的 repositories 分别添加：<code>maven&#123;url &#39;http://maven.aliyun.com/nexus/content/groups/public/&#39;&#125;</code></p>
+<p>4.再在 buildscript 的 repositories 添加：<code>maven&#123;url &quot;https://jitpack.io&quot;&#125;</code></p>
+<p>最终图片：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1577027/201901/1577027-20190111193149745-1197845339.png" alt="img"></p>
+<p>实际效果证明：下载速度能对得起自己的网速了！</p>
+<p>如果还是下载慢，建议换个上网的方式，比如手机开热点，还是不行，就用不同运营商的手机开热点，至于为什么，等真的还是慢时自己试试就知道了。</p>
+]]></content>
+      <tags>
+        <tag>gradle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>androidstudio导入项目</title>
+    <url>/2021/05/01/androidstudio/androidstudio%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<h3><span id="导入androidstudio项目">导入androidstudio项目</span></h3><ul>
+<li><p>复制app文件</p>
+</li>
+<li><p>在builder.gladle中修改sdk版本，target版本和compile版本得保持一致。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">targetSdkVersion 28</span><br><span class="line">compileSdkVersion 28</span><br><span class="line">compile &#39;com.android.support:appcompat-v7:28.0.0&#39;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<!-- tocstop -->
+<h3><span id="导入eclipse项目">导入eclipse项目</span></h3><ul>
+<li>将eclipse项目以model形式导入</li>
+<li>调整builder.gradle，将创建好的gradle中的复制过去即可。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>androidstudio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>接口</title>
+    <url>/2021/06/03/api/%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<p>天气预报</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;t.weather.itboy.net&#x2F;api&#x2F;weather&#x2F;city&#x2F;101280101</span><br></pre></td></tr></table></figure>
 
-<hr>
-<a id="more"></a>
-
-<h2><span id="toc的使用">toc的使用</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
-<h2><span id="使文字粗体或斜体">使文字粗体或斜体</span></h2><p>使用粗体或斜体时，要保证两端的” _ “或者” * “离两边的文字之间有一个空格 </p>
-<h2><span id="文本对齐">文本对齐</span></h2><p>在一个模块儿中间 <strong>空行</strong> 可能会导致上下文不对齐</p>
-<h2><span id="文本折叠">文本折叠</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
+<p>有道翻译</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;fanyi.youdao.com&#x2F;translate?&amp;doctype&#x3D;json&amp;type&#x3D;AUTO&amp;i&#x3D;计算</span><br></pre></td></tr></table></figure>
 
 ]]></content>
-      <categories>
-        <category>markdown</category>
-      </categories>
       <tags>
-        <tag>hexo</tag>
-        <tag>markdown</tag>
+        <tag>api</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bootstrap引入</title>
+    <url>/2021/06/03/boogstrap/bootstrap%E5%BC%95%E5%85%A5/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1&quot;&gt;</span><br><span class="line">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;twitter-bootstrap&#x2F;4.3.1&#x2F;css&#x2F;bootstrap.min.css&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;jquery&#x2F;3.2.1&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;popper.js&#x2F;1.15.0&#x2F;umd&#x2F;popper.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.staticfile.org&#x2F;twitter-bootstrap&#x2F;4.3.1&#x2F;js&#x2F;bootstrap.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>bootstrap</tag>
       </tags>
   </entry>
   <entry>
@@ -978,6 +602,18 @@
       </tags>
   </entry>
   <entry>
+    <title>hexo同时关联gitee和github</title>
+    <url>/2020/11/29/hexo/hexo%E5%90%8C%E6%97%B6%E5%85%B3%E8%81%94gitee%E5%92%8Cgithub/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  type: &#39;git&#39;</span><br><span class="line">  repo: </span><br><span class="line">       gitee: https:&#x2F;&#x2F;gitee.com&#x2F;akram98&#x2F;myblog.git</span><br><span class="line">       github: git@github.com:mark9812&#x2F;mark.github.io.git</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何搭建hexo个人博客</title>
     <url>/2020/11/26/hexo/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
@@ -1047,6 +683,370 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在hoxe中使用markdown</title>
+    <url>/2020/11/27/hexo/%E5%9C%A8hoxe%E4%B8%AD%E4%BD%BF%E7%94%A8markdown/</url>
+    <content><![CDATA[<h1><span id="目录">目录</span></h1><!-- toc -->
+
+<ul>
+<li><a href="#toc%E7%9A%84%E4%BD%BF%E7%94%A8">toc的使用</a></li>
+<li><a href="#%E4%BD%BF%E6%96%87%E5%AD%97%E7%B2%97%E4%BD%93%E6%88%96%E6%96%9C%E4%BD%93">使文字粗体或斜体</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90">文本对齐</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E6%8A%98%E5%8F%A0">文本折叠</a></li>
+</ul>
+<!-- tocstop -->
+
+<hr>
+<a id="more"></a>
+
+<h2><span id="toc的使用">toc的使用</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
+<h2><span id="使文字粗体或斜体">使文字粗体或斜体</span></h2><p>使用粗体或斜体时，要保证两端的” _ “或者” * “离两边的文字之间有一个空格 </p>
+<h2><span id="文本对齐">文本对齐</span></h2><p>在一个模块儿中间 <strong>空行</strong> 可能会导致上下文不对齐</p>
+<h2><span id="文本折叠">文本折叠</span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>markdown</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jstl_bug</title>
+    <url>/2021/01/23/jstl_bug/jstl-bug/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">org.apache.jasper.JasperException: &#x2F;index.jsp (行.: [18], 列: [0]) 根据标记文件中的TLD或attribute指令，attribute[items]不接受任何表达式</span><br></pre></td></tr></table></figure>
+
+<p>尝试使用前缀&lt;%@ taglib prefix=”c” uri=”<a href="http://java.sun.com/jstl/core_rt&quot;">http://java.sun.com/jstl/core_rt&quot;</a> %&gt;代替<br>&lt;%@ taglib prefix=”c” uri=”<a href="http://java.sun.com/jstl/core&quot;">http://java.sun.com/jstl/core&quot;</a> %&gt;</p>
+]]></content>
+      <tags>
+        <tag>jstl_bug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql在Eclipes中向web中的引入</title>
+    <url>/2021/01/03/jdbc/mysql%E5%9C%A8Eclipes%E4%B8%AD%E5%90%91web%E4%B8%AD%E7%9A%84%E5%BC%95%E5%85%A5/</url>
+    <content><![CDATA[<h1><span id="mysql-connector-java在web中的引入">mysql-connector-java在WEB中的引入</span></h1><p>在java项目中，只需要引入mysql-connector-java-5.1.7-bin.jar就可以运行java项目。</p>
+<p>在web项目中，当Class.forName(“om.mysql.jdbc.Driver”);时myeclipse是不会去查找字符串，不会去查找驱动的。所以只需要把mysql-connector-java-5.1.7-bin.jar拷贝到tomcat下lib目录就可以了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql数据库工具类</title>
+    <url>/2021/01/03/jdbc/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
+    <content><![CDATA[<pre><code>public class DBUtil &#123;
+    static final String JDBC_DRIVER =&quot;com.mysql.jdbc.Driver&quot;;
+    static final String DB_URL =&quot;jdbc:mysql://localhost:3306/student?useUnicode=true&amp;useSSL=false&amp;characterEncoding=utf-8&quot;;
+    static final String USER = &quot;root&quot;;
+    static final String PASS = &quot;1210&quot;;
+    private static Connection conn =null;
+    static &#123;
+        try &#123;
+            Class.forName(JDBC_DRIVER);
+            conn=DriverManager.getConnection(DB_URL, USER, PASS);
+
+        &#125; catch (ClassNotFoundException e) &#123;
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        &#125; catch (SQLException e) &#123;
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        &#125;
+
+    &#125;
+    public static Connection getConnection() &#123;
+        return conn;
+    &#125;
+
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql的ResultSet结果集为空判断</title>
+    <url>/2021/02/11/jdbc/mysql%E7%9A%84ResultSet%E7%BB%93%E6%9E%9C%E9%9B%86%E4%B8%BA%E7%A9%BA%E5%88%A4%E6%96%AD/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(rs.next()) &#123;</span><br><span class="line">				erroString&#x3D;&quot;该用户名已被注册&quot;;</span><br><span class="line">			&#125;else &#123;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>excute和excuteQuery的区别</title>
+    <url>/2021/02/11/jdbc/mysql%E7%9A%84excute%E5%92%8CexcuteQuery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>excute方法是直接执行，excuteQuery方法会返回结果。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第一次需要用connection嵌入sql代码，其余的直接写在excute和excuteQuery里面，不写直接调用代码就是执行前一个sql语句</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqlite数据库创建使用</title>
+    <url>/2021/06/03/jdbc/sqlite%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%9B%E5%BB%BA%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> SQLiteDatabase db;</span><br><span class="line">db&#x3D;SQLiteDatabase.openOrCreateDatabase(getContext().getFilesDir().toString()+&quot;test.db&quot;,null);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>js获取session中保存的对象值（jquery）</title>
+    <url>/2021/02/13/jquery/js%E8%8E%B7%E5%8F%96session%E4%B8%AD%E4%BF%9D%E5%AD%98%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%80%BC%EF%BC%88jquery%EF%BC%89/</url>
+    <content><![CDATA[<p>1.需要在js中获取到存储在session中的值，session中存储的可能是一个字符串也可能是一个对象。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">$(function()&#123;</span><br><span class="line">        &#x2F;&#x2F;session中存储的是一个对象user,内有属性name和password。</span><br><span class="line">		var username &#x3D; &#39;$&#123;user.name&#125;&#39;;</span><br><span class="line">		alert(username);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>2.如果session中存储的是一个字符串，那么如下代码就可以获取到正确的值。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;js&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">$(function()&#123;</span><br><span class="line">        &#x2F;&#x2F;session中存储的是一个字符串username。</span><br><span class="line">		var username &#x3D; &#39;$&#123;username&#125;&#39;;</span><br><span class="line">		alert(username);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>jquery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端使用cookie</title>
+    <url>/2021/02/14/jquery/%E5%89%8D%E7%AB%AF%E4%BD%BF%E7%94%A8cookie/</url>
+    <content><![CDATA[<p>需要下载并引入jquery.cookie.js。<br>cookie有四个不同的属性: 名称，内容，域，路径</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">$.cookie(&#39;the_cookie&#39;); &#x2F;&#x2F; 读取 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;); &#x2F;&#x2F; 存储 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;the_value&#39;, &#123; expires: 7 &#125;); &#x2F;&#x2F; 存储一个带7天期限的 cookie </span><br><span class="line">$.cookie(&#39;the_cookie&#39;, &#39;&#39;, &#123; expires: -1 &#125;); &#x2F;&#x2F; 删除 cookie</span><br></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.cookie(&quot;currentMenuID&quot;);</span><br></pre></td></tr></table></figure>
+<p>取值时会产生问题。<br>故：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.cookie(&quot;currentMenuID&quot;, &quot;menuID&quot;, &#123; path: &quot;&#x2F;&quot;&#125;); </span><br></pre></td></tr></table></figure>
+<p>进行覆盖。同域下同一个cookieID对应一个值。</p>
+]]></content>
+      <tags>
+        <tag>jquery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux下安装vim编辑器</title>
+    <url>/2021/06/03/linux/Linux%E4%B8%8B%E5%AE%89%E8%A3%85vim%E7%BC%96%E8%BE%91%E5%99%A8/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ubuntu 系统输入命令：sudo apt-get install vim-gtk</span><br><span class="line">centos 系统输入命令：yum -y install vim*</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>httpServlet初始编码配置</title>
+    <url>/2021/01/03/servlet/httpServlet%E5%88%9D%E5%A7%8B%E7%BC%96%E7%A0%81%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">request.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">response.setContentType(&quot;text&#x2F;html;charset&#x3D;utf-8&quot;);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SERVLET中的web.xml配置</title>
+    <url>/2021/01/03/servlet/servlet%E4%B8%AD%E7%9A%84web-xml%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1><span id="url-pattern">url-pattern</span></h1><h2><span id="理解">理解</span></h2><p>在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;input&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="匹配">匹配</span></h2><p>  写url-pattern时不能用/*，因为这样会把我们的html静态页面也全部包含其中，导致无法加载html页面，而是把任何页面都当作响应页面处理，所以最好的办法是用一个后缀来区分<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;url-pattern&gt;*.do&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;register.do&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line"> String action&#x3D;uri.substring(uri.lastIndexOf(&quot;&#x2F;&quot;)+1,uri.lastIndexOf(&quot;.&quot;));</span><br><span class="line">if(action.equals(&quot;register&quot;)) &#123;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>如果写成”/*.do”会报错。</li>
+<li>别忘了lastIndexOf(“/“)后面还有+1</li>
+</ul>
+<h1><span id="welcome-file">welcome-file</span></h1><p>对于初始页面，我们只需要配置<welcome-file>即可，也就是刚启动servlet就能看到的页面</welcome-file></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;input.html&lt;&#x2F;welcome-file&gt;</span><br><span class="line">  &lt;&#x2F;welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
+<br>]]></content>
+      <categories>
+        <category>servlet</category>
+      </categories>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>servle后端中的弹窗</title>
+    <url>/2021/01/13/servlet/servle%E5%90%8E%E7%AB%AF%E4%B8%AD%E7%9A%84%E5%BC%B9%E7%AA%97/</url>
+    <content><![CDATA[<p>\“\“之间按照正常的字符串格式写即可,这是转义字符，里面还包含多个””时，就得用这种方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\&quot;return confirm(&#39;是否确定删除&quot;+rs.getString(&quot;name&quot;)+&quot;&#39;);\&quot;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>servlet编程模型</title>
+    <url>/2021/02/11/servlet/servlet%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h1><span id="基本形式">基本形式</span></h1><p>1.初始化页面之前，如果需要对某些数据进行判断再初始化，则需要通过一个单独.do服务器模块进行一些数据的配置判断再 <strong>过渡</strong> 到新的页面</p>
+<p>2.在同一个页面，仅对页面的部分内容进行改变时（仅做前后端数据交流）</p>
+<ul>
+<li><p>如果需要再整个页面不变化，只需要变化其中某一些元素且不涉及到页面跳转的内容，则通过ajax直接对元素内的元素进行切换。</p>
+</li>
+<li><p>数据库的改动（不需要从后端接收数据时）<br>仅需要通过一个链接后面接上相应的参数直接连接到.do模块对数据库进行改动，再重新加载会原来的页面即可。</p>
+</li>
+</ul>
+<p>3.如果一个.do模块既可能仅仅对页面的部分内容进行改变，也有可能通过这个.do模块直接转载到另一个页面。则需要通过提交数据submit的方式或者是链接的方式加载到后端相应的模块。如果需要返回数据给原来的页面，通过设置request的方式返回jsp页面即可。</p>
+<h1><span id="数据传输">数据传输</span></h1><ul>
+<li>session<br>session数据会在规定的时间内适用于所有的页面，适合存放身份验证等信息。</li>
+<li>request<br>一次请求的数据传输，仅需要后端到前端初始化时，通过request.setAttribute存放数据进行传输（请求完其实就释放了）</li>
+<li>ajax_json/out.println<br>如果页面中的某个元素内部的数据发生结构和数据变化时，用ajax方法直接加载该模块儿的数据</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>uri和url</title>
+    <url>/2021/02/11/servlet/uri%E5%92%8Curl/</url>
+    <content><![CDATA[<ul>
+<li>URI是什么？有什么用？<br>URI（统一资源标识符）是标识逻辑或物理资源的字符序列，与URL类似，也是一串字符。通过使用位置，名称或两者来标识Internet上的资源；它允许统一识别资源。</li>
+</ul>
+<p>有两种类型的URI，统一资源标识符（URL）和统一资源名称（URN）</p>
+<ul>
+<li>URL是什么？有什么用？<br>URL（统一资源定位符）是Internet上资源的地址，可以定义为引用地址的字符串，用于指示资源的位置以及用于访问它的协议</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>session超时设置</title>
+    <url>/2021/02/11/servlet/session%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">session.setMaxInactiveInterval(10);</span><br></pre></td></tr></table></figure>
+<p>如果不停刷新，也会使计数器不断地刷新，10秒后session还是会存在。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>细谈getRequestDispatcher与sendRedirect的区别</title>
+    <url>/2021/02/11/servlet/%E7%BB%86%E8%B0%88getRequestDispatcher%E4%B8%8EsendRedirect%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>首先我们要知道：</p>
+<p>(1)request.getRequestDispatcher()是请求转发，前后页面共享一个request ; 这个是在服务端运行的，对浏览器来说是透明的。<br>(2)response.sendRedirect()是重新定向，前后页面不是一个request。而这个是在浏览器端运行的。</p>
+<h2><span id="redirect方式">redirect方式</span></h2><p>　 response.sendRedirect(“/a.jsp”);<br>　　  页面的路径是相对路径。sendRedirect可以将页面跳转到任何页面，不一定局限于本web应用中，如：<br>　　  response.sendRedirect(“URL”);<br>　　  跳转后浏览器地址栏变化。<br>　　  这种方式要传值出去的话，只能在url中带parameter或者放在session中，无法使用request.setAttribute来 传递。所以该方式只适用于无传值跳转</p>
+<h2><span id="forward方式">forward方式</span></h2><p> request.getRequestDispatcher(“/路径（可以是jsp路径也可以是servlet）”) .forward(request, response);</p>
+<p>如：</p>
+<p>request.getRequestDispatcher(“/2.jsp）”) .forward(request, response);</p>
+<p>request.getRequestDispatcher(“/servlet/HomeServlet）”) .forward(request, response);<br>　　Servlet页面跳转的路径是相对路径。forward方式只能跳转到本web应用中的页面上。<br>　　跳转后浏览器地址栏不会变化。<br>　　使用这种方式跳转，传值可以使用三种方法：url中带parameter，session，request.setAttribute</p>
+]]></content>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主键ID的重排序</title>
+    <url>/2021/01/13/sql/%E4%B8%BB%E9%94%AEID%E7%9A%84%E9%87%8D%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h2><span id="删除元素后id自动减少">删除元素后id自动减少</span></h2><p>先删除再建立自增长的主键ID</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alter table student drop id;</span><br><span class="line">alter table student add id int primary key auto_increment;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>让某个元素排序第一</title>
+    <url>/2021/06/03/sql/%E8%AE%A9%E6%9F%90%E4%B8%AA%E5%85%83%E7%B4%A0%E6%8E%92%E5%BA%8F%E7%AC%AC%E4%B8%80/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select pid, name</span><br><span class="line">from t_province</span><br><span class="line">where 1 &#x3D; 1</span><br><span class="line">order by case when name &#x3D; &quot;广东&quot; then 0 else name end</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>sql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql_bug</title>
+    <url>/2021/02/11/sqlbug/where-clause/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Unknown column &#39;name&#39; in &#39;where clause&#39;</span><br></pre></td></tr></table></figure>
+
+<p>有可能是url中的仓库名称写错了。</p>
+]]></content>
+      <tags>
+        <tag>sqlbug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ssh自定义产生密钥</title>
+    <url>/2020/11/29/ssh/ssh%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%AF%86%E9%92%A5/</url>
+    <content><![CDATA[<p>产生gitbub和gitbub.pub密钥文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR_EMAIL@YOUREMAIL.COM&quot; -f &#x2F;c&#x2F;user&#x2F;justdoit&#x2F;.ssh&#x2F;github</span><br></pre></td></tr></table></figure>
+<p>“-c”必须大写，不然无法识别</p>
+]]></content>
+      <categories>
+        <category>ssh</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim批量替换命令实践</title>
+    <url>/2021/06/03/vim/vim%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E5%91%BD%E4%BB%A4%E5%AE%9E%E8%B7%B5/</url>
+    <content><![CDATA[<h2><span id="vim批量替换命令实践">vim批量替换命令实践</span></h2><p>语法为 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">:[addr]s&#x2F;源字符串&#x2F;目的字符串&#x2F;[option]</span><br></pre></td></tr></table></figure>
+
+<p>全局替换命令为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">:%s&#x2F;源字符串&#x2F;目的字符串&#x2F;g</span><br></pre></td></tr></table></figure>
+
+<p><strong>[addr] 表示检索范围，省略时表示当前行。</strong></p>
+<p>“1,20” ：表示从第1行到20行；</p>
+<p>“%” ：表示整个文件，同“1,$”；</p>
+<p>“. ,$” ：从当前行到文件尾；</p>
+<p><strong>s : 表示替换操作</strong></p>
+<p><strong>[option] : 表示操作类型</strong></p>
+<p>g 表示全局替换; </p>
+<p>c 表示进行确认</p>
+<p>p 表示替代结果逐行显示（Ctrl + L恢复屏幕）;</p>
+<p>省略option时仅对每行第一个匹配串进行替换;</p>
+<p>如果在源字符串和目的字符串中出现特殊字符，需要用”\”转义 如 \t</p>
+]]></content>
+      <tags>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>获取网络json数据</title>
+    <url>/2021/06/03/%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E6%8E%A5%E6%94%B6/%E8%8E%B7%E5%8F%96%E7%BD%91%E7%BB%9Cjson%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private final String TAG &#x3D; &quot;MSG&quot;;</span><br><span class="line">Handler handler&#x3D;new Handler();</span><br><span class="line">public void setMessageUrl(String myurl,int flag) &#123;</span><br><span class="line">    Thread thread &#x3D; new Thread(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            String result;</span><br><span class="line">            try &#123;</span><br><span class="line">                URL url &#x3D; new URL(myurl);</span><br><span class="line">                HttpURLConnection connection &#x3D; (HttpURLConnection) url.openConnection();</span><br><span class="line">                connection.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">                int code &#x3D; connection.getResponseCode();</span><br><span class="line">                if (code &#x3D;&#x3D; 200) &#123;</span><br><span class="line">                    InputStream inputStream &#x3D; connection.getInputStream();</span><br><span class="line">                    ByteArrayOutputStream bos &#x3D; new ByteArrayOutputStream();</span><br><span class="line">                    int len &#x3D; -1;</span><br><span class="line">                    byte[] bytes &#x3D; new byte[1024];</span><br><span class="line">                    while ((len &#x3D; inputStream.read(bytes)) !&#x3D; -1) &#123;</span><br><span class="line">                        bos.write(bytes, 0, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                    result &#x3D; new String(bos.toByteArray(), &quot;utf-8&quot;);</span><br><span class="line">                    Message msg&#x3D;new Message();</span><br><span class="line">                    Bundle bd&#x3D;new Bundle();</span><br><span class="line">                    bd.putString(&quot;result&quot;,result);</span><br><span class="line">                    msg.setData(bd);</span><br><span class="line">                    msg.what&#x3D;flag;</span><br><span class="line">                    handler.sendMessage(msg);</span><br><span class="line">                    Log.i(TAG, &quot;run: &quot;+result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public RootName getRoot(Message handlermsg)&#123;</span><br><span class="line">     String massage&#x3D;handlermsg.getData().getString(&quot;result&quot;);</span><br><span class="line">     Gson gson&#x3D;new Gson();</span><br><span class="line">     RootName rootName&#x3D;gson.fromJson(massage,RootName.class);</span><br><span class="line">     return rootName;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">implementation &#39;com.google.code.gson:gson:2.8.5&#39;</span><br></pre></td></tr></table></figure>
+
+<p>HttpConnection连接api，获取输入流。先用inputStream输入流读入数据，再用ByteArrayOutputStream将数据读出。将读出的字节数组编程字符串使用</p>
+]]></content>
+      <tags>
+        <tag>后端数据接收</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>后端配置跨域</title>
+    <url>/2021/06/03/%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E8%B7%A8%E5%9F%9F/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String originHeads &#x3D; request.getHeader(&quot;Origin&quot;);</span><br><span class="line">	     response.setHeader(&quot;Access-Control-Allow-Origin&quot;,&quot;*&quot;);</span><br><span class="line">	     response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originHeads);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST,GET,OPTIONS,DELETE,HEAD,PUT,PATCH&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;36000&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;Origin, X-Requested-With, Content-Type, Accept,Authorization,authorization&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Credentials&quot;,&quot;true&quot;);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>后端数据输出</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>indexDB</title>
+    <url>/2021/06/03/%E5%89%8D%E7%AB%AF%E6%95%B0%E6%8D%AE%E5%82%A8%E5%AD%98/indexDB/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         openDB(myDB.name, myDB.version);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> myDB = &#123;</span><br><span class="line">         name: <span class="string">&#x27;myList&#x27;</span>,</span><br><span class="line">         version: <span class="number">1</span>,</span><br><span class="line">         db: <span class="literal">null</span></span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> school = [&#123;</span><br><span class="line">         id: <span class="number">1001</span>,</span><br><span class="line">         name: <span class="string">&quot;北京大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;北京&quot;</span></span><br><span class="line">     &#125;, &#123;</span><br><span class="line">         id: <span class="number">1002</span>,</span><br><span class="line">         name: <span class="string">&quot;清华大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;北京&quot;</span></span><br><span class="line">     &#125;, &#123;</span><br><span class="line">         id: <span class="number">1003</span>,</span><br><span class="line">         name: <span class="string">&quot;上海交通大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;上海&quot;</span></span><br><span class="line">     &#125;];</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">openDB</span>(<span class="params">name, version</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> version = version || <span class="number">1</span>;</span><br><span class="line">         <span class="keyword">var</span> request = <span class="built_in">window</span>.indexedDB.open(name, version);</span><br><span class="line">         request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(e.currentTarget.error.message);</span><br><span class="line">         &#125;;</span><br><span class="line">         request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             myDB.db = e.target.result;</span><br><span class="line">             addData(myDB.db, <span class="string">&quot;school&quot;</span>);</span><br><span class="line">             fetchStoreByCursor(myDB.db, <span class="string">&quot;school&quot;</span>);</span><br><span class="line">         &#125;;</span><br><span class="line">         request.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> db = e.target.result;</span><br><span class="line">             <span class="keyword">if</span> (!db.objectStoreNames.contains(<span class="string">&#x27;school&#x27;</span>)) &#123;</span><br><span class="line">                 <span class="keyword">var</span> store = db.createObjectStore(<span class="string">&#x27;school&#x27;</span>, &#123;</span><br><span class="line">                     keyPath: <span class="string">&#x27;id&#x27;</span></span><br><span class="line">                 &#125;);</span><br><span class="line">                 store.createIndex(<span class="string">&#x27;nameIndex&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, &#123;</span><br><span class="line">                     unique: <span class="literal">true</span></span><br><span class="line">                 &#125;);</span><br><span class="line">                 store.createIndex(<span class="string">&#x27;addrIndex&#x27;</span>, <span class="string">&#x27;addr&#x27;</span>, &#123;</span><br><span class="line">                     unique: <span class="literal">false</span></span><br><span class="line">                 &#125;);</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="string">&#x27;DB version changed to &#x27;</span> + version);</span><br><span class="line">         &#125;;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">addData</span>(<span class="params">db, storeName</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> trans = db.transaction([storeName], <span class="string">&#x27;readwrite&#x27;</span>);</span><br><span class="line">         <span class="keyword">var</span> store = trans.objectStore(storeName);</span><br><span class="line"></span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; school.length; i++) &#123;</span><br><span class="line">             store.add(school[i]);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">fetchStoreByCursor</span>(<span class="params">db, storeName</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> transaction = db.transaction(storeName);</span><br><span class="line">         <span class="keyword">var</span> store = transaction.objectStore(storeName);</span><br><span class="line">         <span class="keyword">var</span> request = store.openCursor();</span><br><span class="line">         request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> cursor = e.target.result;</span><br><span class="line">             <span class="keyword">if</span> (cursor) &#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(cursor.key);</span><br><span class="line">                 <span class="keyword">var</span> currentStudent = cursor.value;</span><br><span class="line">                 <span class="built_in">console</span>.log(currentStudent.name);</span><br><span class="line">                 <span class="keyword">var</span> table = <span class="built_in">document</span>.getElementById(<span class="string">&quot;mytable&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> tr = <span class="built_in">document</span>.createElement(<span class="string">&quot;tr&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> imgtd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> txttd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">                 <span class="comment">//图片</span></span><br><span class="line">                 <span class="keyword">var</span> schimg = <span class="built_in">document</span>.createElement(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">                 <span class="keyword">switch</span> (currentStudent.name) &#123;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;北京大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;bj-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;清华大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;qh-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;上海交通大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;shj-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                 &#125;</span><br><span class="line">                 schimg.setAttribute(<span class="string">&quot;style&quot;</span>, <span class="string">&quot;height: 100px;&quot;</span>);</span><br><span class="line">                 imgtd.appendChild(schimg);</span><br><span class="line"></span><br><span class="line">                 <span class="comment">//文字</span></span><br><span class="line">                 txttd.innerHTML = <span class="string">&quot; &lt;p style=&#x27;font-size: 45px;&#x27;&gt;&quot;</span> + currentStudent.name + <span class="string">&quot;&lt;/p&gt;&quot;</span> + <span class="string">&quot;&lt;p&gt;&quot;</span> + currentStudent.addr + <span class="string">&quot;&lt;p&gt;&quot;</span>;</span><br><span class="line">                 <span class="comment">//添加</span></span><br><span class="line">                 tr.appendChild(imgtd);</span><br><span class="line">                 tr.appendChild(txttd);</span><br><span class="line">                 table.appendChild(tr);</span><br><span class="line">                 cursor.continue();</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;;</span><br><span class="line">     &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>前端数据储存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java模拟浏览器发送请求</title>
+    <url>/2021/01/03/%E7%88%AC%E8%99%AB/java%E6%A8%A1%E6%8B%9F%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">URL url&#x3D;new URL(&quot;https:&#x2F;&#x2F;www.bilibili.com&#x2F;&quot;);</span><br><span class="line"></span><br><span class="line">HttpsURLConnection conn&#x3D;(HttpsURLConnection)url.openConnection();</span><br><span class="line">      conn.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">      conn.setRequestProperty(&quot;User-Agent&quot;, &quot;Mozilla&#x2F;5.0(Windows NT 10.0;Win64;x64)AppleWebKit&#x2F;537.3&quot;);</span><br><span class="line">      BufferedReader br&#x3D;new BufferedReader(new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));</span><br><span class="line">      String msg&#x3D;null;</span><br><span class="line">      while(null!&#x3D;(msg&#x3D;br.readLine())) &#123;</span><br><span class="line">      	System.out.println(msg);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>爬虫</tag>
       </tags>
   </entry>
 </search>
