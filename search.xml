@@ -591,8 +591,8 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&#39;#resText&#39;).load(&#39;test.php&#39;,&#123;name:&#39;rain&#39;,age:&#39;22&#39;&#125;</span><br></pre></td></tr></table></figure>
 <h3><span id="load方法通常用来从web服务器上获取静态的数据文件然后这并不能体现ajax的全部价值-在项目中如果需要传递一些参数给服务器中的页面那么可以使用get或者post或者ajax方法">load()方法通常用来从Web服务器上获取静态的数据文件，然后这并不能体现Ajax的全部价值。在项目中，如果需要传递一些参数给服务器中的页面，那么可以使用$.get()或者$.post()或者$.ajax()方法。</span></h3>]]></content>
       <tags>
-        <tag>ajax</tag>
         <tag>jquery</tag>
+        <tag>ajax</tag>
       </tags>
   </entry>
   <entry>
