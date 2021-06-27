@@ -1,89 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>android套webview</title>
-    <url>/2021/06/15/android%E5%A5%97webview/</url>
-    <content><![CDATA[<h2><span id="前言"><strong>前言</strong></span></h2><p>目前手机应用市场上的 APP 类型主要为以下两种：</p>
-<ul>
-<li>Native App（原生应用）：直接针对平台（Android、iOS 等手机系统）进行开发，属于性能最优的方案，也是开发成本最大的方案。</li>
-<li>Hybrid App（混合应用）：即为原生 WebView 加 HTML5 网页内容的形式。只需要开发一套 HTML5 业务逻辑，就可以同时运行在不同的平台上，相对比较灵活，内容可以快速更新，开发维护成本较低。最大的缺点就是性能远不及原生应用，交互上也做不到原生的那么自然。</li>
-</ul>
-<blockquote>
-<p>React Native 和 Weex 之类的框架不是本文讨论的主题，这里就不展开了。</p>
-</blockquote>
-<p>本文主要讲解如何制作一个安卓原生的“壳”来加载我们的 H5 网页，最终实现一个简单的 Hybrid App（套壳应用）。</p>
-<blockquote>
-<p>文中创建的示例项目已上传至码云，点击文章底部“阅读原文”即可获取</p>
-</blockquote>
-<h1><span id="正文"><strong>正文</strong></span></h1><blockquote>
-<p>本文不涉及到复杂的 Android 与 Java 知识，小朋友不需要在家长的陪同下也能观看 ?</p>
-</blockquote>
-<h2><span id="1-创建安卓项目"><strong>1. 创建安卓项目</strong></span></h2><blockquote>
-<p>创建安卓项目需要用到 Android Studio，关于如何安装 Android Studio 可以阅读官方文档。 安装 Android Studio：<a href="https://developer.android.com/studio/install">https://developer.android.com/studio/install</a></p>
-</blockquote>
-<h3><span id="11-创建新项目"><strong>1.1 创建新项目</strong></span></h3><p>首先打开 Android Studio，点击 <strong>「Start a new Android Studio Project（创建一个新的 AS 项目）」</strong>。</p>
-<h3><span id="12-选择项目模板"><strong>1.2 选择项目模板</strong></span></h3><p>项目模板这里我们选择 <strong>「Empty Activity（空白活动）」</strong>，点击 <strong>「Next（下一步）」</strong>。</p>
-<h3><span id="13-项目配置"><strong>1.3 项目配置</strong></span></h3><p>来到项目配置页面，分别设置好以下选项：</p>
-<ul>
-<li>Name：应用名</li>
-<li>Package Name：包名</li>
-<li>Save Location：项目保存路径</li>
-<li>Language：项目使用的编程语言</li>
-<li>Minimum SDK：最低兼容 SDK 版本</li>
-</ul>
-<p>这里语言选择 Java（因为我没写过 Kotlin ?），而最低 SDK 则选择了 API 23（示例用随便选的 ?），配置完成后点击 <strong>「Finished（完成）」</strong>。</p>
-<p>至此我们已经完成了项目的创建，接下来让我们正式开始我们今天的主题。</p>
-<h2><span id="2-开发套壳程序"><strong>2. 开发套壳程序</strong></span></h2><h3><span id="21-添加-webview-布局"><strong>2.1 添加 WebView 布局</strong></span></h3><p>修改 <strong>「app/res/layout/activity_main.xml」</strong> 文件，去掉原有的 <code>TextView</code> 标签，添加一个 <code>WebView</code> 标签并保存。</p>
-<p>添加的代码如下：</p>
+    <title>notification兼容</title>
+    <url>/2021/06/19/android/notification%E5%85%BC%E5%AE%B9/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW,Uri.parse(<span class="string">&quot;http://www.baidu.com&quot;</span>));</span><br><span class="line">PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.<span class="keyword">this</span>,<span class="number">0</span>,intent,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span>(Build.VERSION.SDK_INT &gt;= <span class="number">26</span>) </span><br><span class="line"> &#123;</span><br><span class="line">               <span class="comment">//当sdk版本大于26</span></span><br><span class="line">   String id = <span class="string">&quot;channel_1&quot;</span>;</span><br><span class="line">   String description = <span class="string">&quot;143&quot;</span>;</span><br><span class="line">   <span class="keyword">int</span> importance = NotificationManager.IMPORTANCE_LOW;</span><br><span class="line">   NotificationChannel channel = <span class="keyword">new</span> NotificationChannel(id, description, importance);</span><br><span class="line"><span class="comment">//                     channel.enableLights(true);</span></span><br><span class="line"><span class="comment">//                     channel.enableVibration(true);//</span></span><br><span class="line">   manager.createNotificationChannel(channel);</span><br><span class="line">   Notification notification = <span class="keyword">new</span> Notification.Builder(MainActivity.<span class="keyword">this</span>, id)</span><br><span class="line">                                    .setCategory(Notification.CATEGORY_MESSAGE)</span><br><span class="line">                                    .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">                                    .setContentTitle(<span class="string">&quot;This is a content title&quot;</span>)</span><br><span class="line">                                    .setContentText(<span class="string">&quot;This is a content text&quot;</span>)</span><br><span class="line">                                    .setContentIntent(pendingIntent)</span><br><span class="line">                                    .setAutoCancel(<span class="keyword">true</span>)</span><br><span class="line">                                    .build();</span><br><span class="line">   manager.notify(<span class="number">1</span>, notification);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">   &#123;</span><br><span class="line">            <span class="comment">//当sdk版本小于26</span></span><br><span class="line">    Notification notification = <span class="keyword">new</span> NotificationCompat.Builder(MainActivity.<span class="keyword">this</span>)</span><br><span class="line">                                    .setContentTitle(<span class="string">&quot;This is content title&quot;</span>)</span><br><span class="line">                                    .setContentText(<span class="string">&quot;This is content text&quot;</span>)</span><br><span class="line">                                    .setContentIntent(pendingIntent)</span><br><span class="line">                                    .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">                                    .build();</span><br><span class="line">    manager.notify(<span class="number">1</span>,notification);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/06/19/android/android%E5%A5%97webview/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: android套webview</span><br><span class="line">date: 2021-06-15 13:44:59</span><br><span class="line">tags: android</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 展示一个 WebView --&gt;</span><br><span class="line">&lt;WebView</span><br><span class="line">    android:id=<span class="string">&quot;@+id/webview&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>在 Android 工程中，<strong>「app/res/layout/」</strong> 目录主要用于存放定义用户界面布局的 XML 文件。 上文提到的 activity_main.xml 即为应用主界面的布局文件。</p>
-</blockquote>
-<h3><span id="22-在入口处创建-webview-实例"><strong>2.2 在入口处创建 WebView 实例</strong></span></h3><p>选择 <strong>「app/java/{创建项目时指定的包名}/」</strong> 目录下的 <strong>「MainActivity.java」</strong> 文件（我这里是 app/java/example/webviewdemo/MainActivity.java）。</p>
-<p>随后在 <strong>「MainActivity.java」</strong> 文件中添加一个 <code>createWebView</code> 函数（不要忘记导入用到的包），并在生命周期 <code>onCreate</code> 中调用该函数，来创建一个 WebView 实例并对其进行配置。</p>
-<p>MainActivity.java 完整代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">package com.example.webviewdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.annotation.SuppressLint;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.webkit.WebView;</span><br><span class="line"><span class="keyword">import</span> android.webkit.WebViewClient;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected <span class="keyword">void</span> <span class="function"><span class="title">onCreate</span>(<span class="params">Bundle savedInstanceState</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.createWebView();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 创建 WebView 实例 */</span></span><br><span class="line">    @SuppressLint(<span class="string">&quot;SetJavaScriptEnabled&quot;</span>)</span><br><span class="line">    private <span class="keyword">void</span> <span class="function"><span class="title">createWebView</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建 WebView 实例并通过 id 绑定我们刚在布局中创建的 WebView 标签</span></span><br><span class="line">        <span class="comment">// 这里的 R.id.webview 就是 activity_main.xml 中的 WebView 标签的 id</span></span><br><span class="line">        final WebView webView = (WebView) findViewById(R.id.webview);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置 WebView 允许执行 JavaScript 脚本</span></span><br><span class="line">        webView.getSettings().setJavaScriptEnabled(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 确保跳转到另一个网页时仍然在当前 WebView 中显示</span></span><br><span class="line">        <span class="comment">// 而不是调用浏览器打开</span></span><br><span class="line">        webView.setWebViewClient(<span class="keyword">new</span> WebViewClient());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 加载指定网页</span></span><br><span class="line">        <span class="built_in">String</span> url = <span class="string">&quot;https://chenpipi.cn&quot;</span>;</span><br><span class="line">        webView.loadUrl(url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>在 Android 项目中，<strong>「app/java/」</strong> 目录主要用于存放项目的源代码。 在项目包名目录（文中项目包名为 <code>com.example.webviewdemo</code>）下的 MainActivity.java 文件为应用的主入口。</p>
-</blockquote>
-<h3><span id="23-添加联网权限"><strong>2.3 添加联网权限</strong></span></h3><p>选择 <strong>「app/minifests/AndroidMinifest.xml」</strong> 文件，在 <code>application</code> 标签前添加一个 <code>uses-permission</code> 标签来声明应用的网络访问权限，最后保存。</p>
-<p>添加的代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 访问网络的权限 --&gt;</span><br><span class="line">&lt;uses-permission android:name=<span class="string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>AndroidManifest.xml 文件用于描述应用的基本特性并定义了每个应用组件。</p>
-</blockquote>
-<h3><span id="24-使用虚拟机运行应用"><strong>2.4 使用虚拟机运行应用</strong></span></h3><blockquote>
-<p>我们开发的时候可以随时使用模拟器来预览我们的应用，也可以将手机连接到电脑上进行调试（这里就不展开了）。 如果想要打包成 APK 文件安装到手机上运行，执行顶部菜单栏的 [ Build -&gt; Build Bundle(s) / APK(s) -&gt; Build APK(s) ] 即可。</p>
-</blockquote>
-<p>调试工具栏在窗口右上方，选择或安装一个虚拟机（模拟器）。</p>
-<p><img src="https://ask.qcloudimg.com/http-save/yehe-4348418/5vtzuiuy5p.png?imageView2/2/w/1620" alt="img"></p>
-<p>点击绿色播放键（三角形），然后 Android Studio 会自动帮我们编译并在虚拟机 ? 中启动我们的应用。</p>
-<p>随后可以看到我们的应用已经成功加载了 MainActivity.java 中设置好的链接 <code>https://chenpipi.cn</code>，计划通 ?。</p>
-<p><img src="https://ask.qcloudimg.com/http-save/yehe-4348418/xr9ci9rby9.png?imageView2/2/w/1620" alt="img"></p>
-<blockquote>
-<p>如果没有安装虚拟机的话，需要点击窗口顶部菜单栏的 [ Tools -&gt; AVD Manager ] 进入 AVD 管理器安装安卓虚拟机（模拟器）。 AVD 管理器：<a href="https://developer.android.com/studio/run/managing-avds#createavd">https://developer.android.com/studio/run/managing-avds#createavd</a></p>
-</blockquote>
-<h2><span id="3-加点料"><strong>3. 加点料</strong></span></h2><h3><span id="31-隐藏标题栏"><strong>3.1 隐藏标题栏</strong></span></h3><p>修改 <strong>「app/res/values/styles.xml」</strong> 文件，将 <code>name</code> 为 <code>AppTheme</code> 的 <code>style</code> 标签的内容换成以下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 隐藏标题栏 --&gt;</span><br><span class="line">&lt;item name=<span class="string">&quot;windowNoTitle&quot;</span>&gt;<span class="literal">true</span>&lt;/item&gt;</span><br><span class="line">&lt;item name=<span class="string">&quot;windowActionBar&quot;</span>&gt;<span class="literal">false</span>&lt;/item&gt;</span><br></pre></td></tr></table></figure>
-
-<p>修改完成后，重新预览应用发现之前骚得不行紫色标题栏已经不见啦~（希望标题栏没事 ?）</p>
-<h3><span id="32-隐藏状态栏"><strong>3.2 隐藏状态栏</strong></span></h3><blockquote>
-<p>该方案在异形屏下会有些问题，且本文将不考虑异形屏的适配。</p>
-</blockquote>
-<p>光隐藏标题栏浏览体验还不够沉浸，得把状态栏也隐藏了，不能让用户看到时间和电量！?</p>
-<p>修改 <strong>「MainActivity.java」</strong> 文件，在生命周期 <code>onCreate</code> 内调用 <code>setContentView</code> 函数<strong>「之前」</strong>添加以下两行代码：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置为全屏（隐藏状态栏）</span></span><br><span class="line">requestWindowFeature(Window.FEATURE_NO_TITLE);</span><br><span class="line">getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);</span><br></pre></td></tr></table></figure>
 
-<p>再保存看看，duang~ 状态栏也消失啦！（也希望状态栏没事 ?）</p>
-<h3><span id="33-接管返回键"><strong>3.3 接管返回键</strong></span></h3><p>默认情况下，在这个只有的 WebView 应用中无论在什么页面触发返回（按键或手势）都是会直接退出应用的，当然这肯定不是我们想要的效果。</p>
-<p>一般来说在应用中触发返回操作应该是返回到上一个浏览的页面，没有上一个页面时才会退出应用。</p>
-<p>我们可以通过以下两种方法来修改：</p>
-<ol>
-<li>修改 WebView 实例的按键监听器：</li>
-</ol>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置 WebView 的按键监听器，覆写监听器的 onKey 函数，对返回键作特殊处理</span></span><br><span class="line"><span class="comment">// 当 WebView 可以返回到上一个页面时回到上一个页面</span></span><br><span class="line">webView.setOnKeyListener(<span class="keyword">new</span> View.OnKeyListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean <span class="function"><span class="title">onKey</span>(<span class="params">View v, int keyCode, KeyEvent event</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (keyCode == KeyEvent.KEYCODE_BACK &amp;&amp; webView.canGoBack()) &#123;</span><br><span class="line">            webView.goBack();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <ol>
@@ -91,15 +30,9 @@
 </ol>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">private WebView webView = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 WebView 实例时保存到 this.webView 中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 接管返回键</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> <span class="function"><span class="title">onBackPressed</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.webView.canGoBack()) &#123;</span><br><span class="line">        <span class="built_in">this</span>.webView.goBack();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onBackPressed();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3><span id="34-支持明文传输http"><strong>3.4 支持明文传输（HTTP）</strong></span></h3><p>从 Android 9（API Level 28）开始<strong>「默认不支持明文传输」</strong>，在 WebView 中加载 HTTP 网页会报 <code>net::ERR_CLEARTEXT_NOT_PERMITTED</code> 的错误，不方便本地进行调试。</p>
-<p>我们可以在 <strong>「AndroidMinifest.xml」</strong> 文件中的 <code>application</code> 标签内添加属性 <code>android:usesCleartextTraffic=&quot;true&quot;</code> 以支持明文传输。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;application</span><br><span class="line">    ...</span><br><span class="line">    android:usesCleartextTraffic=<span class="string">&quot;true&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
 
-<p>可以看到我本地的 Cocos Creator 项目已经成功在安卓的 WebView 上跑起来啦~ ?</p>
 ]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
   </entry>
   <entry>
     <title>druid配置</title>
@@ -366,6 +299,9 @@
 
 <p>有道翻译</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;fanyi.youdao.com&#x2F;translate?&amp;doctype&#x3D;json&amp;type&#x3D;AUTO&amp;i&#x3D;计算</span><br></pre></td></tr></table></figure>
+
+<p>影视</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">https:&#x2F;&#x2F;jx.444662.cn&#x2F;m3u8&#x2F;?url&#x3D;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
