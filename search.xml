@@ -1,6 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>黑马java数据结构</title>
+    <url>/2021/07/03/%E9%BB%91%E9%A9%ACJava%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1><span id="黑马java数据结构">黑马Java数据结构</span></h1><h2><span id="数据结构与算法概述">数据结构与算法概述</span></h2><h3><span id="数据结构">数据结构</span></h3><ul>
+<li>有一定关系的元素的集合</li>
+</ul>
+<h3><span id="分类">分类</span></h3><ul>
+<li>逻辑结构<ul>
+<li>集合结构</li>
+<li>线性结构</li>
+<li>树形结构</li>
+<li>图结构</li>
+</ul>
+</li>
+<li>物理结构<ul>
+<li>顺序结构</li>
+<li>链式结构（插入更方便）</li>
+</ul>
+</li>
+</ul>
+<h3><span id="目的">目的</span></h3><ul>
+<li>时间花费少，空间利用少</li>
+</ul>
+<h2><span id="时间复杂度">时间复杂度</span></h2><h3><span id="分析">分析</span></h3><ul>
+<li>核心操作的执行次数和输入规模的关联（形成一个函数关系）<ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/caa7b99e-ee52-4edf-8269-d855582c7d33-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+</ul>
+<h3><span id="计算">计算</span></h3><ul>
+<li>和常数无关，只和变量的指数有关<ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/557b2c96-8d73-476b-b1ab-89c637585fb1-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+</ul>
+<h3><span id="大o记法">大O记法</span></h3><ul>
+<li><ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/7ba1454b-afab-449f-b0e2-bed17549cbdf-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+</ul>
+<h3><span id="常见的大o记法">常见的大O记法</span></h3><ul>
+<li>比较<ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/da5ad32a-8cb0-4dda-9a1b-d2a210027b9f-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+<li>线性阶</li>
+<li>平方阶</li>
+<li>立方阶</li>
+<li>对数阶</li>
+<li>常数阶</li>
+</ul>
+<h3><span id="最坏情况">最坏情况</span></h3><ul>
+<li><ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/707969ad-10a8-43a2-b0e3-790984a70843-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+</ul>
+<h2><span id="空间复杂度">空间复杂度</span></h2><h3><span id="基本数据类型内存占用">基本数据类型内存占用</span></h3><p><img src="https://api2.mubu.com/v3/document_image/58764c05-e132-4867-ae7c-5b80af26c651-3810853.jpg" alt="img">  </p>
+<h3><span id="变量对象有额外开销">变量，对象（有额外开销）</span></h3><p><img src="https://api2.mubu.com/v3/document_image/449ffe1b-09e2-42bd-b975-6967c38587cc-3810853.jpg" alt="img">  </p>
+<h2><span id="comparable接口">Comparable接口</span></h2><h3><span id="实现接口">实现接口</span></h3><p>   <img src="https://api2.mubu.com/v3/document_image/84baff81-56ec-4001-aa58-b9c2895acfa9-3810853.jpg" alt="img">  </p>
+<h3><span id="重写方法">重写方法</span></h3><p>   <img src="https://api2.mubu.com/v3/document_image/f7f6466e-4092-43c5-9d5f-dbdca9a1a156-3810853.jpg" alt="img">  </p>
+<h3><span id="把两个对象传进去比较">把两个对象传进去比较</span></h3><p>   <img src="https://api2.mubu.com/v3/document_image/5248e8f4-0906-427e-ab55-7eac4035a5eb-3810853.jpg" alt="img">  </p>
+<h2><span id="冒泡算法">冒泡算法</span></h2><h3><span id="原理">原理</span></h3><ul>
+<li><p>排序原理</p>
+<p><img src="https://api2.mubu.com/v3/document_image/70769319-dd04-4d4a-9b38-be3a145f13b0-3810853.jpg" alt="img">  </p>
+</li>
+</ul>
+<h3><span id="冒泡api">冒泡API</span></h3><ul>
+<li>API<ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/0fb14241-2e32-4ba8-acec-2a0aa32b3b49-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+</ul>
+<h3><span id="api分析理解">API分析理解</span></h3><ul>
+<li><p>定位到最后一个元素，之前的元素全部进行两两比较，往后传送最大的，再与最后的元素通过j+1进行比较，大的一方持有最后一个位置。</p>
+</li>
+<li><p>第一层与第二层关系：j&lt;i</p>
+</li>
+<li><p>第二层的范围随着第一层逐渐减小</p>
+</li>
+<li><p>冒泡测试</p>
+<p>​    <img src="https://api2.mubu.com/v3/document_image/c5431554-f4cb-4c17-846b-efd092b0747d-3810853.jpg" alt="img">  </p>
+</li>
+</ul>
+<h3><span id="时间复杂度分析">时间复杂度分析</span></h3><p>  <img src="https://api2.mubu.com/v3/document_image/432ec498-91e5-4cb3-9665-b70a01205d00-3810853.jpg" alt="img">  </p>
+<h2><span id="选择排序">选择排序</span></h2><h3><span id="原理">原理</span></h3><p><img src="https://api2.mubu.com/v3/document_image/ad3d8976-dab2-4352-90f1-2f4f6f5eab93-3810853.jpg" alt="img">  </p>
+<h3><span id="选择api">选择API</span></h3><p><img src="https://api2.mubu.com/v3/document_image/3fd5ece7-1db5-46eb-8026-ff8c501917c8-3810853.jpg" alt="img">  </p>
+<h3><span id="api分析理解">API分析理解</span></h3><ul>
+<li>定位到第一位，给第一位贴一个标签表示最小，从第二位开始进行相邻比较传递标签，让最后的到标签的元素与第一位交换位置。</li>
+<li>//关系：j=i+1</li>
+<li>第二层的起始位置随第一次往前推</li>
+<li>//特殊：第一层可以只遍历到倒数第二个元素，</li>
+<li>//注意：每一轮结束了才进行交换，所以要不exch放在内循环外面</li>
+</ul>
+<h3><span id="时间复杂度">时间复杂度</span></h3><p><img src="https://api2.mubu.com/v3/document_image/0c1c222d-0de8-4840-9725-77997a29d967-3810853.jpg" alt="img"></p>
+]]></content>
+      <categories>
+        <category>黑马</category>
+      </categories>
+  </entry>
+  <entry>
     <title>android套WebView</title>
     <url>/2021/06/27/android/android%E5%A5%97WebView/</url>
     <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 展示一个 WebView --&gt;</span><br><span class="line">&lt;WebView</span><br><span class="line">    android:id=<span class="string">&quot;@+id/webview&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
