@@ -324,7 +324,7 @@
       
 
       
-        <h1><span id="基本形式">基本形式</span></h1><p>1.初始化页面之前，如果需要对某些数据进行判断再初始化，则需要通过一个单独.do服务器模块进行一些数据的配置判断再 <strong>过渡</strong> 到新的页面</p>
+        <h1 id="基本形式"><a href="#基本形式" class="headerlink" title="基本形式"></a>基本形式</h1><p>1.初始化页面之前，如果需要对某些数据进行判断再初始化，则需要通过一个单独.do服务器模块进行一些数据的配置判断再 <strong>过渡</strong> 到新的页面</p>
 <p>2.在同一个页面，仅对页面的部分内容进行改变时（仅做前后端数据交流）</p>
 <ul>
 <li><p>如果需要再整个页面不变化，只需要变化其中某一些元素且不涉及到页面跳转的内容，则通过ajax直接对元素内的元素进行切换。</p>
@@ -333,7 +333,7 @@
 </li>
 </ul>
 <p>3.如果一个.do模块既可能仅仅对页面的部分内容进行改变，也有可能通过这个.do模块直接转载到另一个页面。则需要通过提交数据submit的方式或者是链接的方式加载到后端相应的模块。如果需要返回数据给原来的页面，通过设置request的方式返回jsp页面即可。</p>
-<h1><span id="数据传输">数据传输</span></h1><ul>
+<h1 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h1><ul>
 <li>session<br>session数据会在规定的时间内适用于所有的页面，适合存放身份验证等信息。</li>
 <li>request<br>一次请求的数据传输，仅需要后端到前端初始化时，通过request.setAttribute存放数据进行传输（请求完其实就释放了）</li>
 <li>ajax_json/out.println<br>如果页面中的某个元素内部的数据发生结构和数据变化时，用ajax方法直接加载该模块儿的数据</li>
@@ -517,7 +517,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">基本形式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">数据传输</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%BD%A2%E5%BC%8F"><span class="nav-text">基本形式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="nav-text">数据传输</span></a></li></ol></div>
             
 
           </div>

@@ -326,8 +326,8 @@
       
         <p>首先我们要知道：</p>
 <p>(1)request.getRequestDispatcher()是请求转发，前后页面共享一个request ; 这个是在服务端运行的，对浏览器来说是透明的。<br>(2)response.sendRedirect()是重新定向，前后页面不是一个request。而这个是在浏览器端运行的。</p>
-<h2><span id="redirect方式">redirect方式</span></h2><p>　 response.sendRedirect(“/a.jsp”);<br>　　  页面的路径是相对路径。sendRedirect可以将页面跳转到任何页面，不一定局限于本web应用中，如：<br>　　  response.sendRedirect(“URL”);<br>　　  跳转后浏览器地址栏变化。<br>　　  这种方式要传值出去的话，只能在url中带parameter或者放在session中，无法使用request.setAttribute来 传递。所以该方式只适用于无传值跳转</p>
-<h2><span id="forward方式">forward方式</span></h2><p> request.getRequestDispatcher(“/路径（可以是jsp路径也可以是servlet）”) .forward(request, response);</p>
+<h2 id="redirect方式"><a href="#redirect方式" class="headerlink" title="redirect方式"></a>redirect方式</h2><p>　 response.sendRedirect(“/a.jsp”);<br>　　  页面的路径是相对路径。sendRedirect可以将页面跳转到任何页面，不一定局限于本web应用中，如：<br>　　  response.sendRedirect(“URL”);<br>　　  跳转后浏览器地址栏变化。<br>　　  这种方式要传值出去的话，只能在url中带parameter或者放在session中，无法使用request.setAttribute来 传递。所以该方式只适用于无传值跳转</p>
+<h2 id="forward方式"><a href="#forward方式" class="headerlink" title="forward方式"></a>forward方式</h2><p> request.getRequestDispatcher(“/路径（可以是jsp路径也可以是servlet）”) .forward(request, response);</p>
 <p>如：</p>
 <p>request.getRequestDispatcher(“/2.jsp）”) .forward(request, response);</p>
 <p>request.getRequestDispatcher(“/servlet/HomeServlet）”) .forward(request, response);<br>　　Servlet页面跳转的路径是相对路径。forward方式只能跳转到本web应用中的页面上。<br>　　跳转后浏览器地址栏不会变化。<br>　　使用这种方式跳转，传值可以使用三种方法：url中带parameter，session，request.setAttribute</p>
@@ -510,7 +510,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">redirect方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">forward方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#redirect%E6%96%B9%E5%BC%8F"><span class="nav-text">redirect方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#forward%E6%96%B9%E5%BC%8F"><span class="nav-text">forward方式</span></a></li></ol></div>
             
 
           </div>
