@@ -1,6 +1,801 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Android开发从入门到精通</title>
+    <url>/2021/07/04/Android%E5%BC%80%E5%8F%91%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/</url>
+    <content><![CDATA[<h1><span id="imageswitcher">ImageSwitcher</span></h1><ul>
+<li>写xml布局文件（ImageSwitcher）</li>
+<li>实现setFactority工厂新建初始化图片资源(imgview)并返回</li>
+<li>实现触发动作的监听器<ul>
+<li>左滑右滑可以通过onTouch的ActionDown和ActionUp来实现</li>
+</ul>
+</li>
+<li>实现setAnimation设定进入和返回的动画</li>
+<li>重新设定切换器的图片资源即可(ImageSwitcher.setRouse)</li>
+<li></li>
+<li><strong>注:</strong></li>
+<li>getX是浮点型</li>
+<li>onTouch监听动作分down时进行还是up时进行</li>
+</ul>
+<h1><span id="viewfilper">ViewFilper</span></h1><ul>
+<li>实例化</li>
+<li>把图片资源addView遍历进去</li>
+<li>设置inAnimation和outAnimation</li>
+<li>showproviders显示前一张</li>
+<li>showNext显示下一张</li>
+</ul>
+<h1><span id="gridview">GridView</span></h1><ul>
+<li>xml配置<ul>
+<li>numColens：可以调成自动排列，也可以指定列数</li>
+</ul>
+</li>
+<li>可以用SimpleAdapter适配器加载图片资源</li>
+<li>可以自定义BaseAdapter<ul>
+<li>直接在主方法中自定义                         <img src="https://api2.mubu.com/v3/document_image/54766000-13e8-4809-bd9b-2ed85a5afa55-3810853.jpg" alt="img">                                        </li>
+<li>重写getcount和getView方法</li>
+<li>getcount返回总数</li>
+<li>getview初始化组件，并逐个返回相应位置的组件</li>
+</ul>
+</li>
+</ul>
+<h1><span id="自定义baseadapter">自定义baseAdapter</span></h1><ul>
+<li>getcount是数量</li>
+<li>getview单个视图的返回<ul>
+<li>要判断是视图是否为空（第一次时是空的）</li>
+<li>不空的直接强转返回即可</li>
+</ul>
+</li>
+</ul>
+<h1><span id="spinner和listview">Spinner和ListView</span></h1><ul>
+<li>Spinner有个下拉样式可以选</li>
+<li>ListView有列表样式可以选</li>
+</ul>
+<h1><span id="scrollview">ScrollView</span></h1><ul>
+<li>内部只能含有一个组件，如果要多个就用布局管理器包裹</li>
+<li>改名字还能实现纵向和横向</li>
+</ul>
+<h1><span id="tabhost">Tabhost</span></h1><ul>
+<li>setIndicator后面还可以接图标                        <img src="https://api2.mubu.com/v3/document_image/fdf1e47c-bafb-492e-bcf2-51dc7d091cea-3810853.jpg" alt="img">                            </li>
+<li>xml<ul>
+<li>分别写Tabhost、TabWiget、TabContent</li>
+<li>Tabhost有预定义id,@android:id Tabhost</li>
+<li>TabWiget有预定义id,@android :id tabs</li>
+<li>TabContent是一个Framlayout,也有预定义id，@android :id Tabcontent</li>
+<li>将后面两个包裹在一个布局管理器中</li>
+</ul>
+</li>
+<li>分别写fragment的布局文件</li>
+<li>java<ul>
+<li>定义Tabhost</li>
+<li>setup对tabhost进行初始化</li>
+<li>通过inflater将两个fragment布局文件与tabcontent进行绑定</li>
+<li>tabhost通过id分别添加标签页标识，标签页布局，设定标签页标题</li>
+</ul>
+</li>
+</ul>
+<h1><span id="activity">Activity</span></h1><ul>
+<li>finish()关闭Activity</li>
+<li>onCreate(null); 刷新Activity</li>
+<li>StratActivityForresult<ul>
+<li>用该方法启动要多写一个请求码</li>
+<li>在被调用的activity中要setResut设置一个结果码</li>
+<li>通过点击某个按钮finish掉新的activity</li>
+<li>在主Activity中重写OnActivityResult方法，判断请求吗和结果码进行判断并获取数据</li>
+</ul>
+</li>
+</ul>
+<h1><span id="fragment">Fragment</span></h1><ul>
+<li>xml<ul>
+<li>name可以指定默认的Fragment</li>
+</ul>
+</li>
+<li>分别编写fragment布局文件和Fragment对应实体类，并进行绑定</li>
+<li>java<ul>
+<li>配合FragmentManiger新建FragmentTranscation ft</li>
+<li>ft.add添加fragment</li>
+<li>ft.replace替换fragment</li>
+<li>这里用来添加或替换的都是我们定义的Fragment实体类</li>
+</ul>
+</li>
+</ul>
+<h1><span id="intent">Intent</span></h1><ul>
+<li>ComponentName<ul>
+<li>实例化两个参数，一个包名，一个完整Activity类名</li>
+</ul>
+</li>
+<li>Action和Data<ul>
+<li>Action和Data配合使用</li>
+<li>Data都有对应Action的一些前缀</li>
+<li>Data里面的字符串要变成URI</li>
+</ul>
+</li>
+<li>Action和Category<ul>
+<li>两个用法差不多，都是通过对应常量用来唤醒系统某个组件</li>
+<li>Action是想要做的动作，Category是怎么去实现这个动作</li>
+</ul>
+</li>
+<li>Flags<ul>
+<li>配置如何启动Activity</li>
+<li>用intent点出来的常量指定</li>
+<li>比如新的Acvity不保留历史记录，回到主界面再启动显示的是原来的Activity</li>
+</ul>
+</li>
+<li>隐式Intent<ul>
+<li>说白了就是不用指定类名，用Action,Data,Category启动Activity</li>
+</ul>
+</li>
+<li>Intent过滤器<ul>
+<li>在manifest中配置category和action</li>
+<li>在主类intent中配置Action启动新的Activity</li>
+<li>跳转时可能会让我们选择多个Acivity中的一个，因为其他的Activity都可能包含这个Activity</li>
+</ul>
+</li>
+</ul>
+<h1><span id="事件处理">事件处理</span></h1><ul>
+<li>监听处理</li>
+<li>回调处理：就是重写方法，监听对象是整个activity</li>
+</ul>
+<h1><span id="物理按键处理">物理按键处理</span></h1><ul>
+<li>一般都有对应的常量，可以通过KEY_EVENT获得</li>
+<li>通过回调方法事件处理即可</li>
+</ul>
+<h1><span id="长按弹出窗口">长按弹出窗口</span></h1><ul>
+<li>重写回调函数onCreateContextMenu</li>
+<li>在里面直接menu.add添加字符串即可</li>
+<li>然后在监听器中注册registerForContextMenu(v)</li>
+<li>打开OpenContextMenu(v)即可</li>
+</ul>
+<h1><span id="触摸事件">触摸事件</span></h1><ul>
+<li>OnTouch触摸事件会有一个evet事件源</li>
+<li>如果不区分按下和抬起，整个事件监听的就是按下到抬起的过程</li>
+<li>（能够获得手指触摸的xy,如果拖动，xy将持续变化）</li>
+<li>如果区分，则分别监听按下和抬起事件</li>
+</ul>
+<h1><span id="手势检测">手势检测</span></h1><ul>
+<li>实现Gestruedetector.OnGestureListener接口</li>
+<li>重写的Down方法一定得返回true，否则整个手势无效</li>
+<li>重写方法Fling,里面的e1,e2分别可以获得起始位置和结束位置</li>
+<li>将接口添加到GestrueDetector实例中</li>
+<li>重写OnTouch回调函数，让它return gestrueDetector.onTouch(把super替换掉)</li>
+</ul>
+<h1><span id="手势创建和使用">手势创建和使用</span></h1><ul>
+<li>使用GestureBuilder工具制作gesture手势文件</li>
+<li>将gesture手势文件放入raw文件夹</li>
+<li>使用GestureOverLayView组件</li>
+<li>继承GestureOverLayView.OnGestruePerformedListener</li>
+<li>创建GestureLibery绑定gesture文件</li>
+<li>重写.OnGestruePerformedListener方法</li>
+<li>把libery遍历成Pridection数组</li>
+<li>遍历Pridection.score,把比零大的角标记好，并把score赋值给初始是零的那个变量，继续遍历。</li>
+<li>通过Pridection对象的get(index).name获得手势对应名字</li>
+</ul>
+<h1><span id="字符串资源动态使用">字符串资源动态使用</span></h1><ul>
+<li>getResource.getString(<a href="http://r.string.name/">R.String.name</a>)</li>
+</ul>
+<h1><span id="尺寸资源">尺寸资源</span></h1><ul>
+<li>dimens.xml</li>
+<li>dp 布局和组件用，可以在不同设备实现缩放</li>
+<li>sp 字体用这个，可以根据系统字体进行缩放</li>
+</ul>
+<h1><span id="布局资源">布局资源</span></h1><ul>
+<li>可以通过<include layout="@android .layout.imge"></include></li>
+</ul>
+<h1><span id="数组资源">数组资源</span></h1><ul>
+<li>array 尺寸资源</li>
+<li>array-String 字符串资源</li>
+<li>array-Integer 整形数组资源（颜色，id等）可以动态添加的时候用</li>
+</ul>
+<h1><span id="图片资源">图片资源</span></h1><ul>
+<li>用9-patch做可拉伸的图片</li>
+</ul>
+<h1><span id="statelistdrawble">StateListDrawble</span></h1><ul>
+<li>被<select>包裹着</select></li>
+<li>通过item配置相应状态下的样式</li>
+</ul>
+<h1><span id="主题资源">主题资源</span></h1><ul>
+<li>包裹在<style>下</li>
+<li>父类可以继承appthem</li>
+<li>在item中配置各种状态</li>
+<li>可以在manifest中修改主题</li>
+</ul>
+<h1 id="样式资源"><a href="#样式资源" class="headerlink" title="样式资源"></a>样式资源</h1><ul>
+<li>和主题资源相似，只不过不继承appthem</li>
+<li>在需要的组件上使用即可</li>
+</ul>
+<h1 id="选项菜单"><a href="#选项菜单" class="headerlink" title="选项菜单"></a>选项菜单</h1><ul>
+<li>编写menu.xml,包含id和title</li>
+<li>重写OnCreateOptionMenu</li>
+<li>用MenuInflater绑定menu.xml资源</li>
+<li>通过OnOptionSelect回调函数，判断id并事件处理</li>
+</ul>
+<h1 id="上下文菜单"><a href="#上下文菜单" class="headerlink" title="上下文菜单"></a>上下文菜单</h1><ul>
+<li>编写menu</li>
+<li>用registerForContentMenu为控件注册上下文</li>
+<li>重写OnCreateContextMenu(注意删掉父类的构造方法)</li>
+<li>用MenuInflater绑定menu.xml资源</li>
+<li>通过OnContextSelect回调函数，判断id并事件处理</li>
+</ul>
+<h1 id="ActionBar"><a href="#ActionBar" class="headerlink" title="ActionBar"></a>ActionBar</h1><ul>
+<li>通过getSuppertActionBar创建ActionBar实体类</li>
+<li>通过ActionBar.hide()隐藏</li>
+<li>通过ActionBar.show()显示</li>
+</ul>
+<h1 id="Actionitem"><a href="#Actionitem" class="headerlink" title="Actionitem"></a>Actionitem</h1><ul>
+<li>在menu文件中通过app:showAsAction属性配置</li>
+<li>其他操作和选项菜单一致</li>
+</ul>
+<h1 id="ActionView"><a href="#ActionView" class="headerlink" title="ActionView"></a>ActionView</h1><ul>
+<li>在menu文件中通过app:actionViewClass属性指定，可以让搜索按钮变成搜索框</li>
+<li>在menu文件中通过app:actionlayout属性指定布局文件，跳转到布局文件</li>
+</ul>
+<h1 id="ActionTab"><a href="#ActionTab" class="headerlink" title="ActionTab"></a>ActionTab</h1><ul>
+<li>创建对应的fragment布局文件和fragment类</li>
+<li>创建MyTabListener实现AcionBar.TabListener接口<ul>
+<li>用构造方法初始化final修饰的Activity和Class</li>
+<li>再创造一个私有的Fragment实体类</li>
+<li>重写被选择方法和不被选择方法</li>
+<li>在被选则时如果fragment为空，通过Fragment.instantiat方法初始化（参数是之前的activity和class）并将fragment通过ft.add添加进去</li>
+<li>在判断外面写上ft.attach(fragment)显示</li>
+<li>在不被选择时，如果fragment不为空，则使用ft,distach(frament)移除</li>
+</ul>
+</li>
+<li>actionbar.setNavicationMode(ActionBar.NAVICATION_MODE_TABS)配置为选项卡模式</li>
+<li>隐藏actionbar标题栏</li>
+<li>actionbar.addTab一个个添加到标题，以及在监听器中传入对应fragment</li>
+</ul>
+<h1 id="层级式导航"><a href="#层级式导航" class="headerlink" title="层级式导航"></a>层级式导航</h1><ul>
+<li>在mainifest中向activity添加mate-data标签</li>
+<li>用name和value指定父Activity</li>
+<li>通过navUtils判断是否有父类</li>
+<li>有的话通过actionbar.homeasupEnable(true)显示向左箭头</li>
+</ul>
+<h1 id="AlertDialog"><a href="#AlertDialog" class="headerlink" title="AlertDialog "></a>AlertDialog <img src="https://api2.mubu.com/v3/document_image/6c4ba671-f38e-4a28-af30-80cbaace15a3-3810853.jpg" alt="img"></h1><ul>
+<li>实例化                                <img src="https://api2.mubu.com/v3/document_image/f696b26a-c5b4-49d9-8e10-007fabff73ad-3810853.jpg" alt="img">                            </li>
+<li>设定属性</li>
+<li>在按钮处绑定数据，以及添加监听器                                <img src="https://api2.mubu.com/v3/document_image/53f7a765-af4f-4055-a5dd-eff7c7aaf07b-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1 id="Notification通知"><a href="#Notification通知" class="headerlink" title="Notification通知"></a>Notification通知</h1><ul>
+<li>需要设定channel                           <img src="https://api2.mubu.com/v3/document_image/dbd55875-0745-4b6a-804f-888d251c9580-3810853.jpg" alt="img">                                                 <img src="https://api2.mubu.com/v3/document_image/9c69e7bf-d5bc-4fe2-a04a-412c27040f23-3810853.jpg" alt="img">                            </li>
+<li>通过notification.builder实例化</li>
+<li>设定各种属性</li>
+<li>设定一个PendingIntent绑定intent</li>
+<li>通过notificationManiger的notify属性发送                            <img src="https://api2.mubu.com/v3/document_image/933ea260-40b1-43ff-ae26-1f4367a76655-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1 id="BroadcastReceiver"><a href="#BroadcastReceiver" class="headerlink" title="BroadcastReceiver"></a>BroadcastReceiver</h1><ul>
+<li><strong>发送</strong></li>
+<li>写intent，设定action(字符串就好)</li>
+<li>sendBroadCast（intent）</li>
+<li><strong>接收</strong></li>
+<li>继承BroadCastReceiver重写OnReceiver</li>
+<li><strong>注册</strong></li>
+<li>在manifest中注册</li>
+<li>属性：name,enable.exported</li>
+<li>过滤器：写action通过name过滤</li>
+</ul>
+<h1 id="AlarmManiger"><a href="#AlarmManiger" class="headerlink" title="AlarmManiger             "></a>AlarmManiger             <img src="https://api2.mubu.com/v3/document_image/c165b78d-5417-47bb-823c-5536425e6fd8-3810853.jpg" alt="img"></h1><p>思路</p>
+<ul>
+<li>在AlarmManiger中设定唤醒模式，唤醒时间，pendingIntent对象</li>
+</ul>
+<h1 id="画笔和布"><a href="#画笔和布" class="headerlink" title="画笔和布"></a>画笔和布</h1><ul>
+<li>paint.set(AntiAlias)属性可以设置抗锯齿              <img src="https://api2.mubu.com/v3/document_image/5329a450-a8e6-4075-9002-a9f8aebb56df-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1 id="绘制几何图形"><a href="#绘制几何图形" class="headerlink" title="绘制几何图形"></a>绘制几何图形</h1><ul>
+<li>paint设定颜色、填充方式、等</li>
+<li>cavans有很多类可以绘制各种图形</li>
+<li>ReatF是用来设置偏移量的</li>
+</ul>
+<h1 id="绘制文本"><a href="#绘制文本" class="headerlink" title="绘制文本"></a>绘制文本</h1><ul>
+<li>canvan.drawText</li>
+</ul>
+<h1 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h1><p>从SD卡中读取并绘制</p>
+<ul>
+<li>Everement.getExternalStorage+”/df.png”获取路径</li>
+<li>通过BitmapFactory.decode将图片与bitmap实例绑定</li>
+<li>也可通过实例bitmpa.createBitmap挖出一小块使用</li>
+<li>canvans.drawBitmap()</li>
+</ul>
+<h1 id="绘制路径"><a href="#绘制路径" class="headerlink" title="绘制路径"></a>绘制路径</h1><ul>
+<li>实例化Path</li>
+<li>add设置路径以及位置</li>
+<li>canvan.drawPath</li>
+</ul>
+<h1 id="逐帧动画"><a href="#逐帧动画" class="headerlink" title="逐帧动画"></a>逐帧动画</h1><ul>
+<li>建立资源文件animation-list</li>
+<li>设置item的drawble属性和duration属性</li>
+<li>设置为某个控件的背景</li>
+<li>通过AnimaitonDrawble和控件的getBackground进行实例化</li>
+<li>amin.start()播放</li>
+<li>amin.stop() 暂停</li>
+</ul>
+<h1 id="补间动画"><a href="#补间动画" class="headerlink" title="补间动画"></a>补间动画</h1><ul>
+<li><p>动画类型都是在<set>标签中</p>
+<p><img src="https://api2.mubu.com/v3/document_image/4b42fe1f-f6ff-41ac-9956-7f22b8ba8e69-3810853.jpg" alt="img">                            <strong>思路</strong></p>
+</li>
+<li><p>通过AnimationUtil.loading实例化animation</p>
+</li>
+<li><p>将它添加到相应的控件</p>
+<p><strong>属性规律</strong></p>
+</li>
+<li><p>旋转和缩放都有个中心点的设置项</p>
+</li>
+</ul>
+<h1 id="MediaPlayer播放音频"><a href="#MediaPlayer播放音频" class="headerlink" title="MediaPlayer播放音频"></a>MediaPlayer播放音频</h1><p>​       <strong>creat()方法</strong></p>
+<ul>
+<li><p>直接设定音乐，通过start,pause,stop控制</p>
+<p><strong>getSource路径、prepard预加载，start方法时</strong></p>
+</li>
+<li><p>在需要连续播放多个音频时</p>
+</li>
+<li><p>记得最后要进行release资源释放</p>
+</li>
+</ul>
+<h1 id="SoundPool播放短音频"><a href="#SoundPool播放短音频" class="headerlink" title="SoundPool播放短音频"></a>SoundPool播放短音频</h1><ul>
+<li>实例化AudioAttribute设置应用场景，音效类型</li>
+<li>实例化SoundPool设置音效池，以及最大音频数量</li>
+<li>建Hashmap，key是序号，vlaue用Soundpool.load加载音频</li>
+<li>通过soundPool.play播放指定的value的音乐</li>
+</ul>
+<h1 id="VideoView播放视频"><a href="#VideoView播放视频" class="headerlink" title="VideoView播放视频"></a>VideoView播放视频</h1><ul>
+<li>setVideoPath指定路径</li>
+<li>setMedioController添加控制器（实例化一个默认的MedioController就好）</li>
+<li>requstFocus获得焦点</li>
+<li>start播放</li>
+</ul>
+<h1 id="MediaPlayer-surfaceView播放视频"><a href="#MediaPlayer-surfaceView播放视频" class="headerlink" title="MediaPlayer+surfaceView播放视频"></a>MediaPlayer+surfaceView播放视频</h1><ul>
+<li>通过Surfacevie实例获得SurfaceHolder</li>
+<li>通过medie.display(surfaceholder)将音频输出到surfaceview组件</li>
+<li>其他步骤与播放音频一致</li>
+</ul>
+<h1 id="控制摄像头Camera拍照"><a href="#控制摄像头Camera拍照" class="headerlink" title="控制摄像头Camera拍照"></a>控制摄像头Camera拍照</h1><p>​                         <img src="https://api2.mubu.com/v3/document_image/695fe40d-144b-4019-ad00-c7b88e565216-3810853.jpg" alt="img">                            </p>
+<ul>
+<li><strong>思路</strong></li>
+<li>拍照窗口通过surfaceView显示</li>
+<li>拍完的照片得用代码添加到系统图库并且通知系统，否则是无法看到的。</li>
+</ul>
+<h1 id="控制摄像头录制视频mediaRecorder"><a href="#控制摄像头录制视频mediaRecorder" class="headerlink" title="控制摄像头录制视频mediaRecorder"></a>控制摄像头录制视频mediaRecorder</h1><ul>
+<li>mediaRecorder                    <img src="https://api2.mubu.com/v3/document_image/f83b6cdb-943e-4954-bc05-b3e99fe80343-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1 id="SharedPreference"><a href="#SharedPreference" class="headerlink" title="SharedPreference"></a>SharedPreference</h1><ul>
+<li>存储数据（最后记得要commit）                   <img src="https://api2.mubu.com/v3/document_image/be3e2119-41c0-4392-9b86-447c35b3ab76-3810853.jpg" alt="img">                            </li>
+<li>读取数据                  <img src="https://api2.mubu.com/v3/document_image/a48ebb7c-73dd-42ea-a4f2-834aff67c572-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1 id="内部存储"><a href="#内部存储" class="headerlink" title="内部存储"></a>内部存储</h1><ul>
+<li>openOutputStream/openInputStream                        <img src="https://api2.mubu.com/v3/document_image/0e6a82e2-a315-4187-8f4a-c987960db5d0-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1 id="外部存储"><a href="#外部存储" class="headerlink" title="外部存储"></a>外部存储</h1><ul>
+<li>不用openOutputStream而是直接new一个输出流</li>
+<li>其他与每部存储一致</li>
+</ul>
+<h1 id="sqlite数据库"><a href="#sqlite数据库" class="headerlink" title="sqlite数据库"></a>sqlite数据库</h1><ul>
+<li>继承SqLiteOpenHelper</li>
+<li>重写oncreate和onupdate方法（游标工厂可以为空）</li>
+<li>在oncreate初始化</li>
+<li>在主类中通过上下文，数据库名，游标工厂（null）,版本号实例化</li>
+<li>通过myhelper的getReadbleDatebase可以获得数据库对象</li>
+<li>可以通过countentValue进行数据库数据插入，很方便</li>
+<li>通过query写表名称，查询字段，以及查询字符串数据查询很方便</li>
+</ul>
+<h1 id="countentProvider"><a href="#countentProvider" class="headerlink" title="countentProvider"></a>countentProvider</h1><ul>
+<li><strong>查询</strong></li>
+<li>实例化CountentResolver</li>
+<li>query方法结合URI获得cursor</li>
+<li>遍历cursor</li>
+</ul>
+<h1 id="handler消息传递机制"><a href="#handler消息传递机制" class="headerlink" title="handler消息传递机制"></a>handler消息传递机制</h1><ul>
+<li>在handler的handleMassage中给自己发消息可进行循环</li>
+</ul>
+<h1 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h1><ul>
+<li>sendMessageDelay可以延迟发送   <img src="https://api2.mubu.com/v3/document_image/372fef33-a965-431e-bb3b-092ec26338a7-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h1><ul>
+<li>要用这两个方法把handler包装起来   <img src="https://api2.mubu.com/v3/document_image/c7e4c84d-d2ff-424e-8476-78ec7ae55a60-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1 id="startService"><a href="#startService" class="headerlink" title="startService"></a>startService</h1><ul>
+<li>直接用intent的startService                     <img src="https://api2.mubu.com/v3/document_image/71972ba2-5c08-4959-858e-344eb7c0092f-3810853.jpg" alt="img">                            </li>
+<li><strong>思路</strong></li>
+<li>启动service就代表启动了某个动作</li>
+<li>service销毁就代表停止了某个动作</li>
+</ul>
+<h1 id="bindService"><a href="#bindService" class="headerlink" title="bindService"></a>bindService</h1><ul>
+<li>生命周期                      <img src="https://api2.mubu.com/v3/document_image/3b6a8976-572b-4418-9e13-8818421eff19-3810853.jpg" alt="img">                            </li>
+<li>基本步骤                      <img src="https://api2.mubu.com/v3/document_image/948cbf1b-60d8-4341-ade7-b70f593be337-3810853.jpg" alt="img">                            </li>
+<li><strong>思路</strong></li>
+<li>/service中</li>
+<li>写一个内部类继承Binder</li>
+<li>写一个获得BindService的方法</li>
+<li>在IBindere中返回这个内部类</li>
+<li>/activity中</li>
+<li>实例化serviceConnection获取到BundService</li>
+<li>可以通过BundService调用服务中的所有方法</li>
+</ul>
+<h1 id="IntentService"><a href="#IntentService" class="headerlink" title="IntentService"></a>IntentService</h1><ul>
+<li><p>区别</p>
+<p><img src="https://api2.mubu.com/v3/document_image/863e5043-473a-461a-a9e7-1c5e546f4c6d-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p><strong>思路</strong></p>
+</li>
+<li><p>区别在于耗时操作时，自动开启子线程运行</p>
+</li>
+<li><p>运行完还会自动销毁</p>
+</li>
+</ul>
+<h1 id="传感器"><a href="#传感器" class="headerlink" title="传感器"></a>传感器</h1><ul>
+<li>步骤                       <img src="https://api2.mubu.com/v3/document_image/531d9b9f-f0c5-410c-b811-43f6f7632793-3810853.jpg" alt="img">                            </li>
+<li> 监听                             <img src="https://api2.mubu.com/v3/document_image/fa1b2fd6-9846-4dde-9326-0d5ce707dabd-3810853.jpg" alt="img">                            </li>
+<li><strong>思路</strong></li>
+<li>继承sensorEventListener重写两个方法</li>
+<li>在onresum方法中注册传感器（注册时指定注册的是什么传感器）</li>
+<li>在onpuase方法解除注册</li>
+<li>在重写方法中可以用event获取传感器数据</li>
+</ul>
+<h1 id="LocationProvider"><a href="#LocationProvider" class="headerlink" title="LocationProvider"></a>LocationProvider</h1><ul>
+<li><p>所有获得方式</p>
+<p><img src="https://api2.mubu.com/v3/document_image/34fed4b5-3ba8-4709-ab1b-2b6959e3867b-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>获取所有可用的定位服务</p>
+<p><img src="https://api2.mubu.com/v3/document_image/dfef465c-2867-4ec5-9372-f2e8e3c333bb-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>获取指定的</p>
+<p><img src="https://api2.mubu.com/v3/document_image/53a06133-374b-482c-9edb-453cd7a2dc02-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>通过过滤获得最佳的</p>
+<p><img src="https://api2.mubu.com/v3/document_image/46167160-d3e3-4bd3-afa5-c4c6b322f228-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1 id="获取定位信息"><a href="#获取定位信息" class="headerlink" title="获取定位信息"></a>获取定位信息</h1><ul>
+<li><p>步骤</p>
+<p><img src="https://api2.mubu.com/v3/document_image/10aa99d6-7aaf-4f61-96fe-8c4065b13c89-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>//locationManiger配置</p>
+<p><img src="https://api2.mubu.com/v3/document_image/947576bd-d234-4211-9cc4-3b8f8c97ab6a-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>获取最新位置</p>
+<p>​        <img src="https://api2.mubu.com/v3/document_image/36767559-772d-40e2-9b8b-1d5c83ee692f-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>通过location获取经纬度</p>
+<p>​    <img src="https://api2.mubu.com/v3/document_image/ededb9cd-0ba3-4308-9625-77e041835849-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1 id="获得指纹证书"><a href="#获得指纹证书" class="headerlink" title="获得指纹证书"></a>获得指纹证书</h1><ul>
+<li><p>获得指纹证书  </p>
+<p>​    <img src="https://api2.mubu.com/v3/document_image/af00f240-7b79-4e4a-a09b-dae5974c9b7a-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1 id="百度地图"><a href="#百度地图" class="headerlink" title="百度地图"></a>百度地图</h1><ul>
+<li>获取API密钥</li>
+<li>下载百度地图SDK的lib</li>
+<li>导入项目的lib,并右键为aslib</li>
+<li>在main中创建jniLibs目录，把和jar包一起下的文件复制进去</li>
+<li>声明需要的权限（官网找）</li>
+<li>注明密钥<ul>
+<li>​                                <img src="https://api2.mubu.com/v3/document_image/1a84510a-9cb1-43ef-a0d8-3dc7dd40288f-3810853.jpg" alt="img">                            </li>
+</ul>
+</li>
+<li>在mainActivity初始化SDK<ul>
+<li>​                                <img src="https://api2.mubu.com/v3/document_image/ed61d8b5-8523-4daa-a2b9-8f039374a6d6-3810853.jpg" alt="img">                            </li>
+</ul>
+</li>
+<li>在activity的生命周期中调用相应的方法</li>
+</ul>
+<h1 id="定位我的位置"><a href="#定位我的位置" class="headerlink" title="定位我的位置"></a>定位我的位置</h1><ul>
+<li>主要是通过定位图层           <img src="https://api2.mubu.com/v3/document_image/4c9b2952-a20c-4e53-aa50-75e7d133fe76-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1 id="———-补充———–"><a href="#———-补充———–" class="headerlink" title="———-补充———–"></a>———-补充———–</h1><h1 id="底部导航栏"><a href="#底部导航栏" class="headerlink" title="底部导航栏"></a>底部导航栏</h1><ul>
+<li>编写xml控件</li>
+<li>编写一个menu.xml<ul>
+<li><item></li>
+<li>包含id、图片、标题</li>
+</ul>
+</li>
+<li>编写一个navigation.xml<ul>
+<li><fragment></li>
+<li>包含id,name,label,layout</li>
+<li>id和上面menu的一致</li>
+<li>name为相应的Fragment类</li>
+<li>layout分别为fragment布局文件</li>
+</ul>
+</li>
+<li>动态配置<ul>
+<li>将之前写的id添加进去                            <img src="https://api2.mubu.com/v3/document_image/bd187a03-d824-4db6-a127-c630cc5ff684-3810853.jpg" alt="img">                                        </li>
+<li>找到主类中的fragment作为navcontroller          <img src="https://api2.mubu.com/v3/document_image/482eded1-358f-4790-8b10-1e085f81fadb-3810853.jpg" alt="img">                                        </li>
+<li>将之前的id和BottomNavigation与navcontroller绑定在一起</li>
+</ul>
+</li>
+</ul>
+<h1 id="侧部导航栏"><a href="#侧部导航栏" class="headerlink" title="侧部导航栏"></a>侧部导航栏</h1><ul>
+<li><p>用DrawerLayout进行主类布局</p>
+</li>
+<li><p>在最底下写一个navigationView</p>
+<ul>
+<li><p>指定头部布局和选项的menu</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/c9d073a1-9bde-4942-8b02-303d2c80aeea-3810853.jpg" alt="img">                                        </p>
+</li>
+</ul>
+</li>
+<li><p>写一个布局文件作为navigationview的Header</p>
+</li>
+<li><p>写menu.xml</p>
+<ul>
+<li><p>用group在最外层包裹一下</p>
+<p>   <img src="https://api2.mubu.com/v3/document_image/5882d7df-0577-4fbd-8478-9f632e0805cd-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>item属性和底部导航栏一样</p>
+<p>​    <img src="https://api2.mubu.com/v3/document_image/a2a7bafb-5f94-4732-8a96-4428f71ad8cb-3810853.jpg" alt="img">                                        </p>
+</li>
+</ul>
+</li>
+<li><p>写一个navigation.xml</p>
+<p>   <img src="https://api2.mubu.com/v3/document_image/c74e0dc0-a219-492a-bcfd-1e77f8a20523-3810853.jpg" alt="img">                            </p>
+<ul>
+<li>记得id和上面的menu中的id一致</li>
+</ul>
+</li>
+<li><p>动态配置</p>
+<ul>
+<li><p>与底部导航栏的步骤一致</p>
+<p><img src="https://api2.mubu.com/v3/document_image/edcbc1ba-abff-43a9-875c-e6e5f166906c-3810853.jpg" alt="img">                                        </p>
+</li>
+</ul>
+</li>
+<li><p>重写onsuppertNavigationUp</p>
+<ul>
+<li>点击调出左侧菜单栏的意思      <img src="https://api2.mubu.com/v3/document_image/e1b9bcd8-12a5-4c3d-a615-9db27cb7a8c1-3810853.jpg" alt="img">                                        </li>
+</ul>
+</li>
+</ul>
+<h1 id="———享学——–"><a href="#———享学——–" class="headerlink" title="———享学——–"></a>———享学——–</h1><h1 id="RecyclerView"><a href="#RecyclerView" class="headerlink" title="RecyclerView"></a>RecyclerView</h1><ul>
+<li><p>添加依赖包</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/6658b4e0-3ab4-4f40-b6a9-711384622ea9-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>布局使用</p>
+<p>​     <img src="https://api2.mubu.com/v3/document_image/ffb205f6-40ea-4764-a15a-8e57d32816a9-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>创建自定义adpater</p>
+<ul>
+<li><p>继承泛型的adapter         <img src="https://api2.mubu.com/v3/document_image/c22e60fa-ac57-4430-93ad-70d9832e9e88-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>构造方法</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/f26f08ec-1065-435e-8ab5-9c334a336635-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>绑定视图      <img src="https://api2.mubu.com/v3/document_image/e98c5631-406d-4682-b7e9-81b49fc2006e-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>寻找视图         <img src="https://api2.mubu.com/v3/document_image/93b3df01-40a5-4268-a3d6-e6d0af749606-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>设置数据                     <img src="https://api2.mubu.com/v3/document_image/0b8cd238-5572-4e29-9de6-d3929186f623-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>设置数据数量                 <img src="https://api2.mubu.com/v3/document_image/78d93bcd-0fea-4560-8aa5-1d732dbee9da-3810853.jpg" alt="img">                                        </p>
+</li>
+</ul>
+</li>
+<li><p>设置布局</p>
+<ul>
+<li>线性布局                        <img src="https://api2.mubu.com/v3/document_image/9b047589-daee-4d89-8100-b04d516933a3-3810853.jpg" alt="img">                                        </li>
+<li>网格布局                         <img src="https://api2.mubu.com/v3/document_image/b9e26623-4cf3-4f00-888b-061222f17d31-3810853.jpg" alt="img">                                        </li>
+<li>瀑布流布局（高低不同会补充空格）                   <img src="https://api2.mubu.com/v3/document_image/e827ba5b-58f8-4cda-bf62-6ab99efe97b2-3810853.jpg" alt="img">                                        </li>
+</ul>
+</li>
+<li><p>设置监听</p>
+<ul>
+<li>创建监听接口，并创建设置方法           <img src="https://api2.mubu.com/v3/document_image/75285f4f-59bc-4f84-803e-152e90526982-3810853.jpg" alt="img">                                        </li>
+<li>在MyViewHolder中创建点击监听，并回调接口         <img src="https://api2.mubu.com/v3/document_image/7826096f-789a-4fe3-9bc0-e77aa9edbf91-3810853.jpg" alt="img">                                        </li>
+<li>在主方法中使用               <img src="https://api2.mubu.com/v3/document_image/054c5589-bf62-4ae2-a07b-a23ee31f212f-3810853.jpg" alt="img">                                        </li>
+</ul>
+</li>
+</ul>
+<h1 id="ViewPager"><a href="#ViewPager" class="headerlink" title="ViewPager"></a>ViewPager</h1><ul>
+<li><p>将布局视图集合传进自定义Adapter</p>
+<p><img src="https://api2.mubu.com/v3/document_image/34818e4a-d6dc-4b6b-8c1e-82ef83db9602-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>自定义Adapter</p>
+<ul>
+<li><p>总览                     <img src="https://api2.mubu.com/v3/document_image/f550c990-a6c8-40cf-8918-fdd58bfd881f-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>继承</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/3f3dfd26-6286-436c-a4e2-935f56fdf2e7-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>构造方法</p>
+<p>   <img src="https://api2.mubu.com/v3/document_image/8732ed7f-8579-482f-acde-cfa0c2bfbba0-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>设置数量</p>
+<p>   <img src="https://api2.mubu.com/v3/document_image/87952ac8-2dc5-4394-aedf-1a27ef342672-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>添加视图，并返回                 <img src="https://api2.mubu.com/v3/document_image/31cfc155-3c9f-42c9-9057-09e0d01be0a1-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>判断视图的key是否正确</p>
+<p><img src="https://api2.mubu.com/v3/document_image/52db49c2-149d-4f6a-806f-62be7effdc39-3810853.jpg" alt="img">                                        </p>
+</li>
+<li><p>删除视图                   <img src="https://api2.mubu.com/v3/document_image/fb6b48bf-2fa7-4d16-bb84-dc20f3cf8aa4-3810853.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+</ul>
+</style></li></ul>]]></content>
+      <tags>
+        <tag>笔记Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>狂神大前端</title>
+    <url>/2021/07/04/%E7%8B%82%E7%A5%9E%E5%A4%A7%E5%89%8D%E7%AB%AF/</url>
+    <content><![CDATA[<h1><span id="vscode">vscode</span></h1><ul>
+<li>emment语法简化操作</li>
+</ul>
+<h1><span id="nodejs安装">nodejs安装</span></h1><p> <img src="https://api2.mubu.com/v3/document_image/34b8ed30-f8e4-455f-b4ce-4a5d3f08a29b-3810853.jpg" alt="img">                            </p>
+<h1><span id="nodejs了解">nodejs了解</span></h1><ul>
+<li>是将javascript解释给操作系统的Chromv8引擎</li>
+<li>直接通过node命令运行</li>
+</ul>
+<h1><span id="nodejs实现httpserver">nodejs实现httpserver                                <img src="https://api2.mubu.com/v3/document_image/0a8868b8-acc4-4993-8e2b-580cdc214169-3810853.jpg" alt="img"></span></h1><p>思路</p>
+<ul>
+<li>通过require导入http包</li>
+<li>createServer创建服务<ul>
+<li>response指定状态码和解释格式</li>
+<li>request.end(“”)输出内容</li>
+<li>监听8080端口</li>
+</ul>
+</li>
+</ul>
+<h1><span id="nodejs连接数据库">nodejs连接数据库</span></h1><ul>
+<li><p>mysql不是nodejs内置的包，需要通过npm导入依赖，才能require</p>
+</li>
+<li><p>导入mysql依赖，创建connencttion并连接</p>
+<p><img src="https://api2.mubu.com/v3/document_image/7ac234a2-0555-42ba-9206-9ddd9fe86b15-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>通过query语句查询，并通过回调函数得到结果                           <img src="https://api2.mubu.com/v3/document_image/dc91392a-7ab0-4196-ab3a-1ab5c59f76eb-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id>—</span></h1><h1><span id="es6">ES6</span></h1><ul>
+<li>ES6是一个javascript的标准规范</li>
+</ul>
+<h1><span id="let和count">let和count</span></h1><ul>
+<li><p>变量用let,常量用const</p>
+<p><img src="https://api2.mubu.com/v3/document_image/881c0e1c-f40e-46bf-b4c3-acc58713adae-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>解决了变量穿透、常量修改的问题                                <img src="https://api2.mubu.com/v3/document_image/1ffc0ddf-6423-49ba-a604-979c9d323859-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>如果循环中变量是用var定义的，在循环外还能输出该变量</p>
+</li>
+<li><p>在有些低版本的浏览器中可能不支持let和count，常在开发小程序中用</p>
+</li>
+</ul>
+<h1><span id="模板字符串">模板字符串</span></h1><ul>
+<li>用反引号”`”包裹字符串，在里面用${}来调用javascript对象属性                    <img src="https://api2.mubu.com/v3/document_image/4694f917-2f26-4837-abd1-ab3ab5f9b8ae-3810853.jpg" alt="img">                            </li>
+<li>而且支持直接换行写，不同担心拼接</li>
+</ul>
+<h1><span id="函数默认参数">函数默认参数</span></h1><ul>
+<li><p>可以在参数处指定默认参数</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/b39d0836-a14b-43d5-81ab-e843cb5aacd6-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>如果不指定，默认为undefined，两个数相加会出现NaN</p>
+</li>
+</ul>
+<h1><span id="箭头函数">箭头函数</span></h1><ul>
+<li>下图四个规律掌握即可                           <img src="https://api2.mubu.com/v3/document_image/39e06410-54d9-4df9-9793-e549be686470-3810853.jpg" alt="img">                            </li>
+<li>例：数组全部乘2</li>
+</ul>
+<h1><span id="对象简化">对象简化</span></h1><ul>
+<li>对象里的方法可以把冒号和function都去掉，仅剩一个（）</li>
+<li>对象的参数名如果和已有变量名一致，且取值也一致，则可以只写个参数名                                <img src="https://api2.mubu.com/v3/document_image/dff44a56-a346-4e9b-99bf-9cfbe90b62cd-3810853.jpg" alt="img">                            </li>
+<li>案例：在ajax中可以使用</li>
+</ul>
+<h1><span id="对象解构">对象解构</span></h1><ul>
+<li><p>直接通过大括号对多个变量赋予对象相应的值</p>
+<p><img src="https://api2.mubu.com/v3/document_image/5b427c0e-b6d9-4730-99d8-a4a928ecbe2b-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="对象传播符">对象传播符</span></h1><ul>
+<li>…person2将person还没解构的数据给了person2                             <img src="https://api2.mubu.com/v3/document_image/2ec93b73-ea2e-4f81-90c1-c248f14e7977-3810853.jpg" alt="img">                            </li>
+<li>想把某个javascript对象拆开使用可以这么用</li>
+</ul>
+<h1><span id="数组map">数组map</span></h1><ul>
+<li>map会自带循环，并且将处理的值返回对应的位置   <img src="https://api2.mubu.com/v3/document_image/0774028b-0680-4f70-a166-6fdaff8caa0f-3810853.jpg" alt="img">                            </li>
+<li>箭头函数简化                           <img src="https://api2.mubu.com/v3/document_image/85331e1f-d2d9-4ea7-8415-36f1c4d6f4e6-3810853.jpg" alt="img">                            </li>
+<li>循环修改数组对象中的某个值                              <img src="https://api2.mubu.com/v3/document_image/918ee0f0-5290-429b-ad18-59ce6053e5ef-3810853.jpg" alt="img">                            </li>
+<li>可以这样给对象增加字段</li>
+<li>  <img src="https://api2.mubu.com/v3/document_image/39c44962-14f3-42ee-999b-45b7867ae654-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1><span id="数组reduce">数组reduce</span></h1><ul>
+<li><p>相邻迭代操作</p>
+<p>   <img src="https://api2.mubu.com/v3/document_image/e2b2905f-a88b-424d-b6dc-35fcf92c1f14-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id>—–</span></h1><h1><span id="npm包管理器快速构建项目">npm包管理器快速构建项目</span></h1><ul>
+<li>通过npm init快速创建nodejs工程                             <img src="https://api2.mubu.com/v3/document_image/fdc70269-b02a-4c5d-bd30-991693407eeb-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1><span id="npm安装模块依赖">npm安装模块依赖</span></h1><ul>
+<li><p>npm  init -y 会以默认方式创建配置文件</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/c0450b92-4272-44a5-8a6c-401573595843-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>pacackge.json的价值就是在新建项目时快速复用                              <img src="https://api2.mubu.com/v3/document_image/db8427dc-78b5-4e98-9914-baf8dc0b9571-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>镜像设置                            <img src="https://api2.mubu.com/v3/document_image/ab2ec69e-60a1-4d97-9c08-527a90b04c6d-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>下载指定版本号或者卸载                             <img src="https://api2.mubu.com/v3/document_image/e4e99ee6-9a37-4ff7-b2f6-a79ece6912fb-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="bable的安装">Bable的安装</span></h1><ul>
+<li><p>让ES6的某些语法能够在一些不支持的浏览器中运行</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/08e74cde-fa2c-4c55-8e2d-2308bfd4e693-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="bable的使用">Bable的使用</span></h1><ul>
+<li><p>初始化nodejs,创建src文件，在src中写es6代码</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/89f87ae4-b737-4ddb-8392-7ddda6e823f2-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>创建.babalrc配置文件，在里面配置es需要转化的版本</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/f8396668-002b-43e4-90a3-b5e120d2b47d-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>使用npm命令下载babel并转换</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/60e176e1-8240-49b7-aff8-1581a2925d9a-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>使用命令转换结果将显示在dist文件夹中</p>
+<p>   <img src="https://api2.mubu.com/v3/document_image/aff1aca5-93f8-4250-9cb5-662f09fc45c9-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>node直接执行dist文件夹中的即可</p>
+</li>
+</ul>
+<h1><span id="自定义命令脚本">自定义命令脚本</span></h1><ul>
+<li><p>将命令以键值对的方式存在package配置文件中</p>
+<p><img src="https://api2.mubu.com/v3/document_image/683c9471-fffc-478a-a856-7c799ebd4df5-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>用改命令直接执行相应的模块</p>
+<p>​    <img src="https://api2.mubu.com/v3/document_image/077133a0-d1c1-4c19-bf62-9733a6b96fed-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="commenjs模块化开发">CommenJS模块化开发</span></h1><ul>
+<li><p>定义方法并导出</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/219d223f-b0d8-43ae-a802-b912f7cd2fd0-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>引入并使用导出的方法</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/8286c50e-cc69-4972-8ff2-de0bcb06eea4-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="es6简化模块开发">ES6简化模块开发</span></h1><ul>
+<li><p>打包</p>
+<p>​    <img src="https://api2.mubu.com/v3/document_image/b720c475-332c-4f66-a827-6af55b3237fd-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>导入使用，将导入的定义成对象</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/0e69d0f2-7f3d-4977-908f-01bc4ecdd064-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>浏览器默认不支持es6的语法，所以要结合bable使用</p>
+</li>
+</ul>
+<h1><span id="webpack">WebPack</span></h1><ul>
+<li><p>合并静态资源并加密，更安全更快速</p>
+</li>
+<li><p>安装</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/514eb076-f66a-4082-a068-d67d890e1f40-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="webpack打包js">webpack打包js</span></h1><ul>
+<li><p>webpack.config.js配置文件</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/09581f30-2b6c-4fa9-8913-c7f92c8262df-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>webpack.config.js文件配置入口，打包目录，以及打包js名称                              <img src="https://api2.mubu.com/v3/document_image/3f8d5d43-72fa-4052-bc59-e3fc83416963-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>_dirname是一个常量，表示当前根目录</p>
+</li>
+</ul>
+<h1><span id="webpack打包css">webpack打包css</span></h1><ul>
+<li><p>安装两个loader来打包css</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/5c881ccf-5a8e-426f-b968-ff2e0f83d79d-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>在webpack.config.js文件中定义一个model                             <img src="https://api2.mubu.com/v3/document_image/28f5d836-93f1-4200-b805-3b673d36f864-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>在入口函数中导入相应的css</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/73e59ede-bded-4115-9fa8-36ec16896341-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>可以让webpack处于监听状态，修改保存即可</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/e17c6f7a-bba5-4d2c-9a46-62dde6431a04-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="-">—-</span></h1><p>VueElementAdmin开源项目推荐</p>
+]]></content>
+      <tags>
+        <tag>笔记狂神系列</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>js判断undifine和null</title>
     <url>/2021/07/04/js%E5%88%A4%E6%96%ADundifine%E5%92%8Cnull/</url>
     <content><![CDATA[<h2><span id="js判断undifine">js判断undifine</span></h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> exp = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span>(exp) == <span class="string">&quot;undefined&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    alert(<span class="string">&quot;undefined&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
