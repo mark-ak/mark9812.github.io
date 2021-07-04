@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>js判断undifine和null</title>
+    <url>/2021/07/04/js%E5%88%A4%E6%96%ADundifine%E5%92%8Cnull/</url>
+    <content><![CDATA[<h2><span id="js判断undifine">js判断undifine</span></h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> exp = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span>(exp) == <span class="string">&quot;undefined&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    alert(<span class="string">&quot;undefined&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="js判断null">js判断null</span></h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> exp = <span class="literal">null</span>; </span><br><span class="line"><span class="keyword">if</span> (!exp &amp;&amp; <span class="keyword">typeof</span>(exp)!=”<span class="literal">undefined</span>” &amp;&amp; exp!=<span class="number">0</span>) </span><br><span class="line">&#123; </span><br><span class="line">alert(“is <span class="literal">null</span>”); </span><br><span class="line">&#125;　</span><br></pre></td></tr></table></figure>
+
+<p>尽管如此，我们在 DOM 应用中，一般只需要用 (!exp) 来判断就可以了，因为 DOM 应用中，可能返回 null，可能返回 undefined，如果具体判断 null 还是 undefined 会使程序过于复杂。</p>
+]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>黑马java数据结构</title>
     <url>/2021/07/03/%E9%BB%91%E9%A9%ACJava%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h2><span id="数据结构与算法概述">数据结构与算法概述</span></h2><h3><span id="数据结构">数据结构</span></h3><ul>
