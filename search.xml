@@ -1,6 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>狂神大前端</title>
+    <url>/2021/07/04/%E7%8B%82%E7%A5%9E%E5%A4%A7%E5%89%8D%E7%AB%AF/</url>
+    <content><![CDATA[<h1><span id="vscode">vscode</span></h1><ul>
+<li>emment语法简化操作</li>
+</ul>
+<h1><span id="nodejs安装">nodejs安装</span></h1><p> <img src="https://api2.mubu.com/v3/document_image/34b8ed30-f8e4-455f-b4ce-4a5d3f08a29b-3810853.jpg" alt="img">                            </p>
+<h1><span id="nodejs了解">nodejs了解</span></h1><ul>
+<li>是将javascript解释给操作系统的Chromv8引擎</li>
+<li>直接通过node命令运行</li>
+</ul>
+<h1><span id="nodejs实现httpserver">nodejs实现httpserver                                <img src="https://api2.mubu.com/v3/document_image/0a8868b8-acc4-4993-8e2b-580cdc214169-3810853.jpg" alt="img"></span></h1><p>思路</p>
+<ul>
+<li>通过require导入http包</li>
+<li>createServer创建服务<ul>
+<li>response指定状态码和解释格式</li>
+<li>request.end(“”)输出内容</li>
+<li>监听8080端口</li>
+</ul>
+</li>
+</ul>
+<h1><span id="nodejs连接数据库">nodejs连接数据库</span></h1><ul>
+<li><p>mysql不是nodejs内置的包，需要通过npm导入依赖，才能require</p>
+</li>
+<li><p>导入mysql依赖，创建connencttion并连接</p>
+<p><img src="https://api2.mubu.com/v3/document_image/7ac234a2-0555-42ba-9206-9ddd9fe86b15-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>通过query语句查询，并通过回调函数得到结果                           <img src="https://api2.mubu.com/v3/document_image/dc91392a-7ab0-4196-ab3a-1ab5c59f76eb-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id>—</span></h1><h1><span id="es6">ES6</span></h1><ul>
+<li>ES6是一个javascript的标准规范</li>
+</ul>
+<h1><span id="let和count">let和count</span></h1><ul>
+<li><p>变量用let,常量用const</p>
+<p><img src="https://api2.mubu.com/v3/document_image/881c0e1c-f40e-46bf-b4c3-acc58713adae-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>解决了变量穿透、常量修改的问题                                <img src="https://api2.mubu.com/v3/document_image/1ffc0ddf-6423-49ba-a604-979c9d323859-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>如果循环中变量是用var定义的，在循环外还能输出该变量</p>
+</li>
+<li><p>在有些低版本的浏览器中可能不支持let和count，常在开发小程序中用</p>
+</li>
+</ul>
+<h1><span id="模板字符串">模板字符串</span></h1><ul>
+<li>用反引号”`”包裹字符串，在里面用${}来调用javascript对象属性                    <img src="https://api2.mubu.com/v3/document_image/4694f917-2f26-4837-abd1-ab3ab5f9b8ae-3810853.jpg" alt="img">                            </li>
+<li>而且支持直接换行写，不同担心拼接</li>
+</ul>
+<h1><span id="函数默认参数">函数默认参数</span></h1><ul>
+<li><p>可以在参数处指定默认参数</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/b39d0836-a14b-43d5-81ab-e843cb5aacd6-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>如果不指定，默认为undefined，两个数相加会出现NaN</p>
+</li>
+</ul>
+<h1><span id="箭头函数">箭头函数</span></h1><ul>
+<li>下图四个规律掌握即可                           <img src="https://api2.mubu.com/v3/document_image/39e06410-54d9-4df9-9793-e549be686470-3810853.jpg" alt="img">                            </li>
+<li>例：数组全部乘2</li>
+</ul>
+<h1><span id="对象简化">对象简化</span></h1><ul>
+<li>对象里的方法可以把冒号和function都去掉，仅剩一个（）</li>
+<li>对象的参数名如果和已有变量名一致，且取值也一致，则可以只写个参数名                                <img src="https://api2.mubu.com/v3/document_image/dff44a56-a346-4e9b-99bf-9cfbe90b62cd-3810853.jpg" alt="img">                            </li>
+<li>案例：在ajax中可以使用</li>
+</ul>
+<h1><span id="对象解构">对象解构</span></h1><ul>
+<li><p>直接通过大括号对多个变量赋予对象相应的值</p>
+<p><img src="https://api2.mubu.com/v3/document_image/5b427c0e-b6d9-4730-99d8-a4a928ecbe2b-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="对象传播符">对象传播符</span></h1><ul>
+<li>…person2将person还没解构的数据给了person2                             <img src="https://api2.mubu.com/v3/document_image/2ec93b73-ea2e-4f81-90c1-c248f14e7977-3810853.jpg" alt="img">                            </li>
+<li>想把某个javascript对象拆开使用可以这么用</li>
+</ul>
+<h1><span id="数组map">数组map</span></h1><ul>
+<li>map会自带循环，并且将处理的值返回对应的位置   <img src="https://api2.mubu.com/v3/document_image/0774028b-0680-4f70-a166-6fdaff8caa0f-3810853.jpg" alt="img">                            </li>
+<li>箭头函数简化                           <img src="https://api2.mubu.com/v3/document_image/85331e1f-d2d9-4ea7-8415-36f1c4d6f4e6-3810853.jpg" alt="img">                            </li>
+<li>循环修改数组对象中的某个值                              <img src="https://api2.mubu.com/v3/document_image/918ee0f0-5290-429b-ad18-59ce6053e5ef-3810853.jpg" alt="img">                            </li>
+<li>可以这样给对象增加字段</li>
+<li>  <img src="https://api2.mubu.com/v3/document_image/39c44962-14f3-42ee-999b-45b7867ae654-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1><span id="数组reduce">数组reduce</span></h1><ul>
+<li><p>相邻迭代操作</p>
+<p>   <img src="https://api2.mubu.com/v3/document_image/e2b2905f-a88b-424d-b6dc-35fcf92c1f14-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id>—–</span></h1><h1><span id="npm包管理器快速构建项目">npm包管理器快速构建项目</span></h1><ul>
+<li>通过npm init快速创建nodejs工程                             <img src="https://api2.mubu.com/v3/document_image/fdc70269-b02a-4c5d-bd30-991693407eeb-3810853.jpg" alt="img">                            </li>
+</ul>
+<h1><span id="npm安装模块依赖">npm安装模块依赖</span></h1><ul>
+<li><p>npm  init -y 会以默认方式创建配置文件</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/c0450b92-4272-44a5-8a6c-401573595843-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>pacackge.json的价值就是在新建项目时快速复用                              <img src="https://api2.mubu.com/v3/document_image/db8427dc-78b5-4e98-9914-baf8dc0b9571-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>镜像设置                            <img src="https://api2.mubu.com/v3/document_image/ab2ec69e-60a1-4d97-9c08-527a90b04c6d-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>下载指定版本号或者卸载                             <img src="https://api2.mubu.com/v3/document_image/e4e99ee6-9a37-4ff7-b2f6-a79ece6912fb-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="bable的安装">Bable的安装</span></h1><ul>
+<li><p>让ES6的某些语法能够在一些不支持的浏览器中运行</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/08e74cde-fa2c-4c55-8e2d-2308bfd4e693-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="bable的使用">Bable的使用</span></h1><ul>
+<li><p>初始化nodejs,创建src文件，在src中写es6代码</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/89f87ae4-b737-4ddb-8392-7ddda6e823f2-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>创建.babalrc配置文件，在里面配置es需要转化的版本</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/f8396668-002b-43e4-90a3-b5e120d2b47d-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>使用npm命令下载babel并转换</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/60e176e1-8240-49b7-aff8-1581a2925d9a-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>使用命令转换结果将显示在dist文件夹中</p>
+<p>   <img src="https://api2.mubu.com/v3/document_image/aff1aca5-93f8-4250-9cb5-662f09fc45c9-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>node直接执行dist文件夹中的即可</p>
+</li>
+</ul>
+<h1><span id="自定义命令脚本">自定义命令脚本</span></h1><ul>
+<li><p>将命令以键值对的方式存在package配置文件中</p>
+<p><img src="https://api2.mubu.com/v3/document_image/683c9471-fffc-478a-a856-7c799ebd4df5-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>用改命令直接执行相应的模块</p>
+<p>​    <img src="https://api2.mubu.com/v3/document_image/077133a0-d1c1-4c19-bf62-9733a6b96fed-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="commenjs模块化开发">CommenJS模块化开发</span></h1><ul>
+<li><p>定义方法并导出</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/219d223f-b0d8-43ae-a802-b912f7cd2fd0-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>引入并使用导出的方法</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/8286c50e-cc69-4972-8ff2-de0bcb06eea4-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="es6简化模块开发">ES6简化模块开发</span></h1><ul>
+<li><p>打包</p>
+<p>​    <img src="https://api2.mubu.com/v3/document_image/b720c475-332c-4f66-a827-6af55b3237fd-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>导入使用，将导入的定义成对象</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/0e69d0f2-7f3d-4977-908f-01bc4ecdd064-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>浏览器默认不支持es6的语法，所以要结合bable使用</p>
+</li>
+</ul>
+<h1><span id="webpack">WebPack</span></h1><ul>
+<li><p>合并静态资源并加密，更安全更快速</p>
+</li>
+<li><p>安装</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/514eb076-f66a-4082-a068-d67d890e1f40-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="webpack打包js">webpack打包js</span></h1><ul>
+<li><p>webpack.config.js配置文件</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/09581f30-2b6c-4fa9-8913-c7f92c8262df-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>webpack.config.js文件配置入口，打包目录，以及打包js名称                              <img src="https://api2.mubu.com/v3/document_image/3f8d5d43-72fa-4052-bc59-e3fc83416963-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>_dirname是一个常量，表示当前根目录</p>
+</li>
+</ul>
+<h1><span id="webpack打包css">webpack打包css</span></h1><ul>
+<li><p>安装两个loader来打包css</p>
+<p>  <img src="https://api2.mubu.com/v3/document_image/5c881ccf-5a8e-426f-b968-ff2e0f83d79d-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>在webpack.config.js文件中定义一个model                             <img src="https://api2.mubu.com/v3/document_image/28f5d836-93f1-4200-b805-3b673d36f864-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>在入口函数中导入相应的css</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/73e59ede-bded-4115-9fa8-36ec16896341-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>可以让webpack处于监听状态，修改保存即可</p>
+<p> <img src="https://api2.mubu.com/v3/document_image/e17c6f7a-bba5-4d2c-9a46-62dde6431a04-3810853.jpg" alt="img">                            </p>
+</li>
+</ul>
+<h1><span id="-">—-</span></h1><p>VueElementAdmin开源项目推荐</p>
+]]></content>
+      <tags>
+        <tag>笔记狂神系列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>黑马java数据结构</title>
+    <url>/2021/07/03/%E9%BB%91%E9%A9%ACJava%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h2><span id="数据结构与算法概述">数据结构与算法概述</span></h2><h3><span id="数据结构">数据结构</span></h3><ul>
+<li>有一定关系的元素的集合</li>
+</ul>
+<h3><span id="分类">分类</span></h3><ul>
+<li>逻辑结构<ul>
+<li>集合结构</li>
+<li>线性结构</li>
+<li>树形结构</li>
+<li>图结构</li>
+</ul>
+</li>
+<li>物理结构<ul>
+<li>顺序结构</li>
+<li>链式结构（插入更方便）</li>
+</ul>
+</li>
+</ul>
+<h3><span id="目的">目的</span></h3><ul>
+<li>时间花费少，空间利用少</li>
+</ul>
+<h2><span id="时间复杂度">时间复杂度</span></h2><h3><span id="分析">分析</span></h3><ul>
+<li>核心操作的执行次数和输入规模的关联（形成一个函数关系）<ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/caa7b99e-ee52-4edf-8269-d855582c7d33-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+</ul>
+<h3><span id="计算">计算</span></h3><ul>
+<li>和常数无关，只和变量的指数有关<ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/557b2c96-8d73-476b-b1ab-89c637585fb1-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+</ul>
+<h3><span id="大o记法">大O记法</span></h3><ul>
+<li><ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/7ba1454b-afab-449f-b0e2-bed17549cbdf-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+</ul>
+<h3><span id="常见的大o记法">常见的大O记法</span></h3><ul>
+<li>比较<ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/da5ad32a-8cb0-4dda-9a1b-d2a210027b9f-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+<li>线性阶</li>
+<li>平方阶</li>
+<li>立方阶</li>
+<li>对数阶</li>
+<li>常数阶</li>
+</ul>
+<h3><span id="最坏情况">最坏情况</span></h3><ul>
+<li><ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/707969ad-10a8-43a2-b0e3-790984a70843-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+</ul>
+<h2><span id="空间复杂度">空间复杂度</span></h2><h3><span id="基本数据类型内存占用">基本数据类型内存占用</span></h3><p><img src="https://api2.mubu.com/v3/document_image/58764c05-e132-4867-ae7c-5b80af26c651-3810853.jpg" alt="img">  </p>
+<h3><span id="变量对象有额外开销">变量，对象（有额外开销）</span></h3><p><img src="https://api2.mubu.com/v3/document_image/449ffe1b-09e2-42bd-b975-6967c38587cc-3810853.jpg" alt="img">  </p>
+<h2><span id="comparable接口">Comparable接口</span></h2><h3><span id="实现接口">实现接口</span></h3><p>   <img src="https://api2.mubu.com/v3/document_image/84baff81-56ec-4001-aa58-b9c2895acfa9-3810853.jpg" alt="img">  </p>
+<h3><span id="重写方法">重写方法</span></h3><p>   <img src="https://api2.mubu.com/v3/document_image/f7f6466e-4092-43c5-9d5f-dbdca9a1a156-3810853.jpg" alt="img">  </p>
+<h3><span id="把两个对象传进去比较">把两个对象传进去比较</span></h3><p>   <img src="https://api2.mubu.com/v3/document_image/5248e8f4-0906-427e-ab55-7eac4035a5eb-3810853.jpg" alt="img">  </p>
+<h2><span id="冒泡算法">冒泡算法</span></h2><h3><span id="原理">原理</span></h3><ul>
+<li><p>排序原理</p>
+<p><img src="https://api2.mubu.com/v3/document_image/70769319-dd04-4d4a-9b38-be3a145f13b0-3810853.jpg" alt="img">  </p>
+</li>
+</ul>
+<h3><span id="冒泡api">冒泡API</span></h3><ul>
+<li>API<ul>
+<li>​    <img src="https://api2.mubu.com/v3/document_image/0fb14241-2e32-4ba8-acec-2a0aa32b3b49-3810853.jpg" alt="img">  </li>
+</ul>
+</li>
+</ul>
+<h3><span id="api分析理解">API分析理解</span></h3><ul>
+<li><p>定位到最后一个元素，之前的元素全部进行两两比较，往后传送最大的，再与最后的元素通过j+1进行比较，大的一方持有最后一个位置。</p>
+</li>
+<li><p>第一层与第二层关系：j&lt;i</p>
+</li>
+<li><p>第二层的范围随着第一层逐渐减小</p>
+</li>
+<li><p>冒泡测试</p>
+<p>​    <img src="https://api2.mubu.com/v3/document_image/c5431554-f4cb-4c17-846b-efd092b0747d-3810853.jpg" alt="img">  </p>
+</li>
+</ul>
+<h3><span id="时间复杂度分析">时间复杂度分析</span></h3><p>  <img src="https://api2.mubu.com/v3/document_image/432ec498-91e5-4cb3-9665-b70a01205d00-3810853.jpg" alt="img">  </p>
+<h2><span id="选择排序">选择排序</span></h2><h3><span id="原理">原理</span></h3><p><img src="https://api2.mubu.com/v3/document_image/ad3d8976-dab2-4352-90f1-2f4f6f5eab93-3810853.jpg" alt="img">  </p>
+<h3><span id="选择api">选择API</span></h3><p><img src="https://api2.mubu.com/v3/document_image/3fd5ece7-1db5-46eb-8026-ff8c501917c8-3810853.jpg" alt="img">  </p>
+<h3><span id="api分析理解">API分析理解</span></h3><ul>
+<li>定位到第一位，给第一位贴一个标签表示最小，从第二位开始进行相邻比较传递标签，让最后的到标签的元素与第一位交换位置。</li>
+<li>//关系：j=i+1</li>
+<li>第二层的起始位置随第一次往前推</li>
+<li>//特殊：第一层可以只遍历到倒数第二个元素，</li>
+<li>//注意：每一轮结束了才进行交换，所以要不exch放在内循环外面</li>
+</ul>
+<h3><span id="时间复杂度">时间复杂度</span></h3><p><img src="https://api2.mubu.com/v3/document_image/0c1c222d-0de8-4840-9725-77997a29d967-3810853.jpg" alt="img"></p>
+]]></content>
+      <categories>
+        <category>黑马</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>获取网络json数据</title>
+    <url>/2021/06/03/Json/json/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private final String TAG &#x3D; &quot;MSG&quot;;</span><br><span class="line">Handler handler&#x3D;new Handler();</span><br><span class="line">public void setMessageUrl(String myurl,int flag) &#123;</span><br><span class="line">    Thread thread &#x3D; new Thread(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            String result;</span><br><span class="line">            try &#123;</span><br><span class="line">                URL url &#x3D; new URL(myurl);</span><br><span class="line">                HttpURLConnection connection &#x3D; (HttpURLConnection) url.openConnection();</span><br><span class="line">                connection.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">                int code &#x3D; connection.getResponseCode();</span><br><span class="line">                if (code &#x3D;&#x3D; 200) &#123;</span><br><span class="line">                    InputStream inputStream &#x3D; connection.getInputStream();</span><br><span class="line">                    ByteArrayOutputStream bos &#x3D; new ByteArrayOutputStream();</span><br><span class="line">                    int len &#x3D; -1;</span><br><span class="line">                    byte[] bytes &#x3D; new byte[1024];</span><br><span class="line">                    while ((len &#x3D; inputStream.read(bytes)) !&#x3D; -1) &#123;</span><br><span class="line">                        bos.write(bytes, 0, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                    result &#x3D; new String(bos.toByteArray(), &quot;utf-8&quot;);</span><br><span class="line">                    Message msg&#x3D;new Message();</span><br><span class="line">                    Bundle bd&#x3D;new Bundle();</span><br><span class="line">                    bd.putString(&quot;result&quot;,result);</span><br><span class="line">                    msg.setData(bd);</span><br><span class="line">                    msg.what&#x3D;flag;</span><br><span class="line">                    handler.sendMessage(msg);</span><br><span class="line">                    Log.i(TAG, &quot;run: &quot;+result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public RootName getRoot(Message handlermsg)&#123;</span><br><span class="line">     String massage&#x3D;handlermsg.getData().getString(&quot;result&quot;);</span><br><span class="line">     Gson gson&#x3D;new Gson();</span><br><span class="line">     RootName rootName&#x3D;gson.fromJson(massage,RootName.class);</span><br><span class="line">     return rootName;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">implementation &#39;com.google.code.gson:gson:2.8.5&#39;</span><br></pre></td></tr></table></figure>
+
+<p>HttpConnection连接api，获取输入流。先用inputStream输入流读入数据，再用ByteArrayOutputStream将数据读出。将读出的字节数组编程字符串使用</p>
+]]></content>
+      <tags>
+        <tag>json</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Thymeleaf 没有返回html只返回字符串</title>
+    <url>/2021/06/04/Thymeleaf/Thymeleaf%20%E6%B2%A1%E6%9C%89%E8%BF%94%E5%9B%9Ehtml%E5%8F%AA%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<p>在使用Thymeleaf的时候，@RequestMapping对应的函数没有返回html文件而是返回了这个函数对应的字符串返回值</p>
+<p>解决办法：</p>
+<p>删除这个函数前面的@Responsebody注解，这个注解会返回Mapping函数指定的返回类型、例如String。而不是将其解析为html文件</p>
+<p>===================================================================</p>
+<p>错误：不能返回页面，只返回字符串。</p>
+<p>原因：在controller中使用了注解@RestController</p>
+<p>修改：修改注解为@Controller</p>
+<p>分析：</p>
+<p>RestController = Controller + ResponseBody.加上RestController,返回的内容是你return中的内容，如果是return “Hello World”，页面显示的就是Hello World。加上Controller，返回的是return中对应的页面,比如return “hello”,页面的名称是hello。</p>
+]]></content>
+      <tags>
+        <tag>thymeleaf</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JQuery中的$.load详解</title>
     <url>/2021/02/13/ajax/JQuery%E4%B8%AD%E7%9A%84$.load%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<h1><span id="load">load()</span></h1><h2><span id="1载入html文档">1.载入HTML文档</span></h2><p>load()方法是jQuery中最为简单和常用的Ajax方法，能载入远程HTML代码并插入DOM中。<br>它的结构为：</p>
@@ -19,6 +333,18 @@
       <tags>
         <tag>jquery</tag>
         <tag>ajax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>thymeleaf中链接的写法</title>
+    <url>/2021/06/08/Thymeleaf/thymeleaf%E4%B8%AD%E9%93%BE%E6%8E%A5%E7%9A%84%E5%86%99%E6%B3%95/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a th:href&#x3D;&quot;@&#123;&#x2F;delete(id&#x3D;$&#123;student.getId()&#125;)&#125;&quot;&gt;删除&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@RequestParam(&quot;id&quot;) int id</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>thymeleaf</tag>
       </tags>
   </entry>
   <entry>
@@ -75,57 +401,24 @@
       </tags>
   </entry>
   <entry>
-    <title>Thymeleaf 没有返回html只返回字符串</title>
-    <url>/2021/06/04/Thymeleaf/Thymeleaf%20%E6%B2%A1%E6%9C%89%E8%BF%94%E5%9B%9Ehtml%E5%8F%AA%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<p>在使用Thymeleaf的时候，@RequestMapping对应的函数没有返回html文件而是返回了这个函数对应的字符串返回值</p>
-<p>解决办法：</p>
-<p>删除这个函数前面的@Responsebody注解，这个注解会返回Mapping函数指定的返回类型、例如String。而不是将其解析为html文件</p>
-<p>===================================================================</p>
-<p>错误：不能返回页面，只返回字符串。</p>
-<p>原因：在controller中使用了注解@RestController</p>
-<p>修改：修改注解为@Controller</p>
-<p>分析：</p>
-<p>RestController = Controller + ResponseBody.加上RestController,返回的内容是你return中的内容，如果是return “Hello World”，页面显示的就是Hello World。加上Controller，返回的是return中对应的页面,比如return “hello”,页面的名称是hello。</p>
-]]></content>
-      <tags>
-        <tag>thymeleaf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>thymeleaf中链接的写法</title>
-    <url>/2021/06/08/Thymeleaf/thymeleaf%E4%B8%AD%E9%93%BE%E6%8E%A5%E7%9A%84%E5%86%99%E6%B3%95/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a th:href&#x3D;&quot;@&#123;&#x2F;delete(id&#x3D;$&#123;student.getId()&#125;)&#125;&quot;&gt;删除&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
+    <title>android套WebView</title>
+    <url>/2021/06/27/android/android%E5%A5%97WebView/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 展示一个 WebView --&gt;</span><br><span class="line">&lt;WebView</span><br><span class="line">    android:id=<span class="string">&quot;@+id/webview&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@RequestParam(&quot;id&quot;) int id</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">package com.example.webviewdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.annotation.SuppressLint;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.webkit.WebView;</span><br><span class="line"><span class="keyword">import</span> android.webkit.WebViewClient;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected <span class="keyword">void</span> <span class="function"><span class="title">onCreate</span>(<span class="params">Bundle savedInstanceState</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.createWebView();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 创建 WebView 实例 */</span></span><br><span class="line">    @SuppressLint(<span class="string">&quot;SetJavaScriptEnabled&quot;</span>)</span><br><span class="line">    private <span class="keyword">void</span> <span class="function"><span class="title">createWebView</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建 WebView 实例并通过 id 绑定我们刚在布局中创建的 WebView 标签</span></span><br><span class="line">        <span class="comment">// 这里的 R.id.webview 就是 activity_main.xml 中的 WebView 标签的 id</span></span><br><span class="line">        final WebView webView = (WebView) findViewById(R.id.webview);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置 WebView 允许执行 JavaScript 脚本</span></span><br><span class="line">        webView.getSettings().setJavaScriptEnabled(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 确保跳转到另一个网页时仍然在当前 WebView 中显示</span></span><br><span class="line">        <span class="comment">// 而不是调用浏览器打开</span></span><br><span class="line">        webView.setWebViewClient(<span class="keyword">new</span> WebViewClient());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 加载指定网页</span></span><br><span class="line">        <span class="built_in">String</span> url = <span class="string">&quot;https://chenpipi.cn&quot;</span>;</span><br><span class="line">        webView.loadUrl(url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <tags>
-        <tag>thymeleaf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>fragment实现底栏思路</title>
-    <url>/2021/06/03/android/fragment%E5%AE%9E%E7%8E%B0%E5%BA%95%E6%A0%8F%E6%80%9D%E8%B7%AF/</url>
-    <content><![CDATA[<ul>
-<li><p>MVC设计模式</p>
-<p>Model负责处理数据，并将处理好的数据交给Frament。Frament负责连接每个Frament布局以及控件，将收到的数据显示在控件上</p>
-</li>
-<li><p>navigation</p>
-<p>navigation负责整合分开的fragment布局文件，并通过menu将每个frament布局与bottomNavigation结合在一起</p>
-</li>
-<li><p>NavigationUI</p>
-<p> navigationUi将分散的fragment布局、以及底部按钮绑定到主页的主fragment中。AppBarConfiguration和NavController将会协助navigationUI分别对底部按钮和fragment布局进行绑定。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>notification兼容</title>
-    <url>/2021/06/19/android/notification%E5%85%BC%E5%AE%B9/</url>
-    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW,Uri.parse(<span class="string">&quot;http://www.baidu.com&quot;</span>));</span><br><span class="line">PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.<span class="keyword">this</span>,<span class="number">0</span>,intent,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span>(Build.VERSION.SDK_INT &gt;= <span class="number">26</span>) </span><br><span class="line"> &#123;</span><br><span class="line">               <span class="comment">//当sdk版本大于26</span></span><br><span class="line">   String id = <span class="string">&quot;channel_1&quot;</span>;</span><br><span class="line">   String description = <span class="string">&quot;143&quot;</span>;</span><br><span class="line">   <span class="keyword">int</span> importance = NotificationManager.IMPORTANCE_LOW;</span><br><span class="line">   NotificationChannel channel = <span class="keyword">new</span> NotificationChannel(id, description, importance);</span><br><span class="line"><span class="comment">//                     channel.enableLights(true);</span></span><br><span class="line"><span class="comment">//                     channel.enableVibration(true);//</span></span><br><span class="line">   manager.createNotificationChannel(channel);</span><br><span class="line">   Notification notification = <span class="keyword">new</span> Notification.Builder(MainActivity.<span class="keyword">this</span>, id)</span><br><span class="line">                                    .setCategory(Notification.CATEGORY_MESSAGE)</span><br><span class="line">                                    .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">                                    .setContentTitle(<span class="string">&quot;This is a content title&quot;</span>)</span><br><span class="line">                                    .setContentText(<span class="string">&quot;This is a content text&quot;</span>)</span><br><span class="line">                                    .setContentIntent(pendingIntent)</span><br><span class="line">                                    .setAutoCancel(<span class="keyword">true</span>)</span><br><span class="line">                                    .build();</span><br><span class="line">   manager.notify(<span class="number">1</span>, notification);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">   &#123;</span><br><span class="line">            <span class="comment">//当sdk版本小于26</span></span><br><span class="line">    Notification notification = <span class="keyword">new</span> NotificationCompat.Builder(MainActivity.<span class="keyword">this</span>)</span><br><span class="line">                                    .setContentTitle(<span class="string">&quot;This is content title&quot;</span>)</span><br><span class="line">                                    .setContentText(<span class="string">&quot;This is content text&quot;</span>)</span><br><span class="line">                                    .setContentIntent(pendingIntent)</span><br><span class="line">                                    .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">                                    .build();</span><br><span class="line">    manager.notify(<span class="number">1</span>,notification);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 访问网络的权限 --&gt;</span><br><span class="line">&lt;uses-permission android:name=<span class="string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置为全屏（隐藏状态栏）</span></span><br><span class="line">requestWindowFeature(Window.FEATURE_NO_TITLE);</span><br><span class="line">getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置 WebView 的按键监听器，覆写监听器的 onKey 函数，对返回键作特殊处理</span></span><br><span class="line"><span class="comment">// 当 WebView 可以返回到上一个页面时回到上一个页面</span></span><br><span class="line">webView.setOnKeyListener(<span class="keyword">new</span> View.OnKeyListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean <span class="function"><span class="title">onKey</span>(<span class="params">View v, int keyCode, KeyEvent event</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (keyCode == KeyEvent.KEYCODE_BACK &amp;&amp; webView.canGoBack()) &#123;</span><br><span class="line">            webView.goBack();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>重写当前 Activity 的 <code>onBackPressed</code> 函数：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">private WebView webView = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 WebView 实例时保存到 this.webView 中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 接管返回键</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> <span class="function"><span class="title">onBackPressed</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.webView.canGoBack()) &#123;</span><br><span class="line">        <span class="built_in">this</span>.webView.goBack();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onBackPressed();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;application</span><br><span class="line">    ...</span><br><span class="line">    android:usesCleartextTraffic=<span class="string">&quot;true&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -170,6 +463,35 @@
       </tags>
   </entry>
   <entry>
+    <title>fragment实现底栏思路</title>
+    <url>/2021/06/03/android/fragment%E5%AE%9E%E7%8E%B0%E5%BA%95%E6%A0%8F%E6%80%9D%E8%B7%AF/</url>
+    <content><![CDATA[<ul>
+<li><p>MVC设计模式</p>
+<p>Model负责处理数据，并将处理好的数据交给Frament。Frament负责连接每个Frament布局以及控件，将收到的数据显示在控件上</p>
+</li>
+<li><p>navigation</p>
+<p>navigation负责整合分开的fragment布局文件，并通过menu将每个frament布局与bottomNavigation结合在一起</p>
+</li>
+<li><p>NavigationUI</p>
+<p> navigationUi将分散的fragment布局、以及底部按钮绑定到主页的主fragment中。AppBarConfiguration和NavController将会协助navigationUI分别对底部按钮和fragment布局进行绑定。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>notification兼容</title>
+    <url>/2021/06/19/android/notification%E5%85%BC%E5%AE%B9/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW,Uri.parse(<span class="string">&quot;http://www.baidu.com&quot;</span>));</span><br><span class="line">PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.<span class="keyword">this</span>,<span class="number">0</span>,intent,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span>(Build.VERSION.SDK_INT &gt;= <span class="number">26</span>) </span><br><span class="line"> &#123;</span><br><span class="line">               <span class="comment">//当sdk版本大于26</span></span><br><span class="line">   String id = <span class="string">&quot;channel_1&quot;</span>;</span><br><span class="line">   String description = <span class="string">&quot;143&quot;</span>;</span><br><span class="line">   <span class="keyword">int</span> importance = NotificationManager.IMPORTANCE_LOW;</span><br><span class="line">   NotificationChannel channel = <span class="keyword">new</span> NotificationChannel(id, description, importance);</span><br><span class="line"><span class="comment">//                     channel.enableLights(true);</span></span><br><span class="line"><span class="comment">//                     channel.enableVibration(true);//</span></span><br><span class="line">   manager.createNotificationChannel(channel);</span><br><span class="line">   Notification notification = <span class="keyword">new</span> Notification.Builder(MainActivity.<span class="keyword">this</span>, id)</span><br><span class="line">                                    .setCategory(Notification.CATEGORY_MESSAGE)</span><br><span class="line">                                    .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">                                    .setContentTitle(<span class="string">&quot;This is a content title&quot;</span>)</span><br><span class="line">                                    .setContentText(<span class="string">&quot;This is a content text&quot;</span>)</span><br><span class="line">                                    .setContentIntent(pendingIntent)</span><br><span class="line">                                    .setAutoCancel(<span class="keyword">true</span>)</span><br><span class="line">                                    .build();</span><br><span class="line">   manager.notify(<span class="number">1</span>, notification);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">   &#123;</span><br><span class="line">            <span class="comment">//当sdk版本小于26</span></span><br><span class="line">    Notification notification = <span class="keyword">new</span> NotificationCompat.Builder(MainActivity.<span class="keyword">this</span>)</span><br><span class="line">                                    .setContentTitle(<span class="string">&quot;This is content title&quot;</span>)</span><br><span class="line">                                    .setContentText(<span class="string">&quot;This is content text&quot;</span>)</span><br><span class="line">                                    .setContentIntent(pendingIntent)</span><br><span class="line">                                    .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">                                    .build();</span><br><span class="line">    manager.notify(<span class="number">1</span>,notification);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>读取Asset文件中的json数据</title>
     <url>/2021/06/03/android/%E8%AF%BB%E5%8F%96Asset%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84json%E6%95%B0%E6%8D%AE/</url>
     <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getJson</span><span class="params">(Context mContext, String fileName)</span> </span>&#123;  </span><br><span class="line">           <span class="comment">// TODO Auto-generated method stub  </span></span><br><span class="line">           StringBuilder sb = <span class="keyword">new</span> StringBuilder();  </span><br><span class="line">           AssetManager am = mContext.getAssets();  </span><br><span class="line">           <span class="keyword">try</span> &#123;  </span><br><span class="line">               BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(  </span><br><span class="line">                       am.open(fileName)));  </span><br><span class="line">               String next = <span class="string">&quot;&quot;</span>;  </span><br><span class="line">               <span class="keyword">while</span> (<span class="keyword">null</span> != (next = br.readLine())) &#123;  </span><br><span class="line">                   sb.append(next);  </span><br><span class="line">               &#125;  </span><br><span class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;  </span><br><span class="line">               <span class="comment">// TODO Auto-generated catch block  </span></span><br><span class="line">               e.printStackTrace();  </span><br><span class="line">               sb.delete(<span class="number">0</span>, sb.length());  </span><br><span class="line">           &#125;  </span><br><span class="line">           <span class="keyword">return</span> sb.toString().trim();  </span><br><span class="line">       &#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -177,6 +499,16 @@
 ]]></content>
       <tags>
         <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模拟器乱码</title>
+    <url>/2021/06/03/androidbug/%E6%A8%A1%E6%8B%9F%E5%99%A8%E4%B9%B1%E7%A0%81/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">即添加一句：compileOptions.encoding &#x3D; &quot;GBK&quot;;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>androidbug</tag>
       </tags>
   </entry>
   <entry>
@@ -191,13 +523,19 @@
       </tags>
   </entry>
   <entry>
-    <title>模拟器乱码</title>
-    <url>/2021/06/03/androidbug/%E6%A8%A1%E6%8B%9F%E5%99%A8%E4%B9%B1%E7%A0%81/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">即添加一句：compileOptions.encoding &#x3D; &quot;GBK&quot;;</span><br></pre></td></tr></table></figure>
-
+    <title>Gradle下载速度慢解决方法</title>
+    <url>/2021/03/16/androidstudio/Gradle%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>1.在软件里点开工程文件下的 build.gradle</p>
+<p>2..在 buildscript 和 allprojects 的 repositories 中分别注释掉 jcenter()</p>
+<p>3.在 buildscript 和 allprojects 的 repositories 分别添加：<code>maven&#123;url &#39;http://maven.aliyun.com/nexus/content/groups/public/&#39;&#125;</code></p>
+<p>4.再在 buildscript 的 repositories 添加：<code>maven&#123;url &quot;https://jitpack.io&quot;&#125;</code></p>
+<p>最终图片：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1577027/201901/1577027-20190111193149745-1197845339.png" alt="img"></p>
+<p>实际效果证明：下载速度能对得起自己的网速了！</p>
+<p>如果还是下载慢，建议换个上网的方式，比如手机开热点，还是不行，就用不同运营商的手机开热点，至于为什么，等真的还是慢时自己试试就知道了。</p>
 ]]></content>
       <tags>
-        <tag>androidbug</tag>
+        <tag>gradle</tag>
       </tags>
   </entry>
   <entry>
@@ -223,39 +561,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Gradle下载速度慢解决方法</title>
-    <url>/2021/03/16/androidstudio/Gradle%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>1.在软件里点开工程文件下的 build.gradle</p>
-<p>2..在 buildscript 和 allprojects 的 repositories 中分别注释掉 jcenter()</p>
-<p>3.在 buildscript 和 allprojects 的 repositories 分别添加：<code>maven&#123;url &#39;http://maven.aliyun.com/nexus/content/groups/public/&#39;&#125;</code></p>
-<p>4.再在 buildscript 的 repositories 添加：<code>maven&#123;url &quot;https://jitpack.io&quot;&#125;</code></p>
-<p>最终图片：</p>
-<p><img src="https://img2018.cnblogs.com/blog/1577027/201901/1577027-20190111193149745-1197845339.png" alt="img"></p>
-<p>实际效果证明：下载速度能对得起自己的网速了！</p>
-<p>如果还是下载慢，建议换个上网的方式，比如手机开热点，还是不行，就用不同运营商的手机开热点，至于为什么，等真的还是慢时自己试试就知道了。</p>
-]]></content>
-      <tags>
-        <tag>gradle</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>接口</title>
-    <url>/2021/06/03/api/%E6%8E%A5%E5%8F%A3/</url>
-    <content><![CDATA[<p>天气预报</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;t.weather.itboy.net&#x2F;api&#x2F;weather&#x2F;city&#x2F;101280101</span><br></pre></td></tr></table></figure>
-
-<p>有道翻译</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;fanyi.youdao.com&#x2F;translate?&amp;doctype&#x3D;json&amp;type&#x3D;AUTO&amp;i&#x3D;计算</span><br></pre></td></tr></table></figure>
-
-<p>影视</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">https:&#x2F;&#x2F;jx.444662.cn&#x2F;m3u8&#x2F;?url&#x3D;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>api</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>androidstudio导入项目</title>
     <url>/2021/05/01/androidstudio/androidstudio%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<h3><span id="导入androidstudio项目">导入androidstudio项目</span></h3><ul>
@@ -273,6 +578,23 @@
 ]]></content>
       <tags>
         <tag>androidstudio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>接口</title>
+    <url>/2021/06/03/api/%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<p>天气预报</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;t.weather.itboy.net&#x2F;api&#x2F;weather&#x2F;city&#x2F;101280101</span><br></pre></td></tr></table></figure>
+
+<p>有道翻译</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;fanyi.youdao.com&#x2F;translate?&amp;doctype&#x3D;json&amp;type&#x3D;AUTO&amp;i&#x3D;计算</span><br></pre></td></tr></table></figure>
+
+<p>影视</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">https:&#x2F;&#x2F;jx.444662.cn&#x2F;m3u8&#x2F;?url&#x3D;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>api</tag>
       </tags>
   </entry>
   <entry>
@@ -597,16 +919,6 @@
       </tags>
   </entry>
   <entry>
-    <title>sqlite数据库创建使用</title>
-    <url>/2021/06/03/jdbc/sqlite%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%9B%E5%BB%BA%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> SQLiteDatabase db;</span><br><span class="line">db&#x3D;SQLiteDatabase.openOrCreateDatabase(getContext().getFilesDir().toString()+&quot;test.db&quot;,null);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>jdbc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>excute和excuteQuery的区别</title>
     <url>/2021/02/11/jdbc/mysql%E7%9A%84excute%E5%92%8CexcuteQuery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<p>excute方法是直接执行，excuteQuery方法会返回结果。</p>
@@ -627,6 +939,16 @@
       </tags>
   </entry>
   <entry>
+    <title>sqlite数据库创建使用</title>
+    <url>/2021/06/03/jdbc/sqlite%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%9B%E5%BB%BA%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> SQLiteDatabase db;</span><br><span class="line">db&#x3D;SQLiteDatabase.openOrCreateDatabase(getContext().getFilesDir().toString()+&quot;test.db&quot;,null);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端使用cookie</title>
     <url>/2021/02/14/jquery/%E5%89%8D%E7%AB%AF%E4%BD%BF%E7%94%A8cookie/</url>
     <content><![CDATA[<p>需要下载并引入jquery.cookie.js。<br>cookie有四个不同的属性: 名称，内容，域，路径</p>
@@ -642,6 +964,15 @@
       </tags>
   </entry>
   <entry>
+    <title>indexDB</title>
+    <url>/2021/06/03/js/indexDB/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         openDB(myDB.name, myDB.version);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> myDB = &#123;</span><br><span class="line">         name: <span class="string">&#x27;myList&#x27;</span>,</span><br><span class="line">         version: <span class="number">1</span>,</span><br><span class="line">         db: <span class="literal">null</span></span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> school = [&#123;</span><br><span class="line">         id: <span class="number">1001</span>,</span><br><span class="line">         name: <span class="string">&quot;北京大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;北京&quot;</span></span><br><span class="line">     &#125;, &#123;</span><br><span class="line">         id: <span class="number">1002</span>,</span><br><span class="line">         name: <span class="string">&quot;清华大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;北京&quot;</span></span><br><span class="line">     &#125;, &#123;</span><br><span class="line">         id: <span class="number">1003</span>,</span><br><span class="line">         name: <span class="string">&quot;上海交通大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;上海&quot;</span></span><br><span class="line">     &#125;];</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">openDB</span>(<span class="params">name, version</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> version = version || <span class="number">1</span>;</span><br><span class="line">         <span class="keyword">var</span> request = <span class="built_in">window</span>.indexedDB.open(name, version);</span><br><span class="line">         request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(e.currentTarget.error.message);</span><br><span class="line">         &#125;;</span><br><span class="line">         request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             myDB.db = e.target.result;</span><br><span class="line">             addData(myDB.db, <span class="string">&quot;school&quot;</span>);</span><br><span class="line">             fetchStoreByCursor(myDB.db, <span class="string">&quot;school&quot;</span>);</span><br><span class="line">         &#125;;</span><br><span class="line">         request.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> db = e.target.result;</span><br><span class="line">             <span class="keyword">if</span> (!db.objectStoreNames.contains(<span class="string">&#x27;school&#x27;</span>)) &#123;</span><br><span class="line">                 <span class="keyword">var</span> store = db.createObjectStore(<span class="string">&#x27;school&#x27;</span>, &#123;</span><br><span class="line">                     keyPath: <span class="string">&#x27;id&#x27;</span></span><br><span class="line">                 &#125;);</span><br><span class="line">                 store.createIndex(<span class="string">&#x27;nameIndex&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, &#123;</span><br><span class="line">                     unique: <span class="literal">true</span></span><br><span class="line">                 &#125;);</span><br><span class="line">                 store.createIndex(<span class="string">&#x27;addrIndex&#x27;</span>, <span class="string">&#x27;addr&#x27;</span>, &#123;</span><br><span class="line">                     unique: <span class="literal">false</span></span><br><span class="line">                 &#125;);</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="string">&#x27;DB version changed to &#x27;</span> + version);</span><br><span class="line">         &#125;;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">addData</span>(<span class="params">db, storeName</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> trans = db.transaction([storeName], <span class="string">&#x27;readwrite&#x27;</span>);</span><br><span class="line">         <span class="keyword">var</span> store = trans.objectStore(storeName);</span><br><span class="line"></span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; school.length; i++) &#123;</span><br><span class="line">             store.add(school[i]);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">fetchStoreByCursor</span>(<span class="params">db, storeName</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> transaction = db.transaction(storeName);</span><br><span class="line">         <span class="keyword">var</span> store = transaction.objectStore(storeName);</span><br><span class="line">         <span class="keyword">var</span> request = store.openCursor();</span><br><span class="line">         request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> cursor = e.target.result;</span><br><span class="line">             <span class="keyword">if</span> (cursor) &#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(cursor.key);</span><br><span class="line">                 <span class="keyword">var</span> currentStudent = cursor.value;</span><br><span class="line">                 <span class="built_in">console</span>.log(currentStudent.name);</span><br><span class="line">                 <span class="keyword">var</span> table = <span class="built_in">document</span>.getElementById(<span class="string">&quot;mytable&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> tr = <span class="built_in">document</span>.createElement(<span class="string">&quot;tr&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> imgtd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> txttd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">                 <span class="comment">//图片</span></span><br><span class="line">                 <span class="keyword">var</span> schimg = <span class="built_in">document</span>.createElement(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">                 <span class="keyword">switch</span> (currentStudent.name) &#123;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;北京大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;bj-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;清华大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;qh-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;上海交通大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;shj-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                 &#125;</span><br><span class="line">                 schimg.setAttribute(<span class="string">&quot;style&quot;</span>, <span class="string">&quot;height: 100px;&quot;</span>);</span><br><span class="line">                 imgtd.appendChild(schimg);</span><br><span class="line"></span><br><span class="line">                 <span class="comment">//文字</span></span><br><span class="line">                 txttd.innerHTML = <span class="string">&quot; &lt;p style=&#x27;font-size: 45px;&#x27;&gt;&quot;</span> + currentStudent.name + <span class="string">&quot;&lt;/p&gt;&quot;</span> + <span class="string">&quot;&lt;p&gt;&quot;</span> + currentStudent.addr + <span class="string">&quot;&lt;p&gt;&quot;</span>;</span><br><span class="line">                 <span class="comment">//添加</span></span><br><span class="line">                 tr.appendChild(imgtd);</span><br><span class="line">                 tr.appendChild(txttd);</span><br><span class="line">                 table.appendChild(tr);</span><br><span class="line">                 cursor.continue();</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;;</span><br><span class="line">     &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>jstl_bug</title>
     <url>/2021/01/23/jstl_bug/jstl-bug/</url>
     <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">org.apache.jasper.JasperException: &#x2F;index.jsp (行.: [18], 列: [0]) 根据标记文件中的TLD或attribute指令，attribute[items]不接受任何表达式</span><br></pre></td></tr></table></figure>
@@ -650,6 +981,19 @@
 ]]></content>
       <tags>
         <tag>jstl_bug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>js判断undifine和null</title>
+    <url>/2021/07/04/js/js%E5%88%A4%E6%96%ADundifine%E5%92%8Cnull/</url>
+    <content><![CDATA[<h2><span id="js判断undifine">js判断undifine</span></h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> exp = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span>(exp) == <span class="string">&quot;undefined&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    alert(<span class="string">&quot;undefined&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="js判断null">js判断null</span></h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> exp = <span class="literal">null</span>; </span><br><span class="line"><span class="keyword">if</span> (!exp &amp;&amp; <span class="keyword">typeof</span>(exp)!=”<span class="literal">undefined</span>” &amp;&amp; exp!=<span class="number">0</span>) </span><br><span class="line">&#123; </span><br><span class="line">alert(“is <span class="literal">null</span>”); </span><br><span class="line">&#125;　</span><br></pre></td></tr></table></figure>
+
+<p>尽管如此，我们在 DOM 应用中，一般只需要用 (!exp) 来判断就可以了，因为 DOM 应用中，可能返回 null，可能返回 undefined，如果具体判断 null 还是 undefined 会使程序过于复杂。</p>
+]]></content>
+      <tags>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -738,6 +1082,13 @@
       </tags>
   </entry>
   <entry>
+    <title>session超时设置</title>
+    <url>/2021/02/11/servlet/session%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">session.setMaxInactiveInterval(10);</span><br></pre></td></tr></table></figure>
+<p>如果不停刷新，也会使计数器不断地刷新，10秒后session还是会存在。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>servle后端中的弹窗</title>
     <url>/2021/01/13/servlet/servle%E5%90%8E%E7%AB%AF%E4%B8%AD%E7%9A%84%E5%BC%B9%E7%AA%97/</url>
     <content><![CDATA[<p>\“\“之间按照正常的字符串格式写即可,这是转义字符，里面还包含多个””时，就得用这种方法</p>
@@ -747,11 +1098,14 @@
       </tags>
   </entry>
   <entry>
-    <title>session超时设置</title>
-    <url>/2021/02/11/servlet/session%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">session.setMaxInactiveInterval(10);</span><br></pre></td></tr></table></figure>
-<p>如果不停刷新，也会使计数器不断地刷新，10秒后session还是会存在。</p>
+    <title>后端配置跨域</title>
+    <url>/2021/06/03/servlet/%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E8%B7%A8%E5%9F%9F/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String originHeads &#x3D; request.getHeader(&quot;Origin&quot;);</span><br><span class="line">	     response.setHeader(&quot;Access-Control-Allow-Origin&quot;,&quot;*&quot;);</span><br><span class="line">	     response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originHeads);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST,GET,OPTIONS,DELETE,HEAD,PUT,PATCH&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;36000&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;Origin, X-Requested-With, Content-Type, Accept,Authorization,authorization&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Credentials&quot;,&quot;true&quot;);</span><br></pre></td></tr></table></figure>
+
 ]]></content>
+      <tags>
+        <tag>零散servlet</tag>
+      </tags>
   </entry>
   <entry>
     <title>uri和url</title>
@@ -845,6 +1199,21 @@
       </tags>
   </entry>
   <entry>
+    <title>关于动态页面404错误处理</title>
+    <url>/2021/06/05/springboot/%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2404/</url>
+    <content><![CDATA[<ul>
+<li>页面需要在Controller中注册，或者在WebMvnConfiguration中映射才能找到。</li>
+<li><ul>
+<li>需要数据处理注册controller，不需要直接映射就好</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>springboot案例</title>
     <url>/2021/06/05/springboot/springboot%E6%A1%88%E4%BE%8B/</url>
     <content><![CDATA[<h2><span id="登录">登录</span></h2><p>1.将静态资源放入templates文件夹，将链接都转换为thymeleaf模式</p>
@@ -887,21 +1256,6 @@
       </tags>
   </entry>
   <entry>
-    <title>关于动态页面404错误处理</title>
-    <url>/2021/06/05/springboot/%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2404/</url>
-    <content><![CDATA[<ul>
-<li>页面需要在Controller中注册，或者在WebMvnConfiguration中映射才能找到。</li>
-<li><ul>
-<li>需要数据处理注册controller，不需要直接映射就好</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>springboot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>部署springboot项目</title>
     <url>/2021/06/09/springboot/%E9%83%A8%E7%BD%B2springboot%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nohup java -jar xxx.jar &gt; nohup.out 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
@@ -925,16 +1279,6 @@
       </tags>
   </entry>
   <entry>
-    <title>让某个元素排序第一</title>
-    <url>/2021/06/03/sql/%E8%AE%A9%E6%9F%90%E4%B8%AA%E5%85%83%E7%B4%A0%E6%8E%92%E5%BA%8F%E7%AC%AC%E4%B8%80/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select pid, name</span><br><span class="line">from t_province</span><br><span class="line">where 1 &#x3D; 1</span><br><span class="line">order by case when name &#x3D; &quot;广东&quot; then 0 else name end</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>sql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mysql_bug</title>
     <url>/2021/02/11/sqlbug/where-clause/</url>
     <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Unknown column &#39;name&#39; in &#39;where clause&#39;</span><br></pre></td></tr></table></figure>
@@ -943,6 +1287,16 @@
 ]]></content>
       <tags>
         <tag>sqlbug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>让某个元素排序第一</title>
+    <url>/2021/06/03/sql/%E8%AE%A9%E6%9F%90%E4%B8%AA%E5%85%83%E7%B4%A0%E6%8E%92%E5%BA%8F%E7%AC%AC%E4%B8%80/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select pid, name</span><br><span class="line">from t_province</span><br><span class="line">where 1 &#x3D; 1</span><br><span class="line">order by case when name &#x3D; &quot;广东&quot; then 0 else name end</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>sql</tag>
       </tags>
   </entry>
   <entry>
@@ -1026,347 +1380,6 @@
 ]]></content>
       <tags>
         <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>后端配置跨域</title>
-    <url>/2021/06/03/servlet/%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E8%B7%A8%E5%9F%9F/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String originHeads &#x3D; request.getHeader(&quot;Origin&quot;);</span><br><span class="line">	     response.setHeader(&quot;Access-Control-Allow-Origin&quot;,&quot;*&quot;);</span><br><span class="line">	     response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originHeads);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST,GET,OPTIONS,DELETE,HEAD,PUT,PATCH&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;36000&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;Origin, X-Requested-With, Content-Type, Accept,Authorization,authorization&quot;);</span><br><span class="line">         response.setHeader(&quot;Access-Control-Allow-Credentials&quot;,&quot;true&quot;);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>零散servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>获取网络json数据</title>
-    <url>/2021/06/03/Json/json/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private final String TAG &#x3D; &quot;MSG&quot;;</span><br><span class="line">Handler handler&#x3D;new Handler();</span><br><span class="line">public void setMessageUrl(String myurl,int flag) &#123;</span><br><span class="line">    Thread thread &#x3D; new Thread(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            String result;</span><br><span class="line">            try &#123;</span><br><span class="line">                URL url &#x3D; new URL(myurl);</span><br><span class="line">                HttpURLConnection connection &#x3D; (HttpURLConnection) url.openConnection();</span><br><span class="line">                connection.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">                int code &#x3D; connection.getResponseCode();</span><br><span class="line">                if (code &#x3D;&#x3D; 200) &#123;</span><br><span class="line">                    InputStream inputStream &#x3D; connection.getInputStream();</span><br><span class="line">                    ByteArrayOutputStream bos &#x3D; new ByteArrayOutputStream();</span><br><span class="line">                    int len &#x3D; -1;</span><br><span class="line">                    byte[] bytes &#x3D; new byte[1024];</span><br><span class="line">                    while ((len &#x3D; inputStream.read(bytes)) !&#x3D; -1) &#123;</span><br><span class="line">                        bos.write(bytes, 0, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                    result &#x3D; new String(bos.toByteArray(), &quot;utf-8&quot;);</span><br><span class="line">                    Message msg&#x3D;new Message();</span><br><span class="line">                    Bundle bd&#x3D;new Bundle();</span><br><span class="line">                    bd.putString(&quot;result&quot;,result);</span><br><span class="line">                    msg.setData(bd);</span><br><span class="line">                    msg.what&#x3D;flag;</span><br><span class="line">                    handler.sendMessage(msg);</span><br><span class="line">                    Log.i(TAG, &quot;run: &quot;+result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public RootName getRoot(Message handlermsg)&#123;</span><br><span class="line">     String massage&#x3D;handlermsg.getData().getString(&quot;result&quot;);</span><br><span class="line">     Gson gson&#x3D;new Gson();</span><br><span class="line">     RootName rootName&#x3D;gson.fromJson(massage,RootName.class);</span><br><span class="line">     return rootName;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">implementation &#39;com.google.code.gson:gson:2.8.5&#39;</span><br></pre></td></tr></table></figure>
-
-<p>HttpConnection连接api，获取输入流。先用inputStream输入流读入数据，再用ByteArrayOutputStream将数据读出。将读出的字节数组编程字符串使用</p>
-]]></content>
-      <tags>
-        <tag>json</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>indexDB</title>
-    <url>/2021/06/03/js/indexDB/</url>
-    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         openDB(myDB.name, myDB.version);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> myDB = &#123;</span><br><span class="line">         name: <span class="string">&#x27;myList&#x27;</span>,</span><br><span class="line">         version: <span class="number">1</span>,</span><br><span class="line">         db: <span class="literal">null</span></span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> school = [&#123;</span><br><span class="line">         id: <span class="number">1001</span>,</span><br><span class="line">         name: <span class="string">&quot;北京大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;北京&quot;</span></span><br><span class="line">     &#125;, &#123;</span><br><span class="line">         id: <span class="number">1002</span>,</span><br><span class="line">         name: <span class="string">&quot;清华大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;北京&quot;</span></span><br><span class="line">     &#125;, &#123;</span><br><span class="line">         id: <span class="number">1003</span>,</span><br><span class="line">         name: <span class="string">&quot;上海交通大学&quot;</span>,</span><br><span class="line">         addr: <span class="string">&quot;上海&quot;</span></span><br><span class="line">     &#125;];</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">openDB</span>(<span class="params">name, version</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> version = version || <span class="number">1</span>;</span><br><span class="line">         <span class="keyword">var</span> request = <span class="built_in">window</span>.indexedDB.open(name, version);</span><br><span class="line">         request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(e.currentTarget.error.message);</span><br><span class="line">         &#125;;</span><br><span class="line">         request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             myDB.db = e.target.result;</span><br><span class="line">             addData(myDB.db, <span class="string">&quot;school&quot;</span>);</span><br><span class="line">             fetchStoreByCursor(myDB.db, <span class="string">&quot;school&quot;</span>);</span><br><span class="line">         &#125;;</span><br><span class="line">         request.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> db = e.target.result;</span><br><span class="line">             <span class="keyword">if</span> (!db.objectStoreNames.contains(<span class="string">&#x27;school&#x27;</span>)) &#123;</span><br><span class="line">                 <span class="keyword">var</span> store = db.createObjectStore(<span class="string">&#x27;school&#x27;</span>, &#123;</span><br><span class="line">                     keyPath: <span class="string">&#x27;id&#x27;</span></span><br><span class="line">                 &#125;);</span><br><span class="line">                 store.createIndex(<span class="string">&#x27;nameIndex&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, &#123;</span><br><span class="line">                     unique: <span class="literal">true</span></span><br><span class="line">                 &#125;);</span><br><span class="line">                 store.createIndex(<span class="string">&#x27;addrIndex&#x27;</span>, <span class="string">&#x27;addr&#x27;</span>, &#123;</span><br><span class="line">                     unique: <span class="literal">false</span></span><br><span class="line">                 &#125;);</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="string">&#x27;DB version changed to &#x27;</span> + version);</span><br><span class="line">         &#125;;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">addData</span>(<span class="params">db, storeName</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> trans = db.transaction([storeName], <span class="string">&#x27;readwrite&#x27;</span>);</span><br><span class="line">         <span class="keyword">var</span> store = trans.objectStore(storeName);</span><br><span class="line"></span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; school.length; i++) &#123;</span><br><span class="line">             store.add(school[i]);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">fetchStoreByCursor</span>(<span class="params">db, storeName</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> transaction = db.transaction(storeName);</span><br><span class="line">         <span class="keyword">var</span> store = transaction.objectStore(storeName);</span><br><span class="line">         <span class="keyword">var</span> request = store.openCursor();</span><br><span class="line">         request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> cursor = e.target.result;</span><br><span class="line">             <span class="keyword">if</span> (cursor) &#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(cursor.key);</span><br><span class="line">                 <span class="keyword">var</span> currentStudent = cursor.value;</span><br><span class="line">                 <span class="built_in">console</span>.log(currentStudent.name);</span><br><span class="line">                 <span class="keyword">var</span> table = <span class="built_in">document</span>.getElementById(<span class="string">&quot;mytable&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> tr = <span class="built_in">document</span>.createElement(<span class="string">&quot;tr&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> imgtd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">                 <span class="keyword">var</span> txttd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">                 <span class="comment">//图片</span></span><br><span class="line">                 <span class="keyword">var</span> schimg = <span class="built_in">document</span>.createElement(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">                 <span class="keyword">switch</span> (currentStudent.name) &#123;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;北京大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;bj-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;清华大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;qh-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                     <span class="keyword">case</span> <span class="string">&quot;上海交通大学&quot;</span>:</span><br><span class="line">                         schimg.setAttribute(<span class="string">&quot;src&quot;</span>, <span class="string">&quot;shj-playstore.png&quot;</span>);</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                 &#125;</span><br><span class="line">                 schimg.setAttribute(<span class="string">&quot;style&quot;</span>, <span class="string">&quot;height: 100px;&quot;</span>);</span><br><span class="line">                 imgtd.appendChild(schimg);</span><br><span class="line"></span><br><span class="line">                 <span class="comment">//文字</span></span><br><span class="line">                 txttd.innerHTML = <span class="string">&quot; &lt;p style=&#x27;font-size: 45px;&#x27;&gt;&quot;</span> + currentStudent.name + <span class="string">&quot;&lt;/p&gt;&quot;</span> + <span class="string">&quot;&lt;p&gt;&quot;</span> + currentStudent.addr + <span class="string">&quot;&lt;p&gt;&quot;</span>;</span><br><span class="line">                 <span class="comment">//添加</span></span><br><span class="line">                 tr.appendChild(imgtd);</span><br><span class="line">                 tr.appendChild(txttd);</span><br><span class="line">                 table.appendChild(tr);</span><br><span class="line">                 cursor.continue();</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;;</span><br><span class="line">     &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>android套WebView</title>
-    <url>/2021/06/27/android/android%E5%A5%97WebView/</url>
-    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 展示一个 WebView --&gt;</span><br><span class="line">&lt;WebView</span><br><span class="line">    android:id=<span class="string">&quot;@+id/webview&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">package com.example.webviewdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.annotation.SuppressLint;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.webkit.WebView;</span><br><span class="line"><span class="keyword">import</span> android.webkit.WebViewClient;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected <span class="keyword">void</span> <span class="function"><span class="title">onCreate</span>(<span class="params">Bundle savedInstanceState</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.createWebView();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 创建 WebView 实例 */</span></span><br><span class="line">    @SuppressLint(<span class="string">&quot;SetJavaScriptEnabled&quot;</span>)</span><br><span class="line">    private <span class="keyword">void</span> <span class="function"><span class="title">createWebView</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建 WebView 实例并通过 id 绑定我们刚在布局中创建的 WebView 标签</span></span><br><span class="line">        <span class="comment">// 这里的 R.id.webview 就是 activity_main.xml 中的 WebView 标签的 id</span></span><br><span class="line">        final WebView webView = (WebView) findViewById(R.id.webview);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置 WebView 允许执行 JavaScript 脚本</span></span><br><span class="line">        webView.getSettings().setJavaScriptEnabled(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 确保跳转到另一个网页时仍然在当前 WebView 中显示</span></span><br><span class="line">        <span class="comment">// 而不是调用浏览器打开</span></span><br><span class="line">        webView.setWebViewClient(<span class="keyword">new</span> WebViewClient());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 加载指定网页</span></span><br><span class="line">        <span class="built_in">String</span> url = <span class="string">&quot;https://chenpipi.cn&quot;</span>;</span><br><span class="line">        webView.loadUrl(url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 访问网络的权限 --&gt;</span><br><span class="line">&lt;uses-permission android:name=<span class="string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置为全屏（隐藏状态栏）</span></span><br><span class="line">requestWindowFeature(Window.FEATURE_NO_TITLE);</span><br><span class="line">getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置 WebView 的按键监听器，覆写监听器的 onKey 函数，对返回键作特殊处理</span></span><br><span class="line"><span class="comment">// 当 WebView 可以返回到上一个页面时回到上一个页面</span></span><br><span class="line">webView.setOnKeyListener(<span class="keyword">new</span> View.OnKeyListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean <span class="function"><span class="title">onKey</span>(<span class="params">View v, int keyCode, KeyEvent event</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (keyCode == KeyEvent.KEYCODE_BACK &amp;&amp; webView.canGoBack()) &#123;</span><br><span class="line">            webView.goBack();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>重写当前 Activity 的 <code>onBackPressed</code> 函数：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">private WebView webView = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 WebView 实例时保存到 this.webView 中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 接管返回键</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> <span class="function"><span class="title">onBackPressed</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.webView.canGoBack()) &#123;</span><br><span class="line">        <span class="built_in">this</span>.webView.goBack();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onBackPressed();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;application</span><br><span class="line">    ...</span><br><span class="line">    android:usesCleartextTraffic=<span class="string">&quot;true&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>黑马java数据结构</title>
-    <url>/2021/07/03/%E9%BB%91%E9%A9%ACJava%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h2><span id="数据结构与算法概述">数据结构与算法概述</span></h2><h3><span id="数据结构">数据结构</span></h3><ul>
-<li>有一定关系的元素的集合</li>
-</ul>
-<h3><span id="分类">分类</span></h3><ul>
-<li>逻辑结构<ul>
-<li>集合结构</li>
-<li>线性结构</li>
-<li>树形结构</li>
-<li>图结构</li>
-</ul>
-</li>
-<li>物理结构<ul>
-<li>顺序结构</li>
-<li>链式结构（插入更方便）</li>
-</ul>
-</li>
-</ul>
-<h3><span id="目的">目的</span></h3><ul>
-<li>时间花费少，空间利用少</li>
-</ul>
-<h2><span id="时间复杂度">时间复杂度</span></h2><h3><span id="分析">分析</span></h3><ul>
-<li>核心操作的执行次数和输入规模的关联（形成一个函数关系）<ul>
-<li>​    <img src="https://api2.mubu.com/v3/document_image/caa7b99e-ee52-4edf-8269-d855582c7d33-3810853.jpg" alt="img">  </li>
-</ul>
-</li>
-</ul>
-<h3><span id="计算">计算</span></h3><ul>
-<li>和常数无关，只和变量的指数有关<ul>
-<li>​    <img src="https://api2.mubu.com/v3/document_image/557b2c96-8d73-476b-b1ab-89c637585fb1-3810853.jpg" alt="img">  </li>
-</ul>
-</li>
-</ul>
-<h3><span id="大o记法">大O记法</span></h3><ul>
-<li><ul>
-<li>​    <img src="https://api2.mubu.com/v3/document_image/7ba1454b-afab-449f-b0e2-bed17549cbdf-3810853.jpg" alt="img">  </li>
-</ul>
-</li>
-</ul>
-<h3><span id="常见的大o记法">常见的大O记法</span></h3><ul>
-<li>比较<ul>
-<li>​    <img src="https://api2.mubu.com/v3/document_image/da5ad32a-8cb0-4dda-9a1b-d2a210027b9f-3810853.jpg" alt="img">  </li>
-</ul>
-</li>
-<li>线性阶</li>
-<li>平方阶</li>
-<li>立方阶</li>
-<li>对数阶</li>
-<li>常数阶</li>
-</ul>
-<h3><span id="最坏情况">最坏情况</span></h3><ul>
-<li><ul>
-<li>​    <img src="https://api2.mubu.com/v3/document_image/707969ad-10a8-43a2-b0e3-790984a70843-3810853.jpg" alt="img">  </li>
-</ul>
-</li>
-</ul>
-<h2><span id="空间复杂度">空间复杂度</span></h2><h3><span id="基本数据类型内存占用">基本数据类型内存占用</span></h3><p><img src="https://api2.mubu.com/v3/document_image/58764c05-e132-4867-ae7c-5b80af26c651-3810853.jpg" alt="img">  </p>
-<h3><span id="变量对象有额外开销">变量，对象（有额外开销）</span></h3><p><img src="https://api2.mubu.com/v3/document_image/449ffe1b-09e2-42bd-b975-6967c38587cc-3810853.jpg" alt="img">  </p>
-<h2><span id="comparable接口">Comparable接口</span></h2><h3><span id="实现接口">实现接口</span></h3><p>   <img src="https://api2.mubu.com/v3/document_image/84baff81-56ec-4001-aa58-b9c2895acfa9-3810853.jpg" alt="img">  </p>
-<h3><span id="重写方法">重写方法</span></h3><p>   <img src="https://api2.mubu.com/v3/document_image/f7f6466e-4092-43c5-9d5f-dbdca9a1a156-3810853.jpg" alt="img">  </p>
-<h3><span id="把两个对象传进去比较">把两个对象传进去比较</span></h3><p>   <img src="https://api2.mubu.com/v3/document_image/5248e8f4-0906-427e-ab55-7eac4035a5eb-3810853.jpg" alt="img">  </p>
-<h2><span id="冒泡算法">冒泡算法</span></h2><h3><span id="原理">原理</span></h3><ul>
-<li><p>排序原理</p>
-<p><img src="https://api2.mubu.com/v3/document_image/70769319-dd04-4d4a-9b38-be3a145f13b0-3810853.jpg" alt="img">  </p>
-</li>
-</ul>
-<h3><span id="冒泡api">冒泡API</span></h3><ul>
-<li>API<ul>
-<li>​    <img src="https://api2.mubu.com/v3/document_image/0fb14241-2e32-4ba8-acec-2a0aa32b3b49-3810853.jpg" alt="img">  </li>
-</ul>
-</li>
-</ul>
-<h3><span id="api分析理解">API分析理解</span></h3><ul>
-<li><p>定位到最后一个元素，之前的元素全部进行两两比较，往后传送最大的，再与最后的元素通过j+1进行比较，大的一方持有最后一个位置。</p>
-</li>
-<li><p>第一层与第二层关系：j&lt;i</p>
-</li>
-<li><p>第二层的范围随着第一层逐渐减小</p>
-</li>
-<li><p>冒泡测试</p>
-<p>​    <img src="https://api2.mubu.com/v3/document_image/c5431554-f4cb-4c17-846b-efd092b0747d-3810853.jpg" alt="img">  </p>
-</li>
-</ul>
-<h3><span id="时间复杂度分析">时间复杂度分析</span></h3><p>  <img src="https://api2.mubu.com/v3/document_image/432ec498-91e5-4cb3-9665-b70a01205d00-3810853.jpg" alt="img">  </p>
-<h2><span id="选择排序">选择排序</span></h2><h3><span id="原理">原理</span></h3><p><img src="https://api2.mubu.com/v3/document_image/ad3d8976-dab2-4352-90f1-2f4f6f5eab93-3810853.jpg" alt="img">  </p>
-<h3><span id="选择api">选择API</span></h3><p><img src="https://api2.mubu.com/v3/document_image/3fd5ece7-1db5-46eb-8026-ff8c501917c8-3810853.jpg" alt="img">  </p>
-<h3><span id="api分析理解">API分析理解</span></h3><ul>
-<li>定位到第一位，给第一位贴一个标签表示最小，从第二位开始进行相邻比较传递标签，让最后的到标签的元素与第一位交换位置。</li>
-<li>//关系：j=i+1</li>
-<li>第二层的起始位置随第一次往前推</li>
-<li>//特殊：第一层可以只遍历到倒数第二个元素，</li>
-<li>//注意：每一轮结束了才进行交换，所以要不exch放在内循环外面</li>
-</ul>
-<h3><span id="时间复杂度">时间复杂度</span></h3><p><img src="https://api2.mubu.com/v3/document_image/0c1c222d-0de8-4840-9725-77997a29d967-3810853.jpg" alt="img"></p>
-]]></content>
-      <categories>
-        <category>黑马</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>狂神大前端</title>
-    <url>/2021/07/04/%E7%8B%82%E7%A5%9E%E5%A4%A7%E5%89%8D%E7%AB%AF/</url>
-    <content><![CDATA[<h1><span id="vscode">vscode</span></h1><ul>
-<li>emment语法简化操作</li>
-</ul>
-<h1><span id="nodejs安装">nodejs安装</span></h1><p> <img src="https://api2.mubu.com/v3/document_image/34b8ed30-f8e4-455f-b4ce-4a5d3f08a29b-3810853.jpg" alt="img">                            </p>
-<h1><span id="nodejs了解">nodejs了解</span></h1><ul>
-<li>是将javascript解释给操作系统的Chromv8引擎</li>
-<li>直接通过node命令运行</li>
-</ul>
-<h1><span id="nodejs实现httpserver">nodejs实现httpserver                                <img src="https://api2.mubu.com/v3/document_image/0a8868b8-acc4-4993-8e2b-580cdc214169-3810853.jpg" alt="img"></span></h1><p>思路</p>
-<ul>
-<li>通过require导入http包</li>
-<li>createServer创建服务<ul>
-<li>response指定状态码和解释格式</li>
-<li>request.end(“”)输出内容</li>
-<li>监听8080端口</li>
-</ul>
-</li>
-</ul>
-<h1><span id="nodejs连接数据库">nodejs连接数据库</span></h1><ul>
-<li><p>mysql不是nodejs内置的包，需要通过npm导入依赖，才能require</p>
-</li>
-<li><p>导入mysql依赖，创建connencttion并连接</p>
-<p><img src="https://api2.mubu.com/v3/document_image/7ac234a2-0555-42ba-9206-9ddd9fe86b15-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>通过query语句查询，并通过回调函数得到结果                           <img src="https://api2.mubu.com/v3/document_image/dc91392a-7ab0-4196-ab3a-1ab5c59f76eb-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1><span id>—</span></h1><h1><span id="es6">ES6</span></h1><ul>
-<li>ES6是一个javascript的标准规范</li>
-</ul>
-<h1><span id="let和count">let和count</span></h1><ul>
-<li><p>变量用let,常量用const</p>
-<p><img src="https://api2.mubu.com/v3/document_image/881c0e1c-f40e-46bf-b4c3-acc58713adae-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>解决了变量穿透、常量修改的问题                                <img src="https://api2.mubu.com/v3/document_image/1ffc0ddf-6423-49ba-a604-979c9d323859-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>如果循环中变量是用var定义的，在循环外还能输出该变量</p>
-</li>
-<li><p>在有些低版本的浏览器中可能不支持let和count，常在开发小程序中用</p>
-</li>
-</ul>
-<h1><span id="模板字符串">模板字符串</span></h1><ul>
-<li>用反引号”`”包裹字符串，在里面用${}来调用javascript对象属性                    <img src="https://api2.mubu.com/v3/document_image/4694f917-2f26-4837-abd1-ab3ab5f9b8ae-3810853.jpg" alt="img">                            </li>
-<li>而且支持直接换行写，不同担心拼接</li>
-</ul>
-<h1><span id="函数默认参数">函数默认参数</span></h1><ul>
-<li><p>可以在参数处指定默认参数</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/b39d0836-a14b-43d5-81ab-e843cb5aacd6-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>如果不指定，默认为undefined，两个数相加会出现NaN</p>
-</li>
-</ul>
-<h1><span id="箭头函数">箭头函数</span></h1><ul>
-<li>下图四个规律掌握即可                           <img src="https://api2.mubu.com/v3/document_image/39e06410-54d9-4df9-9793-e549be686470-3810853.jpg" alt="img">                            </li>
-<li>例：数组全部乘2</li>
-</ul>
-<h1><span id="对象简化">对象简化</span></h1><ul>
-<li>对象里的方法可以把冒号和function都去掉，仅剩一个（）</li>
-<li>对象的参数名如果和已有变量名一致，且取值也一致，则可以只写个参数名                                <img src="https://api2.mubu.com/v3/document_image/dff44a56-a346-4e9b-99bf-9cfbe90b62cd-3810853.jpg" alt="img">                            </li>
-<li>案例：在ajax中可以使用</li>
-</ul>
-<h1><span id="对象解构">对象解构</span></h1><ul>
-<li><p>直接通过大括号对多个变量赋予对象相应的值</p>
-<p><img src="https://api2.mubu.com/v3/document_image/5b427c0e-b6d9-4730-99d8-a4a928ecbe2b-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1><span id="对象传播符">对象传播符</span></h1><ul>
-<li>…person2将person还没解构的数据给了person2                             <img src="https://api2.mubu.com/v3/document_image/2ec93b73-ea2e-4f81-90c1-c248f14e7977-3810853.jpg" alt="img">                            </li>
-<li>想把某个javascript对象拆开使用可以这么用</li>
-</ul>
-<h1><span id="数组map">数组map</span></h1><ul>
-<li>map会自带循环，并且将处理的值返回对应的位置   <img src="https://api2.mubu.com/v3/document_image/0774028b-0680-4f70-a166-6fdaff8caa0f-3810853.jpg" alt="img">                            </li>
-<li>箭头函数简化                           <img src="https://api2.mubu.com/v3/document_image/85331e1f-d2d9-4ea7-8415-36f1c4d6f4e6-3810853.jpg" alt="img">                            </li>
-<li>循环修改数组对象中的某个值                              <img src="https://api2.mubu.com/v3/document_image/918ee0f0-5290-429b-ad18-59ce6053e5ef-3810853.jpg" alt="img">                            </li>
-<li>可以这样给对象增加字段</li>
-<li>  <img src="https://api2.mubu.com/v3/document_image/39c44962-14f3-42ee-999b-45b7867ae654-3810853.jpg" alt="img">                            </li>
-</ul>
-<h1><span id="数组reduce">数组reduce</span></h1><ul>
-<li><p>相邻迭代操作</p>
-<p>   <img src="https://api2.mubu.com/v3/document_image/e2b2905f-a88b-424d-b6dc-35fcf92c1f14-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1><span id>—–</span></h1><h1><span id="npm包管理器快速构建项目">npm包管理器快速构建项目</span></h1><ul>
-<li>通过npm init快速创建nodejs工程                             <img src="https://api2.mubu.com/v3/document_image/fdc70269-b02a-4c5d-bd30-991693407eeb-3810853.jpg" alt="img">                            </li>
-</ul>
-<h1><span id="npm安装模块依赖">npm安装模块依赖</span></h1><ul>
-<li><p>npm  init -y 会以默认方式创建配置文件</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/c0450b92-4272-44a5-8a6c-401573595843-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>pacackge.json的价值就是在新建项目时快速复用                              <img src="https://api2.mubu.com/v3/document_image/db8427dc-78b5-4e98-9914-baf8dc0b9571-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>镜像设置                            <img src="https://api2.mubu.com/v3/document_image/ab2ec69e-60a1-4d97-9c08-527a90b04c6d-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>下载指定版本号或者卸载                             <img src="https://api2.mubu.com/v3/document_image/e4e99ee6-9a37-4ff7-b2f6-a79ece6912fb-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1><span id="bable的安装">Bable的安装</span></h1><ul>
-<li><p>让ES6的某些语法能够在一些不支持的浏览器中运行</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/08e74cde-fa2c-4c55-8e2d-2308bfd4e693-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1><span id="bable的使用">Bable的使用</span></h1><ul>
-<li><p>初始化nodejs,创建src文件，在src中写es6代码</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/89f87ae4-b737-4ddb-8392-7ddda6e823f2-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>创建.babalrc配置文件，在里面配置es需要转化的版本</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/f8396668-002b-43e4-90a3-b5e120d2b47d-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>使用npm命令下载babel并转换</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/60e176e1-8240-49b7-aff8-1581a2925d9a-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>使用命令转换结果将显示在dist文件夹中</p>
-<p>   <img src="https://api2.mubu.com/v3/document_image/aff1aca5-93f8-4250-9cb5-662f09fc45c9-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>node直接执行dist文件夹中的即可</p>
-</li>
-</ul>
-<h1><span id="自定义命令脚本">自定义命令脚本</span></h1><ul>
-<li><p>将命令以键值对的方式存在package配置文件中</p>
-<p><img src="https://api2.mubu.com/v3/document_image/683c9471-fffc-478a-a856-7c799ebd4df5-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>用改命令直接执行相应的模块</p>
-<p>​    <img src="https://api2.mubu.com/v3/document_image/077133a0-d1c1-4c19-bf62-9733a6b96fed-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1><span id="commenjs模块化开发">CommenJS模块化开发</span></h1><ul>
-<li><p>定义方法并导出</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/219d223f-b0d8-43ae-a802-b912f7cd2fd0-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>引入并使用导出的方法</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/8286c50e-cc69-4972-8ff2-de0bcb06eea4-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1><span id="es6简化模块开发">ES6简化模块开发</span></h1><ul>
-<li><p>打包</p>
-<p>​    <img src="https://api2.mubu.com/v3/document_image/b720c475-332c-4f66-a827-6af55b3237fd-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>导入使用，将导入的定义成对象</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/0e69d0f2-7f3d-4977-908f-01bc4ecdd064-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>浏览器默认不支持es6的语法，所以要结合bable使用</p>
-</li>
-</ul>
-<h1><span id="webpack">WebPack</span></h1><ul>
-<li><p>合并静态资源并加密，更安全更快速</p>
-</li>
-<li><p>安装</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/514eb076-f66a-4082-a068-d67d890e1f40-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1><span id="webpack打包js">webpack打包js</span></h1><ul>
-<li><p>webpack.config.js配置文件</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/09581f30-2b6c-4fa9-8913-c7f92c8262df-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>webpack.config.js文件配置入口，打包目录，以及打包js名称                              <img src="https://api2.mubu.com/v3/document_image/3f8d5d43-72fa-4052-bc59-e3fc83416963-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>_dirname是一个常量，表示当前根目录</p>
-</li>
-</ul>
-<h1><span id="webpack打包css">webpack打包css</span></h1><ul>
-<li><p>安装两个loader来打包css</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/5c881ccf-5a8e-426f-b968-ff2e0f83d79d-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>在webpack.config.js文件中定义一个model                             <img src="https://api2.mubu.com/v3/document_image/28f5d836-93f1-4200-b805-3b673d36f864-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>在入口函数中导入相应的css</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/73e59ede-bded-4115-9fa8-36ec16896341-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>可以让webpack处于监听状态，修改保存即可</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/e17c6f7a-bba5-4d2c-9a46-62dde6431a04-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1><span id="-">—-</span></h1><p>VueElementAdmin开源项目推荐</p>
-]]></content>
-      <tags>
-        <tag>笔记狂神系列</tag>
       </tags>
   </entry>
   <entry>
@@ -1981,19 +1994,6 @@
 ]]></content>
       <tags>
         <tag>笔记Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>js判断undifine和null</title>
-    <url>/2021/07/04/js/js%E5%88%A4%E6%96%ADundifine%E5%92%8Cnull/</url>
-    <content><![CDATA[<h2 id="js判断undifine"><a href="#js判断undifine" class="headerlink" title="js判断undifine"></a>js判断undifine</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> exp = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span>(exp) == <span class="string">&quot;undefined&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    alert(<span class="string">&quot;undefined&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="js判断null"><a href="#js判断null" class="headerlink" title="js判断null"></a>js判断null</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> exp = <span class="literal">null</span>; </span><br><span class="line"><span class="keyword">if</span> (!exp &amp;&amp; <span class="keyword">typeof</span>(exp)!=”<span class="literal">undefined</span>” &amp;&amp; exp!=<span class="number">0</span>) </span><br><span class="line">&#123; </span><br><span class="line">alert(“is <span class="literal">null</span>”); </span><br><span class="line">&#125;　</span><br></pre></td></tr></table></figure>
-
-<p>尽管如此，我们在 DOM 应用中，一般只需要用 (!exp) 来判断就可以了，因为 DOM 应用中，可能返回 null，可能返回 undefined，如果具体判断 null 还是 undefined 会使程序过于复杂。</p>
-]]></content>
-      <tags>
-        <tag>js</tag>
       </tags>
   </entry>
 </search>
