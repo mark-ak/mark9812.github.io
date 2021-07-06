@@ -253,6 +253,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/01/03/servlet/servlet%E4%B8%AD%E7%9A%84web-xml%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/01/03/servlet/servlet%E4%B8%AD%E7%9A%84web-xml%E9%85%8D%E7%BD%AE/" itemprop="url">SERVLET中的web.xml配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-03T07:43:13+08:00">
+                2021-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/servlet/" itemprop="url" rel="index">
+                    <span itemprop="name">servlet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="url-pattern"><a href="#url-pattern" class="headerlink" title="url-pattern"></a>url-pattern</h1><h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>在写url-pattern的时候不需要加后缀,该名称为响应名称，只需要与表单的action一致即可。 也就是说我们只需要把表单响应页面与后端绑定起来即可，初始页面只要在对的路径，能够在服务器上打开即可。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;InputDemo&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;input&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h2><p>  写url-pattern时不能用/*，因为这样会把我们的html静态页面也全部包含其中，导致无法加载html页面，而是把任何页面都当作响应页面处理，所以最好的办法是用一个后缀来区分<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;url-pattern&gt;*.do&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;register.do&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line"> String action&#x3D;uri.substring(uri.lastIndexOf(&quot;&#x2F;&quot;)+1,uri.lastIndexOf(&quot;.&quot;));</span><br><span class="line">if(action.equals(&quot;register&quot;)) &#123;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>如果写成”/*.do”会报错。</li>
+<li>别忘了lastIndexOf(“/“)后面还有+1</li>
+</ul>
+<h1 id="welcome-file"><a href="#welcome-file" class="headerlink" title="welcome-file"></a>welcome-file</h1><p>对于初始页面，我们只需要配置<welcome-file>即可，也就是刚启动servlet就能看到的页面</welcome-file></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  &lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;input.html&lt;&#x2F;welcome-file&gt;</span><br><span class="line">  &lt;&#x2F;welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
+<br>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2020/11/29/hexo/hexo%E5%90%8C%E6%97%B6%E5%85%B3%E8%81%94gitee%E5%92%8Cgithub/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1078,7 +1227,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1163,7 +1312,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共17.8k字</span>
+  <span class="post-count">博客全站共18k字</span>
 </div>
 
         
