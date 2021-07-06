@@ -735,8 +735,7 @@
 
       
         
-          
-            <h1 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h1><ul>
+          <h1 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h1><ul>
 <li>emment语法简化操作</li>
 </ul>
 <h1 id="nodejs安装"><a href="#nodejs安装" class="headerlink" title="nodejs安装"></a>nodejs安装</h1><p> <img src="https://api2.mubu.com/v3/document_image/34b8ed30-f8e4-455f-b4ce-4a5d3f08a29b-3810853.jpg" alt="img">                            </p>
@@ -746,171 +745,21 @@
 </ul>
 <h1 id="nodejs实现httpserver"><a href="#nodejs实现httpserver" class="headerlink" title="nodejs实现httpserver                                "></a>nodejs实现httpserver                                <img src="https://api2.mubu.com/v3/document_image/0a8868b8-acc4-4993-8e2b-580cdc214169-3810853.jpg" alt="img"></h1><p>思路</p>
 <ul>
-<li>通过require导入http包</li>
-<li>createServer创建服务<ul>
+<li><p>通过require导入http包</p>
+</li>
+<li><p>createServer创建服务</p>
+<ul>
 <li>response指定状态码和解释格式</li>
 <li>request.end(“”)输出内容</li>
 <li>监听8080端口</li>
 </ul>
-</li>
-</ul>
-<h1 id="nodejs连接数据库"><a href="#nodejs连接数据库" class="headerlink" title="nodejs连接数据库"></a>nodejs连接数据库</h1><ul>
-<li><p>mysql不是nodejs内置的包，需要通过npm导入依赖，才能require</p>
-</li>
-<li><p>导入mysql依赖，创建connencttion并连接</p>
-<p><img src="https://api2.mubu.com/v3/document_image/7ac234a2-0555-42ba-9206-9ddd9fe86b15-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>通过query语句查询，并通过回调函数得到结果                           <img src="https://api2.mubu.com/v3/document_image/dc91392a-7ab0-4196-ab3a-1ab5c59f76eb-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1 id><a href="#—" class="headerlink" title="—"></a>—</h1><h1 id="es6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h1><ul>
-<li>ES6是一个javascript的标准规范</li>
-</ul>
-<h1 id="let和count"><a href="#let和count" class="headerlink" title="let和count"></a>let和count</h1><ul>
-<li><p>变量用let,常量用const</p>
-<p><img src="https://api2.mubu.com/v3/document_image/881c0e1c-f40e-46bf-b4c3-acc58713adae-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>解决了变量穿透、常量修改的问题                                <img src="https://api2.mubu.com/v3/document_image/1ffc0ddf-6423-49ba-a604-979c9d323859-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>如果循环中变量是用var定义的，在循环外还能输出该变量</p>
-</li>
-<li><p>在有些低版本的浏览器中可能不支持let和count，常在开发小程序中用</p>
-</li>
-</ul>
-<h1 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h1><ul>
-<li>用反引号”`”包裹字符串，在里面用${}来调用javascript对象属性                    <img src="https://api2.mubu.com/v3/document_image/4694f917-2f26-4837-abd1-ab3ab5f9b8ae-3810853.jpg" alt="img">                            </li>
-<li>而且支持直接换行写，不同担心拼接</li>
-</ul>
-<h1 id="函数默认参数"><a href="#函数默认参数" class="headerlink" title="函数默认参数"></a>函数默认参数</h1><ul>
-<li><p>可以在参数处指定默认参数</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/b39d0836-a14b-43d5-81ab-e843cb5aacd6-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>如果不指定，默认为undefined，两个数相加会出现NaN</p>
-</li>
-</ul>
-<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><ul>
-<li>下图四个规律掌握即可                           <img src="https://api2.mubu.com/v3/document_image/39e06410-54d9-4df9-9793-e549be686470-3810853.jpg" alt="img">                            </li>
-<li>例：数组全部乘2</li>
-</ul>
-<h1 id="对象简化"><a href="#对象简化" class="headerlink" title="对象简化"></a>对象简化</h1><ul>
-<li>对象里的方法可以把冒号和function都去掉，仅剩一个（）</li>
-<li>对象的参数名如果和已有变量名一致，且取值也一致，则可以只写个参数名                                <img src="https://api2.mubu.com/v3/document_image/dff44a56-a346-4e9b-99bf-9cfbe90b62cd-3810853.jpg" alt="img">                            </li>
-<li>案例：在ajax中可以使用</li>
-</ul>
-<h1 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h1><ul>
-<li><p>直接通过大括号对多个变量赋予对象相应的值</p>
-<p><img src="https://api2.mubu.com/v3/document_image/5b427c0e-b6d9-4730-99d8-a4a928ecbe2b-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1 id="对象传播符"><a href="#对象传播符" class="headerlink" title="对象传播符"></a>对象传播符</h1><ul>
-<li>…person2将person还没解构的数据给了person2                             <img src="https://api2.mubu.com/v3/document_image/2ec93b73-ea2e-4f81-90c1-c248f14e7977-3810853.jpg" alt="img">                            </li>
-<li>想把某个javascript对象拆开使用可以这么用</li>
-</ul>
-<h1 id="数组map"><a href="#数组map" class="headerlink" title="数组map"></a>数组map</h1><ul>
-<li>map会自带循环，并且将处理的值返回对应的位置   <img src="https://api2.mubu.com/v3/document_image/0774028b-0680-4f70-a166-6fdaff8caa0f-3810853.jpg" alt="img">                            </li>
-<li>箭头函数简化                           <img src="https://api2.mubu.com/v3/document_image/85331e1f-d2d9-4ea7-8415-36f1c4d6f4e6-3810853.jpg" alt="img">                            </li>
-<li>循环修改数组对象中的某个值                              <img src="https://api2.mubu.com/v3/document_image/918ee0f0-5290-429b-ad18-59ce6053e5ef-3810853.jpg" alt="img">                            </li>
-<li>可以这样给对象增加字段</li>
-<li>  <img src="https://api2.mubu.com/v3/document_image/39c44962-14f3-42ee-999b-45b7867ae654-3810853.jpg" alt="img">                            </li>
-</ul>
-<h1 id="数组reduce"><a href="#数组reduce" class="headerlink" title="数组reduce"></a>数组reduce</h1><ul>
-<li><p>相邻迭代操作</p>
-<p>   <img src="https://api2.mubu.com/v3/document_image/e2b2905f-a88b-424d-b6dc-35fcf92c1f14-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1 id><a href="#—–" class="headerlink" title="—–"></a>—–</h1><h1 id="npm包管理器快速构建项目"><a href="#npm包管理器快速构建项目" class="headerlink" title="npm包管理器快速构建项目"></a>npm包管理器快速构建项目</h1><ul>
-<li>通过npm init快速创建nodejs工程                             <img src="https://api2.mubu.com/v3/document_image/fdc70269-b02a-4c5d-bd30-991693407eeb-3810853.jpg" alt="img">                            </li>
-</ul>
-<h1 id="npm安装模块依赖"><a href="#npm安装模块依赖" class="headerlink" title="npm安装模块依赖"></a>npm安装模块依赖</h1><ul>
-<li><p>npm  init -y 会以默认方式创建配置文件</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/c0450b92-4272-44a5-8a6c-401573595843-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>pacackge.json的价值就是在新建项目时快速复用                              <img src="https://api2.mubu.com/v3/document_image/db8427dc-78b5-4e98-9914-baf8dc0b9571-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>镜像设置                            <img src="https://api2.mubu.com/v3/document_image/ab2ec69e-60a1-4d97-9c08-527a90b04c6d-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>下载指定版本号或者卸载                             <img src="https://api2.mubu.com/v3/document_image/e4e99ee6-9a37-4ff7-b2f6-a79ece6912fb-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1 id="bable的安装"><a href="#Bable的安装" class="headerlink" title="Bable的安装"></a>Bable的安装</h1><ul>
-<li><p>让ES6的某些语法能够在一些不支持的浏览器中运行</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/08e74cde-fa2c-4c55-8e2d-2308bfd4e693-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1 id="bable的使用"><a href="#Bable的使用" class="headerlink" title="Bable的使用"></a>Bable的使用</h1><ul>
-<li><p>初始化nodejs,创建src文件，在src中写es6代码</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/89f87ae4-b737-4ddb-8392-7ddda6e823f2-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>创建.babalrc配置文件，在里面配置es需要转化的版本</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/f8396668-002b-43e4-90a3-b5e120d2b47d-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>使用npm命令下载babel并转换</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/60e176e1-8240-49b7-aff8-1581a2925d9a-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>使用命令转换结果将显示在dist文件夹中</p>
-<p>   <img src="https://api2.mubu.com/v3/document_image/aff1aca5-93f8-4250-9cb5-662f09fc45c9-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>node直接执行dist文件夹中的即可</p>
-</li>
-</ul>
-<h1 id="自定义命令脚本"><a href="#自定义命令脚本" class="headerlink" title="自定义命令脚本"></a>自定义命令脚本</h1><ul>
-<li><p>将命令以键值对的方式存在package配置文件中</p>
-<p><img src="https://api2.mubu.com/v3/document_image/683c9471-fffc-478a-a856-7c799ebd4df5-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>用改命令直接执行相应的模块</p>
-<p>​    <img src="https://api2.mubu.com/v3/document_image/077133a0-d1c1-4c19-bf62-9733a6b96fed-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1 id="commenjs模块化开发"><a href="#CommenJS模块化开发" class="headerlink" title="CommenJS模块化开发"></a>CommenJS模块化开发</h1><ul>
-<li><p>定义方法并导出</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/219d223f-b0d8-43ae-a802-b912f7cd2fd0-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>引入并使用导出的方法</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/8286c50e-cc69-4972-8ff2-de0bcb06eea4-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1 id="es6简化模块开发"><a href="#ES6简化模块开发" class="headerlink" title="ES6简化模块开发"></a>ES6简化模块开发</h1><ul>
-<li><p>打包</p>
-<p>​    <img src="https://api2.mubu.com/v3/document_image/b720c475-332c-4f66-a827-6af55b3237fd-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>导入使用，将导入的定义成对象</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/0e69d0f2-7f3d-4977-908f-01bc4ecdd064-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>浏览器默认不支持es6的语法，所以要结合bable使用</p>
-</li>
-</ul>
-<h1 id="webpack"><a href="#WebPack" class="headerlink" title="WebPack"></a>WebPack</h1><ul>
-<li><p>合并静态资源并加密，更安全更快速</p>
-</li>
-<li><p>安装</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/514eb076-f66a-4082-a068-d67d890e1f40-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1 id="webpack打包js"><a href="#webpack打包js" class="headerlink" title="webpack打包js"></a>webpack打包js</h1><ul>
-<li><p>webpack.config.js配置文件</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/09581f30-2b6c-4fa9-8913-c7f92c8262df-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>webpack.config.js文件配置入口，打包目录，以及打包js名称                              <img src="https://api2.mubu.com/v3/document_image/3f8d5d43-72fa-4052-bc59-e3fc83416963-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>_dirname是一个常量，表示当前根目录</p>
-</li>
-</ul>
-<h1 id="webpack打包css"><a href="#webpack打包css" class="headerlink" title="webpack打包css"></a>webpack打包css</h1><ul>
-<li><p>安装两个loader来打包css</p>
-<p>  <img src="https://api2.mubu.com/v3/document_image/5c881ccf-5a8e-426f-b968-ff2e0f83d79d-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>在webpack.config.js文件中定义一个model                             <img src="https://api2.mubu.com/v3/document_image/28f5d836-93f1-4200-b805-3b673d36f864-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>在入口函数中导入相应的css</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/73e59ede-bded-4115-9fa8-36ec16896341-3810853.jpg" alt="img">                            </p>
-</li>
-<li><p>可以让webpack处于监听状态，修改保存即可</p>
-<p> <img src="https://api2.mubu.com/v3/document_image/e17c6f7a-bba5-4d2c-9a46-62dde6431a04-3810853.jpg" alt="img">                            </p>
-</li>
-</ul>
-<h1 id="-"><a href="#—-1" class="headerlink" title="—-"></a>—-</h1><p>VueElementAdmin开源项目推荐</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/07/04/%E7%8B%82%E7%A5%9E%E5%A4%A7%E5%89%8D%E7%AB%AF/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
