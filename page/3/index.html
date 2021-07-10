@@ -253,134 +253,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/06/04/Thymeleaf/Thymeleaf%20%E6%B2%A1%E6%9C%89%E8%BF%94%E5%9B%9Ehtml%E5%8F%AA%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/06/04/Thymeleaf/Thymeleaf%20%E6%B2%A1%E6%9C%89%E8%BF%94%E5%9B%9Ehtml%E5%8F%AA%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="url">Thymeleaf 没有返回html只返回字符串</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-04T16:30:39+08:00">
-                2021-06-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在使用Thymeleaf的时候，@RequestMapping对应的函数没有返回html文件而是返回了这个函数对应的字符串返回值</p>
-<p>解决办法：</p>
-<p>删除这个函数前面的@Responsebody注解，这个注解会返回Mapping函数指定的返回类型、例如String。而不是将其解析为html文件</p>
-<p>===================================================================</p>
-<p>错误：不能返回页面，只返回字符串。</p>
-<p>原因：在controller中使用了注解@RestController</p>
-<p>修改：修改注解为@Controller</p>
-<p>分析：</p>
-<p>RestController = Controller + ResponseBody.加上RestController,返回的内容是你return中的内容，如果是return “Hello World”，页面显示的就是Hello World。加上Controller，返回的是return中对应的页面,比如return “hello”,页面的名称是hello。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/06/04/springboot/pom%E9%85%8D%E7%BD%AE%E6%89%93%E5%8C%85%E6%97%B6%E8%B7%B3%E8%BF%87%E6%B5%8B%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1485,6 +1357,127 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/06/03/linux/Linux%E4%B8%8B%E5%AE%89%E8%A3%85vim%E7%BC%96%E8%BE%91%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/06/03/linux/Linux%E4%B8%8B%E5%AE%89%E8%A3%85vim%E7%BC%96%E8%BE%91%E5%99%A8/" itemprop="url">Linux下安装vim编辑器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-03T12:18:23+08:00">
+                2021-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ubuntu 系统输入命令：sudo apt-get install vim-gtk</span><br><span class="line">centos 系统输入命令：yum -y install vim*</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1539,7 +1532,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
