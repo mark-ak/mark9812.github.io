@@ -3,8 +3,12 @@
   <entry>
     <title></title>
     <url>/2021/07/10/test/</url>
-    <content><![CDATA[<hr>
-<h2 id="titletest"><a href="#‘title-test’" class="headerlink" title="‘title:test’"></a>‘title:test’</h2><h1 id="this-is-photo"><a href="#this-is-photo" class="headerlink" title="this is photo"></a>this is photo</h1><p><img src="/2021/07/10/test/image-20210710145554997.png" alt="image-20210710145554997"></p>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2021/07/10/mytest/test/</url>
+    <content><![CDATA[<h1 id="this-is-photo"><a href="#this-is-photo" class="headerlink" title="this is photo"></a>this is photo</h1><p><img src="/2021/07/10/mytest/test/image-20210710145554997.png" alt="image-20210710145554997"></p>
 ]]></content>
   </entry>
   <entry>
