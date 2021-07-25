@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>BUG_ANDROID_ViewModelProvider中使用this</title>
+    <url>/2021/07/19/BUG_ANDROID_ViewModelProvider%E4%B8%AD%E4%BD%BF%E7%94%A8this/</url>
+    <content><![CDATA[<p>ViewModelProviders在前几个月被官方停用了，都要换成ViewModelProvider，教程里却还是用的ViewModelProviders，这就很气</p>
+<p>要改也简单，写成这样就行</p>
+<pre><code>myViewModel = new ViewModelProvider(this).get(MyViewModel.class);</code></pre>
+<p>写成这样可能会遇到this有个报错，内容是这样</p>
+<pre><code>Cannot resolve constructor ‘ViewModelProvider(com.example.score.MainActivity)’</code></pre>
+<p>解决可以在build.gradle中加上一行代码</p>
+<pre><code>implementation &#39;androidx.lifecycle:lifecycle-extensions:2.2.0&#39;</code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title>AndroidUI</title>
+    <url>/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/</url>
+    <content><![CDATA[<blockquote>
+<p>视频地址：<a href="https://www.bilibili.com/video/BV1Jh411a7Wj">https://www.bilibili.com/video/BV1Jh411a7Wj</a></p>
+</blockquote>
+<h1 id="自定义view的分类"><a href="#自定义View的分类" class="headerlink" title="自定义View的分类"></a>自定义View的分类</h1><p><img src="/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/image-20210711084333761.png" alt="image-20210711084333761"></p>
+<h1 id="自定义view的绘制流程"><a href="#自定义View的绘制流程" class="headerlink" title="自定义View的绘制流程"></a>自定义View的绘制流程</h1><blockquote>
+<ul>
+<li><p>自定义View: 实现：onMeasure+onDraw（必选）</p>
+</li>
+<li><p>自定义ViewGroup: onMeasure+onLayout（必选）</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/image-20210711085443822.png" alt="image-20210711085443822"></p>
+<h1 id="自定义view构造方法"><a href="#自定义View构造方法" class="headerlink" title="自定义View构造方法"></a>自定义View构造方法</h1><p><img src="/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/image-20210711091612533.png" alt="image-20210711091612533"></p>
+<h1 id="自定义布局测量"><a href="#自定义布局测量" class="headerlink" title="自定义布局测量"></a>自定义布局测量</h1><h2 id="测量流程"><a href="#测量流程" class="headerlink" title="测量流程"></a>测量流程</h2><blockquote>
+<p>自顶向下遍历子布局，再从子布局逐一返回大小</p>
+</blockquote>
+<p><img src="/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/image-20210711091731647.png" alt="image-20210711091731647"><img src="/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/image-20210711091812849.png" alt="image-20210711091812849"></p>
+<h2 id="layoutparams和measurespec"><a href="#LayoutParams和MeasureSpec" class="headerlink" title="LayoutParams和MeasureSpec"></a>LayoutParams和MeasureSpec</h2><ul>
+<li><p>LayoutParams</p>
+<blockquote>
+<p>LayoutParams是ViewGroup的一个内部类，代表的就是XML布局中的width和height</p>
+</blockquote>
+<p><img src="/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/image-20210711093853144.png" alt="image-20210711093853144"></p>
+</li>
+<li><p>MeasureSpec</p>
+<p><img src="/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/image-20210711094312744.png" alt="image-20210711094312744"></p>
+</li>
+</ul>
+<h2 id="view的measure创造规则"><a href="#View的Measure创造规则" class="headerlink" title="View的Measure创造规则"></a>View的Measure创造规则</h2><blockquote>
+<p>可以通过向父亲要钱的模型理解Measure源码</p>
+</blockquote>
+<p><img src="/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/image-20210711094500027.png" alt="image-20210711094500027"></p>
+<p><img src="/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/image-20210711094553919.png" alt="image-20210711094553919"></p>
+<h2 id="getchildmeasure"><a href="#getChildMeasure" class="headerlink" title="getChildMeasure"></a>getChildMeasure</h2><blockquote>
+<p>从LayoutParams到Measure方法系统已经帮我们实现，其原理如上图</p>
+</blockquote>
+<p><img src="/2021/07/11/%E7%AC%94%E8%AE%B0B%E7%AB%99_AndroidUI/image-20210711094822290.png" alt="image-20210711094822290"></p>
+]]></content>
+      <tags>
+        <tag>笔记B站</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>编译原理笔记</title>
     <url>/2021/07/07/%E7%AC%94%E8%AE%B0B%E7%AB%99_%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="编译原理笔记一"><a href="#编译原理笔记（一）" class="headerlink" title="编译原理笔记（一）"></a>编译原理笔记（一）</h1><blockquote>
+    <content><![CDATA[<!--toc-->
+
+<a id="more"></a>
+
+<h1 id="编译原理笔记一"><a href="#编译原理笔记（一）" class="headerlink" title="编译原理笔记（一）"></a>编译原理笔记（一）</h1><blockquote>
 <p>视频地址：<a href="https://www.bilibili.com/video/BV1ft4y1X7p6">https://www.bilibili.com/video/BV1ft4y1X7p6</a></p>
 </blockquote>
 <h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><h2 id="编译程序的逻辑结构"><a href="#编译程序的逻辑结构" class="headerlink" title="编译程序的逻辑结构"></a>编译程序的逻辑结构</h2><p><img src="https://api2.mubu.com/v3/document_image/b585f60e-9d28-461f-b263-362a7ef7080c-3810853.jpg" alt="img">                            </p>
-<a id="more"></a>
-
 <h1 id="前后文无关文法及语言"><a href="#前后文无关文法及语言" class="headerlink" title="前后文无关文法及语言"></a>前后文无关文法及语言</h1><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
 <li><img src="https://api2.mubu.com/v3/document_image/09f55553-d480-48c4-b2b3-9eaf0b8ff2af-3810853.jpg" alt="img">                            </li>
 </ul>
@@ -289,7 +349,11 @@
   <entry>
     <title>Android开发从入门到精通</title>
     <url>/2021/07/04/%E7%AC%94%E8%AE%B0Android_Android%E5%BC%80%E5%8F%91%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/</url>
-    <content><![CDATA[<h1 id="imageswitcher"><a href="#ImageSwitcher" class="headerlink" title="ImageSwitcher"></a>ImageSwitcher</h1><ul>
+    <content><![CDATA[<!--toc-->
+
+<a id="more"></a>
+
+<h1 id="imageswitcher"><a href="#ImageSwitcher" class="headerlink" title="ImageSwitcher"></a>ImageSwitcher</h1><ul>
 <li>写xml布局文件（ImageSwitcher）</li>
 <li>实现setFactority工厂新建初始化图片资源(imgview)并返回</li>
 <li>实现触发动作的监听器<ul>
@@ -325,7 +389,7 @@
 <li>getcount返回总数</li>
 <li>getview初始化组件，并逐个返回相应位置的组件</li>
 </ul>
-<a id="more"></a>
+<!--more-->
 
 </li>
 </ul>
@@ -500,11 +564,26 @@
 <li>通过OnOptionSelect回调函数，判断id并事件处理</li>
 </ul>
 <h1 id="上下文菜单"><a href="#上下文菜单" class="headerlink" title="上下文菜单"></a>上下文菜单</h1><ul>
-<li>编写menu</li>
-<li>用registerForContentMenu为控件注册上下文</li>
-<li>重写OnCreateContextMenu(注意删掉父类的构造方法)</li>
-<li>用MenuInflater绑定menu.xml资源</li>
-<li>通过OnContextSelect回调函数，判断id并事件处理</li>
+<li><p><strong>创建一个上下文菜单的步骤：</strong></p>
+<ol>
+<li><p>覆盖 Activity 的 onCreateContenxtMenu() 方法，调用 Menu 的 add 方法添加菜单项（MenuItem）。</p>
+</li>
+<li><p>覆盖 Activity 的 onContextItemSelected() 方法，响应上下文菜单菜单项的单击事件。</p>
+</li>
+<li><p>调用 registerForContextMenu() 方法，为视图注册上下文菜单。</p>
+</li>
+</ol>
+<blockquote>
+<p>注册</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">/为 ListView 的所有 item 注册 ContextMenu</span><br><span class="line">        registerForContextMenu(getListView());</span><br><span class="line">        <span class="comment">//这里的registerForContextMenu()也可以用下面的语句替代</span></span><br><span class="line">        <span class="comment">//getListView().setOnCreateContextMenuListener(this);</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>添加menu及监听</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="comment">//上下文菜单，本例会通过长按条目激活上下文菜单</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreateContextMenu</span><span class="params">(ContextMenu menu, View view, </span></span></span><br><span class="line"><span class="function"><span class="params">        ContextMenuInfo menuInfo)</span> </span>&#123;</span><br><span class="line">    menu.setHeaderTitle(<span class="string">&quot;人物简介&quot;</span>);</span><br><span class="line">    <span class="comment">//添加菜单项</span></span><br><span class="line">    menu.add(<span class="number">0</span>, ITEM1, <span class="number">0</span>, <span class="string">&quot;特长&quot;</span>);</span><br><span class="line">    menu.add(<span class="number">0</span>, ITEM2, <span class="number">0</span>, <span class="string">&quot;战斗力&quot;</span>);</span><br><span class="line">    menu.add(<span class="number">0</span>, ITEM3, <span class="number">0</span>, <span class="string">&quot;经典语录&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//菜单单击响应</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onContextItemSelected</span><span class="params">(MenuItem item)</span></span>&#123;</span><br><span class="line">    <span class="comment">//获取当前被选择的菜单项的信息</span></span><br><span class="line">    <span class="comment">//AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();</span></span><br><span class="line">    <span class="comment">//Log.i(&quot;braincol&quot;,String.valueOf(info.id));        </span></span><br><span class="line">   <span class="keyword">switch</span>(item.getItemId())&#123;</span><br><span class="line">    <span class="keyword">case</span> ITEM1:</span><br><span class="line">        <span class="comment">//在这里添加处理           </span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> ITEM2:</span><br><span class="line">        <span class="comment">//在这里添加处理代码</span></span><br><span class="line">  </span><br><span class="line">        <span class="keyword">break</span>;    </span><br><span class="line">    <span class="keyword">case</span> ITEM3:</span><br><span class="line">        <span class="comment">//在这里添加处理代码</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 <h1 id="actionbar"><a href="#ActionBar" class="headerlink" title="ActionBar"></a>ActionBar</h1><ul>
 <li>通过getSuppertActionBar创建ActionBar实体类</li>
@@ -541,10 +620,19 @@
 <li>有的话通过actionbar.homeasupEnable(true)显示向左箭头</li>
 </ul>
 <h1 id="alertdialog"><a href="#AlertDialog" class="headerlink" title="AlertDialog "></a>AlertDialog <img src="https://api2.mubu.com/v3/document_image/6c4ba671-f38e-4a28-af30-80cbaace15a3-3810853.jpg" alt="img"></h1><ul>
-<li>实例化                                <img src="https://api2.mubu.com/v3/document_image/f696b26a-c5b4-49d9-8e10-007fabff73ad-3810853.jpg" alt="img">                            </li>
-<li>设定属性</li>
-<li>在按钮处绑定数据，以及添加监听器                                <img src="https://api2.mubu.com/v3/document_image/53f7a765-af4f-4055-a5dd-eff7c7aaf07b-3810853.jpg" alt="img">                            </li>
+<li><p>实例化                           </p>
+<p>​     <img src="https://api2.mubu.com/v3/document_image/f696b26a-c5b4-49d9-8e10-007fabff73ad-3810853.jpg" alt="img">                            </p>
+</li>
+<li><p>设定属性</p>
+</li>
+<li><p>在按钮处绑定数据，以及添加监听器                                <img src="https://api2.mubu.com/v3/document_image/53f7a765-af4f-4055-a5dd-eff7c7aaf07b-3810853.jpg" alt="img">                            </p>
+</li>
 </ul>
+<blockquote>
+<p>选项弹窗</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//切换搜索引擎</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">changeSearchEngine</span><span class="params">(View view)</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> String[] items=<span class="keyword">new</span> String[]&#123;<span class="string">&quot;默认&quot;</span>,<span class="string">&quot;百度&quot;</span>,<span class="string">&quot;谷歌&quot;</span>,<span class="string">&quot;必应&quot;</span>,<span class="string">&quot;搜狗&quot;</span>&#125;;</span><br><span class="line">    AlertDialog.Builder alertDialog=<span class="keyword">new</span> AlertDialog.Builder(SettingActivity.<span class="keyword">this</span>);</span><br><span class="line">    alertDialog.setIcon(R.mipmap.ic_searchen_foreground);</span><br><span class="line">    alertDialog.setTitle(<span class="string">&quot;搜索引擎&quot;</span>);</span><br><span class="line">    alertDialog.setItems(items, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</span><br><span class="line">          webViewSetting.setSearchEngine(which);</span><br><span class="line">           engine.setText(items[which]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    alertDialog.create().show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="notification通知"><a href="#Notification通知" class="headerlink" title="Notification通知"></a>Notification通知</h1><ul>
 <li>需要设定channel                           <img src="https://api2.mubu.com/v3/document_image/dbd55875-0745-4b6a-804f-888d251c9580-3810853.jpg" alt="img">                                                 <img src="https://api2.mubu.com/v3/document_image/9c69e7bf-d5bc-4fe2-a04a-412c27040f23-3810853.jpg" alt="img">                            </li>
 <li>通过notification.builder实例化</li>
@@ -647,8 +735,15 @@
 <li>mediaRecorder                    <img src="https://api2.mubu.com/v3/document_image/f83b6cdb-943e-4954-bc05-b3e99fe80343-3810853.jpg" alt="img">                            </li>
 </ul>
 <h1 id="sharedpreference"><a href="#SharedPreference" class="headerlink" title="SharedPreference"></a>SharedPreference</h1><ul>
-<li>存储数据（最后记得要commit）                   <img src="https://api2.mubu.com/v3/document_image/be3e2119-41c0-4392-9b86-447c35b3ab76-3810853.jpg" alt="img">                            </li>
-<li>读取数据                  <img src="https://api2.mubu.com/v3/document_image/a48ebb7c-73dd-42ea-a4f2-834aff67c572-3810853.jpg" alt="img">                            </li>
+<li><p>存储数据（最后记得要commit）                   <img src="https://api2.mubu.com/v3/document_image/be3e2119-41c0-4392-9b86-447c35b3ab76-3810853.jpg" alt="img">                            </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SharedPreferences.Editor editor=getSharedPreferences(<span class="string">&quot;settingEngine&quot;</span>,MODE_PRIVATE).edit();</span><br><span class="line">               editor.putString(<span class="string">&quot;settingEngine&quot;</span>,items[which]);</span><br><span class="line">               editor.commit();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取数据                  <img src="https://api2.mubu.com/v3/document_image/a48ebb7c-73dd-42ea-a4f2-834aff67c572-3810853.jpg" alt="img">                            </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SharedPreferences sharedPreferences=getSharedPreferences(<span class="string">&quot;settingEngine&quot;</span>,MODE_PRIVATE);</span><br><span class="line">        engine.setText(sharedPreferences.getString(<span class="string">&quot;settingEngine&quot;</span>,<span class="string">&quot;默认&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 <h1 id="内部存储"><a href="#内部存储" class="headerlink" title="内部存储"></a>内部存储</h1><ul>
 <li>openOutputStream/openInputStream                        <img src="https://api2.mubu.com/v3/document_image/0e6a82e2-a315-4187-8f4a-c987960db5d0-3810853.jpg" alt="img">                            </li>
@@ -657,15 +752,28 @@
 <li>不用openOutputStream而是直接new一个输出流</li>
 <li>其他与每部存储一致</li>
 </ul>
-<h1 id="sqlite数据库"><a href="#sqlite数据库" class="headerlink" title="sqlite数据库"></a>sqlite数据库</h1><ul>
-<li>继承SqLiteOpenHelper</li>
-<li>重写oncreate和onupdate方法（游标工厂可以为空）</li>
-<li>在oncreate初始化</li>
-<li>在主类中通过上下文，数据库名，游标工厂（null）,版本号实例化</li>
-<li>通过myhelper的getReadbleDatebase可以获得数据库对象</li>
-<li>可以通过countentValue进行数据库数据插入，很方便</li>
-<li>通过query写表名称，查询字段，以及查询字符串数据查询很方便</li>
-</ul>
+<h1 id="sqlite数据库"><a href="#sqlite数据库" class="headerlink" title="sqlite数据库"></a>sqlite数据库</h1><blockquote>
+<p>继承SqLiteOpenHelper</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyDBOpenHelper</span> <span class="keyword">extends</span> <span class="title">SQLiteOpenHelper</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyDBOpenHelper</span><span class="params">(Context context, String name, CursorFactory factory,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">int</span> version)</span> </span>&#123;<span class="keyword">super</span>(context, <span class="string">&quot;my.db&quot;</span>, <span class="keyword">null</span>, <span class="number">1</span>); &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">//数据库第一次创建时被调用</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(SQLiteDatabase db)</span> </span>&#123;</span><br><span class="line">        db.execSQL(<span class="string">&quot;CREATE TABLE person(personid INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(20))&quot;</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//软件版本号发生改变时调用</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpgrade</span><span class="params">(SQLiteDatabase db, <span class="keyword">int</span> oldVersion, <span class="keyword">int</span> newVersion)</span> </span>&#123;</span><br><span class="line">        db.execSQL(<span class="string">&quot;ALTER TABLE person ADD phone VARCHAR(12) NULL&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>声明初始化SqLiteOpenHelper对象</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">myDBHelper = <span class="keyword">new</span> MyDBOpenHelper(mContext, <span class="string">&quot;my.db&quot;</span>, <span class="keyword">null</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="1插入数据"><a href="#1-插入数据：" class="headerlink" title="1.插入数据："></a>1.插入数据：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(Person p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SQLiteDatabase db = dbOpenHelper.getWritableDatabase();</span><br><span class="line">    db.execSQL(<span class="string">&quot;INSERT INTO person(name,phone) values(?,?)&quot;</span>,</span><br><span class="line">                <span class="keyword">new</span> String[]&#123;p.getName(),p.getPhone()&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2删除数据"><a href="#2-删除数据：" class="headerlink" title="2.删除数据："></a>2.删除数据：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(Integer id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SQLiteDatabase db = dbOpenHelper.getWritableDatabase();</span><br><span class="line">    db.execSQL(<span class="string">&quot;DELETE FROM person WHERE personid = ?&quot;</span>,</span><br><span class="line">                <span class="keyword">new</span> String[]&#123;id&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3修改数据"><a href="#3-修改数据：" class="headerlink" title="3.修改数据："></a>3.修改数据：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Person p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SQLiteDatabase db = dbOpenHelper.getWritableDatabase();</span><br><span class="line">    db.execSQL(<span class="string">&quot;UPDATE person SET name = ?,phone = ? WHERE personid = ?&quot;</span>,</span><br><span class="line">        <span class="keyword">new</span> String[]&#123;p.getName(),p.getPhone(),p.getId()&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4查询数据"><a href="#4-查询数据：" class="headerlink" title="4.查询数据："></a>4.查询数据：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Person <span class="title">find</span><span class="params">(Integer id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SQLiteDatabase db = dbOpenHelper.getReadableDatabase();</span><br><span class="line">    Cursor cursor =  db.rawQuery(<span class="string">&quot;SELECT * FROM person WHERE personid = ?&quot;</span>,</span><br><span class="line">            <span class="keyword">new</span> String[]&#123;id.toString()&#125;);</span><br><span class="line">    <span class="comment">//存在数据才返回true</span></span><br><span class="line">    <span class="keyword">if</span>(cursor.moveToFirst())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> personid = cursor.getInt(cursor.getColumnIndex(<span class="string">&quot;personid&quot;</span>));</span><br><span class="line">        String name = cursor.getString(cursor.getColumnIndex(<span class="string">&quot;name&quot;</span>));</span><br><span class="line">        String phone = cursor.getString(cursor.getColumnIndex(<span class="string">&quot;phone&quot;</span>));</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Person(personid,name,phone);</span><br><span class="line">    &#125;</span><br><span class="line">    cursor.close();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5数据分页"><a href="#5-数据分页：" class="headerlink" title="5.数据分页："></a>5.数据分页：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Person&gt; <span class="title">getScrollData</span><span class="params">(<span class="keyword">int</span> offset,<span class="keyword">int</span> maxResult)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    List&lt;Person&gt; person = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">    SQLiteDatabase db = dbOpenHelper.getReadableDatabase();</span><br><span class="line">    Cursor cursor =  db.rawQuery(<span class="string">&quot;SELECT * FROM person ORDER BY personid ASC LIMIT= ?,?&quot;</span>,</span><br><span class="line">        <span class="keyword">new</span> String[]&#123;String.valueOf(offset),String.valueOf(maxResult)&#125;);</span><br><span class="line">    <span class="keyword">while</span>(cursor.moveToNext())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> personid = cursor.getInt(cursor.getColumnIndex(<span class="string">&quot;personid&quot;</span>));</span><br><span class="line">        String name = cursor.getString(cursor.getColumnIndex(<span class="string">&quot;name&quot;</span>));</span><br><span class="line">        String phone = cursor.getString(cursor.getColumnIndex(<span class="string">&quot;phone&quot;</span>));</span><br><span class="line">        person.add(<span class="keyword">new</span> Person(personid,name,phone)) ;</span><br><span class="line">    &#125;</span><br><span class="line">    cursor.close();</span><br><span class="line">    <span class="keyword">return</span> person;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6查询记录数"><a href="#6-查询记录数：" class="headerlink" title="6.查询记录数："></a>6.查询记录数：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getCount</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SQLiteDatabase db = dbOpenHelper.getReadableDatabase();</span><br><span class="line">    Cursor cursor =  db.rawQuery(<span class="string">&quot;SELECT COUNT (*) FROM person&quot;</span>,<span class="keyword">null</span>);</span><br><span class="line">    cursor.moveToFirst();</span><br><span class="line">    <span class="keyword">long</span> result = cursor.getLong(<span class="number">0</span>);</span><br><span class="line">    cursor.close();</span><br><span class="line">    <span class="keyword">return</span> result;      </span><br><span class="line">&#125;   </span><br></pre></td></tr></table></figure>
+
 <h1 id="countentprovider"><a href="#countentProvider" class="headerlink" title="countentProvider"></a>countentProvider</h1><ul>
 <li><strong>查询</strong></li>
 <li>实例化CountentResolver</li>
@@ -834,6 +942,25 @@
 </ul>
 </li>
 </ul>
+<h1 id="intent跳转时添加动画效果实例"><a href="#intent跳转时添加动画效果实例" class="headerlink" title="intent跳转时添加动画效果实例"></a>intent跳转时添加动画效果实例</h1><p>系统默认的intent跳转效果非常生硬，丑陋，影响用户体验，怎么添加跳转动画呢？</p>
+<p>首先新建两个动画文件：</p>
+<p>zoomin.xml:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt; </span><br><span class="line">&lt;set xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span> </span><br><span class="line">android:interpolator=<span class="string">&quot;@android:anim/decelerate_interpolator&quot;</span>&gt; </span><br><span class="line">&lt;scale android:fromXScale=<span class="string">&quot;0.1&quot;</span> android:toXScale=<span class="string">&quot;1.0&quot;</span> </span><br><span class="line">android:fromYScale=<span class="string">&quot;0.1&quot;</span> android:toYScale=<span class="string">&quot;1.0&quot;</span> </span><br><span class="line">android:pivotX=<span class="string">&quot;50%p&quot;</span> android:pivotY=<span class="string">&quot;50%p&quot;</span> </span><br><span class="line">android:duration=<span class="string">&quot;300&quot;</span> /&gt; </span><br><span class="line">&lt;!-- 这里为了看到动画演示效果，把动画持续时间设为<span class="number">3</span>秒 --&gt; </span><br><span class="line">&lt;alpha </span><br><span class="line">android:fromAlpha=<span class="string">&quot;0.1&quot;</span> </span><br><span class="line">android:toAlpha=<span class="string">&quot;1.0&quot;</span> </span><br><span class="line">android:duration=<span class="string">&quot;300&quot;</span> /&gt; </span><br><span class="line">&lt;/set&gt; </span><br></pre></td></tr></table></figure>
+
+
+<p>zoomout.xml</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt; </span><br><span class="line">&lt;set xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span> </span><br><span class="line">android:interpolator=<span class="string">&quot;@android:anim/decelerate_interpolator&quot;</span> </span><br><span class="line">android:zAdjustment=<span class="string">&quot;top&quot;</span>&gt; </span><br><span class="line">&lt;scale android:fromXScale=<span class="string">&quot;1.0&quot;</span> android:toXScale=<span class="string">&quot;.5&quot;</span> </span><br><span class="line">android:fromYScale=<span class="string">&quot;1.0&quot;</span> android:toYScale=<span class="string">&quot;.5&quot;</span> </span><br><span class="line">android:pivotX=<span class="string">&quot;50%p&quot;</span> android:pivotY=<span class="string">&quot;50%p&quot;</span> </span><br><span class="line">android:duration=<span class="string">&quot;300&quot;</span> /&gt; </span><br><span class="line">&lt;!-- 系统内置的动画持续时间 </span><br><span class="line">android:duration=<span class="string">&quot;@android:integer/config_mediumAnimTime&quot;</span> </span><br><span class="line">--&gt; </span><br><span class="line">&lt;alpha android:fromAlpha=<span class="string">&quot;1.0&quot;</span> android:toAlpha=<span class="string">&quot;0&quot;</span> </span><br><span class="line">android:duration=<span class="string">&quot;300&quot;</span>/&gt; </span><br><span class="line">&lt;/set&gt; </span><br></pre></td></tr></table></figure>
+
+
+<p>然后只需在startActivity（intent）后面添加一句：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">overridePendingTransition(R.anim.zoomin, R.anim.zoomout);</span><br></pre></td></tr></table></figure>
+
+<p>即可实现跳转动画效果，可以试试。</p>
+<p>如果不想要任何动画效果</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">overridePendingTransition(<span class="number">0</span>,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="享学"><a href="#———享学——–" class="headerlink" title="———享学——–"></a>———享学——–</h1><h1 id="recyclerview"><a href="#RecyclerView" class="headerlink" title="RecyclerView"></a>RecyclerView</h1><ul>
 <li><p>添加依赖包</p>
 <p>  <img src="https://api2.mubu.com/v3/document_image/6658b4e0-3ab4-4f40-b6a9-711384622ea9-3810853.jpg" alt="img">                            </p>
@@ -1504,9 +1631,9 @@
   <entry>
     <title>获取网络json数据</title>
     <url>/2021/06/03/Json/json/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private final String TAG &#x3D; &quot;MSG&quot;;</span><br><span class="line">Handler handler&#x3D;new Handler();</span><br><span class="line">public void setMessageUrl(String myurl,int flag) &#123;</span><br><span class="line">    Thread thread &#x3D; new Thread(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            String result;</span><br><span class="line">            try &#123;</span><br><span class="line">                URL url &#x3D; new URL(myurl);</span><br><span class="line">                HttpURLConnection connection &#x3D; (HttpURLConnection) url.openConnection();</span><br><span class="line">                connection.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">                int code &#x3D; connection.getResponseCode();</span><br><span class="line">                if (code &#x3D;&#x3D; 200) &#123;</span><br><span class="line">                    InputStream inputStream &#x3D; connection.getInputStream();</span><br><span class="line">                    ByteArrayOutputStream bos &#x3D; new ByteArrayOutputStream();</span><br><span class="line">                    int len &#x3D; -1;</span><br><span class="line">                    byte[] bytes &#x3D; new byte[1024];</span><br><span class="line">                    while ((len &#x3D; inputStream.read(bytes)) !&#x3D; -1) &#123;</span><br><span class="line">                        bos.write(bytes, 0, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                    result &#x3D; new String(bos.toByteArray(), &quot;utf-8&quot;);</span><br><span class="line">                    Message msg&#x3D;new Message();</span><br><span class="line">                    Bundle bd&#x3D;new Bundle();</span><br><span class="line">                    bd.putString(&quot;result&quot;,result);</span><br><span class="line">                    msg.setData(bd);</span><br><span class="line">                    msg.what&#x3D;flag;</span><br><span class="line">                    handler.sendMessage(msg);</span><br><span class="line">                    Log.i(TAG, &quot;run: &quot;+result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;MSG&quot;</span>;</span><br><span class="line">Handler handler=<span class="keyword">new</span> Handler();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMessageUrl</span><span class="params">(String myurl,<span class="keyword">int</span> flag)</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String result;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                URL url = <span class="keyword">new</span> URL(myurl);</span><br><span class="line">                HttpURLConnection connection = (HttpURLConnection) url.openConnection();</span><br><span class="line">                connection.setRequestMethod(<span class="string">&quot;GET&quot;</span>);</span><br><span class="line">                  connection.setRequestProperty(<span class="string">&quot;User-Agent&quot;</span>, <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)&quot;</span>);</span><br><span class="line">                <span class="keyword">int</span> code = connection.getResponseCode();</span><br><span class="line">                <span class="keyword">if</span> (code == <span class="number">200</span>) &#123;</span><br><span class="line">                    InputStream inputStream = connection.getInputStream();</span><br><span class="line">                    ByteArrayOutputStream bos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">                    <span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">                    <span class="keyword">while</span> ((len = inputStream.read(bytes)) != -<span class="number">1</span>) &#123;</span><br><span class="line">                        bos.write(bytes, <span class="number">0</span>, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                    result = <span class="keyword">new</span> String(bos.toByteArray(), <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">                    Message msg=<span class="keyword">new</span> Message();</span><br><span class="line">                    Bundle bd=<span class="keyword">new</span> Bundle();</span><br><span class="line">                    bd.putString(<span class="string">&quot;result&quot;</span>,result);</span><br><span class="line">                    msg.setData(bd);</span><br><span class="line">                    msg.what=flag;</span><br><span class="line">                    handler.sendMessage(msg);</span><br><span class="line">                    Log.i(TAG, <span class="string">&quot;run: &quot;</span>+result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public RootName getRoot(Message handlermsg)&#123;</span><br><span class="line">     String massage&#x3D;handlermsg.getData().getString(&quot;result&quot;);</span><br><span class="line">     Gson gson&#x3D;new Gson();</span><br><span class="line">     RootName rootName&#x3D;gson.fromJson(massage,RootName.class);</span><br><span class="line">     return rootName;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> RootName <span class="title">getRoot</span><span class="params">(Message handlermsg)</span></span>&#123;</span><br><span class="line">     String massage=handlermsg.getData().getString(<span class="string">&quot;result&quot;</span>);</span><br><span class="line">     Gson gson=<span class="keyword">new</span> Gson();</span><br><span class="line">     RootName rootName=gson.fromJson(massage,RootName.class);</span><br><span class="line">     <span class="keyword">return</span> rootName;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">implementation &#39;com.google.code.gson:gson:2.8.5&#39;</span><br></pre></td></tr></table></figure>
 

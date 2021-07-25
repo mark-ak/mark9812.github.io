@@ -253,6 +253,287 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/06/05/springboot/springboot%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/06/05/springboot/springboot%E6%A1%88%E4%BE%8B/" itemprop="url">springboot案例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-05T00:03:20+08:00">
+                2021-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h2><p>1.将静态资源放入templates文件夹，将链接都转换为thymeleaf模式</p>
+<p>2.关闭thymeleaf缓存<code>thymeleaf.cache=false</code></p>
+<p>2.编写首页的controller</p>
+<ul>
+<li>在方法的参数里用@RequestParam接收表单数据，并且用Model传回一些数据</li>
+</ul>
+<p>3.修改静态资源的将数据显示出来</p>
+<p>4.在config文件夹中创建MyMvcConfig类</p>
+<ul>
+<li>使用@configuration注解</li>
+<li>实现webmvcConfigurer接口</li>
+<li>重写addviewControllers方法</li>
+</ul>
+<p>5.在通过参数registry修改映射</p>
+<h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><p>1.在controller中添加参数Httpsession</p>
+<ul>
+<li>创建userlog的session</li>
+</ul>
+<p>2.在config文件夹创建logHandlerInteraptor</p>
+<ul>
+<li>继承handlerinteraptor</li>
+<li>重写prehandle方法(true是通行，false是拦截)</li>
+</ul>
+<p>3.通过request获取session</p>
+<ul>
+<li>为空就给request设置msg属性提示权限不足</li>
+<li>非空就转发到主页</li>
+</ul>
+<p>4.在MyMvnConfig类中添加拦截器</p>
+<ul>
+<li>重写addInteraptorHandle方法</li>
+<li>register添加过滤器</li>
+<li>过滤器add和excute需要过滤的内容</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/06/04/Thymeleaf/Thymeleaf%20%E6%B2%A1%E6%9C%89%E8%BF%94%E5%9B%9Ehtml%E5%8F%AA%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/06/04/Thymeleaf/Thymeleaf%20%E6%B2%A1%E6%9C%89%E8%BF%94%E5%9B%9Ehtml%E5%8F%AA%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="url">Thymeleaf 没有返回html只返回字符串</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-04T16:30:39+08:00">
+                2021-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在使用Thymeleaf的时候，@RequestMapping对应的函数没有返回html文件而是返回了这个函数对应的字符串返回值</p>
+<p>解决办法：</p>
+<p>删除这个函数前面的@Responsebody注解，这个注解会返回Mapping函数指定的返回类型、例如String。而不是将其解析为html文件</p>
+<p>===================================================================</p>
+<p>错误：不能返回页面，只返回字符串。</p>
+<p>原因：在controller中使用了注解@RestController</p>
+<p>修改：修改注解为@Controller</p>
+<p>分析：</p>
+<p>RestController = Controller + ResponseBody.加上RestController,返回的内容是你return中的内容，如果是return “Hello World”，页面显示的就是Hello World。加上Controller，返回的是return中对应的页面,比如return “hello”,页面的名称是hello。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/06/04/springboot/pom%E9%85%8D%E7%BD%AE%E6%89%93%E5%8C%85%E6%97%B6%E8%B7%B3%E8%BF%87%E6%B5%8B%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -938,9 +1219,9 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">private final String TAG &#x3D; &quot;MSG&quot;;</span><br><span class="line">Handler handler&#x3D;new Handler();</span><br><span class="line">public void setMessageUrl(String myurl,int flag) &#123;</span><br><span class="line">    Thread thread &#x3D; new Thread(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            String result;</span><br><span class="line">            try &#123;</span><br><span class="line">                URL url &#x3D; new URL(myurl);</span><br><span class="line">                HttpURLConnection connection &#x3D; (HttpURLConnection) url.openConnection();</span><br><span class="line">                connection.setRequestMethod(&quot;GET&quot;);</span><br><span class="line">                int code &#x3D; connection.getResponseCode();</span><br><span class="line">                if (code &#x3D;&#x3D; 200) &#123;</span><br><span class="line">                    InputStream inputStream &#x3D; connection.getInputStream();</span><br><span class="line">                    ByteArrayOutputStream bos &#x3D; new ByteArrayOutputStream();</span><br><span class="line">                    int len &#x3D; -1;</span><br><span class="line">                    byte[] bytes &#x3D; new byte[1024];</span><br><span class="line">                    while ((len &#x3D; inputStream.read(bytes)) !&#x3D; -1) &#123;</span><br><span class="line">                        bos.write(bytes, 0, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                    result &#x3D; new String(bos.toByteArray(), &quot;utf-8&quot;);</span><br><span class="line">                    Message msg&#x3D;new Message();</span><br><span class="line">                    Bundle bd&#x3D;new Bundle();</span><br><span class="line">                    bd.putString(&quot;result&quot;,result);</span><br><span class="line">                    msg.setData(bd);</span><br><span class="line">                    msg.what&#x3D;flag;</span><br><span class="line">                    handler.sendMessage(msg);</span><br><span class="line">                    Log.i(TAG, &quot;run: &quot;+result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;MSG&quot;</span>;</span><br><span class="line">Handler handler=<span class="keyword">new</span> Handler();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMessageUrl</span><span class="params">(String myurl,<span class="keyword">int</span> flag)</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String result;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                URL url = <span class="keyword">new</span> URL(myurl);</span><br><span class="line">                HttpURLConnection connection = (HttpURLConnection) url.openConnection();</span><br><span class="line">                connection.setRequestMethod(<span class="string">&quot;GET&quot;</span>);</span><br><span class="line">                  connection.setRequestProperty(<span class="string">&quot;User-Agent&quot;</span>, <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)&quot;</span>);</span><br><span class="line">                <span class="keyword">int</span> code = connection.getResponseCode();</span><br><span class="line">                <span class="keyword">if</span> (code == <span class="number">200</span>) &#123;</span><br><span class="line">                    InputStream inputStream = connection.getInputStream();</span><br><span class="line">                    ByteArrayOutputStream bos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">                    <span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">                    <span class="keyword">while</span> ((len = inputStream.read(bytes)) != -<span class="number">1</span>) &#123;</span><br><span class="line">                        bos.write(bytes, <span class="number">0</span>, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                    result = <span class="keyword">new</span> String(bos.toByteArray(), <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">                    Message msg=<span class="keyword">new</span> Message();</span><br><span class="line">                    Bundle bd=<span class="keyword">new</span> Bundle();</span><br><span class="line">                    bd.putString(<span class="string">&quot;result&quot;</span>,result);</span><br><span class="line">                    msg.setData(bd);</span><br><span class="line">                    msg.what=flag;</span><br><span class="line">                    handler.sendMessage(msg);</span><br><span class="line">                    Log.i(TAG, <span class="string">&quot;run: &quot;</span>+result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public RootName getRoot(Message handlermsg)&#123;</span><br><span class="line">     String massage&#x3D;handlermsg.getData().getString(&quot;result&quot;);</span><br><span class="line">     Gson gson&#x3D;new Gson();</span><br><span class="line">     RootName rootName&#x3D;gson.fromJson(massage,RootName.class);</span><br><span class="line">     return rootName;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> RootName <span class="title">getRoot</span><span class="params">(Message handlermsg)</span></span>&#123;</span><br><span class="line">     String massage=handlermsg.getData().getString(<span class="string">&quot;result&quot;</span>);</span><br><span class="line">     Gson gson=<span class="keyword">new</span> Gson();</span><br><span class="line">     RootName rootName=gson.fromJson(massage,RootName.class);</span><br><span class="line">     <span class="keyword">return</span> rootName;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &#39;com.google.code.gson:gson:2.8.5&#39;</span><br></pre></td></tr></table></figure>
 
@@ -1221,263 +1502,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/06/03/vim/vim%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E5%91%BD%E4%BB%A4%E5%AE%9E%E8%B7%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/06/03/vim/vim%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E5%91%BD%E4%BB%A4%E5%AE%9E%E8%B7%B5/" itemprop="url">vim批量替换命令实践</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-03T12:18:59+08:00">
-                2021-06-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="vim批量替换命令实践"><a href="#vim批量替换命令实践" class="headerlink" title="vim批量替换命令实践"></a>vim批量替换命令实践</h2><p>语法为 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:[addr]s&#x2F;源字符串&#x2F;目的字符串&#x2F;[option]</span><br></pre></td></tr></table></figure>
-
-<p>全局替换命令为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%s&#x2F;源字符串&#x2F;目的字符串&#x2F;g</span><br></pre></td></tr></table></figure>
-
-<p><strong>[addr] 表示检索范围，省略时表示当前行。</strong></p>
-<p>“1,20” ：表示从第1行到20行；</p>
-<p>“%” ：表示整个文件，同“1,$”；</p>
-<p>“. ,$” ：从当前行到文件尾；</p>
-<p><strong>s : 表示替换操作</strong></p>
-<p><strong>[option] : 表示操作类型</strong></p>
-<p>g 表示全局替换; </p>
-<p>c 表示进行确认</p>
-<p>p 表示替代结果逐行显示（Ctrl + L恢复屏幕）;</p>
-<p>省略option时仅对每行第一个匹配串进行替换;</p>
-<p>如果在源字符串和目的字符串中出现特殊字符，需要用”\”转义 如 \t</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/06/03/linux/Linux%E4%B8%8B%E5%AE%89%E8%A3%85vim%E7%BC%96%E8%BE%91%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/06/03/linux/Linux%E4%B8%8B%E5%AE%89%E8%A3%85vim%E7%BC%96%E8%BE%91%E5%99%A8/" itemprop="url">Linux下安装vim编辑器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-03T12:18:23+08:00">
-                2021-06-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ubuntu 系统输入命令：sudo apt-get install vim-gtk</span><br><span class="line">centos 系统输入命令：yum -y install vim*</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1532,7 +1556,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1617,7 +1641,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.4k字</span>
+  <span class="post-count">博客全站共19.7k字</span>
 </div>
 
         
