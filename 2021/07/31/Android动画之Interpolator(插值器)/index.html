@@ -79,11 +79,15 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="12title: Android动画之Interpolator(插值器)tag: Androidd  Android动画之Interpolator(插值器) 通俗易懂的说，Interpolator负责控制动画变化的速率，使得基本的动画效果能够以匀速、加速、减速、抛物线速率等各种速率变化。   原理每个Interpolator多需要 继承TimeInterpolator，并实现里面唯一的方法： 12">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Mark&#39;s Blog">
-<meta property="og:url" content="https://mark9812.github.io/tags/gradle/index.html">
+<meta property="og:url" content="https://mark9812.github.io/2021/07/31/Android%E5%8A%A8%E7%94%BB%E4%B9%8BInterpolator(%E6%8F%92%E5%80%BC%E5%99%A8)/index.html">
 <meta property="og:site_name" content="Mark&#39;s Blog">
+<meta property="og:description" content="12title: Android动画之Interpolator(插值器)tag: Androidd  Android动画之Interpolator(插值器) 通俗易懂的说，Interpolator负责控制动画变化的速率，使得基本的动画效果能够以匀速、加速、减速、抛物线速率等各种速率变化。   原理每个Interpolator多需要 继承TimeInterpolator，并实现里面唯一的方法： 12">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-07-31T08:07:55.137Z">
+<meta property="article:modified_time" content="2021-07-31T08:25:13.146Z">
 <meta property="article:author" content="Akram Amat">
 <meta name="twitter:card" content="summary">
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://mark9812.github.io/tags/gradle/"/>
+  <link rel="canonical" href="https://mark9812.github.io/2021/07/31/Android动画之Interpolator(插值器)/"/>
 
 
 
 
 
-  <title>标签: gradle | Mark's Blog</title>
+  <title> | Mark's Blog</title>
   
 
 
@@ -140,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -238,55 +242,220 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>gradle<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/07/31/Android%E5%8A%A8%E7%94%BB%E4%B9%8BInterpolator(%E6%8F%92%E5%80%BC%E5%99%A8)/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2021/03/16/androidstudio/Gradle%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" itemprop="url">
-              
-                <span itemprop="name">Gradle下载速度慢解决方法</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2021-03-16T21:20:55+08:00"
-              content="2021-03-16" >
-          03-16
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-31T16:07:55+08:00">
+                2021-07-31
+              </time>
+            
 
-    </header>
-  </article>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">title: Android动画之Interpolator(插值器)</span><br><span class="line">tag: Androidd</span><br></pre></td></tr></table></figure>
+
+<h1 id="android动画之interpolator插值器"><a href="#Android动画之Interpolator-插值器" class="headerlink" title="Android动画之Interpolator(插值器)"></a>Android动画之Interpolator(插值器)</h1><blockquote>
+<p>通俗易懂的说，Interpolator负责控制动画变化的速率，使得基本的动画效果能够以匀速、加速、减速、抛物线速率等各种速率变化。 </p>
+</blockquote>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>每个Interpolator多需要 继承TimeInterpolator，并实现里面唯一的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TimeInterpolator</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Maps a value representing the elapsed fraction of an animation to a value that represents</span></span><br><span class="line"><span class="comment">     * the interpolated fraction. This interpolated value is then multiplied by the change in</span></span><br><span class="line"><span class="comment">     * value of an animation to derive the animated value at the current elapsed animation time.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> input A value between 0 and 1.0 indicating our current point</span></span><br><span class="line"><span class="comment">     *        in the animation where 0 represents the start and 1.0 represents</span></span><br><span class="line"><span class="comment">     *        the end</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> The interpolation value. This value can be more than 1.0 for</span></span><br><span class="line"><span class="comment">     *         interpolators which overshoot their targets, or less than 0 for</span></span><br><span class="line"><span class="comment">     *         interpolators that undershoot their targets.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getInterpolation</span><span class="params">(<span class="keyword">float</span> input)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li>AccelerateDecelerateInterpolator    </li>
+</ul>
+<p>​      @android:anim/accelerate_decelerate_interpolator    </p>
+<p>​        其变化开始和结束速率较慢，中间加速</p>
+<ul>
+<li><p>AccelerateInterpolator    </p>
+<p>@android:anim/accelerate_interpolator    其变化开始速率较慢，后面加速     </p>
+</li>
+</ul>
+<ul>
+<li><p>DecelerateInterpolator    </p>
+<p>@android:anim/decelerate_interpolator    其变化开始速率较快，后面减速</p>
+</li>
+</ul>
+<ul>
+<li><p>LinearInterpolator    </p>
+<p>@android:anim/linear_interpolator    其变化速率恒定</p>
+</li>
+</ul>
+<ul>
+<li><p>AnticipateInterpolator    </p>
+<p>@android:anim/anticipate_interpolator    其变化开始向后甩，然后向前</p>
+</li>
+</ul>
+<ul>
+<li><p>AnticipateOvershootInterpolator    </p>
+<p>@android:anim/anticipate_overshoot_interpolator    其变化开始向后甩，然后向前甩，过冲到目标值，最后又回到了终值</p>
+</li>
+</ul>
+<ul>
+<li><p>OvershootInterpolator    </p>
+<p>@android:anim/overshoot_interpolator    其变化开始向前甩，过冲到目标值，最后又回到了终值</p>
+</li>
+</ul>
+<ul>
+<li><p>BounceInterpolator    </p>
+<p>@android:anim/bounce_interpolator    其变化在结束时反弹</p>
+</li>
+</ul>
+<ul>
+<li><p>CycleInterpolator    </p>
+<p>@android:anim/cycle_interpolator    循环播放，其速率为正弦曲线</p>
+</li>
+</ul>
+<ul>
+<li>TimeInterpolator         一个接口，可以自定义插值器</li>
+</ul>
+<h2 id="accelerateinterpolator"><a href="#AccelerateInterpolator" class="headerlink" title="AccelerateInterpolator"></a>AccelerateInterpolator</h2><blockquote>
+<p>可以看到，getInterpolation(float input)返回的是抛物线函数的值，即y=t2f</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HasNativeInterpolator</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccelerateInterpolator</span> <span class="keyword">extends</span> <span class="title">BaseInterpolator</span> <span class="keyword">implements</span> <span class="title">NativeInterpolatorFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">float</span> mFactor;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">double</span> mDoubleFactor;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AccelerateInterpolator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mFactor = <span class="number">1.0f</span>;</span><br><span class="line">        mDoubleFactor = <span class="number">2.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Constructor</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AccelerateInterpolator</span><span class="params">(<span class="keyword">float</span> factor)</span> </span>&#123;</span><br><span class="line">        mFactor = factor;</span><br><span class="line">        mDoubleFactor = <span class="number">2</span> * mFactor;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AccelerateInterpolator</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(context.getResources(), context.getTheme(), attrs);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getInterpolation</span><span class="params">(<span class="keyword">float</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (mFactor == <span class="number">1.0f</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> t * t;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">float</span>)Math.pow(t, mDoubleFactor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="在xml使用"><a href="#在xml使用" class="headerlink" title="在xml使用"></a>在xml使用</h3><p>通过android:interpolator属性指定你想要的插值器，如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;scale</span><br><span class="line">        android:duration=&quot;2000&quot;</span><br><span class="line">        android:fromXScale=&quot;1.0&quot;</span><br><span class="line">        android:fromYScale=&quot;1.0&quot;</span><br><span class="line">        android:interpolator=&quot;@android:anim/accelerate_interpolator&quot;</span><br><span class="line">        android:pivotX=&quot;50%&quot;</span><br><span class="line">        android:pivotY=&quot;50%&quot;</span><br><span class="line">        android:toXScale=&quot;0&quot;</span><br><span class="line">        android:toYScale=&quot;0&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果加速因素不理想，还可以自己配置参数，在res/anim文件夹里面创建一个XML文件，你想将AccelerateInterpolator的f参数设置为2，你可以创建这样一个文件res/anim/my_accelerate_interpolator.xml，其代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">accelerateInterpolator</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">android:factor</span>=<span class="string">&quot;2&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">accelerateInterpolator</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，accelerateInterpolator表示这是一个AccelerateInterpolator，第一个字符小写。</p>
+<h3 id="在java中使用"><a href="#在java中使用" class="headerlink" title="在java中使用"></a>在java中使用</h3><p>在代码中使用也超级简单，可以通过setInterpolator()方法，如：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animation.setInterpolator(<span class="keyword">new</span> AccelerateInterpolator());</span><br></pre></td></tr></table></figure>
+
+<p>那么，在代码中怎么配置加速因素呢？前面我们也看到，有参数的，多会有对应的构造函数。是的，定义一个带参数构造即可。如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animation.setInterpolator(<span class="keyword">new</span> AccelerateInterpolator(<span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+
+<p>也可以通过上面，在xml上配置，然后通过代码来使用，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animation.setInterpolator(AnimationUtils.loadInterpolator(<span class="keyword">this</span>,R.anim.my_accelerate_interpolator));</span><br></pre></td></tr></table></figure>
+
+
+
 
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/25/%E7%8B%82%E7%A5%9E_Mybatis/" rel="next" title="Mybatis">
+                <i class="fa fa-chevron-left"></i> Mybatis
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -294,6 +463,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -314,8 +487,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -380,6 +562,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#android%E5%8A%A8%E7%94%BB%E4%B9%8Binterpolator%E6%8F%92%E5%80%BC%E5%99%A8"><span class="nav-text">Android动画之Interpolator(插值器)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-text">分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#accelerateinterpolator"><span class="nav-text">AccelerateInterpolator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8xml%E4%BD%BF%E7%94%A8"><span class="nav-text">在xml使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8java%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="nav-text">在java中使用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -532,6 +730,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
