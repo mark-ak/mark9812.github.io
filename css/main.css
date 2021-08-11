@@ -277,14 +277,13 @@ p {
   margin: 0 0 20px 0;
 }
 a {
-  color: #555;
+  color: #315efb;
   text-decoration: none;
   outline: none;
-  border-bottom: 1px solid #999;
   word-wrap: break-word;
 }
 a:hover {
-  color: #222;
+  color: #771caa;
   border-bottom-color: #222;
 }
 blockquote {
@@ -1935,7 +1934,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a1d1ff;
+  background: #e3069e;
 }
 .links-of-blogroll {
   font-size: 13px;
