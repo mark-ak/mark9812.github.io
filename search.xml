@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>写hexo博客时报错Template render error (unknown path)出现的原因及解决方法</title>
+    <url>/2021/08/12/BUG_HEXO_%E5%86%99hexo%E5%8D%9A%E5%AE%A2%E6%97%B6%E6%8A%A5%E9%94%99Template%20render%20error%20(unknown%20path)%E5%87%BA%E7%8E%B0%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>在某次写hexo博客时使用指令hexo g -d 部署时出现该错误<br> <img src="https://img-blog.csdnimg.cn/20200414181243821.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t1YXNoaWppZGV4aWJhbw==,size_16,color_FFFFFF,t_70" alt="报错"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo转义时候发生的错误，你文章中可能出现了&#123;&#123;&#125;&#125;，&#123;% %&#125;这种hexo无法转义的字符,</span><br><span class="line">你可以将出现的代码，用&#96;进行注释下就可以</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>BUG_HEXO</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>BitLocker</title>
     <url>/2021/08/12/%E7%99%BE%E7%A7%91IT_BitLocker/</url>
     <content><![CDATA[<blockquote>
