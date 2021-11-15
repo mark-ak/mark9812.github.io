@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://mark9812.github.io/2021/07/25/%E7%8B%82%E7%A5%9E_Mybatis/image-20210814143502560.png">
 <meta property="og:image" content="https://mark9812.github.io/2021/07/25/%E7%8B%82%E7%A5%9E_Mybatis/image-20210814150301362.png">
 <meta property="article:published_time" content="2021-07-25T08:28:12.325Z">
-<meta property="article:modified_time" content="2021-09-01T00:35:20.385Z">
+<meta property="article:modified_time" content="2021-09-19T09:30:34.112Z">
 <meta property="article:author" content="Akram Amat">
 <meta property="article:tag" content="笔记狂神系列">
 <meta name="twitter:card" content="summary">
@@ -108,7 +108,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -942,7 +942,6 @@
 <p>ehcache.xml</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ehcache</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:noNamespaceSchemaLocation</span>=<span class="string">&quot;http://ehcache.org/ehcache.xsd&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">updateCheck</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">       diskStore：为缓存路径，ehcache分为内存和磁盘两级，此属性定义磁盘的缓存位置。参数解释如下：</span></span><br><span class="line"><span class="comment">       user.home – 用户主目录</span></span><br><span class="line"><span class="comment">       user.dir  – 用户当前工作目录</span></span><br><span class="line"><span class="comment">       java.io.tmpdir – 默认临时文件路径</span></span><br><span class="line"><span class="comment">     --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">diskStore</span> <span class="attr">path</span>=<span class="string">&quot;./tmpdir/Tmp_EhCache&quot;</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line">    &lt;defaultCache</span><br><span class="line">            eternal=&quot;false&quot;</span><br><span class="line">            maxElementsInMemory=&quot;10000&quot;</span><br><span class="line">            overflowToDisk=&quot;false&quot;</span><br><span class="line">            diskPersistent=&quot;false&quot;</span><br><span class="line">            timeToIdleSeconds=&quot;1800&quot;</span><br><span class="line">            timeToLiveSeconds=&quot;259200&quot;</span><br><span class="line">            memoryStoreEvictionPolicy=&quot;LRU&quot;/&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;cache</span><br><span class="line">            name=&quot;cloud_user&quot;</span><br><span class="line">            eternal=&quot;false&quot;</span><br><span class="line">            maxElementsInMemory=&quot;5000&quot;</span><br><span class="line">            overflowToDisk=&quot;false&quot;</span><br><span class="line">            diskPersistent=&quot;false&quot;</span><br><span class="line">            timeToIdleSeconds=&quot;1800&quot;</span><br><span class="line">            timeToLiveSeconds=&quot;1800&quot;</span><br><span class="line">            memoryStoreEvictionPolicy=&quot;LRU&quot;/&gt;</span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">       defaultCache：默认缓存策略，当ehcache找不到定义的缓存时，则使用这个缓存策略。只能定义一个。</span></span><br><span class="line"><span class="comment">     --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">      name:缓存名称。</span></span><br><span class="line"><span class="comment">      maxElementsInMemory:缓存最大数目</span></span><br><span class="line"><span class="comment">      maxElementsOnDisk：硬盘最大缓存个数。</span></span><br><span class="line"><span class="comment">      eternal:对象是否永久有效，一但设置了，timeout将不起作用。</span></span><br><span class="line"><span class="comment">      overflowToDisk:是否保存到磁盘，当系统当机时</span></span><br><span class="line"><span class="comment">      timeToIdleSeconds:设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。</span></span><br><span class="line"><span class="comment">      timeToLiveSeconds:设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。</span></span><br><span class="line"><span class="comment">      diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.</span></span><br><span class="line"><span class="comment">      diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。</span></span><br><span class="line"><span class="comment">      diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。</span></span><br><span class="line"><span class="comment">      memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。</span></span><br><span class="line"><span class="comment">      clearOnFlush：内存数量最大时是否清除。</span></span><br><span class="line"><span class="comment">      memoryStoreEvictionPolicy:可选策略有：LRU（最近最少使用，默认策略）、FIFO（先进先出）、LFU（最少访问次数）。</span></span><br><span class="line"><span class="comment">      FIFO，first in first out，这个是大家最熟的，先进先出。</span></span><br><span class="line"><span class="comment">      LFU， Less Frequently Used，就是上面例子中使用的策略，直白一点就是讲一直以来最少被使用的。如上面所讲，缓存的元素有一个hit属性，hit值最小的将会被清出缓存。</span></span><br><span class="line"><span class="comment">      LRU，Least Recently Used，最近最少使用的，缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。</span></span><br><span class="line"><span class="comment">   --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">ehcache</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
       
     </div>
     
@@ -972,8 +971,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/07/07/%E7%AC%94%E8%AE%B0%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86_%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/" rel="next" title="编译原理笔记">
-                <i class="fa fa-chevron-left"></i> 编译原理笔记
+              <a href="/2021/07/07/%E7%AC%94%E8%AE%B0%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E8%80%83%E8%AF%95%E7%AC%94%E8%AE%B0/" rel="next" title="编译原理考试笔记">
+                <i class="fa fa-chevron-left"></i> 编译原理考试笔记
               </a>
             
           </div>
@@ -982,8 +981,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/07/31/%E7%AC%94%E8%AE%B0Android%E8%A1%A5%E5%85%85_Interpolator(%E6%8F%92%E5%80%BC%E5%99%A8)/" rel="prev" title="Android动画_Interpolator(插值器)">
-                Android动画_Interpolator(插值器) <i class="fa fa-chevron-right"></i>
+              <a href="/2021/08/05/%E7%8B%82%E7%A5%9E_Mysql/" rel="prev" title="Mysql">
+                Mysql <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1065,7 +1064,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1087,7 +1086,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1159,14 +1158,14 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共62k字</span>
+  <span class="post-count">博客全站共68.7k字</span>
 </div>
 
         

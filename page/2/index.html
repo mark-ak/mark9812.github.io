@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -93,7 +93,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/08/09/%E9%9D%A2%E8%AF%95_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/08/12/%E7%99%BE%E7%A7%91IT_BitLocker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -272,7 +272,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/08/09/%E9%9D%A2%E8%AF%95_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url">TCP三次握手和四次挥手的全过程</a></h1>
+                <a class="post-title-link" href="/2021/08/12/%E7%99%BE%E7%A7%91IT_BitLocker/" itemprop="url">BitLocker</a></h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-09T11:09:57+08:00">
-                2021-08-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-12T16:40:37+08:00">
+                2021-08-12
               </time>
             
 
@@ -323,28 +323,188 @@
 
       
         
-          
-            <h1 id="tcp三次握手和四次挥手的全过程"><a href="#TCP三次握手和四次挥手的全过程" class="headerlink" title="TCP三次握手和四次挥手的全过程"></a><strong>TCP三次握手和四次挥手的全过程</strong></h1><h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a><strong>三次握手</strong></h2><blockquote>
-<p>TCP是主机对主机层的传输控制协议，提供可靠的连接服务，采用三次握手确认建立一个连接</p>
+          <blockquote>
+<p>Windows BitLocker驱动器加密通过加密Windows<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>卷上存储的所有数据可以更好地保护计算机中的数据。</p>
 </blockquote>
-<p><strong>第一次握手：</strong>客户端发送syn包(syn=x)到服务器，并进入SYN_SEND状态，等待服务器确认；</p>
-<p><strong>第二次握手：</strong>服务器收到syn包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（syn=y），即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
-<p><strong>第三次握手：</strong>客户端收到服务器的SYN＋ACK包，向服务器发送确认包ACK(ack=y+1)，此包发送完毕，客户端和服务器进入ESTABLISHED状态，完成三次握手。</p>
-<p> 握手过程中传送的包里不包含数据，三次握手完毕后，客户端与服务器才正式开始传送数据。理想状态下，TCP连接一旦建立，在通信双方中的任何一方主动关闭连接之前，TCP 连接都将被一直保持下去。</p>
-<p><strong>这三次对话的简单过程：</strong></p>
-<p>1）主机A向主机B发出连接请求数据包：“我想给你发数据，可以吗？”，这是第一次对话； </p>
-<p>2）主机B向主机A发送同意连接和要求同步 （同步就是两台主机一个在发送，一个在接收，协调工作）的数据包 ：“可以，你什么时候发？”，这是第二次对话； </p>
-<p>3）主机A再发出一个数据包确认主机B的要求同步：“我现在就发，你接着吧！”， 这是第三次对话。</p>
-<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a><strong>四次挥手</strong></h2><blockquote>
-<p>与建立连接的“三次握手”类似，断开一个TCP连接则需要“四次挥手”。</p>
+<h1 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/BitLocker%E9%A9%B1%E5%8A%A8%E5%99%A8%E5%8A%A0%E5%AF%86/15740586">BitLocker驱动器加密</a>它是在[Windows Vista](<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Windows">https://baike.baidu.com/item/Windows</a> Vista)中新增的一种数据保护功能，主要用于解决一个人们越来越关心的问题：由计算机设备的物理丢失导致的数据失窃或恶意泄漏。</p>
 </blockquote>
-<p><strong>第一次挥手：</strong>主动关闭方发送一个FIN</p>
-<p><strong>第二次挥手：</strong>被动关闭方收到FIN包后，发送一个ACK给对方，确认序号为收到序号+1</p>
-<p><strong>第三次挥手：</strong>被动关闭方发送一个FIN，用来关闭被动关闭方到主动关闭方的数据传送</p>
-<p><strong>第四次挥手：</strong>主动关闭方收到FIN后，发送一个ACK给被动关闭方，确认序号为收到序号+1，至此，完成四次挥手。</p>
-<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.b9b827892e438fe26721663b1c710e1b?rik=RyBaOvPnKj36PQ&riu=http://www.xker.com/xkerfiles/allimg/1411/1300463328-0.jpg&ehk=We1aLcMX6dYqnPuKNkf4L8m5AOKwY6TPcJcwHJH7Uhk=&risl=&pid=ImgRaw&r=0" alt="查看源图像"></p>
+<p>BitLocker使用TPM帮助保护Windows<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>和用户数据，并帮助确保计算机即使在无人参与、丢失或被盗的情况下也不会被篡改。</p>
+<p><strong>不足：</strong>打开加密盘后，再次进入就不需要密码了</p>
+<p>但是目前，我们可以在开始<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BB%BB%E5%8A%A1%E6%A0%8F">任务栏</a>里输入“cmd”，然后以<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%AE%A1%E7%90%86%E5%91%98">管理员</a>身份运行，输入 manage-bde（空格）-lock（空格）X：，x为加密磁盘盘符。这样就可以再次锁住加密盘了。</p>
+<p><strong>TPM:</strong></p>
+<p>受信任的平台模块(TPM)是一个内置在计算机中的微<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%8A%AF%E7%89%87">芯片</a>。它用于存储加密信息，如加密<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%86%E9%92%A5">密钥</a>。存储在TPM上的信息会更安全，避免受到外部<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6">软件</a>攻击和物理盗窃。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/08/12/%E7%99%BE%E7%A7%91IT_BitLocker/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/08/12/%E7%99%BE%E7%A7%91IT_%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/08/12/%E7%99%BE%E7%A7%91IT_%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98/" itemprop="url">移动硬盘</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-12T15:09:55+08:00">
+                2021-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>移动硬盘，主要指采用USB或<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/IEEE1394%E6%8E%A5%E5%8F%A3/490531">IEEE1394接口</a>，可以随时插上或拔下，小巧而便于携带的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%A1%AC%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8/530008">硬盘存储器</a>，可以较高的速度与系统进行数据传输。</p>
+</blockquote>
+<h1 id="移动硬盘选购"><a href="#移动硬盘选购" class="headerlink" title="移动硬盘选购"></a>移动硬盘选购</h1><h2 id="移动硬盘外"><a href="#移动硬盘外" class="headerlink" title="移动硬盘外"></a>移动硬盘外</h2><blockquote>
+<p> 移动硬盘外壳材质一般分为金属和塑料两种。</p>
+</blockquote>
+<p>一般来讲，金属外壳的抗压和散热性能会比较好，而塑料外壳在抗震性和重量方面相对更有优势</p>
+<h2 id="PCB板控制芯片"><a href="#PCB板控制芯片" class="headerlink" title="PCB板控制芯片"></a>PCB板控制芯片</h2><blockquote>
+<p>移动硬盘PCB上面的控制芯片直接关系到产品的读写性能和稳定性</p>
+</blockquote>
+<p>目前控制芯片主要分高、低两个档次。</p>
+<p><strong>高档次：</strong></p>
+<p>高端控制芯片的代表是赛普拉斯CypressISD300A1/CY7C68300B/CY7C68300C、NECLiPD720133、旺玖PL-3507。这些芯片的特点：价格较贵，稳定性和兼容性都十分出色，是高端用户的首选</p>
+<p><strong>低档次：</strong></p>
+<p>低端控制芯片的代表是安国AU6390、扬智ALi M5642、创维CL811系列等。这些芯片的特点是：稳定性和数据传输性能相对要差一些，但足够应对日常的工作需求，因为其价格低廉，多应用在低端硬盘盒上</p>
+<h2 id="硬盘盒外部接口"><a href="#硬盘盒外部接口" class="headerlink" title="硬盘盒外部接口"></a>硬盘盒外部接口</h2><blockquote>
+<p> 移动硬盘的数据传输速率在一定程度上受到接口速度的限制</p>
+</blockquote>
+<ul>
+<li><p>USB1.1接口规范的产品上，在传输较大数据量时，将考验用户的耐心。</p>
+</li>
+<li><p>USB 2.0接口传输速率是60MB/s</p>
+</li>
+<li><p>USB 3.0接口传输速率是625 MB/s</p>
+</li>
+<li><p>IEEE 1394接口传输速率是50～100 MB/s。</p>
+</li>
+<li><ul>
+<li>IEEE1394a接口数据传输速率理论上可达到400Mbit/s( 50MB/s)；</li>
+</ul>
+</li>
+<li><ul>
+<li>IEEE1394h接口的传输速率则能达到800Mbit/s( lOOMB/s)</li>
+</ul>
+</li>
+<li><p>eSATA在与主机交换数据时，读个吉字节数量级的大型文件只需几分钟，特别适合视频与音频数据的存储和交换</p>
+</li>
+</ul>
+<h2 id="品质"><a href="#品质" class="headerlink" title="品质"></a>品质</h2><blockquote>
+<p>购买该类产品时，请认清产品的商标、防伪标识，并向经销商索要正式的发票和三包卡。避免买到假货，发票和三包卡是今后售后服务的凭证</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/08/12/%E7%99%BE%E7%A7%91IT_%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -722,20 +882,25 @@
 
       
         
-          <h1 id="数据库分类"><a href="#数据库分类" class="headerlink" title="数据库分类"></a>数据库分类</h1><blockquote>
-<p>数据库是“按照数据结构来组织、存储和管理数据的仓库”。是一个长期存储在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA/140338">计算机</a>内的、有组织的、可共享的、统一管理的大量数据的集合。</p>
-</blockquote>
-<p><strong>关系数据库（sql）：</strong></p>
-<p>关系型数据库，存储的格式可以直观地反映实体间的关系。关系型数据库和常见的表格比较相似，关系型数据库中表与表之间是有很多复杂的关联关系的。</p>
-<p><strong>非关系型数据库（nosql):</strong></p>
-<p>NoSQL数据库适合追求速度和可扩展性、业务多变的应用场景。对于非结构化数据的处理更合适，如文章、评论，这些数据如全文搜索、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/217599">机器学习</a>通常只用于模糊处理，并不需要像<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE/5910594">结构化数据</a>一样，进行精确查询，而且这类数据的数据规模往往是海量的，数据规模的增长往往也是不可能预期的，而NoSQL数据库的扩展能力几乎也是无限的，所以NoSQL数据库可以很好的满足这一类数据的存储。NoSQL数据库利用key-value可以大量的获取大量的非结构化数据，并且数据的获取效率很高，但用它查询结构化数据效果就比较差。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/08/05/%E7%8B%82%E7%A5%9E_Mysql/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h1 id="初识mysql"><a href="#初识MySQL" class="headerlink" title="初识MySQL"></a>初识MySQL</h1><p>avaEE：企业级Java开发 Web</p>
+<p>前端（页面：展示：数据）</p>
+<p>后台 （连接点：连接数据库JDBC,连接前端（控制视图跳转，给前端传递数据））</p>
+<p>数据库（存数据，Txt,Excel,Word）</p>
+<pre><code>只会写代码，学好数据库，基本混饭吃：
+
+操作系统，数据结构与算法！当一个不错的程序猿！
+
+离散数学，数字电路，体系结构，编译原理。+实战经验，优秀程序猿</code></pre>
+<h3 id="为什么学数据库"><a href="#为什么学数据库" class="headerlink" title="为什么学数据库"></a>为什么学数据库</h3><p>1、岗位需求</p>
+<p>2、现在的世界，大数据时代，得数据者得天下</p>
+<p>3、被迫需求：存数据</p>
+<p><strong>4、数据库是所有软件体系中最核心的存在</strong> DBA</p>
+<h3 id="什么是数据库"><a href="#什么是数据库" class="headerlink" title="什么是数据库"></a>什么是数据库</h3><p>数据库：(DB,DataBase)</p>
+<p>概念:数据仓库，软件，安装在操作系统之（windows,Linux。mac）上的！SQL,可以存储大量的数据，500万!</p>
+<p>作用:存储数据，管理数据 Excel</p>
+
+          
         
       
     </div>
@@ -782,7 +947,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/07/31/%E7%AC%94%E8%AE%B0Android%E8%A1%A5%E5%85%85_Interpolator(%E6%8F%92%E5%80%BC%E5%99%A8)/">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/07/07/%E7%AC%94%E8%AE%B0%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E8%80%83%E8%AF%95%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -801,135 +966,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/07/31/%E7%AC%94%E8%AE%B0Android%E8%A1%A5%E5%85%85_Interpolator(%E6%8F%92%E5%80%BC%E5%99%A8)/" itemprop="url">Android动画_Interpolator(插值器)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-31T16:07:55+08:00">
-                2021-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>通俗易懂的说，Interpolator负责控制动画变化的速率，使得基本的动画效果能够以匀速、加速、减速、抛物线速率等各种速率变化。 </p>
-</blockquote>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>每个Interpolator多需要 继承TimeInterpolator，并实现里面唯一的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TimeInterpolator</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Maps a value representing the elapsed fraction of an animation to a value that represents</span></span><br><span class="line"><span class="comment">     * the interpolated fraction. This interpolated value is then multiplied by the change in</span></span><br><span class="line"><span class="comment">     * value of an animation to derive the animated value at the current elapsed animation time.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> input A value between 0 and 1.0 indicating our current point</span></span><br><span class="line"><span class="comment">     *        in the animation where 0 represents the start and 1.0 represents</span></span><br><span class="line"><span class="comment">     *        the end</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> The interpolation value. This value can be more than 1.0 for</span></span><br><span class="line"><span class="comment">     *         interpolators which overshoot their targets, or less than 0 for</span></span><br><span class="line"><span class="comment">     *         interpolators that undershoot their targets.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getInterpolation</span><span class="params">(<span class="keyword">float</span> input)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/07/31/%E7%AC%94%E8%AE%B0Android%E8%A1%A5%E5%85%85_Interpolator(%E6%8F%92%E5%80%BC%E5%99%A8)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/07/07/%E7%AC%94%E8%AE%B0%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86_%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/07/07/%E7%AC%94%E8%AE%B0%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86_%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/" itemprop="url">编译原理笔记</a></h1>
+                <a class="post-title-link" href="/2021/07/07/%E7%AC%94%E8%AE%B0%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E8%80%83%E8%AF%95%E7%AC%94%E8%AE%B0/" itemprop="url">编译原理考试笔记</a></h1>
         
 
         <div class="post-meta">
@@ -986,7 +1023,7 @@
 <h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><h2 id="编译程序的逻辑结构"><a href="#编译程序的逻辑结构" class="headerlink" title="编译程序的逻辑结构"></a>编译程序的逻辑结构</h2><p><img src="https://api2.mubu.com/v3/document_image/b585f60e-9d28-461f-b263-362a7ef7080c-3810853.jpg" alt="img">                            </p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/07/07/%E7%AC%94%E8%AE%B0%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86_%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/#more" rel="contents">
+            <a class="btn" href="/2021/07/07/%E7%AC%94%E8%AE%B0%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E8%80%83%E8%AF%95%E7%AC%94%E8%AE%B0/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1116,142 +1153,6 @@
 
 
           
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/07/04/%E7%AC%94%E8%AE%B0Android_Android%E5%BC%80%E5%8F%91%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/07/04/%E7%AC%94%E8%AE%B0Android_Android%E5%BC%80%E5%8F%91%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/" itemprop="url">Android开发从入门到精通</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-04T21:51:56+08:00">
-                2021-07-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="ImageSwitcher"><a href="#ImageSwitcher" class="headerlink" title="ImageSwitcher"></a>ImageSwitcher</h1><ul>
-<li>写xml布局文件（ImageSwitcher）</li>
-<li>实现setFactority工厂新建初始化图片资源(imgview)并返回</li>
-<li>实现触发动作的监听器<ul>
-<li>左滑右滑可以通过onTouch的ActionDown和ActionUp来实现</li>
-</ul>
-</li>
-<li>实现setAnimation设定进入和返回的动画</li>
-<li>重新设定切换器的图片资源即可(ImageSwitcher.setRouse)</li>
-<li><strong>注:</strong></li>
-<li>getX是浮点型</li>
-<li>onTouch监听动作分down时进行还是up时进行</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/07/04/%E7%AC%94%E8%AE%B0Android_Android%E5%BC%80%E5%8F%91%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1541,6 +1442,142 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2021/06/27/android/android%E5%A5%97WebView/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/06/27/android/android%E5%A5%97WebView/" itemprop="url">android套WebView</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-27T18:49:40+08:00">
+                2021-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 展示一个 WebView --&gt;</span><br><span class="line">&lt;WebView</span><br><span class="line">    android:id=<span class="string">&quot;@+id/webview&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">package com.example.webviewdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.annotation.SuppressLint;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.webkit.WebView;</span><br><span class="line"><span class="keyword">import</span> android.webkit.WebViewClient;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected <span class="keyword">void</span> <span class="function"><span class="title">onCreate</span>(<span class="params">Bundle savedInstanceState</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.createWebView();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 创建 WebView 实例 */</span></span><br><span class="line">    @SuppressLint(<span class="string">&quot;SetJavaScriptEnabled&quot;</span>)</span><br><span class="line">    private <span class="keyword">void</span> <span class="function"><span class="title">createWebView</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建 WebView 实例并通过 id 绑定我们刚在布局中创建的 WebView 标签</span></span><br><span class="line">        <span class="comment">// 这里的 R.id.webview 就是 activity_main.xml 中的 WebView 标签的 id</span></span><br><span class="line">        final WebView webView = (WebView) findViewById(R.id.webview);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置 WebView 允许执行 JavaScript 脚本</span></span><br><span class="line">        webView.getSettings().setJavaScriptEnabled(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 确保跳转到另一个网页时仍然在当前 WebView 中显示</span></span><br><span class="line">        <span class="comment">// 而不是调用浏览器打开</span></span><br><span class="line">        webView.setWebViewClient(<span class="keyword">new</span> WebViewClient());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 加载指定网页</span></span><br><span class="line">        <span class="built_in">String</span> url = <span class="string">&quot;https://chenpipi.cn&quot;</span>;</span><br><span class="line">        webView.loadUrl(url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 访问网络的权限 --&gt;</span><br><span class="line">&lt;uses-permission android:name=<span class="string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置为全屏（隐藏状态栏）</span></span><br><span class="line">requestWindowFeature(Window.FEATURE_NO_TITLE);</span><br><span class="line">getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置 WebView 的按键监听器，覆写监听器的 onKey 函数，对返回键作特殊处理</span></span><br><span class="line"><span class="comment">// 当 WebView 可以返回到上一个页面时回到上一个页面</span></span><br><span class="line">webView.setOnKeyListener(<span class="keyword">new</span> View.OnKeyListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean <span class="function"><span class="title">onKey</span>(<span class="params">View v, int keyCode, KeyEvent event</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (keyCode == KeyEvent.KEYCODE_BACK &amp;&amp; webView.canGoBack()) &#123;</span><br><span class="line">            webView.goBack();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>重写当前 Activity 的 <code>onBackPressed</code> 函数：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private WebView webView = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 WebView 实例时保存到 this.webView 中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 接管返回键</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">@Override</span><br><span class="line">public <span class="keyword">void</span> <span class="function"><span class="title">onBackPressed</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.webView.canGoBack()) &#123;</span><br><span class="line">        <span class="built_in">this</span>.webView.goBack();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onBackPressed();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;application</span><br><span class="line">    ...</span><br><span class="line">    android:usesCleartextTraffic=<span class="string">&quot;true&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1595,7 +1632,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1617,7 +1654,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1673,14 +1710,14 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共62k字</span>
+  <span class="post-count">博客全站共68.7k字</span>
 </div>
 
         
