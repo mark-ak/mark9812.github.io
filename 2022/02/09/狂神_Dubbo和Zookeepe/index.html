@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="笔记狂神系列," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="分布式理论什么是分布式系统？在《分布式系统原理与范型》一书中有如下定义：“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”； 分布式系统是由一组通过网络进行通信、为了完成共同的任务而协调工作的计算机节点组成的系统。分布式系统的出现是为了用廉价的、普通的机器完成单个计算机无法完成的计算、存储任务。其目的是利用更多的机器，处理更多的数据。 分布式系统（distributed">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dubbo和Zookeepe">
+<meta property="og:url" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/index.html">
+<meta property="og:site_name" content="Mark&#39;s Blog">
+<meta property="og:description" content="分布式理论什么是分布式系统？在《分布式系统原理与范型》一书中有如下定义：“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”； 分布式系统是由一组通过网络进行通信、为了完成共同的任务而协调工作的计算机节点组成的系统。分布式系统的出现是为了用廉价的、普通的机器完成单个计算机无法完成的计算、存储任务。其目的是利用更多的机器，处理更多的数据。 分布式系统（distributed">
+<meta property="og:locale">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091239479.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091311098.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091356145.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/640.webp">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091509707.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091557897.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091618605.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091719811.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092057727.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092107392.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092320128.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092351943.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092403897.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092419549.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209105301938.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209105333414.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209110534171.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209110640747.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209110659267.png">
+<meta property="article:published_time" content="2022-02-09T01:08:56.864Z">
+<meta property="article:modified_time" content="2022-02-12T00:35:14.307Z">
+<meta property="article:author" content="Akram Amat">
+<meta property="article:tag" content="笔记狂神系列">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091239479.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mark9812.github.io/2022/02/09/狂神_Dubbo和Zookeepe/"/>
+
+
+
+
+
+  <title>Dubbo和Zookeepe | Mark's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mark's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I love to travel, but hate to arrive.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Dubbo和Zookeepe</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-09T09:08:56+08:00">
+                2022-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="分布式理论"><a href="#分布式理论" class="headerlink" title="分布式理论"></a>分布式理论</h1><h2 id="什么是分布式系统"><a href="#什么是分布式系统？" class="headerlink" title="什么是分布式系统？"></a>什么是分布式系统？</h2><p>在《分布式系统原理与范型》一书中有如下定义：“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”；</p>
+<p>分布式系统是由一组通过网络进行通信、为了完成共同的任务而协调工作的计算机节点组成的系统。分布式系统的出现是为了用廉价的、普通的机器完成单个计算机无法完成的计算、存储任务。其目的是<strong>利用更多的机器，处理更多的数据</strong>。</p>
+<p>分布式系统（distributed system）是建立在网络之上的软件系统。</p>
+<p>首先需要明确的是，只有当单个节点的处理能力无法满足日益增长的计算、存储任务的时候，且硬件的提升（加内存、加磁盘、使用更好的CPU）高昂到得不偿失的时候，应用程序也不能进一步优化的时候，我们才需要考虑分布式系统。因为，分布式系统要解决的问题本身就是和单机系统一样的，而由于分布式系统多节点、通过网络通信的拓扑结构，会引入很多单机系统没有的问题，为了解决这些问题又会引入更多的机制、协议，带来更多的问题。</p>
+<h2 id="dubbo文档"><a href="#Dubbo文档" class="headerlink" title="Dubbo文档"></a>Dubbo文档</h2><p>随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，急需<strong>一个治理系统</strong>确保架构有条不紊的演进。</p>
+<p>在Dubbo的官网文档有这样一张图</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091239479.png" alt="image-20220209091239479"></p>
+<a id="more"></a>
+
+<h2 id="单一应用架构"><a href="#单一应用架构" class="headerlink" title="单一应用架构"></a>单一应用架构</h2><p>当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091311098.png" alt="image-20220209091311098"></p>
+<p>适用于小型网站，小型管理系统，将所有功能都部署到一个功能里，简单易用。</p>
+<p><strong>缺点：</strong></p>
+<p>1、性能扩展比较难</p>
+<p>2、协同开发问题</p>
+<p>3、不利于升级维护</p>
+<h2 id="垂直应用架构"><a href="#垂直应用架构" class="headerlink" title="垂直应用架构"></a>垂直应用架构</h2><p>当访问量逐渐增大，单一应用增加机器带来的加速度越来越小，将应用拆成互不相干的几个应用，以提升效率。此时，用于加速前端页面开发的Web框架(MVC)是关键。</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091356145.png" alt="image-20220209091356145"></p>
+<p>通过切分业务来实现各个模块独立部署，降低了维护和部署的难度，团队各司其职更易管理，性能扩展也更方便，更有针对性。</p>
+<p>缺点：公用模块无法重复利用，开发性的浪费</p>
+<h2 id="分布式服务架构"><a href="#分布式服务架构" class="headerlink" title="分布式服务架构"></a>分布式服务架构</h2><p>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。此时，用于提高业务复用及整合的**分布式服务框架(RPC)**是关键。</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/640.webp" alt="图片"></p>
+<h2 id="流动计算架构"><a href="#流动计算架构" class="headerlink" title="流动计算架构"></a>流动计算架构</h2><p>当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于<strong>提高机器利用率的资源调度和治理中心</strong>(SOA)[ Service Oriented Architecture]是关键。</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091509707.png" alt="image-20220209091509707"></p>
+<h1 id="什么是rpc"><a href="#什么是RPC" class="headerlink" title="什么是RPC"></a>什么是RPC</h1><p>RPC【Remote Procedure Call】是指远程过程调用，是一种进程间通信方式，他是一种技术的思想，而不是规范。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。即程序员无论是调用本地的还是远程的函数，本质上编写的调用代码基本相同。</p>
+<p>也就是说两台服务器A，B，一个应用部署在A服务器上，想要调用B服务器上应用提供的函数/方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。为什么要用RPC呢？就是无法在一个进程内，甚至一个计算机内通过本地调用的方式完成的需求，比如不同的系统间的通讯，甚至不同的组织间的通讯，由于计算能力需要横向扩展，需要在多台机器组成的集群上部署应用。RPC就是要像调用本地的函数一样去调远程函数；</p>
+<p>推荐阅读文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2accc2840a1b">https://www.jianshu.com/p/2accc2840a1b</a></p>
+<h2 id="rpc基本原理"><a href="#RPC基本原理" class="headerlink" title="RPC基本原理"></a>RPC基本原理</h2><p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091557897.png" alt="image-20220209091557897"></p>
+<p><strong>步骤解析：</strong></p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091618605.png" alt="image-20220209091618605"></p>
+<p>RPC两个核心模块：通讯，序列化。</p>
+<h1 id="测试环境搭建"><a href="#测试环境搭建" class="headerlink" title="测试环境搭建"></a>测试环境搭建</h1><h2 id="dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h2><p>Apache Dubbo |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。</p>
+<p>dubbo官网 <a target="_blank" rel="noopener" href="http://dubbo.apache.org/zh-cn/index.html">http://dubbo.apache.org/zh-cn/index.html</a></p>
+<p>1.了解Dubbo的特性</p>
+<p>2.查看官方文档</p>
+<p><strong>dubbo基本概念</strong></p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209091719811.png" alt="image-20220209091719811"></p>
+<p><strong>服务提供者</strong>（Provider）：暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提供的服务。</p>
+<p><strong>服务消费者</strong>（Consumer）：调用远程服务的服务消费方，服务消费者在启动时，向注册中心订阅自己所需的服务，服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。</p>
+<p><strong>注册中心</strong>（Registry）：注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者</p>
+<p><strong>监控中心</strong>（Monitor）：服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心</p>
+<p><strong>调用关系说明</strong></p>
+<p>l 服务容器负责启动，加载，运行服务提供者。</p>
+<p>l 服务提供者在启动时，向注册中心注册自己提供的服务。</p>
+<p>l 服务消费者在启动时，向注册中心订阅自己所需的服务。</p>
+<p>l 注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者。</p>
+<p>l 服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。</p>
+<p>l 服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。</p>
+<h2 id="dubbo环境搭建"><a href="#Dubbo环境搭建" class="headerlink" title="Dubbo环境搭建"></a>Dubbo环境搭建</h2><p>点进dubbo官方文档，推荐我们使用Zookeeper 注册中心</p>
+<p>什么是zookeeper呢？可以查看官方文档</p>
+<h2 id="window下安装zookeeper"><a href="#Window下安装zookeeper" class="headerlink" title="Window下安装zookeeper"></a>Window下安装zookeeper</h2><p>1、下载zookeeper ：地址， 我们下载3.4.14 ， 最新版！解压zookeeper</p>
+<p>2、运行/bin/zkServer.cmd ，初次运行会报错，没有zoo.cfg配置文件；</p>
+<p>可能遇到问题：闪退 !</p>
+<p>解决方案：编辑zkServer.cmd文件末尾添加pause 。这样运行出错就不会退出，会提示错误信息，方便找到原因。</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092057727.png" alt="image-20220209092057727"></p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092107392.png" alt="image-20220209092107392"></p>
+<p>3、修改zoo.cfg配置文件</p>
+<p>将conf文件夹下面的zoo_sample.cfg复制一份改名为zoo.cfg即可。</p>
+<p>注意几个重要位置：</p>
+<p>dataDir=./  临时数据存储的目录（可写相对路径）</p>
+<p>clientPort=2181  zookeeper的端口号</p>
+<p>修改完成后再次启动zookeeper</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092320128.png" alt="image-20220209092320128"></p>
+<p>4、使用zkCli.cmd测试</p>
+<p>ls /：列出zookeeper根下保存的所有节点</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zk: <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">2181</span>(CONNECTED) <span class="number">4</span>] ls /</span><br><span class="line">[zookeeper]</span><br></pre></td></tr></table></figure>
+
+<p>create –e /kuangshen 123：创建一个kuangshen节点，值为123</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092351943.png" alt="image-20220209092351943"></p>
+<p>get /kuangshen：获取/kuangshen节点的值</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092403897.png" alt="image-20220209092403897"></p>
+<p>我们再来查看一下节点</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209092419549.png" alt="image-20220209092419549"></p>
+<h2 id="window下安装dubbo-admin"><a href="#window下安装dubbo-admin" class="headerlink" title="window下安装dubbo-admin"></a>window下安装dubbo-admin</h2><p>dubbo本身并不是一个服务软件。它其实就是一个jar包，能够帮你的java程序连接到zookeeper，并利用zookeeper消费、提供服务。</p>
+<p>但是为了让用户更好的管理监控众多的dubbo服务，官方提供了一个可视化的监控程序dubbo-admin，不过这个监控即使不装也不影响使用。</p>
+<p>我们这里来安装一下：</p>
+<p><strong>1、下载dubbo-admin</strong></p>
+<p>地址 ：<a target="_blank" rel="noopener" href="https://github.com/apache/dubbo-admin/tree/master">https://github.com/apache/dubbo-admin/tree/master</a></p>
+<p><strong>2、解压进入目录</strong></p>
+<p>修改 dubbo-admin\src\main\resources \application.properties 指定zookeeper地址</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">server.port=7001</span></span><br><span class="line"><span class="string">spring.velocity.cache=false</span></span><br><span class="line"><span class="string">spring.velocity.charset=UTF-8</span></span><br><span class="line"><span class="string">spring.velocity.layout-url=/templates/default.vm</span></span><br><span class="line"><span class="string">spring.messages.fallback-to-system-locale=false</span></span><br><span class="line"><span class="string">spring.messages.basename=i18n/message</span></span><br><span class="line"><span class="string">spring.root.password=root</span></span><br><span class="line"><span class="string">spring.guest.password=guest</span></span><br><span class="line"><span class="comment"># 服务注册</span></span><br><span class="line"><span class="string">dubbo.registry.address=zookeeper://127.0.0.1:2181</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3、在项目目录下</strong>打包dubbo-admin</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean package -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
+
+<p><strong>第一次打包的过程有点慢，需要耐心等待！直到成功！</strong></p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209105301938.png" alt="image-20220209105301938"></p>
+<p>4、执行 dubbo-admin\target 下的dubbo-admin-0.0.1-SNAPSHOT.jar</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar dubbo-admin-<span class="number">0.0</span><span class="number">.1</span>-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<p>【注意：zookeeper的服务一定要打开！】</p>
+<p>执行完毕，我们去访问一下 <a target="_blank" rel="noopener" href="http://localhost:7001/">http://localhost:7001/</a> ， 这时候我们需要输入登录账户和密码，我们都是默认的root-root；</p>
+<p>登录成功后，查看界面</p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209105333414.png" alt="image-20220209105333414"></p>
+<p>安装完成！</p>
+<h1 id="springboot-dubbo-zookeeper"><a href="#SpringBoot-Dubbo-zookeeper" class="headerlink" title="SpringBoot + Dubbo + zookeeper"></a>SpringBoot + Dubbo + zookeeper</h1><h2 id="框架搭建"><a href="#框架搭建" class="headerlink" title="框架搭建"></a>框架搭建</h2><p><strong>1. 启动zookeeper ！</strong></p>
+<p><strong>2. IDEA创建一个空项目；</strong></p>
+<p><strong>3.创建一个模块，实现服务提供者：provider-server ， 选择web依赖即可</strong></p>
+<p><strong>4.项目创建完毕，我们写一个服务，比如卖票的服务；</strong></p>
+<p>编写接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kuang.provider.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TicketService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTicket</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kuang.provider.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TicketServiceImpl</span> <span class="keyword">implements</span> <span class="title">TicketService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTicket</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;《狂神说Java》&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>5.创建一个模块，实现服务消费者：consumer-server ， 选择web依赖即可</strong></p>
+<p><strong>6.项目创建完毕，我们写一个服务，比如用户的服务；</strong></p>
+<p>编写service</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kuang.consumer.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="comment">//我们需要去拿去注册中心的服务</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>需求：现在我们的用户想使用买票的服务，这要怎么弄呢 ？</strong></p>
+<h2 id="服务提供者"><a href="#服务提供者" class="headerlink" title="服务提供者"></a>服务提供者</h2><p><strong>1、将服务提供者注册到注册中心，我们需要整合Dubbo和zookeeper，所以需要导包</strong></p>
+<p><strong>我们从dubbo官网进入github，看下方的帮助文档，找到dubbo-springboot，找到依赖包</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Dubbo Spring Boot Starter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.dubbo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dubbo-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>    </span><br></pre></td></tr></table></figure>
+
+<p><strong>zookeeper的包我们去maven仓库下载，zkclient；</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.github.sgroschupf/zkclient --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.sgroschupf<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zkclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>【新版的坑】zookeeper及其依赖包，解决日志冲突，还需要剔除日志依赖；</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入zookeeper --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-framework<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-recipes<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.zookeeper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zookeeper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--排除这个slf4j-log4j12--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2、在springboot配置文件中配置dubbo相关属性！</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#当前应用名字</span></span><br><span class="line"><span class="string">dubbo.application.name=provider-server</span></span><br><span class="line"><span class="comment">#注册中心地址</span></span><br><span class="line"><span class="string">dubbo.registry.address=zookeeper://127.0.0.1:2181</span></span><br><span class="line"><span class="comment">#扫描指定包下服务</span></span><br><span class="line"><span class="string">dubbo.scan.base-packages=com.kuang.provider.service</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3、在service的实现类中配置服务注解，发布服务！注意导包问题</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.dubbo.config.annotation.Service;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">@Service //将服务发布出去</span><br><span class="line">@Component //放在容器中</span><br><span class="line">public class TicketServiceImpl implements TicketService &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String getTicket() &#123;</span><br><span class="line">        return &quot;《狂神说Java》&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>逻辑理解 ：应用启动起来，dubbo就会扫描指定的包下带有@component注解的服务，将它发布在指定的注册中心中！</strong></p>
+<h2 id="服务消费者"><a href="#服务消费者" class="headerlink" title="服务消费者"></a>服务消费者</h2><p><strong>1、导入依赖，和之前的依赖一样；</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--dubbo--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Dubbo Spring Boot Starter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.dubbo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dubbo-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--zookeeper--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.github.sgroschupf/zkclient --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.sgroschupf<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zkclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 引入zookeeper --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-framework<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-recipes<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.zookeeper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zookeeper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--排除这个slf4j-log4j12--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、<strong>配置参数</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#当前应用名字</span></span><br><span class="line"><span class="string">dubbo.application.name=consumer-server</span></span><br><span class="line"><span class="comment">#注册中心地址</span></span><br><span class="line"><span class="string">dubbo.registry.address=zookeeper://127.0.0.1:2181</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 本来正常步骤是需要将服务提供者的接口打包，然后用pom文件导入，我们这里使用简单的方式，直接将服务的接口拿过来，路径必须保证正确，即和服务提供者相同；</strong></p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209110534171.png" alt="image-20220209110534171"></p>
+<p><strong>4. 完善消费者的服务类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kuang.consumer.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.kuang.provider.service.TicketService;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.config.annotation.Reference;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span> <span class="comment">//注入到容器中</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Reference</span> <span class="comment">//远程引用指定的服务，他会按照全类名进行匹配，看谁给注册中心注册了这个全类名</span></span><br><span class="line">    TicketService ticketService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bugTicket</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String ticket = ticketService.getTicket();</span><br><span class="line">        System.out.println(<span class="string">&quot;在注册中心买到&quot;</span>+ticket);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>5. 测试类编写；</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerServerApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        userService.bugTicket();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动测试"><a href="#启动测试" class="headerlink" title="启动测试"></a>启动测试</h2><p><strong>1. 开启zookeeper</strong></p>
+<p><strong>2. 打开dubbo-admin实现监控【可以不用做】</strong></p>
+<p><strong>3. 开启服务者</strong></p>
+<p><strong>4. 消费者消费测试，结果：</strong></p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209110640747.png" alt="image-20220209110640747"></p>
+<p><strong>监控中心 ：</strong></p>
+<p><img src="/2022/02/09/%E7%8B%82%E7%A5%9E_Dubbo%E5%92%8CZookeepe/image-20220209110659267.png" alt="image-20220209110659267"></p>
+<p><strong>ok , 这就是SpingBoot + dubbo + zookeeper实现分布式开发的应用，其实就是一个服务拆分的思想；</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%AC%94%E8%AE%B0%E7%8B%82%E7%A5%9E%E7%B3%BB%E5%88%97/" rel="tag"># 笔记狂神系列</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/02/09/%E7%8B%82%E7%A5%9E_SpringCloud/" rel="next" title="SpringCloud">
+                <i class="fa fa-chevron-left"></i> SpringCloud
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/02/09/%E7%8B%82%E7%A5%9E_Nginx/" rel="prev" title="Nginx">
+                Nginx <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+                 
+                  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=400876320&auto=0&height=66"></iframe>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA"><span class="nav-text">分布式理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F"><span class="nav-text">什么是分布式系统？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dubbo%E6%96%87%E6%A1%A3"><span class="nav-text">Dubbo文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E4%B8%80%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84"><span class="nav-text">单一应用架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%82%E7%9B%B4%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84"><span class="nav-text">垂直应用架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84"><span class="nav-text">分布式服务架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84"><span class="nav-text">流动计算架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFrpc"><span class="nav-text">什么是RPC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#rpc%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">RPC基本原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-text">测试环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dubbo"><span class="nav-text">Dubbo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dubbo%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-text">Dubbo环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window%E4%B8%8B%E5%AE%89%E8%A3%85zookeeper"><span class="nav-text">Window下安装zookeeper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window%E4%B8%8B%E5%AE%89%E8%A3%85dubbo-admin"><span class="nav-text">window下安装dubbo-admin</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot-dubbo-zookeeper"><span class="nav-text">SpringBoot + Dubbo + zookeeper</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA"><span class="nav-text">框架搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E8%80%85"><span class="nav-text">服务提供者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%B4%B9%E8%80%85"><span class="nav-text">服务消费者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%B5%8B%E8%AF%95"><span class="nav-text">启动测试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Akram Amat</span>
+
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+-->
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共127.1k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

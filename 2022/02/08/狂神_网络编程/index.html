@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="笔记狂神系列," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="概述 计算机网络  计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统。  网络编程的目的  无线电台…传播交流信息，数据交换。通信 想要达到这个效果需要什么： 如何准确地定位网络上的一台主机 192.168.16.124：端口，定位到这个计算机上的某个资源 找到了这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java网络编程">
+<meta property="og:url" content="https://mark9812.github.io/2022/02/08/%E7%8B%82%E7%A5%9E_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Mark&#39;s Blog">
+<meta property="og:description" content="概述 计算机网络  计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统。  网络编程的目的  无线电台…传播交流信息，数据交换。通信 想要达到这个效果需要什么： 如何准确地定位网络上的一台主机 192.168.16.124：端口，定位到这个计算机上的某个资源 找到了这">
+<meta property="og:locale">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/08/%E7%8B%82%E7%A5%9E_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/image-20220208094932930.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/08/%E7%8B%82%E7%A5%9E_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/image-20220208094944183.png">
+<meta property="og:image" content="https://mark9812.github.io/2022/02/08/%E7%8B%82%E7%A5%9E_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/image-20220208095332441.png">
+<meta property="article:published_time" content="2022-02-08T01:44:13.598Z">
+<meta property="article:modified_time" content="2022-02-09T00:14:10.648Z">
+<meta property="article:author" content="Akram Amat">
+<meta property="article:tag" content="笔记狂神系列">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mark9812.github.io/2022/02/08/%E7%8B%82%E7%A5%9E_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/image-20220208094932930.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mark9812.github.io/2022/02/08/狂神_网络编程/"/>
+
+
+
+
+
+  <title>Java网络编程 | Mark's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mark's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I love to travel, but hate to arrive.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mark9812.github.io/2022/02/08/%E7%8B%82%E7%A5%9E_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java网络编程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-08T09:44:13+08:00">
+                2022-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
+<p>计算机网络</p>
+</blockquote>
+<p>计算机网络是指将<strong>地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享</strong>和信息传递的计算机系统。</p>
+<blockquote>
+<p>网络编程的目的</p>
+</blockquote>
+<p>无线电台…传播交流信息，数据交换。通信</p>
+<p>想要达到这个效果需要什么：</p>
+<pre><code>如何准确地定位网络上的一台主机 192.168.16.124：端口，定位到这个计算机上的某个资源
+找到了这个主机，如何传输数据呢？</code></pre>
+<p>javaweb：网页编程 B/S</p>
+<p>网络编程：TCP/IP C/S</p>
+<h1 id="网络通信的要素"><a href="#网络通信的要素" class="headerlink" title="网络通信的要素"></a>网络通信的要素</h1><p>如何实现网络的通信？</p>
+<p>通信双方地址：</p>
+<ul>
+<li>ip</li>
+<li>端口号</li>
+<li>192.168.16，124：5900</li>
+</ul>
+<p><strong>规则：网络通信的协议</strong></p>
+<p>TCP/IP参考模型：</p>
+<p><img src="/2022/02/08/%E7%8B%82%E7%A5%9E_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/image-20220208094932930.png" alt="image-20220208094932930"></p>
+<p><img src="/2022/02/08/%E7%8B%82%E7%A5%9E_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/image-20220208094944183.png" alt="image-20220208094944183"></p>
+<p>小结：</p>
+<p>1.网络编程中主要有两个问题</p>
+<ul>
+<li>如何准确的定位到网络上的一台或者多台主机</li>
+<li>找到主机之后如何进行通信</li>
+</ul>
+<p>2.网络编程中的要素</p>
+<ul>
+<li>IP和端口号 IP</li>
+<li>网络通信写协议 UDP，TCP</li>
+</ul>
+<h1 id="ip"><a href="#IP" class="headerlink" title="IP"></a>IP</h1><blockquote>
+<p>ip地址：inetAddress</p>
+</blockquote>
+<pre><code>唯一定位一台网络上的计算机
+127.0.0.1：本机localhost
+ip地址的分类
+    ipv4/ipv6
+        **IPV4：**127.0.0.1，四个字节组成。0 ~ 255， 42亿~；30亿都在北美，亚洲4亿。2001年就用尽了；
+        **IPV6：**fe80::755f:fc6c:2ebc:b6e6%18，128位。8个无符号整数！</code></pre>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2001</span>:<span class="number">0</span>bb2:aaaa:<span class="number">0015</span>:<span class="number">0000</span>:<span class="number">0000</span>:<span class="number">1</span>aaa:<span class="number">1312</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>IP地址分类</li>
+<li>公网（互联网）-私网（局域网）<ul>
+<li>ABCD类地址</li>
+<li>192.168.xx.xx，专门给组织内部使用的</li>
+</ul>
+</li>
+<li>域名：记忆 IP问题！<ul>
+<li>IP：<a target="_blank" rel="noopener" href="http://www.vip.com/">www.vip.com</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class TestInetAddress &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">   // write your code here</span><br><span class="line">        try &#123;</span><br><span class="line">            InetAddress inetAddress1 = InetAddress.getByName(&quot;<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>&quot;);</span><br><span class="line">            System.out.println(inetAddress1);</span><br><span class="line">            InetAddress inetAddress3 = InetAddress.getByName(&quot;localhost&quot;);</span><br><span class="line">            System.out.println(inetAddress3);</span><br><span class="line">            InetAddress inetAddress4 = InetAddress.getLocalHost();</span><br><span class="line">            System.out.println(inetAddress4);</span><br><span class="line"></span><br><span class="line">            //查询网站ip地址</span><br><span class="line">            InetAddress inetAddress2 = InetAddress.getByName(&quot;www.bilibili.com&quot;);</span><br><span class="line">            System.out.println(inetAddress2);</span><br><span class="line"></span><br><span class="line">            //常用方法</span><br><span class="line">            //System.out.println(inetAddress2.getAddress());</span><br><span class="line">            System.out.println(inetAddress2.getCanonicalHostName());    //规范的名字</span><br><span class="line">            System.out.println(inetAddress2.getHostAddress());  //ip</span><br><span class="line">            System.out.println(inetAddress2.getHostName()); //域名，或者自己电脑的名字</span><br><span class="line"></span><br><span class="line">        &#125; catch (UnknownHostException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h1><blockquote>
+<p>端口表示计算机上的一个程序的进程；</p>
+</blockquote>
+<pre><code>不同的进程有不同的端口号！用来区分软件！
+被规定0 ~ 065535
+TCP，UDP：65535 * 2 ，单个协议下，端口号不能冲突
+端口分类
+    公有端口0 ~ 1023
+        HTTP：80
+        HTTPS：443
+        FTP：21
+        Telent：23
+    程序注册端口：1024 ~ 49151，分配给用户或者程序
+        Tomcat：8080
+        MySQL：3306
+        Oracle：1512
+    动态、私有：49152 ~ 65535</code></pre>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano #查看所有的端口</span><br><span class="line">netstat -ano | finstr &quot;<span class="number">5900</span>&quot; #查看指定的端口</span><br><span class="line">tasklist | <span class="built_in">findstr</span> &quot;<span class="number">8696</span>&quot; #查看指定端口的进程</span><br><span class="line">ctrl + <span class="built_in">shift</span> + ESC</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSocketAddress</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        InetSocketAddress socketAddress = <span class="keyword">new</span> InetSocketAddress(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">8080</span>);</span><br><span class="line">        System.out.println(socketAddress);</span><br><span class="line"></span><br><span class="line">        System.out.println(socketAddress.getAddress());</span><br><span class="line">        System.out.println(socketAddress.getHostName());</span><br><span class="line">        System.out.println(socketAddress.getPort());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="通信协议"><a href="#通信协议" class="headerlink" title="通信协议"></a>通信协议</h1><p>协议：约定，就好比我们现在说的是普通话。</p>
+<p><strong>网络通信协议：</strong>速率，传输码率，传输控制……</p>
+<p><strong>问题：</strong>非常的复杂？</p>
+<p>大事化小：分层！</p>
+<p>TCP/IP协议簇：实际上是一组协议</p>
+<p>重要：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP：用户传输协议</span><br><span class="line">UDP：用户数据报协议</span><br></pre></td></tr></table></figure>
+
+<p>出名的协议：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TCP：</span><br><span class="line">IP：网络互连协议</span><br><span class="line">(TCP/IP就是同一个协议)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/02/08/%E7%8B%82%E7%A5%9E_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/image-20220208095332441.png" alt="image-20220208095332441"></p>
+<p><strong>TCP UDP对比</strong></p>
+<p>TCP：打电话</p>
+<ul>
+<li>连接，稳定</li>
+<li><code>三次握手</code> <code>四次挥手</code></li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">最少需要三次，保证稳定连接！</span><br><span class="line">A：你瞅啥？</span><br><span class="line">B：瞅你咋地？</span><br><span class="line">A：干一场！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A：我要走了</span><br><span class="line">B：你真的要走了吗？</span><br><span class="line">B：你真的真的要走了吗？</span><br><span class="line">A：我真的要走了</span><br></pre></td></tr></table></figure>
+
+<p>UDP：发短信</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- 不连接，不稳定</span><br><span class="line">- 客户端、服务端：没有明确的界限</span><br><span class="line">- 不管有没有准备好，都可以发给你…</span><br><span class="line">- 导弹攻击</span><br><span class="line">- DDOS：洪水攻击！（饱和攻击）</span><br></pre></td></tr></table></figure>
+
+<h1 id="tcp"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><blockquote>
+<p>客户端</p>
+</blockquote>
+<ol>
+<li>连接服务器Socket</li>
+<li>发送消息</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//客户端</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">tcpClientDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Socket socket = <span class="keyword">null</span>;</span><br><span class="line">        OutputStream os = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//1、要知道服务器的地址，端口号</span></span><br><span class="line">            InetAddress serverIP = InetAddress.getByName(<span class="string">&quot;127.0.0.1&quot;</span>);</span><br><span class="line">            <span class="keyword">int</span> port = <span class="number">9999</span>;</span><br><span class="line">            <span class="comment">//2、创建一个socket连接</span></span><br><span class="line">            socket = <span class="keyword">new</span> Socket(serverIP, port);</span><br><span class="line">            <span class="comment">//3、发送消息 IO流</span></span><br><span class="line">            os = socket.getOutputStream();</span><br><span class="line">            os.write(<span class="string">&quot;Hello World&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (socket != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    socket.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (os != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    os.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>服务器</p>
+</blockquote>
+<ol>
+<li>建立服务的端口ServerScoket</li>
+<li>等待用户的连接accept</li>
+<li>接收用户的消息</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务端</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">tcpServerDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        ServerSocket serverSocket = <span class="keyword">null</span>;</span><br><span class="line">        Socket socket = <span class="keyword">null</span>;</span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line">        ByteArrayOutputStream baos = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//1、我得有一个地址</span></span><br><span class="line">            serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">9999</span>);</span><br><span class="line">            <span class="comment">//2、等待客户端连接过来</span></span><br><span class="line">            socket = serverSocket.accept();</span><br><span class="line">            <span class="comment">//3、读取客户端的消息</span></span><br><span class="line">            is = socket.getInputStream();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//管道流</span></span><br><span class="line">            baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">            <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">int</span> len;</span><br><span class="line">            <span class="keyword">while</span> ((len = is.read(buffer)) != -<span class="number">1</span>)&#123;</span><br><span class="line">                baos.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(baos.toString());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">//关闭资源</span></span><br><span class="line">            <span class="keyword">if</span> (baos != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    baos.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (is != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    is.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (socket != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    socket.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (serverSocket != <span class="keyword">null</span>)&#123;</span><br><span class="line">                serverSocket.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="tcp练习"><a href="#TCP练习" class="headerlink" title="TCP练习"></a>TCP练习</h2><p>客户端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tcp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">tcpClient</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Socket socket = <span class="keyword">new</span> Socket(<span class="string">&quot;localhost&quot;</span>,<span class="number">8888</span>);</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        String message=<span class="keyword">null</span>;</span><br><span class="line">        OutputStream os=<span class="keyword">null</span>;</span><br><span class="line">        Thread listener = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                InputStream is=<span class="keyword">null</span>;</span><br><span class="line">                ByteArrayOutputStream baos=<span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">byte</span>[] buffer;</span><br><span class="line">                System.out.println(<span class="string">&quot;客户端开始监听了~&quot;</span>);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                        is = socket.getInputStream();</span><br><span class="line">                        baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">                        buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">                        <span class="keyword">int</span> len;</span><br><span class="line">                        <span class="keyword">if</span>((len=is.read(buffer))!=-<span class="number">1</span>)&#123;</span><br><span class="line">                            baos.write(buffer,<span class="number">0</span>,len);</span><br><span class="line">                        &#125;</span><br><span class="line">                        System.out.println(baos.toString());</span><br><span class="line">                        <span class="keyword">if</span> (baos.equals(<span class="string">&quot;bye&quot;</span>))&#123;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        baos.close();</span><br><span class="line">                        is.close();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        listener.start();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;客户端已上线，输入内容按回车键发送~&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            os = socket.getOutputStream();</span><br><span class="line">            message=scanner.nextLine() ;</span><br><span class="line">            os.write(message.getBytes());</span><br><span class="line">            <span class="keyword">if</span> (message.equals(<span class="string">&quot;exit&quot;</span>))&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        scanner.close();</span><br><span class="line">        os.close();</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>服务端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tcp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.net.ServerSocket;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">tcpServer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        ServerSocket socket=<span class="keyword">new</span> ServerSocket(<span class="number">8888</span>);</span><br><span class="line">        Socket accept= socket.accept();</span><br><span class="line">        Thread writer = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                OutputStream os = <span class="keyword">null</span>;</span><br><span class="line">                Scanner scanner = <span class="keyword">null</span>;</span><br><span class="line">                String message = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;输入内容回车发送~&quot;</span>);</span><br><span class="line">                    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                        os = accept.getOutputStream();</span><br><span class="line">                        scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">                        message = scanner.nextLine();</span><br><span class="line">                        os.write(message.getBytes());</span><br><span class="line">                        <span class="keyword">if</span>(message.equals(<span class="string">&quot;exit&quot;</span>))&#123;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        os.close();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    scanner.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        writer.start();</span><br><span class="line">        ByteArrayOutputStream baos=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] buffer=buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        System.out.println(<span class="string">&quot;服务端已启动&quot;</span>);</span><br><span class="line">        InputStream is=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            is = accept.getInputStream();</span><br><span class="line">            baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">            <span class="keyword">int</span> len;</span><br><span class="line">            <span class="keyword">if</span>((len=is.read(buffer))!=-<span class="number">1</span>)&#123;</span><br><span class="line">               baos.write(buffer,<span class="number">0</span>,len);</span><br><span class="line">           &#125;</span><br><span class="line">           System.out.println(baos.toString());</span><br><span class="line">           <span class="keyword">if</span> (baos.toString().equals(<span class="string">&quot;bye&quot;</span>))&#123;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">        baos.close();</span><br><span class="line">        accept.close();</span><br><span class="line">        is.close();</span><br><span class="line">        socket.close();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><blockquote>
+<p>服务器端</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">tcpServerDemo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//1、创建服务</span></span><br><span class="line">        ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">9999</span>);</span><br><span class="line">        <span class="comment">//2、监听客户端的连接</span></span><br><span class="line">        Socket socket = serverSocket.accept();  <span class="comment">//阻塞式监听，会一直等待客户端连接</span></span><br><span class="line">        <span class="comment">//3、获取输入流</span></span><br><span class="line">        InputStream is = socket.getInputStream();</span><br><span class="line">        <span class="comment">//4、文件输出</span></span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">&quot;receive.jpg&quot;</span>));</span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len;</span><br><span class="line">        <span class="keyword">while</span> ((len = is.read(buffer)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            fos.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通知客户端我接收完毕了</span></span><br><span class="line">        OutputStream os = socket.getOutputStream();</span><br><span class="line">        os.write(<span class="string">&quot;我接受完毕了，你可以断开了&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5、关闭资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">        is.close();</span><br><span class="line">        socket.close();</span><br><span class="line">        serverSocket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>服务端</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">tcpClientDemo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//1、创建一个Socket连接</span></span><br><span class="line">        Socket socket = <span class="keyword">new</span> Socket(InetAddress.getByName(<span class="string">&quot;127.0.0.1&quot;</span>), <span class="number">9999</span>);</span><br><span class="line">        <span class="comment">//2、创建一个输出流</span></span><br><span class="line">        OutputStream os = socket.getOutputStream();</span><br><span class="line">        <span class="comment">//3、读取文件</span></span><br><span class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">&quot;111.jpg&quot;</span>));</span><br><span class="line">        <span class="comment">//4、写出文件</span></span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len;</span><br><span class="line">        <span class="keyword">while</span> ((len = fis.read(buffer)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            os.write(buffer, <span class="number">0</span> , len);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通知服务器，我已经结束了</span></span><br><span class="line">        socket.shutdownOutput();    <span class="comment">//我已经传输完了！</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//确定服务器接收完毕，才能够断开连接</span></span><br><span class="line">        InputStream inputStream = socket.getInputStream();</span><br><span class="line">        <span class="comment">//String byte[]</span></span><br><span class="line">        ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">        <span class="keyword">byte</span>[] buffer2 = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len2;</span><br><span class="line">        <span class="keyword">while</span> ((len2 = inputStream.read(buffer2)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            baos.write(buffer2, <span class="number">0</span>, len2);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(baos.toString());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5、关闭资源</span></span><br><span class="line">        baos.close();</span><br><span class="line">        inputStream.close();</span><br><span class="line">        fis.close();</span><br><span class="line">        os.close();</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>服务端</p>
+<ul>
+<li>自定义 S</li>
+<li>Tomcat服务器 S：Java后台开发!</li>
+</ul>
+<p>客户端</p>
+<ul>
+<li>自定义 C</li>
+<li>浏览器 B</li>
+</ul>
+<h1 id="udp"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h1><p>发短信：不用连接，需要知道对方的地址</p>
+<h2 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不需要连接服务器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UdpClientDemo01</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="comment">//1、建立一个Socket</span></span><br><span class="line">        DatagramSocket socket = <span class="keyword">new</span> DatagramSocket();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2、建一个包</span></span><br><span class="line">        String msg = <span class="string">&quot;你好啊，服务器!&quot;</span>;</span><br><span class="line">        <span class="comment">//发送给谁</span></span><br><span class="line">        InetAddress localhost = InetAddress.getByName(<span class="string">&quot;localhost&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> port = <span class="number">9090</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//数据，数据的长度起始，要发送给谁</span></span><br><span class="line">        DatagramPacket packet = <span class="keyword">new</span> DatagramPacket(msg.getBytes(), <span class="number">0</span>, msg.getBytes().length, localhost, port);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3、发送一个包</span></span><br><span class="line">        socket.send(packet);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4、关闭流</span></span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接收端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//还是要等待客户端的连接！</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UdpServerDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="comment">//开发端口</span></span><br><span class="line">        DatagramSocket socket = <span class="keyword">new</span> DatagramSocket(<span class="number">9090</span>);</span><br><span class="line">        <span class="comment">//接收数据包</span></span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        DatagramPacket packet = <span class="keyword">new</span> DatagramPacket(buffer, <span class="number">0</span>, buffer.length);   <span class="comment">//接收</span></span><br><span class="line"></span><br><span class="line">        socket.receive(packet); <span class="comment">//阻塞接收</span></span><br><span class="line"></span><br><span class="line">        System.out.println(packet.getAddress().getHostAddress());</span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(packet.getData(), <span class="number">0</span>, packet.getLength()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//关闭连接</span></span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="循环发送消息"><a href="#循环发送消息" class="headerlink" title="循环发送消息"></a>循环发送消息</h2><p>XXX：你好！</p>
+<p>YYY：你好！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UdpSenderDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        DatagramSocket socket = <span class="keyword">new</span> DatagramSocket(<span class="number">8888</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//准备数据：控制台读取 System.in</span></span><br><span class="line"></span><br><span class="line">        BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            String data = reader.readLine();</span><br><span class="line">            <span class="keyword">byte</span>[] datas = data.getBytes();</span><br><span class="line">            DatagramPacket packet = <span class="keyword">new</span> DatagramPacket(datas, <span class="number">0</span>, datas.length, <span class="keyword">new</span> InetSocketAddress(<span class="string">&quot;localhost&quot;</span>, <span class="number">6666</span>));</span><br><span class="line"></span><br><span class="line">            socket.send(packet);</span><br><span class="line">            <span class="keyword">if</span> (data.equals(<span class="string">&quot;bye&quot;</span>))&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UdpReceiveDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span>  <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        DatagramSocket socket = <span class="keyword">new</span> DatagramSocket(<span class="number">6666</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//准备接收包裹</span></span><br><span class="line">        <span class="keyword">byte</span>[] container = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            DatagramPacket packet = <span class="keyword">new</span> DatagramPacket(container, <span class="number">0</span>, container.length);</span><br><span class="line">            socket.receive(packet); <span class="comment">//阻塞式接收包裹</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//断开连接 byte</span></span><br><span class="line">            <span class="keyword">byte</span>[] data = packet.getData();</span><br><span class="line">            String receiveData = <span class="keyword">new</span> String(data, <span class="number">0</span>, data.length);</span><br><span class="line">            System.out.println(receiveData);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (receiveData.equals(<span class="string">&quot;bye&quot;</span>))&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在线咨询：两个人都可以是发送方，也可以是接收方！**</p>
+<h1 id="url"><a href="#URL" class="headerlink" title="URL"></a>URL</h1><p><a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a></p>
+<p>统一资源定位符：定位资源的，定位互联网上的某一个资源</p>
+<p>DNS域名解析 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> xxx.x.xx.xx</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">协议：<span class="comment">//ip地址：端口/项目名/资源</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%AC%94%E8%AE%B0%E7%8B%82%E7%A5%9E%E7%B3%BB%E5%88%97/" rel="tag"># 笔记狂神系列</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/01/15/%E7%8B%82%E7%A5%9E_Vue/" rel="next" title="Vue">
+                <i class="fa fa-chevron-left"></i> Vue
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/02/09/%E7%8B%82%E7%A5%9E_SpringCloud/" rel="prev" title="SpringCloud">
+                SpringCloud <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+                 
+                  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=400876320&auto=0&height=66"></iframe>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E7%9A%84%E8%A6%81%E7%B4%A0"><span class="nav-text">网络通信的要素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ip"><span class="nav-text">IP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3"><span class="nav-text">端口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="nav-text">通信协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tcp"><span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp%E7%BB%83%E4%B9%A0"><span class="nav-text">TCP练习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-text">文件上传</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tomcat"><span class="nav-text">Tomcat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#udp"><span class="nav-text">UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF"><span class="nav-text">发送消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF"><span class="nav-text">循环发送消息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#url"><span class="nav-text">URL</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Akram Amat</span>
+
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+-->
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共127.1k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
